@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="hostname unknown 1unable to resolve host &lt;Name&gt;: Name or service not known  Solution: add the  to file &#x2F;etc&#x2F;hosts  as  127.0.0.1   group not exists when run the following cmd sudo adduser  admin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常见错误">
+<meta property="og:url" content="https://zongpingding.github.io/2024/03/26/linux_common_error/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="hostname unknown 1unable to resolve host &lt;Name&gt;: Name or service not known  Solution: add the  to file &#x2F;etc&#x2F;hosts  as  127.0.0.1   group not exists when run the following cmd sudo adduser  admin">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/linux_common_error/banner.webp">
+<meta property="article:published_time" content="2024-03-26T01:31:53.943Z">
+<meta property="article:modified_time" content="2024-03-26T07:52:35.451Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/linux_common_error/banner.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Linux常见错误 - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/linux_common_error/banner.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux常见错误"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-26 09:31" pubdate>
+          March 26, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Linux常见错误</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="hostname-unknown">hostname unknown</h2>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">unable to resolve host &lt;Name&gt;: Name or service not known<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>Solution: add the <Name> to file /etc/hosts  as  127.0.0.1 <Name></p>
+</blockquote>
+<h2 id="group-not-exists">group not exists</h2>
+<p>when run the following cmd sudo adduser <user name> admin</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">there is a error usermod: group &#x27;admin&#x27; does not exist<br></code></pre></td></tr></table></figure>
+<p>but group admin exists in file /etc/suders exactely.</p>
+<blockquote>
+<p>Solution: simple add a group admin by groupadd admin</p>
+<ul>
+<li>the file /etc/suders has no relation to group admin 's exists.</li>
+</ul>
+</blockquote>
+<h2 id="nginx-默认访问的html文件位置">nginx 默认访问的html文件位置</h2>
+<p>在ubuntu下的位置nginx默认访问的index文件位置如下:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">/var/www/html/index.nginx-debian.html<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>参考: <a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000009529048">https://segmentfault.com/q/1010000009529048</a></p>
+</blockquote>
+<p>并且以此还产生了一种快速部署hexo博客到服务器的方法，把hexo生成的public文件夹中的所有内容复制到默认的nginx访问此目录下，如图</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs text">drwxr-xr-x 7 root root 4096 Dec 18 17:02 .<br>drwxr-xr-x 3 root root 4096 Dec 18 14:59 ..<br>drwxr-xr-x 3 root root 4096 Dec 18 17:02 2023<br>drwxr-xr-x 3 root root 4096 Dec 18 17:02 archives<br>drwxr-xr-x 3 root root 4096 Dec 18 17:02 css<br>drwxr-xr-x 2 root root 4096 Dec 18 17:02 fancybox<br>-rw-r--r-- 1 root root 6937 Dec 18 17:02 index.html<br>-rw-r--r-- 1 root root  617 Dec 18 16:31 index.nginx-debian.html<br>drwxr-xr-x 2 root root 4096 Dec 18 17:02 js<br></code></pre></td></tr></table></figure>
+<p>然后访问你的服务器ip就可以打开你的博客了,一般的网页根目录下都必须要有一个<code>index.html</code>文件，web服务器在处理用户请求时会默认寻找名为index.html的文件作为网站的主页（网页入口）</p>
+<h2 id="Linux下ip查看">Linux下ip查看</h2>
+<h3 id="内网ip">内网ip</h3>
+<p>运行命令<code>ipconfig</code>后会返回如下的结果:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs text">eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1450<br>inet 172.16.0.3  netmask 255.255.0.0  broadcast 172.16.255.255<br>inet6 fe80::f816:3eff:fe80:7ec8  prefixlen 64  scopeid 0x20&lt;link&gt;<br>ether fa:16:3e:80:7e:c8  txqueuelen 1000  (Ethernet)<br>RX packets 265734  bytes 68590660 (68.5 MB)<br>RX errors 0  dropped 0  overruns 0  frame 0<br>TX packets 381513  bytes 228398471 (228.3 MB)<br>TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0<br><br>lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536<br>inet 127.0.0.1  netmask 255.0.0.0<br>inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;<br>loop  txqueuelen 1000  (Local Loopback)<br>RX packets 6  bytes 504 (504.0 B)<br>RX errors 0  dropped 0  overruns 0  frame 0<br>TX packets 6  bytes 504 (504.0 B)<br>TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0<br></code></pre></td></tr></table></figure>
+<h3 id="公网ip">公网ip</h3>
+<p>其中eth0对应的172.16.0.3 就是你的网卡ip，内网ip。想要查看公网ip，使用如下命令</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">curl ifconfig.me<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>这个方法本质上就是访问一个网页，然后这个网页返回你的公网ip</p>
+</blockquote>
+<h2 id="nginx权限与防火墙">nginx权限与防火墙</h2>
+<p>如图我创建了一个测试的nginx网站，监听的是 81端口，<code>test.conf</code>文件如下；</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs toml">server &#123;<br>  listen 81<span class="hljs-comment">;</span><br>  location / &#123;<br>    root /home/<span class="hljs-comment">;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>尽管我的home目录下没有index.html文件，但是浏览器报错502，其实就是我设置的端口81访问被拒绝。</p>
+<blockquote>
+<p>Solution: 在京东云防火墙开启81端口的访问即可,更改81端口的访问权限后，再添加一个index.html文件，不然会报错403 Forbidden</p>
+</blockquote>
+<p>一般解决方法:查看nginx监听的端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -ef | grep nginx<br></code></pre></td></tr></table></figure>
+<p>选择nginx master进程的pid，假如是<code>555</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo netstat -anp | grep 555<br></code></pre></td></tr></table></figure>
+<p>然后可以得到如下的输出</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">user@lavm-dpbk4woj1d:~/Temp$ sudo netstat -anp | grep 555<br>tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      566/nginx: master p<br>tcp        0      0 0.0.0.0:81              0.0.0.0:*               LISTEN      566/nginx: master p<br>tcp6       0      0 :::80                   :::*                    LISTEN      566/nginx: master p<br>unix  3      [ ]         STREAM     CONNECTED     36277    566/nginx: master p<br>unix  3      [ ]         STREAM     CONNECTED     36278    566/nginx: master p<br>unix  3      [ ]         STREAM     CONNECTED     36275    566/nginx: master p<br>unix  3      [ ]         STREAM     CONNECTED     36276    566/nginx: master p<br></code></pre></td></tr></table></figure>
+<p>于是说明我们的nginx监听了81,80端口.修改了81端口的访问权限之后仍然有报错403, 一般有如下的两个原因:</p>
+<ul>
+<li>index.html不存在（极大部分原因）</li>
+<li>权限不够</li>
+</ul>
+<p>此时然后查看nginx的日志</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo vim -R /var/log/nginx/error.log<br></code></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">2023/12/18 19:01:39 [error] 1702#1702: *18 directory index of &quot;/home/&quot; is forbidden, <br>client: 103.172.183.221, server: , request: &quot;GET / HTTP/1.1&quot;, host: &quot;117.72.10.237:81&quot;<br></code></pre></td></tr></table></figure>
+<p>进一步，网页的根目录设置为 <code>/home/</code>,然而这个下面的文件信息为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">drwxr-xr-x  3 root root 4096 Dec 18 15:12 .<br>drwxr-xr-x 19 root root 4096 Dec 18 18:39 ..<br>drwxr-xr-x  7 user  user  4096 Dec 18 19:13 zpd<br></code></pre></td></tr></table></figure>
+<p>我们只需要把上面的<code>test.conf</code>中的 root设置为 `/home/user/,然后使用如下命令重启nginx</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo nginx -s reload<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>更多请参考:<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1949092">解决Nginx出现403 forbidden</a></p>
+</blockquote>
+<h2 id="nginx的配置文件误删除">nginx的配置文件误删除</h2>
+<p>首先删除nginx及其配置文件，使用命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get purge nginx nginx-common nginx-full<br></code></pre></td></tr></table></figure>
+<p><code>purge</code>选项可以在删除软件的同时删除其配置文件,然后重新安装nginx</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get install nginx<br></code></pre></td></tr></table></figure>
+<p>如果不行，用如下的命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo dpkg --force-confmiss -i /var/cache/apt/archives/nginx-common_*.deb<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>参考:<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/73983662ae19">Ubuntu – 如何恢复/etc/nginx</a></p>
+</blockquote>
+<h2 id="普通用户启动Vim-root保存">普通用户启动Vim,root保存</h2>
+<p>使用如下的命令即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">:w !sudo tee %<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>参考: <a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/27531">https://developer.aliyun.com/article/27531</a></p>
+</blockquote>
+<h2 id="Azure服务器双重防火墙">Azure服务器双重防火墙</h2>
+<p>我在Azure的虚拟机平台放行了9000端口，但是本地的ufw仍然如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs rext">user@GhostBlog:/etc/nginx/conf.d$ sudo ufw status verbose<br>Status: active<br>Logging: on (low)<br>Default: deny (incoming), allow (outgoing), disabled (routed)<br>New profiles: skip<br><br>To                         Action      From<br>--                         ------      ----<br>22/tcp                     ALLOW IN    Anywhere<br>80,443/tcp (Nginx Full)    ALLOW IN    Anywhere<br>22/tcp (v6)                ALLOW IN    Anywhere (v6)<br>80,443/tcp (Nginx Full (v6)) ALLOW IN    Anywhere (v6)<br></code></pre></td></tr></table></figure>
+<p>也就是还需要本地放行9000端口,使用如下命令添加放行端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo ufw allow 9000<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">放行端口生效</span><br>sudo ufw enable<br></code></pre></td></tr></table></figure>
+<p>然后的最终结果为:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs text">user@GhostBlog:/etc/nginx/conf.d$ sudo ufw status<br>Status: active<br><br>To                         Action      From<br>--                         ------      ----<br>22/tcp                     ALLOW       Anywhere<br>Nginx Full                 ALLOW       Anywhere<br>9000                       ALLOW       Anywhere<br>22/tcp (v6)                ALLOW       Anywhere (v6)<br>Nginx Full (v6)            ALLOW       Anywhere (v6)<br>9000 (v6)                  ALLOW       Anywhere (v6)<br></code></pre></td></tr></table></figure>
+<p>然后就可以加载了。</p>
+<blockquote>
+<p>1.但是感觉京东云应该也可以这样弄，启用默认的ufw，但是多了一步验证<br>
+2.想要参考更多的关于ufw的细节可以参考 <a target="_blank" rel="noopener" href="https://blog.xiaoz.org/archives/18666">https://blog.xiaoz.org/archives/18666</a></p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Computer/" class="category-chain-item">Computer</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux常见错误</div>
+      <div>https://zongpingding.github.io/2024/03/26/linux_common_error/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 26, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/26/easy_image/" title="Easyimage图床搭建">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Easyimage图床搭建</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/26/scp/" title="SCP文件传输">
+                        <span class="hidden-mobile">SCP文件传输</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
