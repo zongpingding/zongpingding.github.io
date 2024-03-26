@@ -1,0 +1,838 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="更新：2023-09-03 对文章进行重构 更新：2022-2-10 补充一个外接键盘输入问题，推荐一个版半本地化的verbtex软件 更新：2022-1-5  外接键盘无法切换中文输入法的解决 添加了另外一种不需要搭建TeXLive环境的半本地LaTeX写作方案  1. 序言 这天突发奇想，想要在Android上进行TexLive的安装，想着Android和Linux几乎同源，既然可以在Linu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TeXLive on Android">
+<meta property="og:url" content="https://zongpingding.github.io/2024/03/26/texlive_android/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="更新：2023-09-03 对文章进行重构 更新：2022-2-10 补充一个外接键盘输入问题，推荐一个版半本地化的verbtex软件 更新：2022-1-5  外接键盘无法切换中文输入法的解决 添加了另外一种不需要搭建TeXLive环境的半本地LaTeX写作方案  1. 序言 这天突发奇想，想要在Android上进行TexLive的安装，想着Android和Linux几乎同源，既然可以在Linu">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/texlive_android/banner.webp">
+<meta property="article:published_time" content="2024-03-26T11:33:23.992Z">
+<meta property="article:modified_time" content="2024-03-26T12:20:52.334Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="LaTeX">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/texlive_android/banner.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>TeXLive on Android - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/texlive_android/banner.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="TeXLive on Android"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-26 19:33" pubdate>
+          March 26, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">TeXLive on Android</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="更新：2023-09-03">更新：2023-09-03</h2>
+<p>对文章进行重构</p>
+<h2 id="更新：2022-2-10">更新：2022-2-10</h2>
+<p>补充一个外接键盘输入问题，推荐一个版半本地化的verbtex软件</p>
+<h2 id="更新：2022-1-5">更新：2022-1-5</h2>
+<ol>
+<li>外接键盘无法切换中文输入法的解决</li>
+<li>添加了另外一种不需要搭建TeXLive环境的半本地LaTeX写作方案</li>
+</ol>
+<h2 id="1-序言">1. 序言</h2>
+<p>这天突发奇想，想要在Android上进行TexLive的安装，想着Android和Linux几乎同源，既然可以在Linux上安装，为什么不能够在手机上使用呢？我觉得在平板上安装TexLive也应该类似，但是没有试过。</p>
+<p>这里只能够说<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%94%90%E7%BA%B3%E5%BE%B7%C2%B7%E5%85%8B%E5%8A%AA%E7%89%B9/1436781">Donald Ervin Knuth</a>太NB（实在是想不到什么好词）了，使得TeX具有这么良好的移植性。向他老人家致敬，也祝愿他老人家身体健康，也希望他老人家早日完成巨著《计算机程序设计艺术》。</p>
+<p>这里的在手机上使用LaTeX不是用那些所谓的在线LaTeX编辑网站，而是在手机上安装TexLive发行版,在自己得手机上实现编译。</p>
+<p>这是一段表示警告的文字</p>
+<div class="note note-danger">
+            <p>我个人不在手机上进行LaTeX的文件编辑于编译，因为在电脑上配合vscode编写文档的体验要完胜手机</p>
+          </div>
+<p>写本文的目的也是处于无聊，万一有时候你能够用得上，那么我写这篇文章也就值了。常见的LaTeX编辑网站主要就是如下的吧？欢迎补充在评论区</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.overleaf.com/">Overleaf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.slager.link/#/home">slager</a></li>
+<li><a target="_blank" rel="noopener" href="https://texpage.com/">TexPage</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mathcha.io/editor">mathcha</a></li>
+</ul>
+<p>上边的网站大概涵括了大多数的LaTeX在线网站吧。对了，还有一个<a target="_blank" rel="noopener" href="https://space.bilibili.com/223146252?spm_id_from=333.337.0.0">妈咪叔</a>开发的网站，但是用于写作应该是有一点的不合适。</p>
+<p>但是为了足够的宣传他的工作，我专门用一个卡片来强调。他完全自掏腰包的搭建了这个网站，还提供了免费的Mathpix的API接口给我们用（每天30次，够用了）。<strong>大家不得请他一杯咖啡？？</strong></p>
+<h2 id="2-手机安装TexLive">2. 手机安装TexLive</h2>
+<h3 id="2-1-准备">2.1 准备</h3>
+<p>首先你得安装一个手机上得终端模拟器（应该叫Shell吧，管它了），以下统称终端。这个终端得名字就叫做Termux，Termux的详细使用见<a target="_blank" rel="noopener" href="https://www.sqlsec.com/2018/05/termux.html">教程</a>这个软件可以在网上找，但是可能版本比较的陈旧。我是从Google应用商店下载的（需要科学上网）。当然也可以从这个知乎用户分享的链接进行下载：</p>
+<p>的分享连接来下载.本篇文章也是参考<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/zhu-meng-99-23">芒果不盲</a>这篇文章来做的，下边是他的相关博客</p>
+<blockquote>
+<p>相关引用文章侵删</p>
+</blockquote>
+<p>百度网盘链接：</p>
+<p>提取码：1234</p>
+<p>安装Termux可以完全照着它的来：</p>
+<p><strong>1. 先换源</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stylus">sed -<span class="hljs-selector-tag">i</span> <span class="hljs-string">&#x27;s@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@&#x27;</span> <span class="hljs-variable">$PREFIX</span>/etc/apt/sources<span class="hljs-selector-class">.list</span><br>sed -<span class="hljs-selector-tag">i</span> <span class="hljs-string">&#x27;s@^\(deb.*games stable\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games stable@&#x27;</span> <span class="hljs-variable">$PREFIX</span>/etc/apt/sources<span class="hljs-selector-class">.list</span>.d/game<span class="hljs-selector-class">.list</span><br>sed -<span class="hljs-selector-tag">i</span> <span class="hljs-string">&#x27;s@^\(deb.*science stable\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science stable@&#x27;</span> <span class="hljs-variable">$PREFIX</span>/etc/apt/sources<span class="hljs-selector-class">.list</span>.d/science<span class="hljs-selector-class">.list</span><br>pkg update<br></code></pre></td></tr></table></figure>
+<p>复制到Termux的界面中<strong>依次</strong>执行（一句一句的复制，然后执行）,换源过程中已知回车就行，使用它的默认设定</p>
+<p><strong>2. 基础工具的安装和美化Termux（可选）</strong></p>
+<p>参见上边的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/439870373">那篇文章</a>（不想过多的抄袭）,本文的主要目的是解决texlive-full无法安装的问题。基本准备结束，<strong>重启终端</strong></p>
+<h3 id="2-2-安装TexLive">2.2 安装TexLive</h3>
+<p>其实参考上边的那篇文章无法安装的原因的本质是我们的源里面没有TexLive-full这个包了，所以你只会得到</p>
+<p>报错：<strong>E：unable to locate package texlive-full。<strong>如图：我用了一个不存在的包</strong>abcdefg</strong>来检验。</p>
+<p><img src="/img/texlive_android/01.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>那么他又变成什么名字了呢？其实你可以搜索一下texlive关键词就行了。在你手机里边的Termux输入如下的语句</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pkg search texlive<br></code></pre></td></tr></table></figure>
+<p>然后你就会得到如下的结果</p>
+<p><img src="/img/texlive_android/02.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>所以我们可以用<strong>texlive-installe</strong>r来安装。下载<strong>texlive-installe</strong>r，使用语句</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pkg <span class="hljs-keyword">install</span> texlive-installer<br></code></pre></td></tr></table></figure>
+<p>一直回车就行，然后运行命令</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">termux-<span class="hljs-keyword">install</span>-tl<br></code></pre></td></tr></table></figure>
+<p>你就会进入一个界面</p>
+<p><img src="/img/texlive_android/03.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>安装选项（可选）</strong></p>
+<p>你可以输入S（大写的），选择安装的包的多少，默认full-scheme（全部的宏包）推荐新手使用默认选项，不要做任何的修改。同时：上边也有很多的安装时的可选参数，可以自行研究。</p>
+<p><strong>开始安装</strong></p>
+<p>接下来直接输入I（大写的）就可以开始安装了，安装过程可能比较漫长，我安装了4200多个宏包，花了两个多小时，具体的情况因人而异。手机安装时的大致模样</p>
+<p><img src="/img/texlive_android/04.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>安装完成后的截图</p>
+<p><img src="/img/texlive_android/05.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>,但是此时你输入xelatex可能无法识别，需要你执行一下如下的语句（稍微有点Linux基础的，应该都懂吧）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">source /data/data/com.termux/files/usr/etc/profile.d/texlive.sh<br></code></pre></td></tr></table></figure>
+<p><strong>检验安装是否成功</strong></p>
+<p>依次输入如下的语句，检查各个引擎和宏包管理软件tlmgr是否安装好了。下边有运行结果截图：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">xelatex -v              % 最常用，绝对不能出问题<br>latex -v<br>paflatex -v<br>tlmgr --version         % 宏包管理软件,也很重要<br></code></pre></td></tr></table></figure>
+<p><img src="/img/texlive_android/06.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="3-使用TexLive">3.使用TexLive</h2>
+<p>这里需要你有一点的vim或者是nano的基础（不会也行），原则上你的手机上的任何的文本编辑器都能够写处.tex文档。只不过使用vim就在终端里面，方便一些。此处测试文档编辑基本的vim操作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">:wq                            % 保存并退出（normal模式下）<br>:q!                            % 强制退出（normal模式下）<br>i                              % 进入编辑模式<br>Esc(或Ctrl + c)                % 退出编辑模式<br></code></pre></td></tr></table></figure>
+<p><strong>编写测试文件</strong></p>
+<p>输入命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim main.tex<br></code></pre></td></tr></table></figure>
+<p>输入如下的内容：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs tex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><br><span class="hljs-keyword">\usepackage</span>&#123;ctex&#125;<br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><br>Test Basic english<span class="hljs-keyword">\\</span><br>Hello&#123;&#125; <span class="hljs-keyword">\LaTeX</span><br><br><br>测试中文<span class="hljs-keyword">\\</span><br>这是一句中文<br>Hello&#123;&#125; <span class="hljs-keyword">\LaTeX</span><br><br><br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="/img/texlive_android/07.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>编译文件</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">xelatex <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.tex</span><br></code></pre></td></tr></table></figure>
+<p><strong>查看编译输出（可选）</strong></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">ls</span> -<span class="hljs-keyword">al</span><br></code></pre></td></tr></table></figure>
+<p>上述流程演示截图</p>
+<p><img src="/img/texlive_android/08.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>查看编译输出的pdf文件</strong></p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">termux-open main.pdf<br></code></pre></td></tr></table></figure>
+<p><img src="/img/texlive_android/09.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="4-在手机上编辑LaTeX的一些拓展选项">4.在手机上编辑LaTeX的一些拓展选项</h2>
+<h3 id="4-1-键盘输入">4.1 键盘输入</h3>
+<p>就在手机上打字是很痛苦的，所以可以考虑外接一个键盘进行输入。</p>
+<h3 id="4-2-投屏操作">4.2 投屏操作</h3>
+<p>就在这么小的手机上写代码，体验是极为糟糕的。所以可以选择把手机屏幕投射到电脑上去，在结合外接的键盘进行编写。（不要问【喷】我为什么不在电脑用原生的TexLive和Vscode，而非得投屏，请仔细看我的前言）</p>
+<p><strong>1.电脑投屏到手机</strong></p>
+<p>使用windows自带的投屏进行操作：这里讲解安装这个应用：无线显示</p>
+<p><img src="/img/texlive_android/10.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>具体的操作见</p>
+<p><strong>2.手机投屏到电脑</strong></p>
+<p>手机电脑在同一局域网内部（连接同一个WIFI），具体操作</p>
+<p><img src="/img/texlive_android/11.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/texlive_android/12.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>3.使用软件Xdisplay实现投屏</strong></p>
+<p><strong>同时在手机和电脑上下载Xdisplay软件。</strong></p>
+<p>**电脑端：**直接在<a target="_blank" rel="noopener" href="https://www.splashtop.cn/cn/">网站</a>上下载就行了</p>
+<p><img src="/img/texlive_android/13.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>**手机端：**我是在Google商店（需要科学上网）下载的。你们可以网站下载Android版</p>
+<p><img src="/img/texlive_android/14.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>**电脑端和手机端的设置：**电脑打开软件即可，电脑手机用USB线连接。手机需要打开USB调试（4击版本号进入开发者模式，然后就会出现了）， 部分手机连接时需要选择【<strong>传输文件和照片】。</strong></p>
+<p><img src="/img/texlive_android/15.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="5-结语">5.结语</h2>
+<p>Have Fun， Happy LaTeXing !!!</p>
+<h2 id="6-外接键盘无法切换中文输入法">6 外接键盘无法切换中文输入法</h2>
+<p>直接把toolbar向左边拖动，就可以了。截图如下：</p>
+<p><img src="/img/texlive_android/16.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>只不过此时命令的跳转不好操作</p>
+<h2 id="7-半本地化的VerbTeX">7 半本地化的VerbTeX</h2>
+<p>只需要在google商店下载一个免费的VerbTeX即可：我才它的工作机制应该是调用的在线引擎，编译生成PDF后进行下载到手机端查看。然后再说一说它支持的功能吧：</p>
+<ol>
+<li>语法高亮</li>
+<li>引用本地图片</li>
+<li>LaTeX 语法</li>
+<li>快捷输入</li>
+<li>大纲查看</li>
+</ol>
+<p><strong>不足之处</strong></p>
+<p>目前好像无法更改其他的编译的引擎，所以只能够使用的有pdflatex和xelatex，但是对于一个手机端的LaTeX编辑器，他已经很好了。下面是演示效果：</p>
+<p><img src="/img/texlive_android/17.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Computer/" class="category-chain-item">Computer</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/LaTeX/" class="print-no-link">#LaTeX</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>TeXLive on Android</div>
+      <div>https://zongpingding.github.io/2024/03/26/texlive_android/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 26, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/26/tikz_tools/" title="TikZ工具合集">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">TikZ工具合集</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/26/gnuplot_intro/" title="gnuplot介绍">
+                        <span class="hidden-mobile">gnuplot介绍</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

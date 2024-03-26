@@ -1,0 +1,1161 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.配置前言 这是一个过来人的真实经历. 2.阅读提醒 文章很长，我想在这里把所有关于Linux的个人感受都说出来，特别是对于Arch！  我并不想你浪费时间来阅读一个你不感兴趣的内容，所以不感兴趣可以直接跳过  好了，正文开始！想要看Arch安装的直接跳到 【第6节】 3.此文目的 此篇文章的目的：记录我使用Linux的经历，至少以后不会只留下回忆. 因为我现在真的发现我坚持不下去了，也不能这样">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArchLinux 入门">
+<meta property="og:url" content="https://zongpingding.github.io/2024/03/26/archlinux_intro/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="1.配置前言 这是一个过来人的真实经历. 2.阅读提醒 文章很长，我想在这里把所有关于Linux的个人感受都说出来，特别是对于Arch！  我并不想你浪费时间来阅读一个你不感兴趣的内容，所以不感兴趣可以直接跳过  好了，正文开始！想要看Arch安装的直接跳到 【第6节】 3.此文目的 此篇文章的目的：记录我使用Linux的经历，至少以后不会只留下回忆. 因为我现在真的发现我坚持不下去了，也不能这样">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/archlinux_intro/banner.webp">
+<meta property="article:published_time" content="2024-03-26T09:15:50.120Z">
+<meta property="article:modified_time" content="2024-03-26T10:04:49.303Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/archlinux_intro/banner.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ArchLinux 入门 - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/archlinux_intro/banner.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ArchLinux 入门"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-26 17:15" pubdate>
+          March 26, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          73 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ArchLinux 入门</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-配置前言">1.配置前言</h2>
+<p>这是一个过来人的真实经历.</p>
+<h2 id="2-阅读提醒">2.阅读提醒</h2>
+<p>文章很长，我想在这里把所有关于Linux的个人感受都说出来，特别是对于Arch！</p>
+<blockquote>
+<p>我并不想你浪费时间来阅读一个你不感兴趣的内容，所以不感兴趣可以直接跳过</p>
+</blockquote>
+<p>好了，正文开始！想要看Arch安装的直接跳到 <strong>【第6节】</strong></p>
+<h2 id="3-此文目的">3.此文目的</h2>
+<p>此篇文章的目的：记录我使用Linux的经历，至少以后不会只留下回忆.</p>
+<p>因为我现在真的发现我坚持不下去了，也不能这样说吧。</p>
+<p>反正我感觉我每天都在和Linux斗智斗勇，几乎每个软件都有bug。我甚至都不知道我为什么最初会选择Linux，</p>
+<p>我好像忘记了我选择Linux的初衷。所现在每天折腾Linux都很痛苦，仿佛以前的那种折腾Linux的快乐再也没有了，以前的我是那么的乐此不疲。希望我把这篇文章写完之后，回忆起我当初使用Linux的点点滴滴，能够找回我当初使用Linux的初心，那份快乐，不然我可能真的要离Linux远去了。</p>
+<blockquote>
+<ol>
+<li>但是Linux本来就是你爱用不用的</li>
+<li>这里没有其他的意思，其实我还是挺想用Linux的</li>
+</ol>
+</blockquote>
+<h2 id="4-Bug的解决方法">4. Bug的解决方法</h2>
+<ol>
+<li>首先是去小破站（B站），众所周知，小破站是最大的学习网站</li>
+<li>其次当然是去官方的Arch wiki或者是在Arch的bug里边看看是不是系统本身的原因，抑或是Arch的Fomular</li>
+<li>然后就是先查百度，看有没有人的经历和我相同，这样改Bug就快得多.因为百度还会展示以下的这些网站里边的相关的内容。</li>
+</ol>
+<blockquote>
+<p>有时候我觉得百度的搜索结果还是挺好的</p>
+</blockquote>
+<ol start="3">
+<li>百度的方法不行，就上知乎，看看有没有类似的经历</li>
+<li>知乎不行，就上csdn</li>
+</ol>
+<blockquote>
+<p>虽然很多人都说这里是一个垃圾堆，但是我觉得那是对于那种高手而言的；我虽然没有经常逛，但毕竟这是我第一个接触到的编程相关的网站，还是它把握领进门的吧。但是现在我也觉得csdn的做法有一点的恶心了，唉……</p>
+</blockquote>
+<ol start="5">
+<li>csdn不行，我就会上老牌社区博客园看看</li>
+</ol>
+<blockquote>
+<p>现在我觉得博客园很好，很清爽，很干净，社区氛围很好，力荐</p>
+</blockquote>
+<ol start="6">
+<li>博客园还不行的话我就只有上github了，毕竟我的英语并不是很好，虽然有浏览器的翻译，但你们有没有觉得有时候浏览器的翻译怪怪的，我从Arch wiki得出的经验</li>
+<li>实在是没有办法了就只有上国外的网站搜索了。比如Quora, Stack Overflow, Stack Exchange, 或者是一些民间社区。 但是你得英语好，再者就是盲目的google了</li>
+<li>最后一招:也是我的杀手鐗：remake。软件卸载了然后重装。</li>
+</ol>
+<h2 id="5-怎们去了解在这个方面你不懂的知识">5.怎们去了解在这个方面你不懂的知识</h2>
+<p>很多人可能都会认为上边的内容在吹牛，但是我觉得如果你是一个电脑方面的小白到你主动的去安装LinuX。去了解磁盘的分区方式，Linux的文件系统，什么挂载啊， inode啊， block啊。</p>
+<p>因为我是准备安装win10 + Arch双系统的。我原本的win10里边还有我很多的重要文件，课件，包括一些贼难安装的工业软件和大型计算软件。我不想到时候arch没有安装成功，原本的win10也挂了。所以即使是网上很详细的所谓的双系统安装教程，我也不敢一步一步的照着做。我的去查询每一条命令的实际作用，查询这个命令运行后的影响。</p>
+<p>你们可能不会相信我所说的，可能觉得我夸张了。但是假如你连linux命令行，GPT， MBR， BIOS， UEFI，GRUB这些东西都不知道，甚至都不知道是什么东西的时候，你就能够理解了。甚至目睹了网上很多的老鸟安装双系统失败的惨烈描述后，你觉得，你作为一个电脑小白，你会怎么想？？？你会放开手去按照网上的教程安装吗？？？所以我的解决办法是：</p>
+<p><strong>5.1</strong> 先去小破站把上边所说的所谓的什么linux命令行，GPT， MBR， BIOS， UEFI，GRUB听那些up讲解几遍。</p>
+<p><strong>5.2</strong> 然后再在小破站看看几个装机视频(就是单纯安装windows的，听听那些up对于每一步操作的解释，在这里推荐up：硬件茶谈，解决了我在这一阶段的大部分问题)</p>
+<p><strong>5.3</strong> 光是观看，不实际操作，总是会感觉不踏实。反正我就是这样。但我只有一个实体机，怎么做实验呢？对了，就是虚拟机。我使用的是VM ware。为了联系安装操作系统我的vm mare的系统快照都快变成了一个”树“形图。现在那些操作失败的系统安装分支我都删了。这些快照的结构大概就长这个样子。</p>
+<p><img src="/img/archlinux_intro/os_shoots_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/archlinux_intro/os_shoots_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这些系统快照在顶峰的时候占了我大约200G的硬盘空间[哭死]。接下来就是实体机的安装了</p>
+<h2 id="6-实体机安装-踩坑提示">6. 实体机安装+踩坑提示</h2>
+<p>在虚拟机上进行演练后，我自信满满的把我的硬盘分出一个区， 安装基础包， 编写配置文件，安装dwm，走上人生巅峰。但是，我还是太年轻了.</p>
+<h3 id="6-0-制作启动盘，进入-LiveCD">6.0 制作启动盘，进入 LiveCD</h3>
+<p>我使用的是 rufus,一个免费的软件，在windows上制作的，具体的注意点：</p>
+<ul>
+<li>选项 --&gt; GPT</li>
+<li>写入方式 --&gt; DD</li>
+</ul>
+<p>进入LiveCD,我的笔记本电脑开机时长按的两个按键的说明：</p>
+<ul>
+<li>F2：设置BIOS</li>
+<li>F12 ：选择启动项</li>
+</ul>
+<h3 id="6-1-连接网络">6.1 连接网络</h3>
+<p>要在实体机中安装Arch，你首先的连的上网，来下载Arch的基本环境组件（固件，驱动，内核等等）<br>
+首先，在虚拟机中我是使用的NAT来让我的虚拟机链接上网络的，但那是在实体机里边怎么搞呢？<br>
+其实挺简单的；假如你想使用无线网的话，依次输入如下命令即可*（注意：%后边的内容代表注释）*</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">iwctl                                               % 进入iwd模式<br>device list                                         % 扫描你的无线网卡<br>station &lt;your netcard name&gt; scan                    % 使用你的网卡扫描周围的可用wifi<br>station &lt;your netcard name&gt; get-networks            % 列出刚才扫描到的wifi的名称<br>station &lt;your netcard name&gt; connect &lt;wifi name&gt;     % 他会自动要求你输入密码（不会显示你键入的字符，但是你的确时输入进去了，键入完成后 摁 &lt;Enter&gt;即可）<br>exit                                                % 退出iwd模式[重要]；别在iwd模式下运行下边的命令，不然你会得到 &quot;command not found&quot;<br></code></pre></td></tr></table></figure>
+<p>但是，我还是推荐第二种联网方案的,就是直接利用DHCP.简单来说就是直接从你的路由器</p>
+<blockquote>
+<p><em>要可以上网的，别用那种电都没插的，或者是其他的离谱路由器</em></p>
+</blockquote>
+<p>上接一根网线出来连接到你的电脑上。(USB口的可以买一个转接器)然后你的电脑自动就能够上网了，不用你设置什么的。为什么我推荐这种方式呢？</p>
+<ol>
+<li>稳定：如果安装的过中，隔壁的老王利用你的wifi偷看“学习资料”，或者是各种原因导致你的wifi不稳定</li>
+<li>速度快： 同样也是为了防火， 防电，防老王。这样你的安装会很快(应该可以减少焦虑吧)</li>
+</ol>
+<blockquote>
+<p>我就是用的DHCP，网速平均能够达到30mb/s左右</p>
+</blockquote>
+<p>首先，因为在虚拟机的时候我可以手动选择启动时进入BIOS界面。怎么检测你是否连接上互联网了呢？----&gt; 连接一下网站试试呗。运行如下的命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ping www.baidu.com    % www.可以不加；（如果不断地返回了 64bytes from …… 之类的字眼，说明联网成功）<br></code></pre></td></tr></table></figure>
+<h3 id="6-2-一个系统服务的禁用-可选">6.2 一个系统服务的禁用(可选)</h3>
+<p>系统里边又一个名为refleactor 的服务，它会挑选一下我们下载软件的仓库地址，然后把它们放到</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">/etc/pacman.d/mirrorlist    % 在Linux中没有C， D盘之类的概念。你可以认为它只有一个文件夹,这个文夹的名字叫&quot;/&quot;.你之后的所有东西都放在这个文件夹里边<br></code></pre></td></tr></table></figure>
+<p>的文件下，这个文件夹的大概结构图示（扩容的问题： 很简单的，后边会讲）</p>
+<p><img src="/img/archlinux_intro/file_system.png" srcset="/img/loading.gif" lazyload alt="来源：菜鸟教程(侵权删)"></p>
+<p>为什么要禁用reflector呢？</p>
+<blockquote>
+<p>你想, 它同步的是全球的下载源（地址），什么自由美利坚啊，加拿大啊之类的，当然也有我们中国的。 但是我们下载&lt;东西&gt;的时候时好像是默认使用排在前边的几个地址。你想，你从美国下载快， 还是中国快。</p>
+</blockquote>
+<p>所以我们就可以添加几个中国的源(下载地址)到开头*（注意：# 后边的内容是注释）*</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch                # 中国科学技术大学开源镜像站<br>Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch       # 清华大学开源软件镜像站<br>Server = https://repo.huaweicloud.com/archlinux/$repo/os/$arch               # 华为开源镜像站<br>Server = http://mirror.lzu.edu.cn/archlinux/$repo/os/$arch                   # 兰州大学开源镜像站<br></code></pre></td></tr></table></figure>
+<p>怎么添加呢？挺简单地（你会vim的基础操作情况下）</p>
+<p><strong>这里讲一讲vim的基础操作</strong></p>
+<ol>
+<li>怎么退出vim：没想到吧！你第一次接触vim你可能都无法退出这个东西</li>
+</ol>
+<div class="note note-success">
+            <p>先按个几下<Esc>键,看到vim的左下角出现normal mode 或者是 Insert mode消失。<br>在英文模式下输入&quot;:wq&quot;即可,但是这个是保存后退出；<br>不保存强制退出就输入&quot;:q!&quot;</p>
+          </div>
+<ol start="2">
+<li>怎么插入文本，或者说怎么使用“人性化”的方法进行类似notepad的操作</li>
+</ol>
+<div class="note note-success">
+            <p>在 normal mode 的情况下，在英文输入的情况下，键入&quot;a i o&quot;中的一个字母即可。<br>然后用上下左右方向（k j h l）键进行光标的移动</p>
+          </div>
+<ol start="3">
+<li>复制粘贴</li>
+</ol>
+<div class="note note-success">
+            <p>在normal模式下使用<n>yy可以实现复制n行，然后用p粘贴<br>注：部分的vim支持系统的剪切板，输入 echo has(‘clipboard’)即可验证。</p>
+          </div>
+<ol start="4">
+<li>搜索</li>
+</ol>
+<div class="note note-success">
+            <p>% 在normal模式下输入<br>:/<text you find></p>
+          </div>
+<h3 id="6-3-磁盘的分区【重点】">6.3 磁盘的分区【重点】</h3>
+<p><strong>6.3.1电脑的启动流程示例</strong></p>
+<p><img src="/img/archlinux_intro/boot_process.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这一段感觉不知道该怎么讲，希望有大神来补充一下。不知道我讲清楚没有，我凌乱了 …</p>
+<p><strong>现在让我们来区分</strong></p>
+<ul>
+<li><strong>BIOS</strong></li>
+<li><strong>Legacy</strong></li>
+<li><strong>Legacy BIOS</strong></li>
+<li><strong>UEFI</strong></li>
+<li><strong>EFI</strong></li>
+<li><strong>ESP</strong></li>
+<li><strong>UEFI BIOS</strong></li>
+<li><strong>GPT</strong></li>
+<li><strong>MBR</strong></li>
+<li><strong>BootLoader</strong></li>
+<li><strong>Kernel</strong></li>
+<li><strong>GRUB(2)</strong></li>
+<li><strong>LILO</strong></li>
+<li><strong>OC</strong></li>
+<li><strong>clover</strong></li>
+</ul>
+<p><strong>1 .BootLoader</strong></p>
+<p>&lt;开机管理程序&gt; 或叫做 &lt;启动引导程序&gt;。在加载内核上具有唯一性，你不能说用windoes的BootLoader去加载Linux的内核，这是不行的。</p>
+<p><strong>下边来解释原因,以Linux下的GRUB2为例</strong></p>
+<p>我们上边提到在 BIOS 读完信息后，接下来就是会到第一个开机设备的 MBR（LBA0）去读取 boot loader 了。这个 boot loader 可以具有<strong>菜单功能</strong>、<strong>直接载入核心文件</strong>以及<strong>控制权移交</strong>的功能等， 系统必须要有 loader 才有办法载入该操作系统的核心就是了。但是我们都知道， MBR 是整个硬盘的第一个 sector 内的一个区块，充其量整个大小也才 446 Bytes 而已。即使是 GPT 也没有很大的扇区来储存 loader 的数据。我们的 loader 功能这么强，光是程序码与设置数据不可能只占这么一点点的容量吧？那如何安装？</p>
+<p>为了解决这个问题，所以 Linux 将 boot loader 的程序码执行与设置值载入分成两个阶段来执行：</p>
+<p><strong>阶段一</strong></p>
+<p>执行 boot loader 主程序： 第一阶段为执行 boot loader 的主程序，这个主程序必须要被安装在开机区，亦即是 MBR 或者是 boot sector 。但如前所述，因为MBR 实在太小了，所以，MBR 或 boot sector 通常仅安装 boot loader 的最小主程序， 并没有安装 loader 的相关配置文件；</p>
+<p><strong>阶段二</strong></p>
+<p>主程序载入配置文件： 第二阶段为通过 boot loader 载入所有配置文件与相关的环境参数文件 （包括<strong>文件系统定义</strong>与主要配置文件 grub.cfg）， 一般来说，配置文件都在 /boot 下面。</p>
+<p><strong>2. BIOS</strong></p>
+<p>使用汇编语言写到主板上的一个16位固件（硬件上的软件）—&gt;计算机执行的第一个程序</p>
+<p><strong>3. UEFI</strong></p>
+<p>使用C语言写到主板上的一个固件（可以看作一个低级的操作系统）,主要就是想要取代BIOS这个固件接口。</p>
+<p>所以又叫做UEFI BIOS</p>
+<p><strong>4. EFI（EFI system partition）</strong></p>
+<p>GPT格式的硬盘中的系统启动分区, 又叫做ESP分区。 EFI其实就是<strong>系统自动安装</strong>或者是你<strong>手动添加</strong>的一个BootLoader, 通常都是一个**.efi**作为后缀的文件。然后这个BootLoader就会带着主板找到其它操作操作系统的BootLoader，然后被找到的这个BootLoader就加载这个操作系统的内核内核，从而启动操作系统。</p>
+<p><strong>5. BIOS寻找操作系统的方式</strong></p>
+<p>Legacy 和 UEFI → 可以进入BIOS模式后进行设置</p>
+<p>比如在Legacy模式下，在BIOS中要把第一启动项设为安装由操作系统的那个硬盘。</p>
+<p>之后BIOS会扫描第一启动硬盘的第一个分区(MBR或这是LBA0),找到boot之类的启动文件,只用利用Loader才能加载系统内核，从而进入操作系统</p>
+<p><strong>6. 磁盘的分区格式</strong></p>
+<p>MBR， GPT</p>
+<p><strong>7. 加载OS内核</strong></p>
+<p>BootLoader的主要工作之一</p>
+<p>常见的BootLoader有GRUB(2), LILO, spfdisk, Boot Manager(windows的boot loader)，OC， clover</p>
+<p>好像还有一个叫变色龙是吧？【黑苹果玩家出来挨打】</p>
+<p><strong>8. kernel</strong></p>
+<p>就是操作系统的内核</p>
+<blockquote>
+<p>我们平时说的Linux其实应该叫GNU/Linux。因为Linux是GNU采用了Linus的Linux内核产生的</p>
+</blockquote>
+<p><strong>9. 关于BIOS和UEFI 与 MBR 和GPT的搭配问题？</strong></p>
+<p><strong>鸟哥书中的一句话</strong></p>
+<p><strong>如果你的分区表为 GPT 格式的话，那么 BIOS 也能够从 LBA0 的 MBR相容区块读取第一阶段的启动引导程序代码， 如果你的启动引导程序能够认识 GPT 的话，那么使用 BIOS 同样可以读取到正确的操作系统核心！换句话说， 如果启动引导程序不懂 GPT ，例如 Windows XP 的环境，那自然就无法读取核心文件，开机就失败了</strong></p>
+<p><strong>6.3.2.明确几个点</strong></p>
+<ol>
+<li>安装双系统的话，你应该先安装windows，在安装Arch。windows的安装会覆盖你的MBR和BootSector，从而你原本在MBR里边的Linux的BootLoader会被覆盖称&quot;<strong>啥也不能干</strong>&quot;的windows 的Boot Manager,然后你就只有使用Linux的修复模式来修复MBR了。</li>
+<li>多系统在磁盘上的关系，如图：（GPT也有MBR的兼容区）。所以说只要你在windows里边预先分出一块空余的磁盘(不要分区)，之后你在这个分区里边可以使劲造（别太使劲了），你的原来的windows里边的文件不会受到丝毫的影响。（亲身体会），在安装引导的时候的注意一下。</li>
+</ol>
+<p><img src="/img/archlinux_intro/system_relation.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>3.BootLaoder的作用</p>
+<ul>
+<li>提供菜单：使用者可以选择不同的开机项目，这也是多重开机的重要功能！</li>
+<li>载入核心文件：直接指向可开机的程序区段来开始操作系统；</li>
+<li>转交其他 loader：将开机管理功能转交给其他 loader 负责。（windows的不行）</li>
+</ul>
+<p>bootloader的示意图</p>
+<p><img src="/img/archlinux_intro/bootloader.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>6.3.3. 本教程安装操作系统引导的方案</strong></p>
+<p>Linux的引导不安装在windows的EFI分区。转而重新新建一个/Boot分区来存放引导。</p>
+<ol>
+<li>一方面是考虑到一部分人的windows自带的那个存放BootLoader的分区小的可怜(虽然BootLoader也很小)</li>
+<li>另一方面是为了防止虽坏windows自带的引导</li>
+</ol>
+<p><strong>6.3.4 计划分区方案</strong></p>
+<p>首先在你的windows中使用windows自带的磁盘管理分出200G左右的free space</p>
+<p>我的实体机分区情况：</p>
+<table>
+<thead>
+<tr>
+<th>1G</th>
+<th>\boot</th>
+<th>fat32</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8G</td>
+<td>swap</td>
+<td>swap</td>
+</tr>
+<tr>
+<td>The rest</td>
+<td>\</td>
+<td>ext4</td>
+</tr>
+</tbody>
+</table>
+<p>感觉这个分区方式会被喷死，下边是虚拟机的情况，仅作演示，数据按照表格来。</p>
+<p><strong>0. 磁盘分区</strong></p>
+<p>MBR 格式的硬盘使用fdisk(cfdisk 图形界面),GPT 格式的硬盘使用gdisk(cgdisk 图形界面);<br>
+最后一定要写入分区表才有效，即输入w, 具体的方法我不多讲，还是简单的;</p>
+<p><strong>1.查看分区后的情况</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">lsblk                        % 查看分区情况，如下图<br></code></pre></td></tr></table></figure>
+<p><img src="/img/archlinux_intro/disk_partition.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<div class="note note-success">
+            <p>注： 这个是我已经安装好的虚拟机双系统<br>我已经把预留的60G分成了20G windows + 30G Arch。<br>我把这个30G分成: 512M的/booot : /dev/nvme0n1p6    +   4G的swap分区 : /dev/nvme0n1p7  +   30.5GM的/dev/nvme0n1p8</p>
+          </div>
+<p><strong>2. 然后就是格式化分区</strong></p>
+<p>应该叫做格式化文件系统</p>
+<ul>
+<li>比如windows的FAT， FAT16， FAT32， NTFS文件系统</li>
+<li>Linux下的ext2, ext3, ext4, SGI’s XFS, btrfs 文件系统</li>
+</ul>
+<p>输入以下的命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">% </span><span class="language-bash">1. 制作boot分区， 必须为fat格式</span><br>mkfs.fat -F32 /dev/nvme0n1p6<br><span class="hljs-meta prompt_">% </span><span class="language-bash">2. 制作swap分区</span><br>mkswap /dev/nvme0n1p7<br>swapon /dev/nvme0n1p7<br><span class="hljs-meta prompt_">% </span><span class="language-bash">3. 制作主分区的文件系统</span><br>mkfs.ext4 /dev/nvme0n1p8                    # 或 mkfs -t ext4 /dev/nvme0n1p8<br><span class="hljs-meta prompt_">% </span><span class="language-bash">4. 最好在使用fdisk -l 或者是 lsblk查看各个文件系统的情况</span><br></code></pre></td></tr></table></figure>
+<h3 id="6-4-安装Arch基本系统"><strong>6.4 安装Arch基本系统</strong></h3>
+<p><strong>软件源配置</strong></p>
+<p>因为Arch使用的是pacman作为包管理器，所以你应该先编辑一下pacman的配置文件，设置pacman的下载仓库有哪些，不然仓库没有的话你就会缺少依赖，然后就会一直改bug</p>
+<p>pacman配置文件位于/etc/pacman.conf,运行如下的命令进行编辑：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim   /etc/pacman.conf<br></code></pre></td></tr></table></figure>
+<p>打开后你会看到Arch自带有三个软件源</p>
+<ul>
+<li>[core]</li>
+<li>[extra]</li>
+<li>[community]</li>
+</ul>
+<p>但是你还应该把另外一个软件源给解封（它注释了）—&gt; 给两行解除注释，就是[multilib],它的作用就是提供32位支持库。</p>
+<blockquote>
+<p>你还可以在添加一个archlinuxcn这个源，但是它不是官方的源，是我们中国人自己搞的</p>
+</blockquote>
+<p>在刚才的那个/etc/pacman.conf文件里边加入下边的内容即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">[archlinuxcn]<br>Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch                   # 中国科学技术大学开源镜像站<br>Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch          # 清华大学开源软件镜像站<br>Server = https://mirrors.hit.edu.cn/archlinuxcn/$arch                    # 哈尔滨工业大学开源镜像站<br>Server = https://repo.huaweicloud.com/archlinuxcn/$arch                  # 华为开源镜像站<br><span class="hljs-meta prompt_">% </span><span class="language-bash">安装这个源你还需要运行下边的命令,安装签名</span><br>sudo pacman -S archlinuxcn-keyring<br><span class="hljs-meta prompt_">% </span><span class="language-bash">最后相比大家安装Arch的一大原因就是看上了它的AUR吧，据说就没有上边找不到的野包。</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">为此你只需要下载一个yay就行了，yay就可以从AUR中下载软件</span><br>sudo pacman -S yay<br></code></pre></td></tr></table></figure>
+<p><strong>PS：你也可以编辑pacman的镜像源，把中国的镜像源放在最前边, 可能网速会好一点，和前边的禁用reflector一样</strong></p>
+<p>最后就是要更新一下你的系统，万一不是最新的，但时候在安装的结束之际给你弹个ERROR出来，相信我你会裂开的，怎么更新呢？很简单，运行下边的命令就可以了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo pacman -Syyu<br></code></pre></td></tr></table></figure>
+<p><strong>在硬盘上安装Arch</strong></p>
+<p>其实你细心一点就会对发现，我们的配置都是改的U盘里边的那个系统，即ISO文件，根本没有和我们的安装硬盘扯上半点的关系，毕竟我们是要把Arch安装到电脑的硬盘上，而不是一个U盘里边。所以要怎么把Arch安装到电脑的硬盘上呢？</p>
+<p>这里就涉及到一个Linux下的常用命令：<strong>挂载。</strong></p>
+<p><strong>什么是挂载呢？</strong></p>
+<p>其实就是把你的储存设备(文件系统，分区)挂到一个Linux的目录下边，然后被挂载的目录就叫**挂载点。**你从挂载点进去就是进入了你的那个储存设备</p>
+<p><strong>什么是目录啊？</strong></p>
+<p>比如windows下的 C:\users..\Desktop 这就是一个目录，(C:\users..)Desktop就是挂载点.</p>
+<p>只不过我们在Linux下使用的是/mnt这个目录，作为挂载点。</p>
+<p>所以就很简单了，只需要把电脑的硬盘的分区挂载到/mnt目录下，我们在这个U盘的系统里边，把东西下载到/mnt目录下，是不是就等于我们把东西下载到电脑的硬盘上了？ 是的！！</p>
+<p>回归正题，</p>
+<ol>
+<li>我们要把Arch的系统主要内容安装在主分区，就是最大的那个ext4玩意儿, 也就是/dev/nvme0n1p6</li>
+<li>还得把Arch的引导安装在/boot分区，也就是/dev/nvme0n1p8</li>
+</ol>
+<p>挂载的命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">% </span><span class="language-bash">挂载你的主分区</span><br>mount /dev/nvme0n1p8 /mnt<br><span class="hljs-meta prompt_">% </span><span class="language-bash">挂载引导分区</span><br>mkdir /mnt/boot                                                 % 这也就是他们说的挂载必须从根目录开始的原因，你不可能直接挂到boot上吧（都没有这个目录呢）<br>mount /dev/nvme0n1p6 /mnt/boot                   % 此时Arch的pacstrap脚本就会自动把系统的引导安装到这里<br><span class="hljs-meta prompt_">% </span><span class="language-bash">检查是否挂载上</span><br>ls /mnt<br><span class="hljs-meta prompt_">% </span><span class="language-bash">如果出现 lost + found 就说明已经挂载上了</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">或是是使用lsblk来查看挂载点</span><br></code></pre></td></tr></table></figure>
+<p><strong>接下来就是正式安装了</strong></p>
+<p>这么久的前期工作，终于等来安装了; 使用如下的命令，即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">pacstrap \mnt base linux linux-firmware base-devel vim<br><span class="hljs-meta prompt_">% </span><span class="language-bash">安装过程中一定不能出现报错</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">各个参数的解释</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">pacstrap: <span class="hljs-built_in">arch</span> 自带的一个安装东西的脚本，可以看作你们平时用的p2p下载，华军软件源下载，或者是2345超级下载之类的</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">\mnt: 表示下载的东西放在那里，因为我们要把Arch安装在主分区是吧，前边我们也把主分区挂载到了/mnt下</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">后边的就是要下载的东西。千万别少装，后边出bug你就知道回来了！！</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">base 基础软件</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">linux： linux的内核</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">linux-firmware： 固件</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">base-devel： 编译的工具，含有gcc之类的，提供了make命令等。</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">vim： 代码编辑器</span><br></code></pre></td></tr></table></figure>
+<p><strong>有小伙伴可能还会问，你上边不是说在Linux下，文件是从 / 开始的吗？而且U盘里变的文件系统是从/开始的吗？怎么又多了一个/mnt, 和/boot目录出来呢？</strong></p>
+<p>这个就是安装Arch过程中的另外一个操作了，叫做<strong>Arch-chroot</strong>,别着急后边我们会详细讲解这个命令。</p>
+<p><strong>生成fatab文件</strong></p>
+<p>首先恭喜你走到了这一步，很多人在前边就放弃了，离胜利不远了。</p>
+<p>那么fstab有什么用呢？还记得我们之前说的吗？我们是不是手动的把我们的分区挂载到了一些目录下边。</p>
+<p>你的系统肯定得关机吧，那么重新开机以后你又手动去挂载？？所以生成fstab得目的就地让电脑开机后自动读取这个fstab文件，然后挂载相关得文件系统，使用如下命令：</p>
+<blockquote>
+<p>这里的文件系统就是指的分区，因为一般情况下，一个分区只能有一个文件系统</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab                                                    % 追加    <br><span class="hljs-meta prompt_">% </span><span class="language-bash">查看fstab文件得信息,检查fstab是否配置成功</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">如果是重新生成可以使用 genfstab -U /mnt &gt; /mnt/etc/fstab            % 完全覆盖重写</span><br>cat /mnt/etc/fstab<br><span class="hljs-meta prompt_">% </span><span class="language-bash"><span class="hljs-built_in">cat</span> 是常用得Linux下的查看文件命令</span><br></code></pre></td></tr></table></figure>
+<h3 id="6-5-Arch环境配置"><strong>6.5 Arch环境配置</strong></h3>
+<p>走完上边的流程，你得到了一个很简洁的系统，简洁到代码编辑器， dhcpcd，反正要啥没啥。</p>
+<p>还有就是现在的系统你肯定很不适应，英文， 时间不对等等。但是先别急，我们还得完成一个操作，就是前边提到得一个命令—— arch-chroot</p>
+<p>它有什么用呢？字面上看就是改变（change）根（root）目录。那么实际意义是什么呢？ 对了，就是这个字面意义</p>
+<p>那个改变根目录有什么作用呢？前边我们是不是说过，在Linux下一切得目录都是从/开始得，也就是说，/就是最上层的目录，你不能够到达比/目录更上边的目录了。这样就可以起到保护你的学习资料不被别人偷看的目的。</p>
+<p>同时，它也会改变你的工作目录，你原来是在/mnt下（U盘里），下载你就在/下边了(电脑硬盘里,也就是的的新安装的Arch系统里面)这样也就能够解释上边的问题了</p>
+<p>使用如下命令切换根目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">arch-chroot /mnt<br><span class="hljs-meta prompt_">% </span><span class="language-bash">此时你的命令提示符会从 root@archiso ~<span class="hljs-comment"># 变为 [root@archiso /]</span></span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">然后就可以执行下边的设置了</span><br></code></pre></td></tr></table></figure>
+<div class="note note-success">
+            <p>如果你之前在安装时配置了vim，并且发现在新的系统里边少了一些配置文件，vim使用起来不顺手的话，你可以退出当前的新系统。你在新系统里边没有你的vim配置文件，因为你只能使用原来的/mnt下你安装的文件，而你的vim配置文件在/mnt的上级，你说，你怎么使用？此时退出新系统，进入U盘中的系统重新配置一下，copy过来即可，使用如下命令退出新系统*</p>
+          </div>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">exit<br><span class="hljs-meta prompt_">% </span><span class="language-bash">退出新系统</span><br></code></pre></td></tr></table></figure>
+<p><strong>下面就是locale相关设置了</strong></p>
+<p><strong>时区设置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<br></code></pre></td></tr></table></figure>
+<p><strong>硬件时钟的同步</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">hwclock --systohc<br></code></pre></td></tr></table></figure>
+<p><strong>设置locale</strong></p>
+<p>什么是locale？实际上就是生活习惯，根据不同地区人们的不同的生活习惯，电脑会调整相应的有关东西，比如语言，货币，日期格式等。也就是说让Arch知道我们是中国人，你的配置得按着我们中国人的习惯来</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">nano /etc/locale.gen<br><span class="hljs-meta prompt_">% </span><span class="language-bash">取消以下两行得注释</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">使用vim得/,搜索命令</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash"><span class="hljs-comment">#en_US 回车 找到UTF-8那一行 删掉前面的#（取消注释）</span></span><br><span class="hljs-meta prompt_">% </span><span class="language-bash"><span class="hljs-comment">#zh_CN 回车 找到UTF-8那一行 删掉前面的#（取消注释）</span></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">生成locale，因为上边解除注释只是代表我们能用这个locale</span><br>locale-gen<br></code></pre></td></tr></table></figure>
+<p><strong>新建一个/etc/locale.conf文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /etc/locale.conf <br><span class="hljs-meta prompt_">% </span><span class="language-bash">就是设置你的系统语言了，添加下边的内容</span><br>LANG=en_US.UTF-8<br><span class="hljs-meta prompt_">% </span><span class="language-bash">不要改成中文的，不然会造成<span class="hljs-built_in">tty</span>乱码</span><br></code></pre></td></tr></table></figure>
+<h3 id="6-6-设置你的host">6.6 设置你的host</h3>
+<ol>
+<li>设置hostname</li>
+</ol>
+<p>那些改host文件的windows玩家，这个东西，你们肯定熟悉吧。你随便设一个英文名就行了，但是下边配置host的时候名字得一致</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /etc/hostname<br><span class="hljs-meta prompt_">% </span><span class="language-bash">直接填入的hostname即可</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">比如我设置为 Archlinux</span><br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>设置host</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /etc/hosts<br><span class="hljs-meta prompt_">% </span><span class="language-bash">然后在里边输入如下的内容</span><br>127.0.0.1      localhost<br>::1            localhost<br>127.0.1.1      Archlinux.domain        Archlinux<br><span class="hljs-meta prompt_">% </span><span class="language-bash">提示：是tab键，不是空格</span><br></code></pre></td></tr></table></figure>
+<h3 id="6-7-设置root密码">6.7 设置root密码</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">passwd<br><span class="hljs-meta prompt_">% </span><span class="language-bash">然后会叫你输入密码，不会实时的显示在屏幕上，但是你的确是输入进去了的</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">最后会叫你确认你的密码，所以不用担心密码输错</span><br></code></pre></td></tr></table></figure>
+<h3 id="6-8-安装多操作系统的引导">6.8 安装多操作系统的引导</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">pacman -S grub efibootmgr  intel-ucode os-prober<br><span class="hljs-meta prompt_">% </span><span class="language-bash">intel-ucode: 厂家为电脑的cpu更新驱动</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">amd的cpu 就安装amd-ucode</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">grub: 上边说过了，不多讲了</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">efibootmgr: efibootmgr被grub脚本用来将启动项写入NVRAM</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">osprober： 发现windows操作系统的引导</span><br></code></pre></td></tr></table></figure>
+<h3 id="6-9-1-GRUB的配置">6.9-1 GRUB的配置</h3>
+<p>具体的详细步骤和参数意义可以参见 Arch 官方维基：</p>
+<blockquote>
+<p>fdisk -l</p>
+</blockquote>
+<p>可用的参考信息有：磁盘类型，ESP分区的位置（本例中就是寻找 bootmgfw.efi 所在的分区位置），具体的输出如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@Archlinux zpd]# fdisk -l<br>Disk /dev/nvme0n1：931.51 GiB，1000204886016 字节，1953525168 个扇区<br>磁盘型号：WD_BLACK SN770 1TB<br>单元：扇区 / 1 * 512 = 512 字节<br>扇区大小(逻辑/物理)：512 字节 / 512 字节<br>I/O 大小(最小/最佳)：512 字节 / 512 字节<br>磁盘标签类型：gpt<br>磁盘标识符：0042EA61-A4D7-452B-9DFA-0AF034C48726<br><br>设备                  起点       末尾       扇区   大小 类型<br>/dev/nvme0n1p1        2048     411647     409600   200M EFI 系统<br>/dev/nvme0n1p2      411648     444415      32768    16M Microsoft 保留<br>/dev/nvme0n1p3      444416 1371561983 1371117568 653.8G Microsoft 基本数据<br>/dev/nvme0n1p4  1925212160 1926260735    1048576   512M Windows 恢复环境<br>/dev/nvme0n1p5  1926260736 1951426559   25165824    12G Windows 恢复环境<br>/dev/nvme0n1p6  1951426560 1953523711    2097152     1G Windows 恢复环境<br>/dev/nvme0n1p7  1505779712 1507876863    2097152     1G Linux 文件系统<br>/dev/nvme0n1p8  1507876864 1524654079   16777216     8G Linux 文件系统<br></code></pre></td></tr></table></figure>
+<p>所以我们要寻找的分区就是：/dev/nvme0n1p1，然后使用如下的命令进行挂载操作。挂载点是：/boot，使用如下的命令即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mount /dev/nvme0n1p1 /boot<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>为了保险起见，可以查看一下其中是否存在 EFI 文件夹</p>
+</blockquote>
+<p>然后使用os-prober工具查找 bootmgf.efi，运行如下的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">os-prober<br></code></pre></td></tr></table></figure>
+<p>然后你得到类似如下的输出，就说明os-prober找到了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@Archlinux zpd]# os-prober<br>/dev/nvme0n1p1@/EFI/Microsoft/Boot/bootmgfw.efi:Windows Boot Manager:Windows:efi<br></code></pre></td></tr></table></figure>
+<p><strong>之后就是如下的常规安装操作</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">% </span><span class="language-bash">创建一个文件夹</span><br>mkdir /boot/grub<br><span class="hljs-meta prompt_">% </span><span class="language-bash">由于grub更新了，os-prober不再自动启用了，所以你需要再配置一番</span><br>vim /etc/default/grub<br><span class="hljs-meta prompt_">% </span><span class="language-bash">然后输入</span><br>GRUB_DISABLE_OS_PROBER=false<br><span class="hljs-meta prompt_">% </span><span class="language-bash">最后生成GRUB配置文件</span><br>grub-mkconfig &gt; /boot/grub/grub.cfg         % 也可以用： grub-mkconfig -o /boot/grub/grub.cfg<br></code></pre></td></tr></table></figure>
+<h3 id="6-9-2-Arch系统滚挂之后的处理">6. 9-2 Arch系统滚挂之后的处理</h3>
+<p>下面就说一个我遇到的系统引导丢失，无法进入系统的案件</p>
+<p>某次我使用 timeshift 恢复系统时，它问我要不要恢复 grub 引导，然后我选择了同意。自然而然的，重启后无法进入系统了（Arch 和 windows）。就连启动 windows 都只能够进入 BIOS 进行选择启动项了，也就是说我的GRUB崩了。</p>
+<p>然后我就重新制作了一个启动盘，进入LiveCD模式，也就是Arch的安装时的模式。重新把Arch的主分区和boot分区分别挂载在了/mnt 和 /mnt/boot 目录。</p>
+<blockquote>
+<p>PS：尽量不要颠倒下面命令的执行顺序</p>
+</blockquote>
+<ol>
+<li>重新生成了 fstab 文件</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>重新安装了 Arch 的内核，也就是如下的命令：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pacstrap \mnt  linux<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>重新挂载 windows 的 ESP 分区到 /mnt/boot 目录</li>
+</ol>
+<p>使用命令 os-prober 找到 Windows 的引导文件</p>
+<ol start="4">
+<li>重新生成 GRUB 的启动引导项</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">grub-mkconfig &gt; /boot/grub/grub.cfg         % 也可以用： grub-mkconfig -o /boot/grub/grub.cfg<br></code></pre></td></tr></table></figure>
+<ol start="5">
+<li>最后</li>
+</ol>
+<p>exit后，重启，GRUB 成功引导 Arch 和  Windows 两个系统</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@Archlinux zpd]# grub-mkconfig &gt; /boot/grub/grub.cfg<br>正在生成 grub 配置文件 ...<br>警告： os-prober 将运行以检测其它可引导分区。<br>将使用 os-prober 的输出，以检测分区中可引导的二进制文件，并为其创建新的启动项。<br>发现了 Windows Boot Manager，位于 /dev/nvme0n1p1@/EFI/Microsoft/Boot/bootmgfw.efi<br>正在添加 UEFI 固件设置的引导菜单项……<br>完成<br></code></pre></td></tr></table></figure>
+<h3 id="6-10-安装联网的软件">6.10 安装联网的软件</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo pacman -S networkmanager network-manager-applet  wpa_supplicant<br></code></pre></td></tr></table></figure>
+<h3 id="6-11-安装其他的软件">6.11 安装其他的软件</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo pacman -S mtools git dosfstools ntfs-3g sudo linux-headers<br><span class="hljs-meta prompt_">% </span><span class="language-bash">mtools dosfstools： Linux下的工具程序</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">git ：分布式版本管理工具</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">ntfs-3g： 兼容ntfs文件系统</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">sudo： 不多讲了</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">linux-headers： 就是格式规范的、可以被编译器识别的软件接口规格书</span><br></code></pre></td></tr></table></figure>
+<h3 id="6-12-完成安装">6.12 完成安装</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">exit          % 退出安装环境<br>umountmnt     % 取消文件系统的挂载<br>reboot        % 重启<br></code></pre></td></tr></table></figure>
+<h3 id="6-13-进入系统">6.13 进入系统</h3>
+<ol>
+<li><strong>连接网络</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">% </span><span class="language-bash">设置开机自启并且现在就启动</span><br>systemctl enable --now NetworkManager<br><span class="hljs-meta prompt_">% </span><span class="language-bash">进入图形化的wifi连接界面</span><br>nmtui<br><span class="hljs-meta prompt_">% </span><span class="language-bash">每天一边遍,防止滚挂</span><br>sudo pacman -Syyu<br></code></pre></td></tr></table></figure>
+<p><strong>2. 编辑root用户的默认编辑器</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim  ~/.bash.profile<br><span class="hljs-meta prompt_">% </span><span class="language-bash">假如如下的内容</span><br>export EDITOR=&#x27;vim&#x27;<br></code></pre></td></tr></table></figure>
+<p><strong>3. 准备非root用户</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">useradd -m -G wheel  &lt;your name&gt;<br><span class="hljs-meta prompt_">% </span><span class="language-bash">创建密码，注意别去改root</span><br>passwd &lt;your name&gt;<br><span class="hljs-meta prompt_">% </span><span class="language-bash">取消wheel用户组的注释</span><br>EDITOR=vim visudo                                    % 去掉 #%wheel ALL=(ALL) AL前边的注释<br></code></pre></td></tr></table></figure>
+<p><strong>4. DE环境的安装</strong></p>
+<p>这里我只保证你们安装好基本的Display server，至于你们喜欢什么桌面环境自己去造。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo pacman -S xorg                % 安装显示服务<br><span class="hljs-meta prompt_">% </span><span class="language-bash">安装显卡驱动</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">核显</span><br>sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel    % Intel<br><span class="hljs-meta prompt_">% </span><span class="language-bash">amd的自己参见archwiki</span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">独立显卡</span><br>pacman -S xf86-video-amdgpu         % A卡<br>pacman -S nvidia nvidia-utils       % N卡<br></code></pre></td></tr></table></figure>
+<h2 id="7-Arch日前使用现状">7.Arch日前使用现状</h2>
+<h3 id="7-1-痛点">7.1 痛点</h3>
+<p>我Windows上的那些</p>
+<ul>
+<li>大型工业软件如 SolidWorks, AutoCAD, Matlab.</li>
+<li>还有数学软件 Mathematica,Maple.</li>
+<li>最后就是我的 Adobe 系列</li>
+</ul>
+<p>这些东西都没有办法迁移【[大哭]】(买不起+找不到linux版的&quot;科技&quot;版)！可是我又觉得既然我都已经开始使用Linux了，就说明我应该接纳 Linux，上边的要求(要求 Linux 有 Windows 上的软件),可能是对于 Linux 过于的苛刻了，Linux 说：我为什么要有这些软件呢？的确也是这个道理。但是我又不想装虚拟机，性能太差了！所以就双系统这个样子！</p>
+<h3 id="7-2-软件推荐">7.2 软件推荐</h3>
+<p>但是在Linux下我的日常生活所需基本都能够满足，主要是依靠如下的软件：</p>
+<ol>
+<li>写作：LaTeX+WPS</li>
+<li>音乐：spotify+网易云</li>
+<li>代码：Jetbrain全家桶+vim(我的主力是vim)，code-oss</li>
+<li>文档查看器：okular+zathura</li>
+<li>交友通讯：deepin-wine版的Tim， linuxqq（活久见系列）</li>
+<li>科学上网：V2aray，clash-for-windows</li>
+</ol>
+<blockquote>
+<p>这两个东西是类似于端口代理的，不是其他的VPN软件那样全局的代理，附注一张图：</p>
+</blockquote>
+<p><img src="/img/archlinux_intro/proxy.png" srcset="/img/loading.gif" lazyload alt="取自知乎"></p>
+<ol start="7">
+<li>浏览器：强推 Vivalda，Chrome(跨平台的)</li>
+<li>剪辑视频，P图，绘图：kdenlive, Gimp, krita</li>
+<li>输入法：fcxit5+rime(强推)</li>
+</ol>
+<blockquote>
+<p>输入法的坑： 在某些应用中无法切换中文输入，比如 dolphin, gedit, telegram . … .</p>
+</blockquote>
+<p>解决方法：</p>
+<p>首先运行命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">fcitx-diagnose                        % 或者是 fcitx-diagnose 来查看潜在问题（你按照它的提示基本都可以 解决bug）<br></code></pre></td></tr></table></figure>
+<p>基本都是更改以下的几个配置文件：</p>
+<ol>
+<li>/etc/profile</li>
+<li>～/.xprofile</li>
+<li>/etc/environment</li>
+</ol>
+<p>参见：</p>
+<ol start="10">
+<li>专业软件：Matlab ☞ Octave</li>
+</ol>
+<h3 id="7-3-DE相关">7.3 DE相关</h3>
+<p>最重要的桌面环境：我没有DE.我用的是xorg+picom+dwm=真香</p>
+<p>游戏：我不打游戏的[捂脸][捂脸][捂脸]，据说Linux的游戏体验不咋的【听说的哈，没用过不敢评论】</p>
+<p>7.4 为什么选Linux ?</p>
+<p>那我为什么要用Linux呢？主要是Linux得自定义程度太高了，而且感觉(注意：是感觉)能学到很多关于操作系统的知识！我很喜欢Linux的命令行,以前觉得那些使用命令行的人太牛13了！其实日常命令就那几个，慢慢积累的，主要是用命令行是真的高效，在命令行运行应用还可以查看应用的运行报告！</p>
+<p>毕竟我用了Linux后，我的Windows也被我调教的挺好的，我也不排斥Windows，所以目前打算就这样用着！</p>
+<h3 id="7-4-敬告">7.4 敬告</h3>
+<p>入坑Arch请谨慎，你要有那种&quot;一个人，一支烟，一bug一整天&quot;的精神！不然的话，你还是乖乖用Windows吧！但是你一旦度过这个最艰难的时期你就会觉得就这样吧！我也不知道我现在度过没有,祝Arch使用愉快, 祝天天滚挂 :(</p>
+<h2 id="8-结语">8.结语</h2>
+<h3 id="8-1-Linux-Isn’t-Windows">8.1 Linux Isn’t Windows</h3>
+<p>首先你的记住，Linux它不是windows；windows也不是Linux；所以你不应该用windows的要求去要求Linux，同样用Linux的要求去要求windows也是不合理的。</p>
+<h3 id="8-2-工具而已">8.2 工具而已</h3>
+<p>其次，Linux也好，windows也好，它们都只是一个工具而已，是为了给我们服务的，所以什么适合自己就用什么</p>
+<h3 id="8-3-一篇文章">8.3 一篇文章</h3>
+<p>我最近看到的一篇关于Linux的<a href="https://zongpingding.github.io/2024/03/26/work_with_linux/">文章</a>，你们也可以看一看，应该可以增加你们的Linux的认识…</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Computer/" class="category-chain-item">Computer</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ArchLinux 入门</div>
+      <div>https://zongpingding.github.io/2024/03/26/archlinux_intro/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 26, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/26/ascii_art/" title="ASCII Art in TeX">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ASCII Art in TeX</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/26/blog_installation/" title="Introduction to Hexo and Fluid">
+                        <span class="hidden-mobile">Introduction to Hexo and Fluid</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 前言 作为一个程序猿，很多人都喜欢ASCII艺术，然后你就可以见到部分的人在Linux上安装有figlet,  大概的样子就是下面这样： 1234567891011121314% Geek  ____           _ &#x2F; ___| ___  ___| | __| |  _ &#x2F; _ \&#x2F; _ \ |&#x2F; &#x2F;| |_| |  __&#x2F;  __&#x2F;   &lt; \____|\___|\___|">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASCII Art in TeX">
+<meta property="og:url" content="https://zongpingding.github.io/2024/03/26/ascii_art/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="1. 前言 作为一个程序猿，很多人都喜欢ASCII艺术，然后你就可以见到部分的人在Linux上安装有figlet,  大概的样子就是下面这样： 1234567891011121314% Geek  ____           _ &#x2F; ___| ___  ___| | __| |  _ &#x2F; _ \&#x2F; _ \ |&#x2F; &#x2F;| |_| |  __&#x2F;  __&#x2F;   &lt; \____|\___|\___|">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/ascii_art/banner.png">
+<meta property="article:published_time" content="2024-03-26T10:05:34.510Z">
+<meta property="article:modified_time" content="2024-03-26T10:25:32.688Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/ascii_art/banner.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ASCII Art in TeX - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/ascii_art/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ASCII Art in TeX"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-26 18:05" pubdate>
+          March 26, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ASCII Art in TeX</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-前言">1. 前言</h2>
+<p>作为一个程序猿，很多人都喜欢ASCII艺术，然后你就可以见到部分的人在Linux上安装有<code>figlet</code>,  大概的样子就是下面这样：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs text">% Geek<br>  ____           _<br> / ___| ___  ___| | __<br>| |  _ / _ \/ _ \ |/ /<br>| |_| |  __/  __/   &lt;<br> \____|\___|\___|_|\_\<br><br>% Banner<br>#####    ##   #    # #    # ###### #####<br>#    #  #  #  ##   # ##   # #      #    #<br>#####  #    # # #  # # #  # #####  #    #<br>#    # ###### #  # # #  # # #      #####<br>#    # #    # #   ## #   ## #      #   #<br>#####  #    # #    # #    # ###### #    #<br></code></pre></td></tr></table></figure>
+<p>除了命令行工具外，还有许多的在线ASCII字符画生成网站 ，比如如下的几个网站：关于动物的ascii艺术字，自定义Spring Boot 动物 banner下载，各种有意思的banner、ascii图案，还有中文文字banner，作为Spring Boot和终端命令行banner会让项目更有意思。</p>
+<p><img src="/img/ascii_art/ascii_animal.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>网址: <a target="_blank" rel="noopener" href="http://www.bootschool.net/ascii-art/animals">www.bootschool.net/ascii-art/animals</a></p>
+</blockquote>
+<p>这样的网站断然是十分的多的，这里就不一一例举了。下面回到我们的重点，怎么在 LATEX 中使用这样的ASCII艺术。这里分为两种(这部分全是我抄的，因为本文的重点不在这部分，原文地址在文末 )：</p>
+<ul>
+<li>彩色图</li>
+<li>灰度图</li>
+</ul>
+<p>这里只展示一下第一种类型，大概就像下面这样 ：<br>
+<img src="/img/ascii_art/dek_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>,当把这个图片放大之后就其实内部是这样的：<br>
+<img src="/img/ascii_art/dek_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>,它是由一个个的x组成的，每一个x的颜色不同从而构成了这样的一副图片;</p>
+<blockquote>
+<p>我记得在早期，好像也有人使用这种ASCII的方法来打印图片，好像就是Knuth 本人.</p>
+</blockquote>
+<p>本文的关注点是生成类似如下类型的图片 ， 相应的彩色图片的输出直接去看原始的文章即可:</p>
+<blockquote>
+<p>注意：你可能需要注意一下你的imagemagick的命令行调用方式</p>
+</blockquote>
+<p>原始的答主已经把左右的代码贴出来了，当然也可以看文末我整理好的代码 [ &gt;_&lt; ]</p>
+<blockquote>
+<p>本文也主要是对原始的一个回答做出相应的补充，原始的作者之讲述了一种方式，但是着这种方式应该有部分人不能运行成功，于是补充一个相对现代的工具链</p>
+</blockquote>
+<p><img src="/img/ascii_art/banner.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="2-正文">2. 正文</h2>
+<h3 id="2-1-原始回答">2.1 原始回答</h3>
+<p>原始的回答中，<a target="_blank" rel="noopener" href="https://tex.stackexchange.com/users/8540/karl-ove-hufthammer">karl ove hufthammer</a> 提到的方法如下:</p>
+<ul>
+<li>首先使用 <a target="_blank" rel="noopener" href="https://www.xfig.org/">xfig</a> 绘制段落的shape（需要给对应的路径添加comment ‘+’ 和 comment ‘-’）</li>
+<li>然后使用 <a target="_blank" rel="noopener" href="https://linux.die.net/man/1/fig2dev">fig2dev</a> 把xfig导出的.fig文件转换为 .shape(这个.shape文件中就包含了  形式的段落形状的定义，下面会详细介绍)</li>
+<li>最后在LaTeX文档中引入 <a target="_blank" rel="noopener" href="https://www.ctan.org/pkg/shapepar">shapepar</a> 宏包，再导入刚才的.shape文件中的形状定义，最后的使用方法如下</li>
+</ul>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs tex"><span class="hljs-keyword">\documentclass</span>[10pt]&#123;article&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;graphicx&#125;   <br><span class="hljs-keyword">\usepackage</span>&#123;shapepar&#125;<br><span class="hljs-keyword">\input</span>&#123;sum.shape&#125;<br><span class="hljs-comment">% in .shape file</span><br><span class="hljs-comment">% \def\sumpar#1&#123;\shapepar&#123;\sumshape&#125;#1\par&#125;</span><br><br><span class="hljs-comment">% in .tex source</span><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br>    <span class="hljs-keyword">\sumpar</span>&#123;&lt;your text&gt;&#125;<br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<p>这种方法是肯定可行的，但是想要成功的复现出来你可能会遇到如下困难：</p>
+<ul>
+<li>xfig无法正确安装（或者自己无法编译）</li>
+<li>fig2dev无法正确安装（或者自己无法编译）</li>
+<li>复杂的形状,比如上述的  符号，很难在xfig这个古老的软件中绘制出来</li>
+</ul>
+<p>这里对原始的方法做一些note</p>
+<ul>
+<li>关键程序安装</li>
+</ul>
+<p>对于xfig, 我这里使用的程序是使用Arch Linux上的 yay 进行安装的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">yay -S xfig<br></code></pre></td></tr></table></figure>
+<p>对于 fig2dev 我这里也是使用Arch自带的包管理器 pacman 进行安装的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo pacman -S fig2dev<br></code></pre></td></tr></table></figure>
+<p>一些额外的软件可以参见xfig官方网站</p>
+<ul>
+<li>添加comment方法</li>
+</ul>
+<p><img src="/img/ascii_art/xfig_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>保存的Tips</li>
+</ul>
+<p><img src="/img/ascii_art/xfig_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>.fig文件的编译</li>
+</ul>
+<p>在命令行中使用如下的命令即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">fig2dev -L shape -n &lt;cmd after \def&gt; &lt;file name&gt;.fig &lt;output name&gt;.shape<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">比如你定义为 -n <span class="hljs-built_in">sum</span>，那么到时候你在LaTeX中使用的命令为 \sumpar&lt;some text&gt;</span><br></code></pre></td></tr></table></figure>
+<p>最终编译结果就像下面这样：<br>
+<img src="/img/ascii_art/xfig_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>其实从上面也可以看出来，你如果想要在这样古老的一个软件上进行手绘，是很难得到一些复杂的图形的，于是我们下面采用更加现代的方法 Inkscape + <a target="_blank" rel="noopener" href="https://www.freefileconvert.com/">file convert</a></p>
+<blockquote>
+<p>可以参见后文，使用autotrace进行 .svg 到 .fig 的转换</p>
+</blockquote>
+<h3 id="2-2-补充与修正">2.2 补充与修正</h3>
+<p>首先在Inkscape中插入   这个符号，取消它的填充，设置对应的stoke style (其实关系不大)，构建方法如下<br>
+<img src="/img/ascii_art/inkscape_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>,然后经过调整，你就可以得到如下的符号<br>
+<img src="/img/ascii_art/inkscape_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>最后导出为svg。至此，我们就需要使用哪个在线网站 <a target="_blank" rel="noopener" href="https://www.freefileconvert.com/">file convert</a> 把我们导出的 .svg 文件转为 .fig文件，</p>
+<p>使用方法如下:<br>
+<img src="/img/ascii_art/convert_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/ascii_art/convert_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>但是我们还没有完成我们的 .fig 文件制作，很显然我们缺少了添加 comment 这一步，这一步也很简单，按照如下步骤操作即可：</p>
+<ul>
+<li>替换 .fig 文件按前面的 ‘导言区’</li>
+</ul>
+<p>我们刚才下载下来的 .fig 文件长这样</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs text">#FIG 3.2 UniConvertor 2.0 sk1project.net<br>Portrait<br>Center<br>Inches<br>Custom<br>100.00<br>Single<br>-1<br>1200 2<br>2 3 0 1 0 -1 50 -1 -1 0.0 0 0 -1 0 0 239<br>	 4504 5766 2973 7654 2962 7667 2953 7678 2949 7683 2946 7687<br>	 2943 7691 2940 7695 2939 7697 2938 7698 2938 7700 2937 7701<br>	 2936 7703 2935 7704 2935 7706 2934 7708 2934 7709 2934 7711<br>	 2933 7712 2933 7714 2933 7716 2933 7717 2933 7719 2933 7721<br>	 2933 7723 2933 7725 2933 7727 2933 7729 2934 7731 2934 7733<br>	 2934 7735 2935 7737 2935 7738 2936 7740 2936 7741 2937 7743<br>	 2938 7744 2939 7746 2939 7746 2940 7747 2940 7748 2940 7748<br>	 2941 7749 2942 7751 2944 7752 2945 7753 2946 7754 2947 7755<br>	 2949 7756 2950 7757 2951 7757 2953 7758 2954 7759 2956 7760<br>	 2958 7760 2960 7761 2961 7762 2963 7762 2967 7763 2971 7764<br>	 2976 7765 2980 7766 2990 7767 3001 7767 3026 7768 3054 7768<br>	 6614 7768 6985 6696 6877 6696 6867 6726 6855 6756 6843 6785<br>	 6829 6814 6814 6843 6799 6871 6782 6899 6765 6926 6747 6953<br>	 6728 6979 6708 7005 6687 7030 6665 7055 6643 7079 6619 7103<br>	 6595 7126 6570 7148 6545 7170 6518 7191 6491 7212 6463 7232<br>	 6435 7251 6406 7270 6376 7288 6345 7305 6314 7321 6283 7337<br>	 6250 7352 6217 7366 6184 7380 6150 7392 6116 7404 6100 7410<br>	 6079 7417 6053 7426 6020 7435 5937 7456 5829 7478 5694 7499<br>	 5531 7516 5340 7528 5118 7532 3290 7532 4787 5685 4804 5660<br>	 4814 5643 4815 5642 4816 5640 4817 5638 4817 5637 4818 5635<br>	 4818 5634 4819 5632 4819 5631 4820 5629 4820 5627 4820 5626<br>	 4821 5624 4821 5623 4821 5621 4821 5619 4821 5617 4821 5614<br>	 4821 5610 4821 5608 4820 5605 4820 5604 4820 5602 4820 5601<br>	 4819 5600 4819 5598 4819 5597 4818 5596 4818 5594 4816 5591<br>	 4814 5588 4812 5584 4809 5580 4803 5570 4794 5556 3398 3641<br>	 5097 3641 5303 3644 5541 3658 5669 3672 5799 3692 5864 3705<br>	 5930 3720 5996 3736 6061 3755 6125 3777 6189 3800 6252 3827<br>	 6314 3856 6344 3871 6374 3888 6403 3905 6432 3923 6461 3942<br>	 6489 3961 6516 3982 6543 4003 6570 4025 6596 4048 6621 4072<br>	 6645 4096 6669 4122 6692 4149 6714 4176 6736 4205 6757 4234<br>	 6777 4265 6796 4297 6814 4329 6831 4363 6848 4398 6863 4434<br>	 6877 4471 6985 4471 6614 3466 3054 3466 3033 3466 3014 3467<br>	 3006 3467 2998 3468 2991 3468 2984 3469 2981 3470 2978 3470<br>	 2975 3471 2972 3472 2970 3472 2967 3473 2965 3474 2962 3475<br>	 2960 3476 2958 3477 2957 3478 2956 3478 2955 3479 2954 3480<br>	 2954 3480 2953 3481 2952 3482 2951 3482 2950 3483 2949 3484<br>	 2949 3485 2948 3486 2947 3486 2947 3487 2946 3488 2945 3489<br>	 2945 3490 2944 3491 2944 3492 2943 3493 2942 3495 2941 3497<br>	 2940 3500 2939 3502 2938 3505 2938 3507 2937 3510 2937 3513<br>	 2936 3519 2935 3526 2933 3558 2933 3601 4504 5766<br>2 1 0 1 0 -1 50 -1 -1 0.0 0 0 -1 0 0 1<br>	 4504 5766<br></code></pre></td></tr></table></figure>
+<p>我们把 ‘导言区’ 替换成如下的内容</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs text">#FIG 3.2  Produced by xfig version 3.2.9<br>#encoding: UTF-8<br>Landscape<br>Center<br>Inches<br>Letter<br>100.00<br>Single<br>-2<br>1200 2<br></code></pre></td></tr></table></figure>
+<p>然后在添加对应的comment内容(就是一条注释而已, ‘# +’)， 最终得到的完整文件为</p>
+<blockquote>
+<p>相应的路径的 comment - 操作，在对应的路径前面添加 ‘# -’ 即可</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs text">#FIG 3.2  Produced by xfig version 3.2.9<br>#encoding: UTF-8<br>Landscape<br>Center<br>Inches<br>Letter<br>100.00<br>Single<br>-2<br>1200 2<br># +<br>2 3 0 1 0 -1 50 -1 -1 0.0 0 0 -1 0 0 239<br>	 4504 5766 2973 7654 2962 7667 2953 7678 2949 7683 2946 7687<br>	 2943 7691 2940 7695 2939 7697 2938 7698 2938 7700 2937 7701<br>	 2936 7703 2935 7704 2935 7706 2934 7708 2934 7709 2934 7711<br>	 2933 7712 2933 7714 2933 7716 2933 7717 2933 7719 2933 7721<br>	 2933 7723 2933 7725 2933 7727 2933 7729 2934 7731 2934 7733<br>	 2934 7735 2935 7737 2935 7738 2936 7740 2936 7741 2937 7743<br>	 2938 7744 2939 7746 2939 7746 2940 7747 2940 7748 2940 7748<br>	 2941 7749 2942 7751 2944 7752 2945 7753 2946 7754 2947 7755<br>	 2949 7756 2950 7757 2951 7757 2953 7758 2954 7759 2956 7760<br>	 2958 7760 2960 7761 2961 7762 2963 7762 2967 7763 2971 7764<br>	 2976 7765 2980 7766 2990 7767 3001 7767 3026 7768 3054 7768<br>	 6614 7768 6985 6696 6877 6696 6867 6726 6855 6756 6843 6785<br>	 6829 6814 6814 6843 6799 6871 6782 6899 6765 6926 6747 6953<br>	 6728 6979 6708 7005 6687 7030 6665 7055 6643 7079 6619 7103<br>	 6595 7126 6570 7148 6545 7170 6518 7191 6491 7212 6463 7232<br>	 6435 7251 6406 7270 6376 7288 6345 7305 6314 7321 6283 7337<br>	 6250 7352 6217 7366 6184 7380 6150 7392 6116 7404 6100 7410<br>	 6079 7417 6053 7426 6020 7435 5937 7456 5829 7478 5694 7499<br>	 5531 7516 5340 7528 5118 7532 3290 7532 4787 5685 4804 5660<br>	 4814 5643 4815 5642 4816 5640 4817 5638 4817 5637 4818 5635<br>	 4818 5634 4819 5632 4819 5631 4820 5629 4820 5627 4820 5626<br>	 4821 5624 4821 5623 4821 5621 4821 5619 4821 5617 4821 5614<br>	 4821 5610 4821 5608 4820 5605 4820 5604 4820 5602 4820 5601<br>	 4819 5600 4819 5598 4819 5597 4818 5596 4818 5594 4816 5591<br>	 4814 5588 4812 5584 4809 5580 4803 5570 4794 5556 3398 3641<br>	 5097 3641 5303 3644 5541 3658 5669 3672 5799 3692 5864 3705<br>	 5930 3720 5996 3736 6061 3755 6125 3777 6189 3800 6252 3827<br>	 6314 3856 6344 3871 6374 3888 6403 3905 6432 3923 6461 3942<br>	 6489 3961 6516 3982 6543 4003 6570 4025 6596 4048 6621 4072<br>	 6645 4096 6669 4122 6692 4149 6714 4176 6736 4205 6757 4234<br>	 6777 4265 6796 4297 6814 4329 6831 4363 6848 4398 6863 4434<br>	 6877 4471 6985 4471 6614 3466 3054 3466 3033 3466 3014 3467<br>	 3006 3467 2998 3468 2991 3468 2984 3469 2981 3470 2978 3470<br>	 2975 3471 2972 3472 2970 3472 2967 3473 2965 3474 2962 3475<br>	 2960 3476 2958 3477 2957 3478 2956 3478 2955 3479 2954 3480<br>	 2954 3480 2953 3481 2952 3482 2951 3482 2950 3483 2949 3484<br>	 2949 3485 2948 3486 2947 3486 2947 3487 2946 3488 2945 3489<br>	 2945 3490 2944 3491 2944 3492 2943 3493 2942 3495 2941 3497<br>	 2940 3500 2939 3502 2938 3505 2938 3507 2937 3510 2937 3513<br>	 2936 3519 2935 3526 2933 3558 2933 3601 4504 5766<br>2 1 0 1 0 -1 50 -1 -1 0.0 0 0 -1 0 0 1<br>	 4504 5766<br></code></pre></td></tr></table></figure>
+<p>把这个文件作为figdev的输入文件，运行如下的命令(这里我保存为sum.fig)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">fig2dev sum.fig -L shape -n sum sum.shape<br></code></pre></td></tr></table></figure>
+<p>运行之后可以得到如下的输入信息<br>
+<img src="/img/ascii_art/fig2dev.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>然后我们来看看最后的 <code>sum.shape</code> 文件里面都是一些什么东西</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs tex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\sumpar</span><span class="hljs-params">#1</span>&#123;<span class="hljs-keyword">\shapepar</span>&#123;<span class="hljs-keyword">\sumshape</span>&#125;<span class="hljs-params">#1</span><span class="hljs-keyword">\par</span>&#125;<br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\sumshape</span>&#123;<span class="hljs-comment">%</span><br>&#123;25.1235&#125;<span class="hljs-comment">%</span><br>&#123;0.123457&#125;b&#123;0.864198&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;0.123457&#125;t&#123;0.864198&#125;&#123;44.6914&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;0.864198&#125;t&#123;0.246914&#125;&#123;45.58&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;1.85185&#125;t&#123;0.123457&#125;&#123;46.0653&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;2.34568&#125;t&#123;0.482396&#125;&#123;28.9003&#125;st&#123;29.3827&#125;&#123;16.9869&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;2.34568&#125;t&#123;0.482396&#125;&#123;5.44353&#125;t&#123;29.3827&#125;&#123;16.9869&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;2.46914&#125;t&#123;0.572131&#125;&#123;5.44364&#125;t&#123;32.3457&#125;&#123;14.0692&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;2.71605&#125;t&#123;0.751601&#125;&#123;5.44386&#125;t&#123;33.9506&#125;&#123;12.5547&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;2.96296&#125;t&#123;0.931071&#125;&#123;5.44408&#125;t&#123;35.5556&#125;&#123;11.0402&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;3.08642&#125;t&#123;1.02081&#125;&#123;5.44419&#125;t&#123;36.2963&#125;&#123;10.3447&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;3.33333&#125;t&#123;1.20028&#125;&#123;5.44442&#125;t&#123;37.1605&#125;&#123;9.57096&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;3.45679&#125;t&#123;1.29001&#125;&#123;5.44453&#125;t&#123;38.0247&#125;&#123;8.75199&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;3.7037&#125;t&#123;1.46948&#125;&#123;5.44475&#125;t&#123;38.7654&#125;&#123;8.1017&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;3.95062&#125;t&#123;1.64895&#125;&#123;5.44497&#125;t&#123;39.5062&#125;&#123;7.45141&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;4.32099&#125;t&#123;1.91815&#125;&#123;5.4453&#125;t&#123;40.3704&#125;&#123;6.72289&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;4.5679&#125;t&#123;2.09762&#125;&#123;5.44552&#125;t&#123;41.1111&#125;&#123;6.07261&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;4.93827&#125;t&#123;2.36683&#125;&#123;5.44586&#125;t&#123;41.8519&#125;&#123;5.46755&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;5.30864&#125;t&#123;2.63603&#125;&#123;5.44619&#125;t&#123;42.5926&#125;&#123;4.86249&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;5.80247&#125;t&#123;2.99497&#125;&#123;5.44663&#125;t&#123;43.3333&#125;&#123;4.30265&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;6.2963&#125;t&#123;3.35391&#125;&#123;5.44707&#125;t&#123;44.0741&#125;&#123;3.74282&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;7.03704&#125;t&#123;3.89232&#125;&#123;5.44774&#125;t&#123;45.0617&#125;&#123;3.02653&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;7.90123&#125;t&#123;4.52046&#125;&#123;5.44851&#125;t&#123;45.9259&#125;&#123;2.47892&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;8.64198&#125;t&#123;5.05887&#125;&#123;5.44918&#125;t&#123;46.5432&#125;&#123;2.13299&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;9.62963&#125;t&#123;5.77675&#125;&#123;5.45006&#125;t&#123;47.4074&#125;&#123;1.63061&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;10.3704&#125;t&#123;6.31516&#125;&#123;5.45073&#125;t&#123;47.9012&#125;&#123;1.40814&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;11.2346&#125;t&#123;6.9433&#125;&#123;5.4515&#125;t&#123;48.2716&#125;&#123;1.35436&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;12.0988&#125;t&#123;7.57144&#125;&#123;5.45228&#125;t&#123;48.642&#125;&#123;1.30058&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;12.5926&#125;t&#123;7.93038&#125;&#123;5.45272&#125;e&#123;50.1235&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;25.9259&#125;t&#123;17.6217&#125;&#123;5.46468&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;26.7901&#125;t&#123;18.2499&#125;&#123;5.20691&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;27.5309&#125;t&#123;18.7883&#125;&#123;4.29813&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;28.5185&#125;t&#123;19.5062&#125;&#123;2.77945&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;40&#125;t&#123;10.2116&#125;&#123;2.76467&#125;b&#123;48.8889&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;40&#125;t&#123;10.2116&#125;&#123;2.76467&#125;t&#123;48.8889&#125;&#123;1.23457&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;40.7407&#125;t&#123;9.61199&#125;&#123;2.76372&#125;t&#123;48.5185&#125;&#123;1.34879&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;41.4815&#125;t&#123;9.01235&#125;&#123;2.76276&#125;t&#123;48.2716&#125;&#123;1.33956&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;42.2222&#125;t&#123;8.4127&#125;&#123;2.76181&#125;t&#123;47.9012&#125;&#123;1.45379&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;43.2099&#125;t&#123;7.61317&#125;&#123;2.76054&#125;t&#123;47.284&#125;&#123;1.72955&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;44.1975&#125;t&#123;6.81364&#125;&#123;2.75927&#125;t&#123;46.5432&#125;&#123;2.12876&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;45.0617&#125;t&#123;6.11405&#125;&#123;2.75816&#125;t&#123;45.679&#125;&#123;2.69413&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;45.9259&#125;t&#123;5.41446&#125;&#123;2.75704&#125;t&#123;44.6914&#125;&#123;3.38295&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;46.6667&#125;t&#123;4.81482&#125;&#123;2.75609&#125;t&#123;43.7037&#125;&#123;4.11446&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;47.284&#125;t&#123;4.31511&#125;&#123;2.75529&#125;t&#123;42.716&#125;&#123;4.88866&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;47.7778&#125;t&#123;3.91534&#125;&#123;2.75466&#125;t&#123;41.8519&#125;&#123;5.58209&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;48.1481&#125;t&#123;3.61552&#125;&#123;2.75418&#125;t&#123;41.1111&#125;&#123;6.19476&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;48.5185&#125;t&#123;3.3157&#125;&#123;2.75371&#125;t&#123;40.2469&#125;&#123;6.93089&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;48.7654&#125;t&#123;3.11581&#125;&#123;2.75339&#125;t&#123;39.5062&#125;&#123;7.58625&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;49.0123&#125;t&#123;2.91593&#125;&#123;2.75307&#125;t&#123;38.642&#125;&#123;8.36506&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;49.3827&#125;t&#123;2.61611&#125;&#123;2.75259&#125;t&#123;37.284&#125;&#123;9.59502&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;49.6296&#125;t&#123;2.41623&#125;&#123;2.75228&#125;t&#123;35.9259&#125;&#123;10.8677&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;50&#125;t&#123;2.1164&#125;&#123;2.7518&#125;t&#123;34.1975&#125;&#123;12.468&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;50.1235&#125;t&#123;2.01646&#125;&#123;2.75164&#125;t&#123;32.2222&#125;&#123;14.4006&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;50.2469&#125;t&#123;1.91652&#125;&#123;2.75148&#125;t&#123;29.8765&#125;&#123;16.7036&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;50.3704&#125;t&#123;1.81658&#125;&#123;2.75132&#125;t&#123;27.1605&#125;&#123;19.3769&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;50.3704&#125;t&#123;1.81658&#125;&#123;2.75132&#125;jt&#123;4.5679&#125;&#123;41.9695&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;51.8519&#125;t&#123;0.617284&#125;&#123;45.4079&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;52.5926&#125;t&#123;0.123457&#125;&#123;45.6456&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;53.2099&#125;t&#123;0.864198&#125;&#123;44.6914&#125;<span class="hljs-keyword">\\</span><span class="hljs-comment">%</span><br>&#123;53.2099&#125;e&#123;45.5556&#125;<span class="hljs-comment">%</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>最后把这个 <code>sum.shape</code> 文件和你的 <code>.tex</code> 文件放在同一路径下，在 <code>.tex</code> 文件中粘贴如下代码:</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tex"><span class="hljs-keyword">\documentclass</span>[10pt]&#123;article&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;graphicx&#125;   <br><span class="hljs-keyword">\usepackage</span>&#123;shapepar&#125;<br><span class="hljs-keyword">\input</span>&#123;sum.shape&#125;<br><br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\sumpar</span>&#123;3 . 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3 2 3 8 4 6 2 6 4 3 3 8 3 2 7 9 5 0 2 8 8 4 1 9 7 1 6 9 3 9 9 3 7 5 1 0 5 8 2 0 9 7 4 9 4 4 5 9 2 3 0 7 8 1 6 4 0 6 2 8 6  2 0 8 9 9 8 6 2 8 0 3 4 8 2 5 3 4 2 1 1 7 0 6 7 9 8 2 1 4 8 0 8 6 5 1 3 2 8 2 3 0 6 6 4 7 0 9 3 8 4 4 6 0 9 5 5 0 5 8 2 2 3 1 7 2 5 3 5 9 4 0 8 1 2 8 4 8 1  1 1 7 4 5 0 2 8 4 1 0 2 7 0 1 9 3 8 5 2 1 1 0 5 5 5 9 6 4 4 6 2 2 9 4 8 9 5 4 9 3 0 3 8 1 9 6 4 4 2 8 8 1 0 9 7 5 6 6 5 9 3 3 4 4 6 1 2 8 4 7 5 6 4 8 2 3 3  7 8 6 7 8 3 1 6 5 2 7 1 2 0 1 9 0 9 1 4 5 6 4 8 5 6 6 9 2 3 4 6 0 3 4 8 6 1 0 4 5 4 3 2 6 6 4 8 2 1 3 3 9 3 6 0 7 2 6 0 2 4 9 1 4 1 2 7 3 7 2 4 5 8 7 0 0 6  6 0 6 3 1 5 5 8 8 1 7 4 8 8 1 5 2 0 9 2 0 9 6 2 8 2 9 2 5 4 0 9 1 7 1 5 3 6 4 3 6 7 8 9 2 5 9 0 3 6 0 0 1 1 3 3 0 5 3 0 5 4 8 8 2 0 4 6 6 5 2 1 3 8 4 1 4 6  9 5 1 9 4 1 5 1 1 6 0 9 4 3 3 0 5 7 2 7 0 3 6 5 7 5 9 5 9 1 9 5 3 0 9 2 1 8 6 1 1 7 3 8 1 9 3 2 6 1 1 7 9 3 1 0 5 1 1 8 5 4 8 0 7 4 4 6 2 3 7 9 9 6 2 7 4 9  5 6 7 3 5 1 8 8 5 7 5 2 7 2 4 8 9 1 2 2 7 9 3 8 1 8 3 0 1 1 9 4 9 1&#125;<br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<p>最后使用 pdflatex 或者是 xelatex 编译均可，结果如下：<br>
+<img src="/img/ascii_art/inkscape_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="3-More-Example">3. More Example</h2>
+<p>这里在举例一些更加复杂的例子, 包括我们之前提到的 comment + 和 comment - 的操作.</p>
+<p>inkscape 中的图形为</p>
+<p><img src="/img/ascii_art/more_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>编译结果为：</p>
+<p><img src="/img/ascii_art/more_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>完整的 .fig 代码</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><code class="hljs text">#FIG 3.2  Produced by xfig version 3.2.9<br>#encoding: UTF-8<br>Landscape<br>Center<br>Inches<br>Letter<br>100.00<br>Single<br>-2<br>1200 2<br># -<br>2 3 0 1 0 -1 50 -1 -1 0.0 0 0 -1 0 0 239<br>	 4713 5719 3182 7607 3171 7620 3161 7632 3158 7636 3154 7641<br>	 3152 7644 3149 7648 3148 7650 3147 7651 3146 7653 3145 7655<br>	 3145 7656 3144 7658 3144 7659 3143 7661 3143 7662 3142 7664<br>	 3142 7666 3142 7667 3142 7669 3142 7671 3142 7672 3142 7674<br>	 3142 7676 3142 7679 3142 7681 3142 7683 3142 7684 3143 7686<br>	 3143 7688 3143 7690 3144 7691 3144 7693 3145 7695 3146 7696<br>	 3147 7698 3147 7699 3148 7700 3148 7700 3149 7701 3149 7702<br>	 3150 7703 3151 7704 3152 7705 3153 7706 3155 7707 3156 7708<br>	 3157 7709 3159 7710 3160 7711 3162 7712 3163 7712 3165 7713<br>	 3166 7714 3168 7714 3170 7715 3172 7716 3176 7717 3180 7717<br>	 3184 7718 3189 7719 3199 7720 3210 7721 3234 7721 3263 7721<br>	 6823 7721 7194 6649 7086 6649 7076 6679 7064 6709 7051 6739<br>	 7038 6768 7023 6796 7008 6824 6991 6852 6974 6879 6955 6906<br>	 6936 6932 6916 6958 6895 6984 6874 7008 6851 7032 6828 7056<br>	 6804 7079 6779 7102 6753 7123 6727 7145 6700 7165 6672 7185<br>	 6644 7205 6614 7223 6585 7241 6554 7258 6523 7275 6491 7290<br>	 6459 7305 6426 7319 6393 7333 6359 7346 6324 7357 6309 7363<br>	 6288 7371 6261 7379 6229 7389 6146 7410 6038 7431 5903 7452<br>	 5740 7469 5548 7481 5326 7485 3499 7485 4996 5638 5012 5613<br>	 5023 5597 5024 5595 5025 5593 5025 5592 5026 5590 5027 5588<br>	 5027 5587 5028 5585 5028 5584 5028 5582 5029 5581 5029 5579<br>	 5029 5577 5029 5576 5029 5574 5030 5572 5030 5570 5030 5567<br>	 5029 5564 5029 5561 5029 5558 5029 5557 5029 5556 5028 5554<br>	 5028 5553 5028 5552 5027 5550 5027 5549 5026 5548 5025 5545<br>	 5023 5541 5021 5538 5018 5533 5011 5523 5003 5510 3607 3595<br>	 5306 3595 5512 3597 5750 3612 5877 3626 6007 3646 6073 3658<br>	 6139 3673 6204 3690 6269 3709 6334 3730 6398 3754 6461 3780<br>	 6522 3809 6553 3825 6582 3841 6612 3858 6641 3876 6669 3895<br>	 6698 3914 6725 3935 6752 3956 6778 3978 6804 4001 6829 4025<br>	 6854 4050 6878 4075 6901 4102 6923 4130 6945 4158 6965 4188<br>	 6985 4218 7004 4250 7023 4283 7040 4316 7056 4351 7072 4387<br>	 7086 4424 7194 4424 6823 3419 3263 3419 3242 3420 3223 3420<br>	 3214 3420 3207 3421 3199 3422 3193 3422 3190 3423 3187 3424<br>	 3184 3424 3181 3425 3178 3426 3176 3426 3173 3427 3171 3428<br>	 3169 3429 3167 3430 3166 3431 3165 3432 3164 3432 3163 3433<br>	 3162 3434 3161 3434 3161 3435 3160 3436 3159 3436 3158 3437<br>	 3157 3438 3157 3439 3156 3440 3155 3441 3155 3441 3154 3442<br>	 3153 3443 3153 3444 3152 3445 3152 3446 3151 3448 3150 3451<br>	 3149 3453 3148 3455 3147 3458 3146 3461 3146 3463 3145 3466<br>	 3144 3472 3143 3479 3142 3512 3142 3554 4713 5719<br>2 1 0 1 0 -1 50 -1 -1 0.0 0 0 -1 0 0 1<br>	 4713 5719<br># +<br>2 3 0 1 0 -1 50 -1 -1 0.0 0 0 -1 0 0 165<br>	 2357 2307 2340 2307 2322 2308 2304 2309 2287 2310 2270 2312<br>	 2253 2315 2235 2317 2219 2321 2185 2328 2153 2338 2121 2348<br>	 2089 2361 2059 2375 2029 2390 2000 2406 1972 2424 1945 2443<br>	 1919 2464 1894 2486 1871 2508 1848 2532 1826 2557 1806 2583<br>	 1786 2610 1769 2638 1752 2667 1737 2697 1723 2727 1711 2758<br>	 1700 2790 1691 2823 1683 2856 1680 2873 1677 2890 1674 2907<br>	 1672 2925 1671 2942 1670 2960 1669 2977 1669 2995 1669 8055<br>	 1669 8073 1670 8090 1671 8108 1672 8125 1674 8142 1677 8160<br>	 1680 8177 1683 8193 1691 8227 1700 8259 1711 8291 1723 8323<br>	 1737 8353 1752 8383 1769 8412 1786 8440 1806 8467 1826 8493<br>	 1848 8518 1871 8542 1894 8564 1919 8586 1945 8606 1972 8626<br>	 2000 8643 2029 8660 2059 8675 2089 8689 2121 8701 2153 8712<br>	 2185 8721 2219 8729 2235 8732 2253 8735 2270 8738 2287 8740<br>	 2304 8741 2322 8742 2340 8743 2357 8743 7980 8743 7998 8743<br>	 8016 8742 8033 8741 8051 8740 8068 8738 8085 8735 8102 8732<br>	 8119 8729 8152 8721 8185 8712 8217 8701 8248 8689 8279 8675<br>	 8308 8660 8337 8643 8365 8626 8392 8606 8418 8586 8443 8564<br>	 8467 8542 8490 8518 8511 8493 8532 8467 8551 8440 8569 8412<br>	 8586 8383 8601 8353 8615 8323 8627 8291 8638 8259 8647 8227<br>	 8655 8193 8658 8177 8661 8160 8663 8142 8665 8125 8667 8108<br>	 8668 8090 8668 8073 8669 8055 8669 2995 8668 2977 8668 2960<br>	 8667 2942 8665 2925 8663 2907 8661 2890 8658 2873 8655 2856<br>	 8647 2823 8638 2790 8627 2758 8615 2727 8601 2697 8586 2667<br>	 8569 2638 8551 2610 8532 2583 8511 2557 8490 2532 8467 2508<br>	 8443 2486 8418 2464 8392 2443 8365 2424 8337 2406 8308 2390<br>	 8279 2375 8248 2361 8217 2348 8185 2338 8152 2328 8119 2321<br>	 8102 2317 8085 2315 8068 2312 8051 2310 8033 2309 8016 2308<br>	 7998 2307 7980 2307 2357 2307<br></code></pre></td></tr></table></figure>
+<p>所以有了inkscape这个强大的工具，par in any shape in possible. 除此之外，还可以参考</p>
+<h2 id="4-本文源码仓库">4. 本文源码仓库</h2>
+<h2 id="5-结语">5. 结语</h2>
+<p>这次全程使用vim操作，的确很舒服<br>
+<img src="/img/ascii_art/end.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Computer/" class="category-chain-item">Computer</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ASCII Art in TeX</div>
+      <div>https://zongpingding.github.io/2024/03/26/ascii_art/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 26, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/26/blocksites/" title="Some Sites to Block list">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Some Sites to Block list</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/26/archlinux_intro/" title="ArchLinux 入门">
+                        <span class="hidden-mobile">ArchLinux 入门</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,776 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 引入问题 在编写LaTeX的时候，肯定很多的小伙伴不想使用vim，而是想要用sublime来编辑，于是直接在CLI下输入sublime，但是出现的是               也许你会觉得这样引入很奇怪，但是不妨先看看我为什么这样讲.            于是就产生了本篇文章和下边的问题：  为什么你可以在命令行窗口中输入vim，notepad，&lt;Enter&gt;之后就可以打开n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows 环境变量杂谈">
+<meta property="og:url" content="https://zongpingding.github.io/2024/03/26/windows_path_env/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="1. 引入问题 在编写LaTeX的时候，肯定很多的小伙伴不想使用vim，而是想要用sublime来编辑，于是直接在CLI下输入sublime，但是出现的是               也许你会觉得这样引入很奇怪，但是不妨先看看我为什么这样讲.            于是就产生了本篇文章和下边的问题：  为什么你可以在命令行窗口中输入vim，notepad，&lt;Enter&gt;之后就可以打开n">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/windows_path_env/01.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/windows_path_env/02.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/windows_path_env/03.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/windows_path_env/04.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/windows_path_env/05.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/windows_path_env/06.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/windows_path_env/07.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/windows_path_env/08.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/windows_path_env/09.png">
+<meta property="article:published_time" content="2024-03-26T14:02:13.962Z">
+<meta property="article:modified_time" content="2024-03-26T14:15:20.212Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/windows_path_env/01.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Windows 环境变量杂谈 - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Windows 环境变量杂谈"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-26 22:02" pubdate>
+          March 26, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Windows 环境变量杂谈</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-引入问题">1. 引入问题</h2>
+<p>在编写LaTeX的时候，肯定很多的小伙伴不想使用vim，而是想要用sublime来编辑，于是直接在CLI下输入sublime，但是出现的是<br>
+<img src="/img/windows_path_env/01.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<div class="note note-danger">
+            <p>也许你会觉得这样引入很奇怪，但是不妨先看看我为什么这样讲.</p>
+          </div>
+<p>于是就产生了本篇文章和下边的问题：</p>
+<ol>
+<li>为什么你可以在命令行窗口中输入vim，notepad，<code>&lt;Enter&gt;</code>之后就可以打开notepad？</li>
+<li>为什么你在&lt;运行&gt;窗口中输入<code>cmd</code>，<code>notepad</code>等也能够打开这些应用？</li>
+<li>为什么安装<code>python</code>的时候要叫你添加环境变量?</li>
+<li>环境变量和经常说到的<code>Path</code>又是什么关系？</li>
+</ol>
+<h2 id="2-运行-下的环境变量">2. &lt;运行&gt;下的环境变量</h2>
+<p>环境变量是什么：说白了就是给系统指明最要的文件目录地址。</p>
+<div class="note note-success">
+            <p>所谓&lt;运行&gt;下的环境变量实际上就是在运行窗口下运行应用。</p>
+          </div>
+<h3 id="2-1-最重要的Path环境变量">2.1 最重要的Path环境变量</h3>
+<p>然后我们运行某个程序时，操作系统就会从我们指定的路径中去寻找这个可执行程序。找到了就执行，找不到就报错。操作系统会去那些路径下寻找呢？就是Path环境变量里边寻找。如图：<br>
+<img src="/img/windows_path_env/02.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>Path变量有两个，一个是系统的，一个是当前登录的用户的。</p>
+<h3 id="2-2-认识环境变量">2.2 认识环境变量</h3>
+<p>如图，打开环境变量，我们看到有一个PROCESSOR_LEVEL的变量;我们尝试运行来查看它的值，结果报错，如下图：<br>
+<img src="/img/windows_path_env/03.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="2-3-设置环境变量">2.3 设置环境变量</h3>
+<p>问题出在哪里呢？就是变量这里。系统怎么知道这个东西是一个变量，不是一个单纯的字符换呢？你得告诉它这是一个变量，怎么告诉它呢？和Linux下类似，只不过:</p>
+<ul>
+<li>Linux下使用得的是**$<Var-name>**的格式，</li>
+<li>windows下你的使用**%<var-name>%**的格式，</li>
+</ul>
+<p>好那么就看一下改进之后的运行结果:我们使用如下的命令，就会发现，它识别出来PROCESSOR_LEVEL的值了，就是6.但是还是报错了。<br>
+<img src="/img/windows_path_env/04.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>原因解释</strong></p>
+<p>但是这个例子可能不太恰当，毕竟&lt;运行&gt;窗口时用来运行可执行程序的，你给它一个6，它怎么给你运行呢？我用这个例子就是为了第二个问题作的回答。那么我们就用一个具体的例子来演示，比入把sublime加入到**“运行”**中<br>
+<img src="/img/windows_path_env/05.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="2-4-环境变量设置进阶">2.4 环境变量设置进阶</h3>
+<p>你们可以应用的快捷方式加入到环境变量里边，这样也可以运行的，但是你稍微的想想，你电脑上的应用很多吧，如果把你的应用像视频里的那样一个一个的单独加入到环境变量中，那么你的环境变量的内容是不是就很多了。</p>
+<p>所以才有了Path环境变量这个东西，把你的可执行文件路径放在一个文件夹里边，然后把这个文件夹加入到Path环境变量中，这样在你运行你自己添加的某个可执行程序时系统就会到你添加到Path中的那个文件夹里边去寻找，就可以执行了。而且这样还有一个好处就是你不用再多输入两个烦人的%%了，是不是很爽。</p>
+<p>接下来就把最开始的那个sublime的环境变量删了吧</p>
+<blockquote>
+<p>不仅仅只在&lt;运行&gt;窗口里边可以识别环境变量，在你的<strong>文件管理器</strong>等地方都能够使用，前提是你得用<code>%%</code>声明这是一个产量而不是一个简单的字符串.</p>
+</blockquote>
+<h2 id="3-cli下的环境变量">3. cli下的环境变量</h2>
+<p>还有一个问题没有解决，就是在命令行下边打开应用。刚才我们的设置是不足以在CLI下打开sublime的，你可以试一试在CLI中输入sublime，你看看你是不是会得到下图：<br>
+<img src="/img/windows_path_env/06.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>为什么在命令行下可以打开其他的应用呢？有些人可能是认为我们无法打开是因为那是一个快捷方式的原因,然而并不是，如下图：<br>
+<img src="/img/windows_path_env/07.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>3.2 还有人可能以为是我把第一个设置的sublime的环境变量删除了的缘故;其实也不是，如下图：<br>
+<img src="/img/windows_path_env/08.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>究竟是什么呢？</strong></p>
+<p>这就需要我们了解一个东西了，就是<code>PATHEXT</code>这个环境变量下边是它的解释说明：</p>
+<div class="note note-success">
+            <ul><li>Windows的“运行”命令为一些有经验的用户提供了一个简单快速的方法来打开文件，而不再需要通过“开始”目录，或在文件夹中寻找文件。例如：当我再“运行”窗口中输入cmd.exe 并点击确定时，命令行窗口就直接被打开了。同样的，输入 msconfig.exe后，可以直接打开“系统配置”界面</li><li>其实很多人都知道，当使用“运行”命令时，并不需要总是输入某些文件的扩展名的，例如只输入文件名部分，用cmd代替cmd.exe即可。如果这样可以，那是因为EXE文件扩展名是XP中的可靠扩展名而无须提供。当你没有输入扩展名时，XP会尝试几种默认扩展名，这些XP默认的扩展名就在PATHEXT变量中声明</li><li>PATHEXT系统变量默认的声明如下：.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH</li></ul>
+          </div>
+<h3 id="4-解决方法">4 解决方法</h3>
+<p>其实我们只需要把刚才的那个PATHEXT的环境变量里边加上</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">;,lnk<br></code></pre></td></tr></table></figure>
+<div class="note note-success">
+            <p>需要注意的是<code>.MSC</code>扩展名并不在此之列。这个后缀的文件用来打开XP的管理控制台。如果你希望打开类似Services这类MMC文件，而不在“运行”窗口输入文件全名(services.msc)，那么就需要将<code>.MSC</code>添加到XP的<code>PATHEXT</code>变量中。</p>
+          </div>
+<h2 id="2022-09-16补充">2022.09.16补充</h2>
+<p>如过你使用scoop的话，不管是快捷方式还是.exe文件，直接扔到scoop的shims文件夹就行了,前提是你的scoop的正常。<br>
+<img src="/img/windows_path_env/09.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Computer/" class="category-chain-item">Computer</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Windows/" class="print-no-link">#Windows</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Windows 环境变量杂谈</div>
+      <div>https://zongpingding.github.io/2024/03/26/windows_path_env/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 26, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/26/tikz_tools/" title="TikZ工具合集">
+                        <span class="hidden-mobile">TikZ工具合集</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,815 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2023-07-22 更正感谢 @唐慕 指正：gnuplot和GNU组织没有任何的关系,仅仅只是当初开发者由于名字冲突才取的一个折中的办法.相关详细解答见如下链接:gnuplot FAQ所以之后也别在把gnuplot拼写为Gnuplot了,再次感谢评论区小伙伴提醒,特此更正.            0.前言 gnuplot作为一个免费开源软件，很多人肯定都没有听说过，取而">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gnuplot介绍">
+<meta property="og:url" content="https://zongpingding.github.io/2024/03/26/gnuplot_intro/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="2023-07-22 更正感谢 @唐慕 指正：gnuplot和GNU组织没有任何的关系,仅仅只是当初开发者由于名字冲突才取的一个折中的办法.相关详细解答见如下链接:gnuplot FAQ所以之后也别在把gnuplot拼写为Gnuplot了,再次感谢评论区小伙伴提醒,特此更正.            0.前言 gnuplot作为一个免费开源软件，很多人肯定都没有听说过，取而">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/gnuplot_intro/banner.webp">
+<meta property="article:published_time" content="2024-03-26T11:00:29.814Z">
+<meta property="article:modified_time" content="2024-03-26T11:32:04.891Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="应用程序">
+<meta property="article:tag" content="LaTeX">
+<meta property="article:tag" content="TikZ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/gnuplot_intro/banner.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>gnuplot介绍 - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/gnuplot_intro/banner.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="gnuplot介绍"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-26 19:00" pubdate>
+          March 26, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">gnuplot介绍</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-danger">
+            <p><strong>2023-07-22 更正</strong><br>感谢 <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/ddf187d555a89784cf7c0a2e67493996">@唐慕</a> 指正：gnuplot和GNU组织没有任何的关系,仅仅只是当初开发者由于名字冲突才取的一个折中的办法.相关详细解答见如下链接:<a href="www.gnuplot.info/faq/faq.html#x1-70001.2">gnuplot FAQ</a>所以之后也别在把gnuplot拼写为Gnuplot了,再次感谢评论区小伙伴提醒,特此更正.</p>
+          </div>
+<h2 id="0-前言">0.前言</h2>
+<p>gnuplot作为一个免费开源软件，很多人肯定都没有听说过，取而代之的是Python的matplotlib，以及Matlab，Maple，Mathematica等著名的商业软件。我曾经也忽视了这个家伙，后面才发现这个东西真的就是短<strong>小精悍.</strong> 我之前用它处理一个csv风格的数据，matplotlib要等个10s左右才出结果，但是我使用gnuplot绘制的化，秒出。gnuplot的输出结果如下</p>
+<p><img src="/img/gnuplot_intro/01.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>我不是到这里来 引战的，只是说一下这个gnuplot的优势，也许某一天你能够用得到，那么我的这一篇文章也就多了一份的意义。</p>
+<p>我用着一个软件的一个重要原因就是它的3维图像等能够输出矢量图（<strong>下面的所有演示图形均为矢量图</strong>），当然matlab也可以（太重了），但是mathematica我是折腾了半天也不行，不理解 。但是后面我会介绍其它方便导出3维矢量图的软件，比如Solidworks，UG等，当然，这就是后话了。。。</p>
+<p>如果你想让gnuplot导出的图片更加完美的话，可以使用它的epslatex终端，然后使用LaTeX编译它的输出文件，这样你就可以随意定制样式了。它支持的终端种类是十分丰富的，在我的电脑上就有如下的几十个可用类型终端：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span> <span class="hljs-keyword">set</span> terminal<br>Available <span class="hljs-comment">terminal types:</span><br>       cairolatex  <span class="hljs-comment">LaTeX picture environment using graphicx package and Cairo backend</span><br>           canvas  <span class="hljs-comment">HTML Canvas object</span><br>              cgm  <span class="hljs-comment">Computer Graphics Metafile</span><br>          context  <span class="hljs-comment">ConTeXt with MetaFun (for PDF documents)</span><br>          domterm  <span class="hljs-comment">DomTerm terminal emulator with embedded SVG</span><br>             dumb  <span class="hljs-comment">ascii art for anything that prints text</span><br>              dxf  <span class="hljs-comment">dxf-file for AutoCad (default size 120x80)</span><br>              emf  <span class="hljs-comment">Enhanced Metafile format</span><br>         epscairo  <span class="hljs-comment">eps terminal based on cairo</span><br>         epslatex  <span class="hljs-comment">LaTeX picture environment using graphicx package</span><br>              fig  <span class="hljs-comment">FIG graphics language V3.2 for XFIG graphics editor</span><br>              gif  <span class="hljs-comment">GIF images using libgd and TrueType fonts</span><br>             hpgl  <span class="hljs-comment">HP7475 and relatives [number of pens] [eject]</span><br>             jpeg  <span class="hljs-comment">JPEG images using libgd and TrueType fonts</span><br>              lua  <span class="hljs-comment">Lua generic terminal driver</span><br>               mf  <span class="hljs-comment">Metafont plotting standard</span><br>               mp  <span class="hljs-comment">MetaPost plotting standard</span><br>             pcl5  <span class="hljs-comment">PCL5e</span>/PCL5c printers <span class="hljs-keyword">using</span> HP-GL/<span class="hljs-comment">2</span><br>         pdfcairo  <span class="hljs-comment">pdf terminal based on cairo</span><br>           pict2e  <span class="hljs-comment">LaTeX2e picture environment</span><br>              png  <span class="hljs-comment">PNG images using libgd and TrueType fonts</span><br>         pngcairo  <span class="hljs-comment">png terminal based on cairo</span><br>       postscript  <span class="hljs-comment">PostScript graphics, including EPSF embedded files (*.eps)</span><br>          pslatex  <span class="hljs-comment">LaTeX picture environment with PostScript \specials</span><br>            pstex  <span class="hljs-comment">plain TeX with PostScript \specials</span><br>         pstricks  <span class="hljs-comment">LaTeX picture environment with PSTricks macros</span><br>               qt  <span class="hljs-comment">Qt cross-platform interactive terminal</span><br>          sixelgd  <span class="hljs-comment">sixel using libgd and TrueType fonts</span><br>              svg  <span class="hljs-comment">W3C Scalable Vector Graphics</span><br>          texdraw  <span class="hljs-comment">LaTeX texdraw environment</span><br>             tikz  <span class="hljs-comment">TeX TikZ graphics macros via the lua script driver</span><br>         tkcanvas  <span class="hljs-comment">Tk canvas widget</span><br>          unknown  <span class="hljs-comment">Unknown terminal type - not a plotting device</span><br>          windows  <span class="hljs-comment">Microsoft Windows</span><br>              wxt  <span class="hljs-comment">wxWidgets cross-platform interactive terminal</span><br></code></pre></td></tr></table></figure>
+<p>当然如果你的美术功底够的话，直接使用Adobe Illustrator, CoreDraw等，你实在是厉害的话可以全程使用tikz，众所周知tikz除了不会生孩子，啥都会。</p>
+<p>本文并不是gnuplot入门内容，想要入门的选手可以参看如下的几个网站：</p>
+<p>当你学会了基本的操作之后就可以开始学一些tricks了，如果你不满足当下的水平的话，推荐如下的网站：</p>
+<blockquote>
+<p>大部分都是从这里那里抄来的，侵删</p>
+</blockquote>
+<blockquote>
+<p>这个应该够你学了吧</p>
+</blockquote>
+<p>我的主要参考书籍如下（700多页，很实用）：<br>
+<img src="/img/gnuplot_intro/02.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这本书后面有一个index of plots，里里面列举了这本书所绘制的全部图像</p>
+<p><img src="/img/gnuplot_intro/03.png" srcset="/img/loading.gif" lazyload alt=""><br>
+<img src="/img/gnuplot_intro/04.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/05.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/06.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/07.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/08.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/08.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/10.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/11.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/12.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/13.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/14.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/15.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/16.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/17.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/18.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/gnuplot_intro/18.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>当然部分人可能会推荐马欢的gnuplot教程，但是我觉得这个教程很不全面。我还是把链接给出来吧</p>
+</blockquote>
+<h2 id="1-说明">1. 说明</h2>
+<h3 id="1-1-环境说明">1.1 环境说明</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">1. powershell</span><br><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">Major  Minor  Patch  PreReleaseLabel BuildLabel -----  -----  -----  --------------- ---------- 7      3      6</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">2. windows</span><br><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">Windows 11 家庭中文版 22H2</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">3. gnuplot 版本</span><br><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">Version 5.4 patchlevel 7    last modified 2023-05-16</span><br></code></pre></td></tr></table></figure>
+<h3 id="1-2-文件说明">1.2 文件说明</h3>
+<p>最近使用gnuplot，添加了几个常用的gnuplot绘图的powershell命令，如下 :</p>
+<ul>
+<li>二维函数绘制</li>
+<li>三维显示函数绘制</li>
+<li>参数方程绘制</li>
+</ul>
+<p>我设置了绝大部分的绘图设置，这些命令的默认效果基本能够符合大众的审美。想要修改默认效果的，直接去修改</p>
+<p>默认的源文件即可。<strong>gayhub</strong>仓库地址,其中的文件说明如下:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">├── Gnuplot <br>│   ├── Gplot_2d.gp  **二维绘图脚本** <br>│   ├── Gplot_3d.gp  **三维绘图脚本** <br>│   └── [GPplot.gp](http://gpplot.gp/) **参数绘图简本** <br>├──  <br>└── Microsoft.PowerShell_profile.ps1powershell 的 **$Profile** 文件<br></code></pre></td></tr></table></figure>
+<p>我的这几个绘图脚本放到了如下路径:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">C:/BIN/<br></code></pre></td></tr></table></figure>
+<p>想要体验的，如果你比较懒，可以直接新建这个文件夹，把这3个脚本仍里面就行了。想要自己调整的，可以把对应的文件放到你们喜欢的任意位置，但是此时你们就需要修改powershell的**$profile**文件中的对应的这几个绘图脚本的路径。下面以Gplot_3d.gp为例:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment"># 3维函数绘图命令</span><br><span class="hljs-comment"># 1. 首先修改文件</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Gplot_3d_change_Text</span> </span>&#123;<br>    <span class="hljs-title function_ invoke__">param</span> (<br>        [<span class="hljs-keyword">string</span>]<span class="hljs-variable">$f</span><br>    )<br>    sed -i <span class="hljs-string">&quot;34s|f(x, y) = .*|f(x, y) = <span class="hljs-subst">$f</span>|&quot;</span> C:/BIN/Gplot_3d.gp  <span class="hljs-comment"># 修改成你的脚本的实际位置</span><br>&#125;<br><span class="hljs-comment"># 2.然后调用gnuplot进行绘制</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Gplot_3d</span></span>&#123;<br>    Gplot_3d_change_Text -f <span class="hljs-variable">$args</span> <br>    gnuplot C:/BIN/Gplot_3d.gp               <span class="hljs-comment"># 修改成你的脚本的实际位置</span><br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;The 3d Function Graphic(pdf) has Successfully Created,`r`nwhich name is &#x27;Function_output_3d.pdf&#x27; as default.`r`nIt Will be automatic opened by Your default pdf_reader ...&quot;</span><br>    pdf Function_output_3d.pdf<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2-使用演示">2.使用演示</h2>
+<div class="note note-danger">
+            <ol><li>以下的命令均为在powershell中执行</li><li><strong>Gplot_2d</strong> 命令和 <strong>GPplot</strong> 有两个参数 -f(unction) 函数, -r(ange) y的范围或者是z的范围</li></ol>
+          </div>
+<h3 id="2-1-三维参数方程绘图示例1">2.1 三维参数方程绘图示例1</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">GPplot -f &#x27;1*cos(u)*cos(v), 3*cos(u)*sin(v), 2*sin(u)&#x27;<br></code></pre></td></tr></table></figure>
+<p><img src="/img/gnuplot_intro/19.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>添加z轴范围:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">GPplot -f &#x27;1*cos(u)*cos(v), 3*cos(u)*sin(v), 2*sin(u)&#x27; -r &#x27;-1:1.5&#x27;<br></code></pre></td></tr></table></figure>
+<p><img src="/img/gnuplot_intro/20.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="2-2-三维参数方程绘图示例2">2.2 三维参数方程绘图示例2</h3>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs excel">GPplot -f &#x27;<span class="hljs-number">1</span>/(<span class="hljs-number">1</span>/<span class="hljs-built_in">cos</span>(v)), <span class="hljs-number">3</span>*<span class="hljs-built_in">tan</span>(v)*<span class="hljs-built_in">cos</span>(u), <span class="hljs-number">1</span>*<span class="hljs-built_in">tan</span>(v)*<span class="hljs-built_in">sin</span>(u)&#x27;<br></code></pre></td></tr></table></figure>
+<p><img src="https://picx.zhimg.com/80/v2-79d0a4431509a906dfc39dcf940197bd_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="2-3-其他的一些绘图示例">2.3 其他的一些绘图示例</h3>
+<p><img src="https://picx.zhimg.com/80/v2-88700bb9b8b0e9c43b20bc9f782aa647_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://picx.zhimg.com/80/v2-0ddcd48cce59ae965a69399012567881_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://pic1.zhimg.com/80/v2-8d1c69299b2623d87876b0409418e4a0_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://pica.zhimg.com/80/v2-6d01c64010103348a9706d7e6cb3322b_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="2-4-后续进一步处理">2.4 后续进一步处理</h3>
+<p>尽管默认输出的图像基本能够满足，但是很多时候是需要精修的，这个使用就可以使用inkscape了，装一个支持TeX的插件，想咋修图就咋修。下面是一个inkscape编辑示例：</p>
+<blockquote>
+<p>其中的哪个梯度的示意图就是使用inkscape加的</p>
+</blockquote>
+<p><img src="https://pica.zhimg.com/80/v2-bbeaa9a9cbc1e89824943cdaa773e84c_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="2-5-三维显示函数绘制">2.5 三维显示函数绘制</h3>
+<p>这个就比较简单了，看看下面的例子你几乎就会了。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Gplot_3d</span> &#x27;x**<span class="hljs-number">2</span>-y**<span class="hljs-number">2</span>/<span class="hljs-number">3</span>&#x27;<br></code></pre></td></tr></table></figure>
+<p><img src="https://picx.zhimg.com/80/v2-fc5bccdd3b8e71b2a0d0321124db79e9_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="2-6-其他显式函数的例子">2.6 其他显式函数的例子</h3>
+<p><img src="https://pic1.zhimg.com/80/v2-e133663d96126409a33abc732ddcaada_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://pica.zhimg.com/80/v2-dd28a8a55af310e0f012a50ab5ed809d_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://picx.zhimg.com/80/v2-c6f74ad716ee4e6d9253c52939b66252_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="2-7-二维函数演示">2.7 二维函数演示</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Gplot_2d</span> &#x27;<span class="hljs-number">2</span>-exp(<span class="hljs-number">1</span>/x)&#x27; -r <br></code></pre></td></tr></table></figure>
+<p>运行之后他会弹出一个gnuplot的窗口，如下：</p>
+<p><img src="https://picx.zhimg.com/80/v2-388df0e5a3dbf00b97f9603e332d6295_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>然后你可以修改以下再导出，结果如下</p>
+<p><img src="https://pic1.zhimg.com/80/v2-4e3070e072f0240c2c25027b7b4a215c_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>其他的示例</p>
+<p><img src="https://picx.zhimg.com/80/v2-735dec7324aecb26c5433701d30c0434_720w.png?source=d16d100b" srcset="/img/loading.gif" lazyload alt="img"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" class="print-no-link">#应用程序</a>
+      
+        <a href="/tags/LaTeX/" class="print-no-link">#LaTeX</a>
+      
+        <a href="/tags/TikZ/" class="print-no-link">#TikZ</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>gnuplot介绍</div>
+      <div>https://zongpingding.github.io/2024/03/26/gnuplot_intro/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 26, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/26/texlive_android/" title="TeXLive on Android">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">TeXLive on Android</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/26/c_cpp_lang_config/" title="C/CPP 中文乱码">
+                        <span class="hidden-mobile">C/CPP 中文乱码</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

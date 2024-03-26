@@ -1,0 +1,1096 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 前言 其实之前我已经写过一篇文章来总结了部分的TiKZ的可视化编辑软件，但是自己后面又发现了有很多的好用的工具，然后就都去用了一遍，也体会到了各个工具的优劣。后面发现，在某些方面TiKZ还是有一定的局限性。我也就去了解了各种的矢量图绘制软件，于是就有了这篇矢量图绘制软件推荐。 但是感觉有的时候，其实真没有必要太过于追求矢量图，位图也挺好的。但是我折腾就要折腾到底，满足自己近乎变态的绘图要求。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TikZ工具合集">
+<meta property="og:url" content="https://zongpingding.github.io/2024/03/26/tikz_tools/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="1. 前言 其实之前我已经写过一篇文章来总结了部分的TiKZ的可视化编辑软件，但是自己后面又发现了有很多的好用的工具，然后就都去用了一遍，也体会到了各个工具的优劣。后面发现，在某些方面TiKZ还是有一定的局限性。我也就去了解了各种的矢量图绘制软件，于是就有了这篇矢量图绘制软件推荐。 但是感觉有的时候，其实真没有必要太过于追求矢量图，位图也挺好的。但是我折腾就要折腾到底，满足自己近乎变态的绘图要求。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/tikz_tools/banner.png">
+<meta property="article:published_time" content="2024-03-26T12:21:29.278Z">
+<meta property="article:modified_time" content="2024-03-26T14:01:07.507Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="LaTeX">
+<meta property="article:tag" content="TikZ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/tikz_tools/banner.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>TikZ工具合集 - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/tikz_tools/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="TikZ工具合集"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-26 20:21" pubdate>
+          March 26, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          51 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">TikZ工具合集</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-前言">1. 前言</h2>
+<p>其实之前我已经写过一篇文章来总结了部分的TiKZ的可视化编辑软件，但是自己后面又发现了有很多的好用的工具，然后就都去用了一遍，也体会到了各个工具的优劣。后面发现，在某些方面TiKZ还是有一定的局限性。我也就去了解了各种的矢量图绘制软件，于是就有了这篇<strong>矢量图绘制</strong>软件推荐。</p>
+<p>但是感觉有的时候，其实真没有必要太过于追求矢量图，位图也挺好的。但是我折腾就要折腾到底，满足自己近乎变态的绘图要求。所以下面我的内容将不在限定于TiKZ，但是绝大多数（90%）的软件都是支持导出tikz的 …</p>
+<blockquote>
+<p>为什么要写这篇文章?</p>
+<ol>
+<li>纪念自己曾经折腾TiKZ的这段经历</li>
+<li>为了给没有入坑的人提供一点参考, 让各位少走一点弯路</li>
+</ol>
+</blockquote>
+<p>更多参考示例, 这个里面有各式各样的精美抑或是令你感到unbelievable的示例：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/158668/nice-scientific-pictures-show-off">https://tex.stackexchange.com/questions/158668/nice-scientific-pictures-show-off</a></p>
+</blockquote>
+<h2 id="2-工具内容">2. 工具内容</h2>
+<p>相关的部分工具大致划分为：</p>
+<ol>
+<li>分为绘图软件</li>
+<li>绘图语言</li>
+</ol>
+<blockquote>
+<p>PS: 其实这种划分并不太准确（欢迎讨论交流），同时也欢迎交流其他的矢量图绘制软件。</p>
+</blockquote>
+<p><img src="/img/tikz_tools/mindmap.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="3-工具使用介绍">3. 工具使用介绍</h2>
+<h3 id="3-1-TiKZit">3.1 TiKZit</h3>
+<p>在介绍tikz之前，先给新手介绍一个比较友好的tikz可视化绘图软件TikZit,github的地址为:<a target="_blank" rel="noopener" href="https://github.com/tikzit/tikzit">https://github.com/tikzit/tikzit</a>; 是一个Github上的开源项目，是一个GitHub上的开源项目,这个东西的使用体验还好吧，也是我在这个方面的入门软件。我大概学了一个下午吧。这个软件的入门文档作者写的很好，按照它的教程一步步的走下来，基本上这个软件的功能你就可以摸透了.</p>
+<ol>
+<li>功能简单，入手快.可以作为新手入门tikz的铺垫，</li>
+<li>可以调用pdflatex进行预览</li>
+<li>支持自定义node和edge的样式，可以方在文件中通过 \input{ } 调用</li>
+</ol>
+<blockquote>
+<p>对于中文支持即使更改默认的latex编译引擎pdflatex为xelatex的位置，并且在tikzdefs中引入ctex宏包仍然不支持中文</p>
+</blockquote>
+<p>我去软件的github仓库开了一个issue，但是还是没能解决问题<br>
+<img src="/img/tikz_tools/tikzit_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>大致的使用方法如下:<br>
+<img src="/img/tikz_tools/tikzit_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<div class="note note-danger">
+            <ol><li>到了后期就会发现功能有一点的单一</li><li>node和edge的样式太少（但是可以修改源码）</li><li>部分的样式定义不合理的话软件会崩溃</li><li>部分定义的样式在GUI界面无法显示</li></ol>
+          </div>
+<blockquote>
+<p>对应的BUG的解决? 中文node和样式不合理导致的崩溃：均可以退出软件然后手动修改源码</p>
+</blockquote>
+<p><strong>使用演示</strong><br>
+<img src="/img/tikz_tools/tikzit_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<div class="note note-success">
+            <p>使用tips:</p><ol><li>使用<code>Ctrl + J</code>打开源码进行修改</li><li>把自己的样式定义在一个文件中，宏定义文件定义在一个文件中</li></ol>
+          </div>
+<p>其中有两个样式文件(配置文件) <code>.tikzstyles</code> 和 <code>.tikzdefs</code>， 其中第一个样式文件是必须的，第二个样式文件会被tikzit自动导入，这两个文件中的内容大概长这个样子</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs tex"><span class="hljs-comment">%%%%%  .tikzstyles</span><br><span class="hljs-comment">% TiKZ style file generated by TikZiT. You may edit this file manually,</span><br><span class="hljs-comment">% but some things (e.g. comments) may be overwritten. To be readable in</span><br><span class="hljs-comment">% TikZiT, the only non-comment lines must be of the form:</span><br><span class="hljs-comment">% \tikzstyle&#123;NAME&#125;=[PROPERTY LIST]</span><br><br><span class="hljs-comment">% Node styles</span><br><span class="hljs-keyword">\tikzstyle</span>&#123;red circle&#125;=[fill=white, draw=red, shape=circle]<br><br><span class="hljs-comment">% Edge styles</span><br><span class="hljs-comment">%%%%%  .tikzdefs</span><br><span class="hljs-keyword">\PassOptionsToClass</span>&#123;<span class="hljs-keyword">\CurrentOption</span>&#125;&#123;article&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;ctex&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;bm&#125;<br><span class="hljs-keyword">\newcommand</span>&#123;<span class="hljs-keyword">\param</span>&#125;[1]&#123;<span class="hljs-keyword">\ensuremath</span>&#123;<span class="hljs-keyword">\vec</span>&#123;<span class="hljs-keyword">\bm</span>&#123;<span class="hljs-params">#1</span>&#125;&#125;&#125;&#125;<br></code></pre></td></tr></table></figure>
+<p>从上面可以看出tikzit的style文件其实就是一系列声明的node style (如果你对tikz熟悉的话). 但是目前为止我觉得用这个东西来绘制贝塞尔曲线还可以试试，其他的就算了.</p>
+<h3 id="3-2-TiKZ-and-PgfPlots">3.2 TiKZ and PgfPlots</h3>
+<p>LATEX 自带的tikz宏包肯定不必多说了吧，你随便在网上一搜就有一堆的结果,有很多的相关内容.</p>
+<h3 id="3-3-MetaPost">3.3 MetaPost</h3>
+<p>可以稍微的介绍以下 MetaPost 的内容，MetaPost 是脱胎于 D. E. K. 的 MetaFont 的一个东西，感觉和TiKZ差不多. 你可以在你的电脑上本地执行MetaPost的文件，也可以使用在线网站: <a target="_blank" rel="noopener" href="http://www.tlhiv.org/mppreview/">http://www.tlhiv.org/mppreview/</a></p>
+<p>具体的使用文档可以查看官方文档，只需要在你电脑的终端中输入如下的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">texdoc metapost<br></code></pre></td></tr></table></figure>
+<p>操作示意图</p>
+<p><img src="/img/tikz_tools/metapost_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>1. 文件</strong></p>
+<p>一段简单的测试代码（使用样例）, <a target="_blank" rel="noopener" href="http://xn--fig-c88dq7at3b227b1jau35cy6g.mp">把它保存为文件fig.mp</a></p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">% fig.mp<br>% 这里是注释<br><br>% 设置输出图片的格式为eps<br>filenametemplate <span class="hljs-string">&quot;%j-%c.eps&quot;</span>;<br><br><span class="hljs-keyword">beginfig </span>(<span class="hljs-number">1</span>) ; <br>    for i=<span class="hljs-number">0</span> upto <span class="hljs-number">9</span>:<br>        draw (<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)&#123;<span class="hljs-keyword">dir </span><span class="hljs-number">45</span>&#125;..&#123;<span class="hljs-keyword">dir </span>-<span class="hljs-number">10</span>i&#125;(<span class="hljs-number">6</span>cm,<span class="hljs-number">0</span>);<br>    endfor<br><br>    for i=<span class="hljs-number">0</span> upto <span class="hljs-number">9</span>:<br>        draw (<span class="hljs-number">7</span>cm,<span class="hljs-number">1</span>cm)&#123;<span class="hljs-keyword">dir </span><span class="hljs-number">45</span>&#125;..&#123;<span class="hljs-keyword">dir </span><span class="hljs-number">10</span>i&#125;(<span class="hljs-number">13</span>cm,<span class="hljs-number">1</span>cm);<br>    endfor<br>endfig ;<br><br>end<br></code></pre></td></tr></table></figure>
+<p><strong>2. 编译</strong></p>
+<p>在命令行输入如下的指令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mpost fig.mp<br></code></pre></td></tr></table></figure>
+<p><strong>3. 输出</strong></p>
+<p>然后你会得到如下的输出：<br>
+<img src="/img/tikz_tools/metapost_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>4. 查看</strong></p>
+<p>打开eps文件（可以使用Gsview）就可以看到内容了，如下：<br>
+<img src="/img/tikz_tools/metapost_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>详细的使用方法可以参见如下链接</p>
+<ol>
+<li>参见：<a target="_blank" rel="noopener" href="https://www.tug.org/docs/metapost/mpman.pdf">https://www.tug.org/docs/metapost/mpman.pdf</a></li>
+<li>查阅自带的文档：<code>texdoc metapost</code></li>
+</ol>
+</blockquote>
+<h3 id="3-4-Asymptote">3.4 Asymptote</h3>
+<p>个人感觉这个软件（语言）挺好的, 软件的介绍(来自百度百科)：</p>
+<blockquote>
+<p>Asymptote 是一种为了绘制技术图形而设计的矢量图语言，其灵感来自 MetaPost，它具有 IEEE 标准的浮点数支持、原生的三维图形支持、灰度 /RGB/CMYK/HSV 等不同色彩指定方式以及类似 C++ 的语法。与 MetaPost不同，Asymptote 原生的支持多段路径（因此不局限于单连通区域）、填充图案、Gouraud 着色（shading）以及PostScript 图像（和pdf等）</p>
+</blockquote>
+<p>自己那段时间真的想把这个东西学会，我在学习的过程中看到它的语法和C差不多，而且文档也讲的挺详细的。</p>
+<p>它有两种绘图模式：</p>
+<ol>
+<li><strong>BathMode</strong> (写为一个文件)</li>
+<li><strong>InteractiveMode</strong> （命令行实时交互）</li>
+</ol>
+<p>重要的是用它来绘制二维和三维图形的方法感觉比TikZ简单多了，而且这个也是TeXLive自带的一个宏包， 可以和TiKZ类似， 可以直接写在 .tex 文件中，直接编译, 还可以支持生成交互模式的三维pdf格式文档。</p>
+<blockquote>
+<p>PS：要使用交互功能需要使用支持JavaScript的pdf阅读器（比如Adobe Acrobat）。</p>
+</blockquote>
+<p><strong>Asymptote 使用演示</strong></p>
+<p>1.<strong>BatchMode</strong></p>
+<p><img src="/img/tikz_tools/asy_1.gif" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.<strong>InteractiveMode</strong></p>
+<p><img src="/img/tikz_tools/asy_2.gif" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>视频中用到的MarkDown文档在这里</p>
+<h3 id="3-5-Matlab2TikZ">3.5 Matlab2TikZ</h3>
+<p>其实Matlab本身就可以导出相对比较精准的矢量图，可以绘制出图以后直接在绘图窗口另存为pdf格式，此时就是高清的矢量图了，如下：<br>
+<img src="/img/tikz_tools/matlab_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>当然，你们可能会遇到即使是选择了pdf, eps等矢量图格式，但是导出的图片依然非常的糊，那么只需要把如下的导出设置渲染方式更改一下即可:</p>
+<blockquote>
+<p>但是我记得matlab好像默认就是OpenGL位图格式导出的，此时你可以选择dpi</p>
+</blockquote>
+<p><img src="/img/tikz_tools/matlab_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>还可以使用matlab自带的函数 exportgraphics 进行导出，语法为</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">exportgraphics(gcf,<span class="hljs-string">&#x27;test.pdf&#x27;</span>,<span class="hljs-string">&#x27;ContentType&#x27;</span>,<span class="hljs-string">&#x27;vector&#x27;</span>); <br></code></pre></td></tr></table></figure>
+<p>但是如果你追求完美的数学字体和统一的  的话，那么就可以使用如下推荐的一个工具:<code>MaTlaB2TiKZ</code>, 一个GitHub上的开源项目, 项目地址为:<a target="_blank" rel="noopener" href="https://github.com/matlab2tikz">https://github.com/matlab2tikz</a>; 这个可以认为是我这篇博客里边的又一个重点, 它的功能十分的强大，可以和MatlaB梦幻联动，能不强大？具体的使用使用方法可以参见github在下载下来的源码里边的如下文件:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">~\MatLab2TiKZ\src\matlab2tikz.m<br></code></pre></td></tr></table></figure>
+<p>下边我给出几个个最基本的，也是最常用的使用方法样例</p>
+<p><strong>二维函数绘图导出</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clear,clc;<br><span class="hljs-comment">% 绘制二维图</span><br>x = <span class="hljs-number">0</span>:<span class="hljs-number">0.1</span>:<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>;<br>y = <span class="hljs-built_in">sin</span>(x);<br><span class="hljs-built_in">plot</span>(x, y, <span class="hljs-string">&#x27;r&#x27;</span>)<br><br><span class="hljs-comment">% 导出（默认当前文件夹下）</span><br>addpath C:\Latex\MatLab2TiKZ\src<br>matlab2tikz(<span class="hljs-string">&#x27;Test2D.tex&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p><strong>三维函数导出</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">% 绘制三维图</span><br>peaks;<br><br><span class="hljs-comment">% 导出</span><br>addpath C:\Latex\MatLab2TiKZ\src<br>matlab2tikz(<span class="hljs-string">&#x27;Test3D.tex&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>PS: 也可以先把图形绘制出来，调整好后再导出TiKZ源码, 只需使用如下两条语句：</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">% import matlab2tikz function</span><br>addpath C:\Latex\MatLab2TiKZ\src<br><br><span class="hljs-comment">% Export graphicx</span><br>matlab2tikz(<span class="hljs-string">&#x27;Test3D.tex&#x27;</span>) <br></code></pre></td></tr></table></figure>
+<p><strong>MatLab2TiKZ的编译效果</strong><br>
+<img src="/img/tikz_tools/matlab_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="3-6-gnuplot">3.6 gnuplot</h3>
+<p>对于这个软件，我只能用一个词来形容, 那就是 <strong>短小精悍,</strong> 但是我用的不多. 以下为gnuplot的一个简单使用样例:<br>
+<img src="/img/tikz_tools/gnuplot_1.gif" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>备注: 怎么在gnuplot中清屏(即清除历史输入输出信息) ？system “cls”, 如果是在类Unix上则为 system “clear”</p>
+</blockquote>
+<p>关于GnuPlot在LaTeX中的使用，我在这里把GnuPlot在TiKZ中的使用详细介绍一下.在介绍怎么使用 TikZ 与 Gnuplot 之前，我们先说怎么编译。在发行里，gnuplot并不包含在内。它的原理是 TikZ 调用 Gnuplot 之后，在编译的过程中，我们将会得到两个中间文件:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">filename.pgf-plot.gnuplot<br><br>filename.pgf-plot.table<br></code></pre></td></tr></table></figure>
+<p>其中，前者是 <strong>pgf-plot.table</strong> 的设定文件，而后者就是调用 Gnuplot 之后产生的一个数据表（点的坐标），然后 TikZ 调用这些点的坐标得到函数图。为了能够使用 TikZ 与 Gnuplot，需要做两件事</p>
+<ol>
+<li>在电脑安装 Gnuplot</li>
+<li>命令行加入参数【临时】: <strong>pdflatex –shell-escape</strong> filename.tex</li>
+</ol>
+<p>或者是修改配置文件【永久】, vscode 的配置文件中加上–shell-escape 如下图：<br>
+<img src="/img/tikz_tools/gnuplot_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>想要更进一步了解gnuplot的使用方法的可以参见我的宏包<code>ztikz</code>，其中有着诸多的<code>gnuplot</code>应用示例.</p>
+<h3 id="3-7-Geogebra">3.7 Geogebra</h3>
+<p>GeoGebra这个软件想必大家都知道吧，一个很有名的数学教学软件； 它的功能太多了，网上也有很都多使用它做出来的炫酷的项目。<br>
+但是我们主要是使用它的导出TiKZ源代码的功能.</p>
+<div class="note note-success">
+            <ol><li>尽量使用GeoGebra5吧，真心感觉GeoGebra6不太好用</li><li>导出的代码选择PGF/TiKZ别用PStrik（太底层了）</li></ol>
+          </div>
+<p><strong>导出演示</strong><br>
+<img src="/img/tikz_tools/geogebra_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>导出对应的绘图源码后,在你的文件中input进来就可以用了.</p>
+<blockquote>
+<p>编译出bug了不要慌张，看一看它导出的源代码，可能需要GNUplot参与编译过程,只需要在命令行使用如下的命令编译即可</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">xelatex --shell escape main.tex<br></code></pre></td></tr></table></figure>
+<h3 id="3-8-LaTeXDraw">3.8 LaTeXDraw</h3>
+<p>同样的这也是一个开源的的软件，软件接口可以通过<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/latexdraw/files/latexdraw/4.0.3/">source forge地址</a>进行下载。官网上有一些使用样例，可以仿照着学一学:<br>
+<img src="/img/tikz_tools/latexdraw_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>官方网站的又一个使用演示:<br>
+<img src="/img/tikz_tools/latexdraw_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这个软件很强大，但是我没有怎么深入用过它。我用了一段时间的TiKZiT后就转纯TiKZ了。 但是它默认的安装是无法导出pdf等格式的，需要安装一个perl脚本。 这个是官方的说明：<br>
+<img src="/img/tikz_tools/latexdraw_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>我就不演示了，毕竟我目前也不咋用这个东西了。</p>
+</blockquote>
+<h3 id="3-9-Adobe-Illustrator">3.9  Adobe Illustrator</h3>
+<p>这里介绍的这个 GeoGeBra 的使用和之前那片文章的使用方法不太一样。那篇文章是使用的GeoGeBra导出TiKZ代码的功能，这里我们主要是利用 GeoGeBra生成pdf文档的方法联合 Adobe Illustrator绘制一部分的矢量图（数学笔记之类的）。</p>
+<blockquote>
+<p>PS:满足你排版数学矢量图笔记的需要</p>
+</blockquote>
+<p>AI的各个功能都很强的，但是数学方面不太行，主要体现在如下的几点:</p>
+<ol>
+<li>不支持数学公式的输入</li>
+<li>不能进行函数图像的绘制</li>
+</ol>
+<p>所以为了支持数学公式的输入我们需要给AI添加一个插件: <strong>latex2ai</strong>. 这个是官方项目地址</p>
+<p>里边有各种的注意事项，好好阅读一下就行了，里边讲的还是很详细的。对应的使用教程为演示如下：</p>
+<ol>
+<li><strong>公式使用方法和模板的配置</strong><br>
+<img src="/img/tikz_tools/ai_1.gif" srcset="/img/loading.gif" lazyload alt=""></li>
+</ol>
+<p><strong>2. 联合GeoGeBra</strong><br>
+<img src="/img/tikz_tools/ai_2.gif" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>安装提示：</p>
+</blockquote>
+<ol>
+<li>AI的路径和你的.ai文件的路径中均不能含有非ASCII字符（也就是说：汉字是不允许的）</li>
+<li>你可以自定义你的模板，里边可以包含你自己添加的宏包。但是千万别修改文档类。</li>
+<li>GeoGeBra导出的三维图形是位图（png）的，但是你可以选择分辨率，所以也没有多大的影响。</li>
+</ol>
+<h3 id="3-10-LaTeXDraw">3.10 LaTeXDraw</h3>
+<p>也不知道是什么原因，我安装了Perl等一系列的插件之后，这个软件现在还是无法导出pdf，我在官方的主页也没有找到修复的方法。</p>
+<p>但是除了不能导出pdf外，LaTeXDraw这个软件真的是好用的，导出PSTriks代码很方便。界面的设计也是十分的简洁，看着也很舒服。</p>
+<h3 id="3-11-PPT-PowerPoint">3.11 PPT (PowerPoint)</h3>
+<p>你以为PPT就只能够做一下幻灯片 ？？？ NO! NO! NO! 其实很多发表的论文中的图都是使用PPT来绘制的，可以直接导出svg， 然后随便到网上找一个svg装pdf的网站即可，他们网站上还有非常多的好用的pdf工具，下面截取部分加以展示：<br>
+<img src="/img/tikz_tools/pdftools.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>这里给大家推荐一个良心的网站：<a target="_blank" rel="noopener" href="https://tools.pdf24.org/zh/svg-to-pdf">svg转pdf</a> 他们还有一个对应的pdf编辑的工具箱，个人感觉比绝大多数的pdf工具强。</p>
+</blockquote>
+<p>操作演示：</p>
+<p><img src="/img/tikz_tools/ppt_1.gif" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="3-12-IPE">3.12 IPE</h3>
+<p>强烈推荐这个软件，目前我已经入坑这个软件了。主要的优点</p>
+<ol>
+<li>UI 设计精良，看着很舒服</li>
+<li>软件的功能设计合理，快捷键人性化</li>
+<li>具有良好的拓展性，可以安装诸多的插件。</li>
+<li>方便绘制几何图形和函数图像</li>
+</ol>
+<p>界面截图:<br>
+<img src="/img/tikz_tools/ipe_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>我的一些排版作品：<br>
+<img src="/img/tikz_tools/ipe_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tikz_tools/ipe_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tikz_tools/ipe_4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>1.怎么安装插件?</strong></p>
+<p>进入他们的官网: <a target="_blank" rel="noopener" href="https://github.com/otfried/ipelets">https://github.com/otfried/ipelets</a>; 把对应的 <strong>.lua</strong> 代码文件复制到你IPE的目录 Ipelets下，如图（我自己安装的插件）：<br>
+<img src="/img/tikz_tools/ipe_5.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>PS: 部分的插件安装还是需要参考官方文档.</p>
+</blockquote>
+<ol>
+<li><strong>我的IPE插件</strong><br>
+<img src="/img/tikz_tools/ipe_6.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ol>
+<p><strong>2. IPE学习</strong></p>
+<ul>
+<li>对应的视频教程: <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14E411u7Na/?spm_id_from=333.337.search-card.all.click&amp;vd_source=96bb8d1f8bd0536bf4c7face3f42d777">https://www.bilibili.com/video/BV14E411u7Na/?spm_id_from=333.337.search-card.all.click&amp;vd_source=96bb8d1f8bd0536bf4c7face3f42d777</a></li>
+<li>对应的实例教程: <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1rE411N7RU/?spm_id_from=333.337.search-card.all.click">https://www.bilibili.com/video/BV1rE411N7RU/?spm_id_from=333.337.search-card.all.click</a></li>
+</ul>
+<p>看完了上面的两个教程之后，你会觉得这就是一个为了TiKZ而生的软件。</p>
+<h3 id="3-13-Inkscape">3.13 Inkscape</h3>
+<p>最近总算是有机会来接触Inkscape则会个软件了，感觉对于IPE就是碾压，IPE有的优点，Inkscape几乎都有，IPE没有的，InkScape也有。而且你还可以自己去调用它的API接口，很强。终于理解了为什么那个外国小哥要用Inkscape了.</p>
+<p>比如Inkscape中的LaTeX公式对象可以在InkScape中编辑，而不用去修改源码，这点胜过IPE和AI，也有官方的说明：<br>
+<img src="/img/tikz_tools/inkscape_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>首先便是使得InkScape支持  了，很简单，直接无脑安装一个 TexText就可以了，下载地址：</p>
+<p>然后稍微参考一下官方的安装教程就很安装好了。</p>
+<p><strong>注：</strong></p>
+<ol>
+<li><strong>你的插件可能会报错：</strong><br>
+<img src="/img/tikz_tools/inkscape_2.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ol>
+<p><strong>解决办法</strong></p>
+<p>把你的模板文件中的中文全部删掉，使用原始的模板文件，模板文件如下：</p>
+<p><img src="/img/tikz_tools/inkscape_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tikz_tools/inkscape_4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>改了之后我还产生报错</strong></p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript">Command <span class="hljs-name">C</span>:\Users\PC\scoop\apps\inkscape\current\bin\inkscape.exe <span class="hljs-comment">--pdf-poppler --pdf-page=1 --export</span><br></code></pre></td></tr></table></figure>
+<p><strong>我报错的原因</strong></p>
+<p>是我之前使用Scoop安装过一次InkScape，导致TexText还是去找原来路径下的InkScape。</p>
+<p><strong>解决</strong></p>
+<p>只需要使用windows的.bat文件把TexText重新安装一次就行了，不要使用GUI的安装方式。</p>
+<p><strong>报错二</strong></p>
+<p>想要在LaTeX中使用中文产生了如下的报错：</p>
+<p><img src="/img/tikz_tools/inkscape_5.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>需要去修改TexText的模板文件</p>
+<p><strong>解决方法</strong></p>
+<p>模板增加为：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">\documentclass[<span class="hljs-attribute">fontset</span>=windows]&#123;article&#125;        % 必须加上[<span class="hljs-attribute">fontset</span>=windows]，否则会报错fandol字体找不到<br>\usepackage&#123;ctex&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>InkScape的插件</strong></p>
+<p>InkScape的插件是十分丰富的，其余的InkScape插件的安装地址</p>
+<p>推荐安装的一个TeX代码相关的插件：<a target="_blank" rel="noopener" href="https://github.com/textext/gtksourceview-for-inkscape-windows/releases/download/1.0.0/Install-GtkSourceView-3.24-Inkscape-1.0-64bit.exe">GtkSourceView【64位】</a></p>
+<p><strong>作用（官方解释）</strong><br>
+<img src="/img/tikz_tools/inkscape_6.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>具体的使用效果</strong><br>
+<img src="/img/tikz_tools/inkscape_7.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>安装好的使用截图：<br>
+<img src="/img/tikz_tools/inkscape_8.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>其余的功能就和AI是差不多的了，参考学习一下就行了。</p>
+<h3 id="3-14-Dia">3.14  Dia</h3>
+<p>他们的绘图实时渲染不怎么好，UI界面看着很难受, 但是内在很强大，支持多种格式的导出，如图（截取部分）：<br>
+<img src="/img/tikz_tools/dia_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>导出后的文件的渲染效果也很好。所以这告诉了我们一个道理，外在往往不是那么的重要, 导出的示例图形<br>
+<img src="/img/tikz_tools/dia_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="3-15-TpX">3.15 TpX</h3>
+<p>这个软件的使用体验上面的Dia差不多, 软件下载地址: <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/tpx/">https://sourceforge.net/projects/tpx/</a>; 界面截图：<br>
+<img src="/img/tikz_tools/tpx_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="3-16-FlowframTK">3.16 FlowframTK</h3>
+<p>软件下载：<a target="_blank" rel="noopener" href="https://texblog.net/latex-archive/uncategorized/jpgfdraw/">https://texblog.net/latex-archive/uncategorized/jpgfdraw/</a>; 这个软件的原名其实是叫做Jpgfdraw，后来因为种种的原因，改成了这个名字。而且这个软件的安装方式也很奇葩。它依赖与Java环境，使用的是一个Java脚本来安装的，可以看看官方的安装教程:<br>
+<img src="/img/tikz_tools/jpgfdraw_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>安装好之后，可能你们会不知道在哪里打开这个应用，它不是我们熟知的 <strong>.exe</strong>, 也不是Linux下的 <strong>.sh</strong>, 它的启动是双击windows下的一个批处理脚本 <strong>.bat</strong> 文件，如下：<br>
+<img src="/img/tikz_tools/jpgfdraw_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这个是它的界面,看看怎么样：<br>
+<img src="/img/tikz_tools/jpgfdraw_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>功能啥的，我稍微的体验了一下，感觉不太好。应该还有提升的空间。但是这个软件的官方文档（就在安装目录下）说明是十分的详细的，如果想要学习这个软件还是比较简单的， 这个是它帮助文档的部分目录截取:<br>
+<img src="/img/tikz_tools/jpgfdraw_4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>制作这个软件，作者还是很用心的 &gt;_&lt;</p>
+</blockquote>
+<h3 id="3-17-AxMath-and-AxGlyph">3.17 AxMath and AxGlyph</h3>
+<p>这两个软件可以和MS那一套结合，类似于MathType，但是个人感觉比MathType强一百倍。当然也可以单独的使用，就i类似于其他的软件了。AxMath主要是用于数学公式的编辑，AxGlyph主要是用于矢量图的绘制。但是…但是那个Axglyph有时导出pdf会报错，具体的bug原因没有找到。如果你习惯于使用MS那一套，那么这两个东西是你的不二之选。</p>
+<blockquote>
+<p>PS: 这两个软件是付费的，也没有多贵，买了也算是支持国产.下面就是这两个软件的使用截图：</p>
+</blockquote>
+<p><strong>0. AxMath使用演示</strong><br>
+<img src="/img/tikz_tools/axmath_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>个人作品</p>
+<p><strong>1.AxGlyph的演示</strong></p>
+<p>我选取一部分官网的图片，自己用它做的事也不多。<br>
+<img src="/img/tikz_tools/axmath_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>个人的作品</p>
+<p><strong>2.官网使用截图</strong><br>
+<img src="/img/tikz_tools/axmath_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tikz_tools/axmath_4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="3-18-Mermaid">3.18 Mermaid</h3>
+<p>这是一个开源项目，下面是官方介绍：</p>
+<blockquote>
+<p>Mermaid is a JavaScript-based diagramming and charting tool that uses Markdown-inspired text definitions and a renderer to create and modify complex diagrams. The main purpose of Mermaid is to help documentation catch up with development.</p>
+</blockquote>
+<p>简要的概括就是：使用MarkDown语法来制作流程图，思维导图，表格等各种<strong>图</strong>的工具。项目地址：<a target="_blank" rel="noopener" href="https://mermaid.js.org/">https://mermaid.js.org/</a>; 官方仓库也给了许多的例子：<br>
+<img src="/img/tikz_tools/mme_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tikz_tools/mme_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>具体的安装</p>
+<ol>
+<li>通过NPM安装在本地</li>
+<li>使用在线的编辑网站</li>
+</ol>
+<p>但是导出的矢量图是svg格式的，因为我们往往使用的都是pdf格式，所以我写了一个把svg转化为pdf的python脚本。【也可以用网上那种 <a target="_blank" rel="noopener" href="https://tools.pdf24.org/zh/svg-to-pdf">svg转pdf的网站</a>】</p>
+<p>下面演示一下我那个脚本的使用示例截图:</p>
+<p><strong>1. Shell脚本配置如下</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 自定义一个svg2pdf的命令</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">svg2pdf</span></span> &#123;<br>    python C:\BIN\Svg2Pdf.py <span class="hljs-variable">$args</span><br>    <span class="hljs-comment"># 注意：这里的脚本路径根据你的实际路径更改</span><br>&#125;<br><span class="hljs-comment"># 注：如下的命令会报错</span><br><span class="hljs-comment"># Set-Alias -Name svg2pdf -Value &quot;python C:\BIN\Svg2Pdf.py&quot;</span><br><span class="hljs-comment"># 这样不带参数会报错：因为默认的python已经把这个脚本运行完,没有传入参数. 解析到的参数为：[&#x27;C:\\BIN\\Svg2Pdf.py&#x27;]</span><br><br><span class="hljs-comment"># Update:2023-12-05</span><br><span class="hljs-comment"># 使用inkscape作为转换工具, 可以解决更多的兼容性问题</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">svg2pdf</span></span> &#123;<br>    <span class="hljs-comment"># 注意：这里的脚本路径根据你的实际路径更改</span><br>    <span class="hljs-comment"># 1. 使用python的svg库转换 --&gt; 会失真</span><br>    <span class="hljs-comment"># python C:\BIN\Svg2Pdf.py $args</span><br>    <span class="hljs-comment"># 2. 使用inkscape转换，效果更好</span><br>    inkscape <span class="hljs-literal">--export-type</span>=pdf <span class="hljs-variable">$args</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>2.Python脚本如下</strong></p>
+<blockquote>
+<p>PS：这个脚本只能够处理比较简单的转换工作，有时候会字体丢失</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">from</span> svglib.svglib <span class="hljs-keyword">import</span> svg2rlg<br><span class="hljs-keyword">from</span> reportlab.graphics <span class="hljs-keyword">import</span> renderPDF<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-comment"># 获取参数列表</span><br>    <span class="hljs-comment"># sys.argv[0]表示第一个参数，是脚本自己【即sysTest.py】</span><br><br>    args = sys.argv[<span class="hljs-number">1</span>:]<br>    <span class="hljs-comment"># 显示传入的参数</span><br>    <span class="hljs-comment"># print(sys.argv)</span><br>    input_file = args[<span class="hljs-number">0</span>]<br>    output_file = args[<span class="hljs-number">1</span>]<br><br>    <span class="hljs-comment"># 开始转换</span><br>    drawing = svg2rlg(input_file)<br>    renderPDF.drawToFile(drawing, output_file)<br></code></pre></td></tr></table></figure>
+<h3 id="3-19-SolidWroks">3.19 SolidWroks</h3>
+<p>一些复杂的三维模型可以使用专门的软件来制作，这个方面solidworks, UG等肯定是一个很好的选择。毕竟专业的软件干专业的事。在本文中，我们主要讨论关于solidworks导出三维模型矢量图相关，毕竟二维的矢量图是十分的方便导出的。</p>
+<p>我们这里以SOLIDWorks为例，同时还需要用到一个东西，就是 SOLIDWORKS Composer. 这个可执行文件位置应该在这里：<br>
+<img src="/img/tikz_tools/sw_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>导出矢量图相关的操作如下,假如有一如下的3维模型<br>
+<img src="/img/tikz_tools/sw_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>首先把这个模型另存为 <code>.smg</code> 格式<br>
+<img src="/img/tikz_tools/sw_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>然后打开 SOLIDWORKS Composer, 导入刚才导出的 .smg 文件，如下<br>
+<img src="/img/tikz_tools/sw_4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>然后切换到 技术图解 菜单，进行相关的导出设置，然后导出为 M416.svg, 如下<br>
+<img src="/img/tikz_tools/sw_5.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>我这里就是默认导出为线稿了，你可以设置材质，光照等参数，然后导出，看个人喜好</p>
+</blockquote>
+<p>得到svg之后，参考之前我的文章中的一个svg转pdf的inkscape命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">inkscape --export-type=pdf M416.svg<br></code></pre></td></tr></table></figure>
+<p>执行过程如下<br>
+<img src="/img/tikz_tools/sw_6.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>所以你可以得到一个pdf文件， 使用sumatrapdf打开，结果如下<br>
+<img src="/img/tikz_tools/sw_7.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>solidworks相关方法参考</p>
+<p>下面是一个设置了线宽和色彩的基本导出例子<br>
+<img src="/img/tikz_tools/sw_8.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>很完美的一个矢量图，perfect</p>
+</blockquote>
+<h3 id="3-20-sane-tikz">3.20 sane_tikz</h3>
+<p>一个使用python生成tikz代码的仓库，地址: <a target="_blank" rel="noopener" href="https://github.com/negrinho/sane_tikz">https://github.com/negrinho/sane_tikz</a>; 仓库中的一个示例代码，来看看他的书写风格</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sane_tikz.core <span class="hljs-keyword">as</span> stz<br><br>label_spacing = <span class="hljs-number">0.25</span><br>tick_label_spacing = <span class="hljs-number">0.25</span><br>tick_length = <span class="hljs-number">0.25</span><br>segment_spacing = <span class="hljs-number">0.6</span><br>length_multiplier = <span class="hljs-number">0.8</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">segment</span>(<span class="hljs-params">length, label_str, left_tick_label_str, right_tick_label_str</span>):<br>    seg = stz.line_segment([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [length, <span class="hljs-number">0</span>])<br>    left_tick = stz.centered_vertical_line_segment([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], tick_length)<br>    right_tick = stz.centered_vertical_line_segment([length, <span class="hljs-number">0</span>], tick_length)<br>    left_tick_label = stz.latex([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], left_tick_label_str)<br>    right_tick_label = stz.latex([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], right_tick_label_str)<br>    stz.place_above_and_align_to_the_center(left_tick_label, left_tick,<br>                                            tick_label_spacing)<br>    stz.place_above_and_align_to_the_center(right_tick_label, right_tick,<br>                                            tick_label_spacing)<br>    seg_label = stz.latex([-label_spacing, <span class="hljs-number">0</span>], label_str)<br>    <span class="hljs-keyword">return</span> [<br>        seg, left_tick, right_tick, left_tick_label, right_tick_label, seg_label<br>    ]<br><br><br>segs = [<br>    segment(length_multiplier * <span class="hljs-number">5</span>, <span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;5&quot;</span>),<br>    segment(length_multiplier * <span class="hljs-number">1</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>),<br>    segment(length_multiplier * <span class="hljs-number">3</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;4&quot;</span>)<br>]<br><br>stz.distribute_vertically_with_spacing(segs[::-<span class="hljs-number">1</span>], segment_spacing)<br>stz.draw_to_tikz_standalone(segs, <span class="hljs-string">&quot;segments.tex&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p>绘制出来的图像<br>
+<img src="/img/tikz_tools/py_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>还有一些很复杂的图的例子<br>
+<img src="/img/tikz_tools/py_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="3-21-quiver">3.21 quiver</h3>
+<p>这是一个专门用于绘制交换图的应用，github仓库地址:<a target="_blank" rel="noopener" href="https://github.com/varkor/quiver">https://github.com/varkor/quiver</a>; 它也有一个在线网站:<a target="_blank" rel="noopener" href="https://q.uiver.app/">https://q.uiver.app/</a>; 下面是一些是官方仓库的示意图:<br>
+<img src="/img/tikz_tools/quiver_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tikz_tools/quiver_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tikz_tools/quiver_3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tikz_tools/quiver_4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>对于不喜欢tikz代码的人来说，可以一试</p>
+<h3 id="3-22-自己开发库">3.22 自己开发库</h3>
+<p>最近我也在开发一个跨平台的tikz绘图库，充分使用gnuplot和octave等工具，但是目前还在开发中，但是现在的大致样子如下<br>
+<img src="/img/tikz_tools/self_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tikz_tools/self_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>最后一个图的代码长这样</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs tex"><span class="hljs-keyword">\begin</span>&#123;tikzpicture&#125;[font=<span class="hljs-keyword">\small</span>, &gt;=Latex]<br>    <span class="hljs-comment">% draw grid(coordinates)</span><br>    <span class="hljs-keyword">\ShowGrid</span>&#123;(-8, -8); (8, 8)&#125;<br>    <span class="hljs-comment">% \fill[black] (0, 0)node[below right]&#123;$O$=(0, 0)&#125; circle (1pt);</span><br>    <span class="hljs-keyword">\Show</span>&#123;(0, 0)&#125;[<span class="hljs-built_in">$</span>O=(0, 0)<span class="hljs-built_in">$</span>][below right=.5em and 1em]<br>    <span class="hljs-keyword">\ShowAxis</span> &#123;(0, -8); (0, 8)&#125;<br>    <span class="hljs-keyword">\ShowAxis</span> &#123;(-8, 0); (8, 0)&#125;<br><br>    <span class="hljs-comment">% Test unit</span><br>    <span class="hljs-keyword">\fill</span>[red] (-4cm, 4em)node[left]&#123;<span class="hljs-built_in">$</span>A<span class="hljs-built_in">_</span>1<span class="hljs-built_in">$</span>=(-4cm, 4em)&#125; circle (1pt);<br>    <span class="hljs-keyword">\fill</span>[blue] (-4cm, 4cm)node[left]&#123;<span class="hljs-built_in">$</span>A<span class="hljs-built_in">_</span>2<span class="hljs-built_in">$</span>=(-4cm, 4cm)&#125; circle (1pt);<br><br>    <span class="hljs-comment">% draw function</span><br>    <span class="hljs-keyword">\draw</span>[color=orange, domain=-3:3] plot (<span class="hljs-keyword">\x</span>, 2*<span class="hljs-keyword">\x</span>+1);<br>    <span class="hljs-keyword">\draw</span>[color=cyan, domain=-1:7.6] plot (<span class="hljs-keyword">\x</span>, -.9*<span class="hljs-keyword">\x</span>+7);<br><br>    <span class="hljs-comment">% draw an ellipse</span><br>    <span class="hljs-comment">% 1.use self define cmd</span><br>    <span class="hljs-keyword">\NormalPlotPrecise</span>&#123;1500&#125;<br>    <span class="hljs-keyword">\NormalPlot</span>[][-7:7.8]&#123;3*sin(1/x)&#125;<br>    <span class="hljs-keyword">\NormalPlot</span>[green, name path=exp][-1.5:7.5] &#123;x*exp(-x)&#125;<br>    <span class="hljs-keyword">\ParamPlot</span>[red, name path=ellipse][0:2*pi]&#123;7*sin(t), 4*cos(t)&#125;<br><br>    <span class="hljs-comment">% fill(needs \usetikzlibrary&#123;patterns&#125;)</span><br>    <span class="hljs-keyword">\begin</span>&#123;scope&#125;<br>        <span class="hljs-keyword">\clip</span> (2, 0) rectangle (8, 1); <br>        <span class="hljs-keyword">\fill</span>[pattern=north east lines] plot file&#123;./2d<span class="hljs-built_in">_</span>plot/gnuplot<span class="hljs-built_in">_</span>output<span class="hljs-built_in">_</span>data/data<span class="hljs-built_in">_</span>gen<span class="hljs-built_in">_</span>2.table&#125;;<br>    <span class="hljs-keyword">\end</span>&#123;scope&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;scope&#125;<br>        <span class="hljs-keyword">\clip</span> (-6, 0) rectangle (-2, -2);<br>        <span class="hljs-keyword">\NormalPlot</span>[][-6:-1]&#123;3*sin(1/x)&#125;<br>        <span class="hljs-keyword">\fill</span>[pattern=crosshatch, pattern color=orange] plot file&#123;./2d<span class="hljs-built_in">_</span>plot/gnuplot<span class="hljs-built_in">_</span>output<span class="hljs-built_in">_</span>data/data<span class="hljs-built_in">_</span>gen<span class="hljs-built_in">_</span>4.table&#125; -- (-2, 0) -- (-6, 0);<br>    <span class="hljs-keyword">\end</span>&#123;scope&#125;<br><br>    <span class="hljs-comment">% find intersection</span><br>    <span class="hljs-keyword">\ShowIntersecions</span>&#123;exp; ellipse&#125;&#123;2&#125;<br>    <span class="hljs-comment">% 或者是如下的语句</span><br>    <span class="hljs-comment">% \path[name intersections=&#123;of=exp and ellipse&#125;];</span><br>    <span class="hljs-comment">% \ShowPoint[color=red] &#123;(intersection-1); (intersection-2)&#125;</span><br><br>    <span class="hljs-comment">% draw intersection dot </span><br>    <span class="hljs-keyword">\ShowPoint</span> &#123;(2.068, 5.137); (4.242, 3.181); (6.843, 0.840); (7.324, 0.408)&#125;<br>        [<span class="hljs-built_in">$</span>p<span class="hljs-built_in">_</span>1<span class="hljs-built_in">$</span>; <span class="hljs-built_in">$</span>p<span class="hljs-built_in">_</span>2<span class="hljs-built_in">$</span>; <span class="hljs-built_in">$</span>p<span class="hljs-built_in">_</span>3<span class="hljs-built_in">$</span>; <span class="hljs-built_in">$</span>p<span class="hljs-built_in">_</span>4<span class="hljs-built_in">$</span>; <span class="hljs-built_in">$</span>p<span class="hljs-built_in">_</span>5<span class="hljs-built_in">$</span>; <span class="hljs-built_in">$</span>p<span class="hljs-built_in">_</span>6<span class="hljs-built_in">$</span>; <span class="hljs-built_in">$</span>p<span class="hljs-built_in">_</span>7<span class="hljs-built_in">$</span>][above]<br>    <span class="hljs-keyword">\ShowPoint</span>[radius=3pt, color=blue, opacity=.5, type=rectangle] &#123;(-2.380, -3.761)&#125;<br>    <span class="hljs-keyword">\ShowPoint</span>[color=orange, opacity=1, radius=2pt] &#123;(1.456, 3.912)&#125;<br><span class="hljs-keyword">\end</span>&#123;tikzpicture&#125;<br></code></pre></td></tr></table></figure>
+<p>而且还有cache机制，绘制复杂的函数也很快。但是还有部分功能还有没有整合好，但是我相信，要开发出来了，快了</p>
+<h2 id="4-结语">4. 结语</h2>
+<p>这次推荐的软件和绘制语言，就是我最近的折腾内容了，其实挺无聊的。总之，内容为王，排版只是一些锦上添花的内容, 更多内容可以参见如下讨论</p>
+<h2 id="5-致谢">5. 致谢</h2>
+<ul>
+<li><strong>感谢优秀开源的的TeX排版系统 ！！！</strong></li>
+<li><strong>感谢伟大的开源工作者 ！！！</strong></li>
+<li><strong>正是他们的无私付出，才使得很多的优秀软件能够被我们使用 ！！！</strong></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LaTeX/" class="print-no-link">#LaTeX</a>
+      
+        <a href="/tags/TikZ/" class="print-no-link">#TikZ</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>TikZ工具合集</div>
+      <div>https://zongpingding.github.io/2024/03/26/tikz_tools/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 26, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/26/windows_path_env/" title="Windows 环境变量杂谈">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Windows 环境变量杂谈</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/26/texlive_android/" title="TeXLive on Android">
+                        <span class="hidden-mobile">TeXLive on Android</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
