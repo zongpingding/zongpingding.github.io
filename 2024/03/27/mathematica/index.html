@@ -1,0 +1,1173 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本文的nb文件GayHub仓库地址,望各位不要吝啬小心心,给咱的小仓库点点小星星 https:&#x2F;&#x2F;github.com&#x2F;zongpingding&#x2F;Mathematica 1. 引入 先来看一段代码（代码来源：如何用最简单的代码说明Mathematica里面的各个水平层次？） 123456789101112Narcissistic[n_] :&#x3D;  Reap[Scan[Module[&#123;cou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mathematica Advanced I">
+<meta property="og:url" content="https://zongpingding.github.io/2024/03/27/mathematica/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="本文的nb文件GayHub仓库地址,望各位不要吝啬小心心,给咱的小仓库点点小星星 https:&#x2F;&#x2F;github.com&#x2F;zongpingding&#x2F;Mathematica 1. 引入 先来看一段代码（代码来源：如何用最简单的代码说明Mathematica里面的各个水平层次？） 123456789101112Narcissistic[n_] :&#x3D;  Reap[Scan[Module[&#123;cou">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/mathematica_advance/banner.jpg">
+<meta property="article:published_time" content="2024-03-27T14:34:34.004Z">
+<meta property="article:modified_time" content="2024-03-27T16:19:22.454Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="mathematica">
+<meta property="article:tag" content="operator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/mathematica_advance/banner.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Mathematica Advanced I - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/mathematica_advance/banner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mathematica Advanced I"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-27 22:34" pubdate>
+          March 27, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mathematica Advanced I</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本文的nb文件GayHub仓库地址,望各位不要吝啬小心心,给咱的小仓库点点小星星</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zongpingding/Mathematica">https://github.com/zongpingding/Mathematica</a></p>
+<h2 id="1-引入">1. 引入</h2>
+<p>先来看一段代码（代码来源：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/55683496/answer/148176925">如何用最简单的代码说明Mathematica里面的各个水平层次？</a>）</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">Narcissistic</span><span class="hljs-punctuation">[</span><span class="hljs-type">n_</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">:=</span><br>  <span class="hljs-built_in">Reap</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Scan</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Module</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">Join</span> <span class="hljs-operator">@@</span> <span class="hljs-built_in">ConstantArray</span> <span class="hljs-operator">@@@</span> <span class="hljs-type">#</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span><br>       <span class="hljs-built_in">Scan</span><span class="hljs-punctuation">[</span><br>        <span class="hljs-built_in">If</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">(</span><span class="hljs-built_in">Sort</span><span class="hljs-operator">@</span><span class="hljs-built_in">Tally</span><span class="hljs-operator">@</span><span class="hljs-built_in">IntegerDigits</span><span class="hljs-punctuation">[</span><span class="hljs-type">#</span><span class="hljs-operator">^</span><span class="hljs-variable">n</span> <span class="hljs-operator">.</span> <span class="hljs-variable">count</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">==</span> <br>            <span class="hljs-built_in">Sort</span><span class="hljs-operator">@</span> <span class="hljs-built_in">Thread</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-type">#</span><span class="hljs-operator">,</span> <span class="hljs-variable">count</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">)</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Sow</span><span class="hljs-punctuation">[</span><span class="hljs-type">#</span><span class="hljs-operator">^</span><span class="hljs-variable">n</span> <span class="hljs-operator">.</span> <span class="hljs-variable">count</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">&amp;,</span> <br>        <span class="hljs-built_in">Fold</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Function</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">digitlist</span><span class="hljs-operator">,</span> <span class="hljs-variable">num</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <br>          <span class="hljs-built_in">Flatten</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Function</span><span class="hljs-punctuation">[</span><span class="hljs-variable">e</span><span class="hljs-operator">,</span> <br>             <span class="hljs-built_in">Join</span><span class="hljs-punctuation">[</span><span class="hljs-variable">e</span><span class="hljs-operator">,</span> <span class="hljs-type">#</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">&amp;</span> <span class="hljs-operator">/@</span> <br>              <span class="hljs-built_in">Subsets</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Complement</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Range</span><span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-operator">,</span> <span class="hljs-number">9</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-variable">e</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">num</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">/@</span> <br>            <span class="hljs-variable">digitlist</span><span class="hljs-operator">,</span> <span class="hljs-number">1</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-type">#</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">All</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><br>       <span class="hljs-punctuation">]</span> <span class="hljs-operator">&amp;,</span> <span class="hljs-built_in">Sort</span> <span class="hljs-operator">/@</span> <span class="hljs-built_in">Tally</span> <span class="hljs-operator">/@</span> <span class="hljs-built_in">IntegerPartitions</span><span class="hljs-punctuation">[</span><span class="hljs-variable">n</span><span class="hljs-operator">,</span> <span class="hljs-variable">n</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">[</span><span class="hljs-number">2</span><span class="hljs-operator">,</span> <span class="hljs-number">1</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><span class="hljs-operator">;</span><br><span class="hljs-variable">Narcissistic</span><span class="hljs-punctuation">[</span><span class="hljs-number">10</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">//</span> <span class="hljs-built_in">AbsoluteTiming</span><br></code></pre></td></tr></table></figure>
+<p>这段代码中的</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-operator">:=</span><br><span class="hljs-type">#</span><br><span class="hljs-operator">&amp;</span>  <br><span class="hljs-operator">//</span>  <br><span class="hljs-operator">/@</span>  <br><span class="hljs-operator">/.</span>  <br><span class="hljs-operator">@</span>  <br><span class="hljs-operator">@@</span>  <br><span class="hljs-operator">@@@</span><br></code></pre></td></tr></table></figure>
+<p>都是一些啥玩意？你肯能还会在其他的代码中看到另外的一些乱码比如：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-operator">=</span> <span class="hljs-operator">=</span><br><span class="hljs-operator">/;</span><br><span class="hljs-type">##</span>  <br><span class="hljs-operator">/.</span>  <br><span class="hljs-type">#1</span> <br><span class="hljs-type">#2</span> <br><span class="hljs-type">#a</span>  <br><span class="hljs-type">#b</span>  <br><span class="hljs-type">##</span> <br><span class="hljs-type">##</span><span class="hljs-variable">key</span><br><span class="hljs-type">##5</span><br><span class="hljs-operator">%</span>  <br><span class="hljs-operator">%</span><span class="hljs-number">4</span> <br><span class="hljs-operator">~</span>  <br><span class="hljs-punctuation">[</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>其实这些就是MMA里面函数的简写：这里我予以说明， 详情肯定是的参考官方文档了</p>
+<h2 id="2-说明">2. 说明</h2>
+<h3 id="2-1-符号说明">2.1 符号说明</h3>
+<!-- > PS <=>     表示等价于 =>       表示结果等于 -->
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>原始形式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>//</td>
+<td>函数的后缀表达式</td>
+<td>Head[1] &lt;=&gt; 1//Head</td>
+</tr>
+<tr>
+<td>~</td>
+<td>函数的中缀表达式</td>
+<td>Plus[1, 1] &lt;=&gt; 1~Plus~1</td>
+</tr>
+<tr>
+<td>:=</td>
+<td>延迟赋值（可以实时更新）</td>
+<td>自定义函数: f[x_] := x+1;</td>
+</tr>
+<tr>
+<td>==</td>
+<td>相等关系</td>
+<td>x^2 - 2x + 1 == 0 (一个方程)</td>
+</tr>
+<tr>
+<td>=</td>
+<td>赋值符号</td>
+<td>a = 2</td>
+</tr>
+<tr>
+<td>@</td>
+<td>函数映射（作用）</td>
+<td>f[2] &lt;=&gt; f@2</td>
+</tr>
+<tr>
+<td>@@</td>
+<td>Apply-应用， 更换头部</td>
+<td>Apply[f, {1, 2}] &lt;=&gt; f@@{1, 2}</td>
+</tr>
+<tr>
+<td>@@@</td>
+<td>Apply 应用在第一层的简写</td>
+<td>Apply[f, {1, 2}, {1}] &lt;=&gt; f@@@{1, 2}</td>
+</tr>
+<tr>
+<td>/;</td>
+<td>Condition (/;)(条件)</td>
+<td>{6, -7, 3, 2, -1, -2} /. x_ /; x &lt; 0 -&gt; w =&gt; {6, w, 3, 2, w, w}</td>
+</tr>
+<tr>
+<td>/.</td>
+<td>把某一个表达是按照规则替换</td>
+<td>{x, x^2, y, z} /. x -&gt; 1=&gt; {1, 1, y, z}</td>
+</tr>
+<tr>
+<td>/@</td>
+<td>Map-映射，Map默认作用在第0层</td>
+<td>Map[f, 2] &lt;=&gt; f/@2</td>
+</tr>
+<tr>
+<td>→</td>
+<td>Rule (-&gt;)(规则， 这个和我们所说的相等有区别)</td>
+<td>{x, x^2, a, b} /. x -&gt; 3 =&gt; {3, 9, a, b}</td>
+</tr>
+<tr>
+<td>#</td>
+<td>隐函数参数中的第一个参数</td>
+<td>#1 &lt;=&gt; #</td>
+</tr>
+<tr>
+<td>##</td>
+<td>纯函数的参数序列</td>
+<td>f[x, ##, y]&amp;[a, b, c, d] =&gt; f[x, a, b, c, d, y]</td>
+</tr>
+<tr>
+<td>##3</td>
+<td>表示提供给一个纯函数的参数序列,从第 n个参数开始</td>
+<td>f[##2] &amp;[a, b, c, d] =&gt; f[b, c, d]</td>
+</tr>
+<tr>
+<td>#1</td>
+<td>隐函数中的第一个参数</td>
+<td>#1 + 1&amp;;</td>
+</tr>
+<tr>
+<td>%</td>
+<td>引用上一次结果</td>
+<td>%</td>
+</tr>
+<tr>
+<td>%4</td>
+<td>引用第4次运算结果</td>
+<td>%4</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>纯(匿名)函数声明</td>
+<td>Function[x, x^2]; &lt;=&gt; #^2&amp;;</td>
+</tr>
+<tr>
+<td>[[]]</td>
+<td>数组索引</td>
+<td>ls[[1]] (数组的第1个元素)</td>
+</tr>
+</tbody>
+</table>
+<p>还有一个<code>key</code>的概念,<code>#key</code> 选出在关联中对应于&quot;key&quot;的值</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-punctuation">&#123;</span><span class="hljs-type">#b</span><span class="hljs-operator">,</span> <span class="hljs-number">1</span><span class="hljs-operator">+</span><span class="hljs-type">#b</span><span class="hljs-punctuation">&#125;</span> <span class="hljs-operator">&amp;</span> <span class="hljs-punctuation">[</span><span class="hljs-operator">&lt;|</span><span class="hljs-string">&quot;a&quot;</span><span class="hljs-operator">-&gt;</span><span class="hljs-variable">x</span><span class="hljs-operator">,</span> <span class="hljs-string">&quot;b&quot;</span> <span class="hljs-operator">-&gt;</span> <span class="hljs-variable">y</span> <span class="hljs-operator">|&gt;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>上述代码的运行结果为:</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">y</span><span class="hljs-operator">,</span> <span class="hljs-number">1</span> <span class="hljs-operator">+</span> <span class="hljs-variable">y</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<h3 id="2-2-语法说明">2.2 语法说明</h3>
+<p>一些语句你可能也看不懂，比如下面的</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">0</span><span class="hljs-operator">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span>              <span class="hljs-comment">(*  结果: f[f[f[&#123;&#123;a&#125;&#125;]]]   *)</span><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Infinity</span><span class="hljs-punctuation">]</span>           <span class="hljs-comment">(*  结果: &#123;f[f[f[f[a]]]]&#125;  *)</span><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">0</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Infinity</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span>      <span class="hljs-comment">(*  结果: f[f[f[f[f[a]]]]] *)</span><br></code></pre></td></tr></table></figure>
+<p>其实这就是操作中层的概念; 还有以下常见的代码片段：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Module</span><span class="hljs-punctuation">[</span><br>     <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">x1</span><span class="hljs-operator">,</span> <span class="hljs-variable">y1</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-variable">x1</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-operator">;</span> <span class="hljs-variable">y1</span><span class="hljs-operator">=</span><span class="hljs-number">2</span><span class="hljs-operator">;</span><br>    <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-variable">x1</span> <span class="hljs-operator">+</span> <span class="hljs-variable">y1</span><span class="hljs-operator">;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>或者是下面这个</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-built_in">Block</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">x</span><span class="hljs-operator">=</span><span class="hljs-number">5</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Hold</span><span class="hljs-punctuation">[</span><span class="hljs-variable">x</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span><br>    <span class="hljs-built_in">With</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">x</span><span class="hljs-operator">=</span><span class="hljs-number">5</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Hold</span><span class="hljs-punctuation">[</span><span class="hljs-variable">x</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span><br>    <span class="hljs-built_in">Module</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">x</span><span class="hljs-operator">=</span><span class="hljs-number">5</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Hold</span><span class="hljs-punctuation">[</span><span class="hljs-variable">x</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>其实这个就是MMA中变量的作用域的概念或者是说生命周期;下面这个例子就是一个比较综合的代码片段，截取自</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">images</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">ConstantImage</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Nest</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Lighter</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Red</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-type">#</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">&amp;</span> <span class="hljs-operator">/@</span> <br>	<span class="hljs-built_in">Join</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">ConstantArray</span><span class="hljs-punctuation">[</span><span class="hljs-type">#</span><span class="hljs-operator">,</span> <span class="hljs-number">5</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-built_in">ConstantArray</span><span class="hljs-punctuation">[</span><span class="hljs-type">#2</span><span class="hljs-operator">,</span> <span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-built_in">ConstantArray</span><span class="hljs-punctuation">[</span><span class="hljs-type">#3</span><span class="hljs-operator">,</span> <span class="hljs-number">6</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">&amp;</span> <span class="hljs-operator">@@</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">400</span><span class="hljs-operator">,</span> <span class="hljs-number">450</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">300</span><span class="hljs-operator">,</span> <span class="hljs-number">400</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">680</span><span class="hljs-operator">,</span> <span class="hljs-number">390</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">;</span><br>	<br><span class="hljs-built_in">Show</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">ImageCollage</span><span class="hljs-punctuation">[</span><br>		<span class="hljs-variable">images</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Automatic</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">2438</span><span class="hljs-operator">,</span> <span class="hljs-number">1219</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <br>		<span class="hljs-built_in">Method</span> <span class="hljs-operator">-&gt;</span> <span class="hljs-string">&quot;ClosestPacking&quot;</span><span class="hljs-operator">,</span> <br>		<span class="hljs-built_in">Background</span> <span class="hljs-operator">-&gt;</span> <span class="hljs-built_in">Nest</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Lighter</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Blue</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <br>		<span class="hljs-built_in">ImagePadding</span> <span class="hljs-operator">-&gt;</span> <span class="hljs-number">5</span><br>	<span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <br>	<span class="hljs-built_in">Graphics</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><br>		<span class="hljs-built_in">Opacity</span><span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-built_in">EdgeForm</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Black</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <br>		<span class="hljs-built_in">Rectangle</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">0</span><span class="hljs-operator">,</span> <span class="hljs-number">0</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">2438</span><span class="hljs-operator">,</span> <span class="hljs-number">1219</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-built_in">EdgeForm</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-built_in">Red</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Thick</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <br>		<span class="hljs-built_in">Disk</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">1875</span><span class="hljs-operator">,</span> <span class="hljs-number">435</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-number">200</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span><br>		<span class="hljs-built_in">Opacity</span><span class="hljs-punctuation">[</span><span class="hljs-number">1</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Thick</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Dashed</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Line</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-type">#</span><span class="hljs-operator">,</span> <span class="hljs-number">0</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-type">#</span><span class="hljs-operator">,</span> <span class="hljs-number">1219</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span> <span class="hljs-operator">&amp;</span><span class="hljs-punctuation">[</span><span class="hljs-number">1980</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <br>		<span class="hljs-built_in">Line</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">0</span><span class="hljs-operator">,</span> <span class="hljs-type">#</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">2438</span><span class="hljs-operator">,</span> <span class="hljs-type">#</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span> <span class="hljs-operator">&amp;</span><span class="hljs-punctuation">[</span><span class="hljs-number">490</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><br>	<span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <br>	<span class="hljs-built_in">Axes</span> <span class="hljs-operator">-&gt;</span> <span class="hljs-built_in">True</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>MMA中的 <code>-&gt;</code> 是什么意思啊，为什么不直接使用类似Python中的关键字参数使用<code>=</code>来传参呢？这些种种，我都会在下面予以说明。</p>
+<h2 id="3-高级编程">3. 高级编程</h2>
+<p>其实我也远远没有达到高级编程的程度，但是着篇文章的目的就是为了让你能够看明白其他人的代码。一些你不熟悉的函数，查官方文档就行了。下面主要是一些关于常用内置函数和匿名函数操作的演示。当然还有很多很炫的操作在MMA中，多Google一下就知道了，我这里肯定不能全部包括，特别是一些内置函数的速度快慢等，慢慢积累的。</p>
+<h3 id="3-1-匿名函数">3.1 匿名函数</h3>
+<h4 id="单参数">单参数</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">g</span> <span class="hljs-operator">=</span> <span class="hljs-type">#</span> <span class="hljs-operator">+</span> <span class="hljs-type">#</span><span class="hljs-operator">&amp;</span><br><span class="hljs-comment">(* 1. 作用于单个值 *)</span><br><span class="hljs-variable">g</span><span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><br><br><span class="hljs-comment">(* 2. 作用于一个列表 *)</span><br><span class="hljs-variable">ls</span> <span class="hljs-operator">=</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">;</span><br><span class="hljs-variable">g</span><span class="hljs-punctuation">[</span><span class="hljs-variable">ls</span><span class="hljs-punctuation">]</span><br><br><span class="hljs-variable">h</span> <span class="hljs-operator">=</span> <span class="hljs-type">##</span><span class="hljs-operator">&amp;</span><br><span class="hljs-variable">h</span><span class="hljs-punctuation">[</span><span class="hljs-number">3</span><span class="hljs-operator">,</span> <span class="hljs-number">4</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">#1 + #1 &amp;<br>8<br>&#123;2, 4, 6&#125;<br>##1 &amp;<br>Sequence[3, 4]<br></code></pre></td></tr></table></figure>
+<h4 id="多参数">多参数</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">f</span> <span class="hljs-operator">=</span> <span class="hljs-type">#1</span><span class="hljs-operator">+</span><span class="hljs-type">#2</span><span class="hljs-operator">&amp;</span><br><span class="hljs-variable">f</span><span class="hljs-punctuation">[</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">#1 + #2 &amp;<br>3<br></code></pre></td></tr></table></figure>
+<h4 id="抽象函数">抽象函数</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-punctuation">&#123;</span><span class="hljs-type">#</span><span class="hljs-operator">,</span> <span class="hljs-type">#</span><span class="hljs-punctuation">&#125;</span> <span class="hljs-operator">&amp;</span> <span class="hljs-operator">/@</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span> <span class="hljs-variable">b</span><span class="hljs-operator">,</span> <span class="hljs-variable">c</span><span class="hljs-operator">,</span> <span class="hljs-variable">d</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">&#123;&#123;a, a&#125;, &#123;b, b&#125;, &#123;c, c&#125;, &#123;d, d&#125;&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="Function函数">Function函数</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Function</span><span class="hljs-punctuation">[</span><span class="hljs-variable">x</span><span class="hljs-operator">,</span> <span class="hljs-variable">x</span><span class="hljs-operator">^</span><span class="hljs-number">2</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">[</span><span class="hljs-number">5</span><span class="hljs-punctuation">]</span><br><span class="hljs-built_in">Function</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">x</span><span class="hljs-operator">,</span> <span class="hljs-variable">y</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-variable">x</span><span class="hljs-operator">+</span><span class="hljs-variable">y</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">25<br>6<br></code></pre></td></tr></table></figure>
+<h3 id="3-2-头部-数据类型">3.2 头部/数据类型</h3>
+<p>就目前而言，我觉得这个头部和这个C语言里面的数据类型是差不多的，当然我觉得MMA里面的用起来更舒服一点。</p>
+<h4 id="什么是头部">什么是头部</h4>
+<p>实际上就是一个表达式的数据类型，比如 <code>List</code>, <code>Integer</code>, <code>Float</code> 等； 我们自定义的函数可以看作是一个头部，所以才有了所谓的 <code>Head</code>函数; 具体写法如下：主要就是一个抽象的单形参函数 <code>f</code> 的使用</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Clear</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-punctuation">]</span><br><span class="hljs-comment">(* 用 f 替换头部 *)</span><br><span class="hljs-variable">expr</span> <span class="hljs-operator">=</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span> <span class="hljs-variable">b</span><span class="hljs-operator">,</span> <span class="hljs-variable">c</span><span class="hljs-operator">,</span> <span class="hljs-variable">d</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">;</span><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-variable">expr</span><span class="hljs-punctuation">]</span><br><br><span class="hljs-comment">(* 检验头部 *)</span><br><span class="hljs-variable">expr</span><span class="hljs-operator">//</span><span class="hljs-built_in">Head</span><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-variable">expr</span><span class="hljs-punctuation">]</span><span class="hljs-operator">//</span><span class="hljs-built_in">Head</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">f</span><span class="hljs-punctuation">[</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span> <span class="hljs-variable">b</span><span class="hljs-operator">,</span> <span class="hljs-variable">c</span><span class="hljs-operator">,</span> <span class="hljs-variable">d</span><span class="hljs-punctuation">]</span><br><span class="hljs-built_in">List</span><br><span class="hljs-variable">f</span><br></code></pre></td></tr></table></figure>
+<h4 id="替换头部">替换头部</h4>
+<p>比如把一个&quot;列表&quot;<code>List</code>的表头替换成<code>Plus</code>，我们就可以对&quot;列表&quot;中的元素求和了; <code>Apply</code> 可用于任何头部，而不仅仅是 <code>List</code>.</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Clear</span><span class="hljs-punctuation">[</span><span class="hljs-variable">g</span><span class="hljs-punctuation">]</span><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Plus</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">Plus</span><span class="hljs-operator">,</span> <span class="hljs-variable">g</span><span class="hljs-punctuation">[</span><span class="hljs-variable">x</span><span class="hljs-operator">,</span><span class="hljs-variable">y</span><span class="hljs-operator">,</span><span class="hljs-variable">z</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">6<br>x+y+z<br></code></pre></td></tr></table></figure>
+<h4 id="抽象头部">抽象头部</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">abstrcthead</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">Table</span><span class="hljs-punctuation">[</span><span class="hljs-variable">a</span><span class="hljs-punctuation">[</span><span class="hljs-variable">i</span><span class="hljs-operator">,</span> <span class="hljs-variable">j</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-type">##</span><span class="hljs-punctuation">]</span><span class="hljs-operator">&amp;;</span><br><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">abstrcthead</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">i</span><span class="hljs-operator">,</span> <span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">j</span><span class="hljs-operator">,</span> <span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-operator">//</span><span class="hljs-built_in">MatrixForm</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">(</mo><mtable rowspacing="0.16em" columnalign="center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>2</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>2</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>3</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>3</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow><annotation encoding="application/x-tex">\left(
+\begin{array}{cc}
+ a[1,1] &amp; a[1,2] \\
+ a[2,1] &amp; a[2,2] \\
+ a[3,1] &amp; a[3,2] \\
+\end{array}
+\right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.6em;vertical-align:-1.55em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.05em;"><span class="pstrut" style="height:5.6em;"></span><span style="width:0.875em;height:3.600em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.875em' height='3.600em' viewBox='0 0 875 3600'><path d='M863,9c0,-2,-2,-5,-6,-9c0,0,-17,0,-17,0c-12.7,0,-19.3,0.3,-20,1
+c-5.3,5.3,-10.3,11,-15,17c-242.7,294.7,-395.3,682,-458,1162c-21.3,163.3,-33.3,349,
+-36,557 l0,84c0.2,6,0,26,0,60c2,159.3,10,310.7,24,454c53.3,528,210,
+949.7,470,1265c4.7,6,9.7,11.7,15,17c0.7,0.7,7,1,19,1c0,0,18,0,18,0c4,-4,6,-7,6,-9
+c0,-2.7,-3.3,-8.7,-10,-18c-135.3,-192.7,-235.5,-414.3,-300.5,-665c-65,-250.7,-102.5,
+-544.7,-112.5,-882c-2,-104,-3,-167,-3,-189
+l0,-92c0,-162.7,5.7,-314,17,-454c20.7,-272,63.7,-513,129,-723c65.3,
+-210,155.3,-396.3,270,-559c6.7,-9.3,10,-15.3,10,-18z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span><span style="top:-1.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mclose">]</span></span></span><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mclose">]</span></span></span><span style="top:-1.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.05em;"><span class="pstrut" style="height:5.6em;"></span><span style="width:0.875em;height:3.600em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.875em' height='3.600em' viewBox='0 0 875 3600'><path d='M76,0c-16.7,0,-25,3,-25,9c0,2,2,6.3,6,13c21.3,28.7,42.3,60.3,
+63,95c96.7,156.7,172.8,332.5,228.5,527.5c55.7,195,92.8,416.5,111.5,664.5
+c11.3,139.3,17,290.7,17,454c0,28,1.7,43,3.3,45l0,9
+c-3,4,-3.3,16.7,-3.3,38c0,162,-5.7,313.7,-17,455c-18.7,248,-55.8,469.3,-111.5,664
+c-55.7,194.7,-131.8,370.3,-228.5,527c-20.7,34.7,-41.7,66.3,-63,95c-2,3.3,-4,7,-6,11
+c0,7.3,5.7,11,17,11c0,0,11,0,11,0c9.3,0,14.3,-0.3,15,-1c5.3,-5.3,10.3,-11,15,-17
+c242.7,-294.7,395.3,-681.7,458,-1161c21.3,-164.7,33.3,-350.7,36,-558
+l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
+-470,-1265c-4.7,-6,-9.7,-11.7,-15,-17c-0.7,-0.7,-6.7,-1,-18,-1z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<blockquote>
+<p>注：SlotSequence (##)(插符序列)</p>
+</blockquote>
+<h3 id="3-3-常见简写">3.3 常见简写</h3>
+<p>下面就是一些常见的函数简写的使用方法</p>
+<h4 id="Map">Map(/@)</h4>
+<div class="note note-success">
+            <p><code>Map[f, expr] </code>或 <code>f/@expr</code>: 将 <code>f</code> 应用到 <code>expr</code> 中第一层的每个元素.</p>
+          </div>
+<p><strong>第1个示例</strong></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Clear</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-variable">g</span><span class="hljs-punctuation">]</span><br><span class="hljs-comment">(* 1.标准形式 *)</span><br><span class="hljs-built_in">Map</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span> <span class="hljs-variable">b</span><span class="hljs-operator">,</span> <span class="hljs-variable">c</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br><br><span class="hljs-comment">(* 2.简写形式 *)</span><br><span class="hljs-variable">g</span><span class="hljs-operator">/@</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span> <span class="hljs-variable">b</span><span class="hljs-operator">,</span> <span class="hljs-variable">c</span><span class="hljs-operator">,</span> <span class="hljs-variable">d</span><span class="hljs-punctuation">&#125;</span><br><br><span class="hljs-comment">(* 注：这里的Map能够作用在列表上是应为Map默认作用在第一层 *)</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">&#123;f[a], f[b], f[c]&#125;<br>&#123;g[a], g[b], g[c], g[d]&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>第2个示例</strong></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">f</span> <span class="hljs-operator">=</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-type">#</span><span class="hljs-operator">,</span> <span class="hljs-type">#</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">&amp;;</span><br><span class="hljs-comment">(* 1.作用一个单个形参 *)</span><br><span class="hljs-built_in">Map</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-number">1</span><span class="hljs-punctuation">]</span><br><span class="hljs-variable">f</span><span class="hljs-operator">/@</span><span class="hljs-number">1</span><br><br><span class="hljs-comment">(* 2.作用单个形参列表 *)</span><br><span class="hljs-built_in">Map</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br><span class="hljs-variable">f</span><span class="hljs-operator">/@</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">&#125;</span><br><br><br><span class="hljs-variable">g</span> <span class="hljs-operator">=</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-type">#</span><span class="hljs-operator">,</span> <span class="hljs-type">#2</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">&amp;;</span><br><span class="hljs-comment">(* 错误的写法： Map[g, &#123;&#123;1, 2&#125;, &#123;3, 4&#125;&#125;] *)</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">1<br>1<br>&#123;&#123;1, 1&#125;, &#123;2, 2&#125;&#125;<br>&#123;&#123;1, 1&#125;, &#123;2, 2&#125;&#125;<br></code></pre></td></tr></table></figure>
+<div class="note note-danger">
+            <p>多个参数必须使用 <code>Apply</code> 函数，见下面的说明</p>
+          </div>
+<h4 id="Apply">Apply(@@)</h4>
+<div class="note note-success">
+            <ol><li><code>f@@expr</code> 或 <code>Apply[f,expr]</code>: 用 <code>f</code> 替换 <code>expr</code>的头部.</li><li><code>Apply[f]</code>: 表示<code>Apply</code>的运算符形式，它可以应用于表达式.</li><li><code>Apply[f,expr,levelspec]</code>: 替换<code>expr</code> 中使用 <code>levelspec</code> 指定的部分的头部.</li></ol>
+          </div>
+<p><strong>第1个示例</strong></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Clear</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-punctuation">]</span><br><span class="hljs-comment">(* 1.标准形式 *)</span><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span><span class="hljs-variable">b</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">c</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-variable">d</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br><br><span class="hljs-comment">(* 2.简写形式 *)</span><br><br><span class="hljs-comment">(* 3.运算符形式 *)</span><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span><span class="hljs-variable">b</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">c</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-variable">d</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">f[&#123;a, b&#125;, &#123;c&#125;, d]<br>f[&#123;a, b&#125;, &#123;c&#125;, d]<br></code></pre></td></tr></table></figure>
+<p><strong>第2个示例</strong>:具体写法，主要举例了 <code>f</code> 为一个具体的三个形参的函数时的情况</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Clear</span><span class="hljs-punctuation">[</span><span class="hljs-variable">x</span><span class="hljs-punctuation">]</span><br><span class="hljs-variable">fun1</span> <span class="hljs-operator">=</span> <span class="hljs-type">#1</span> <span class="hljs-operator">+</span> <span class="hljs-type">#2</span> <span class="hljs-operator">+</span> <span class="hljs-type">#3</span> <span class="hljs-operator">&amp;;</span><br><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">fun1</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-operator">,</span> <span class="hljs-variable">x</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br><span class="hljs-variable">fun1</span><span class="hljs-operator">@@</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-operator">,</span> <span class="hljs-variable">x</span><span class="hljs-punctuation">&#125;</span><br><br><span class="hljs-comment">(* 错误的写法： Apply[fun1, &#123;&#123;1, 2, x&#125;, &#123;3, 4, y&#125;&#125;]*)</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">3+x<br>3+x<br></code></pre></td></tr></table></figure>
+<div class="note note-danger">
+            <p>如果要作用于一个多参数组成的列表，就需要使用<code>层</code>这个概念了</p>
+          </div>
+<h3 id="3-4-操作的层">3.4 操作的层</h3>
+<div class="note note-success">
+            <p>为什么我们需要层的概念? 为了解决函数作用于列表的时候告诉程序：</p><ol><li>列表整体是一个参数</li><li>列表中的元素为各个参数（传入多个复合函数形参的参数个数）</li></ol><p>表达式所带的<code>层</code>对应于需要提取部分的索引号. 像 <code>Map</code> 这样的函数可以在指定的层进行操作,可以简单的认为:跨越的大括号对数 = 层数</p>
+          </div>
+<h4 id="引入">引入</h4>
+<p>为什么要有层的概念呢？我当初刚学这个玩意儿的时候是懵逼的，直到有一天我遇到一个问题：</p>
+<div class="note note-info">
+            <p>我定义了一个接受三个参数的函数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo separator="true">,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y,z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span>，然后我有一个坐标点的集合<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Ω</span></span></span></span>,具体的值如下：</p><p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">Ω</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo stretchy="false">}</mo><mo separator="true">,</mo><mo stretchy="false">{</mo><mn>4</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>6</mn><mo stretchy="false">}</mo><mo separator="true">,</mo><mo stretchy="false">{</mo><mn>7</mn><mo separator="true">,</mo><mn>8</mn><mo separator="true">,</mo><mn>9</mn><mo stretchy="false">}</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\Omega=\{\{1,2,3\},\{4,5,6\},\{7,8,9\}\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Ω</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">3</span><span class="mclose">}</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">{</span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">6</span><span class="mclose">}</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">{</span><span class="mord">7</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">8</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">9</span><span class="mclose">}}</span></span></span></span></span></p><p>每一个<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo separator="true">,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y,z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span>传入后, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo separator="true">,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(x,y,z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span>都会返回一个具体的实数值<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">V_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。</p>
+          </div>
+<p>我不想用循环(或者是<code>Table</code>去做)，就想用<code>Apply</code>去做，让它同时返回<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>V</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>V</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>V</mi><mn>3</mn></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{V_1,V_2,V_3\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span>这样的一个列表。但是我如果直接使用如下的语句：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">F</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">4</span><span class="hljs-operator">,</span> <span class="hljs-number">5</span><span class="hljs-operator">,</span> <span class="hljs-number">6</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">7</span><span class="hljs-operator">,</span> <span class="hljs-number">8</span><span class="hljs-operator">,</span> <span class="hljs-number">9</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>是报错的，说参数不够。</p>
+<blockquote>
+<p>其实当时是受了<code>Map</code>的影响，因为<code>Map</code>这样就不会报错</p>
+</blockquote>
+<p>然后就深入<code>Apply</code>，就了解到了有<code>层</code>这个概念；其实按照我的理解，<code>层</code>的作用如下（使用上面的例子）：</p>
+<ol>
+<li>你告诉函数你的形参列表到底是谁,是最外层（第0层）的那个大列表（此时传入的形参数目为1，就是最大的那个列表）</li>
+<li>还是里面第1层的那三个列表（此时传入的型参数目为1，是大列表中的每个小列表，但是F会在第一层遍历这个具有三个元素的大列表）</li>
+</ol>
+<p>所以这就是层的作用,还是挺简单的.</p>
+<blockquote>
+<p>所以你要真正地搞懂某个东西，也许只有你需要用到它时</p>
+</blockquote>
+<h4 id="Map-2">Map</h4>
+<p><strong>第1层</strong></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Clear</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-punctuation">]</span><br><span class="hljs-built_in">Map</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span> <span class="hljs-variable">b</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">c</span><span class="hljs-operator">,</span> <span class="hljs-variable">d</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br><br><span class="hljs-comment">(*这个里面的整体元素就是 &#123;a, b&#125;, &#123;c, d&#125;*)</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">&#123;f[&#123;a, b&#125;], f[&#123;c, d&#125;]&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>第2层</strong></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Map</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span> <span class="hljs-variable">b</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">c</span><span class="hljs-operator">,</span> <span class="hljs-variable">d</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">2</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">&#123;&#123;f[a], f[b]&#125;, &#123;f[c], f[d]&#125;&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="Apply-2">Apply</h4>
+<p><strong>第0层</strong><br>
+也就是直接把列表中的所有元素作为形参，作用得到一个一维的表达式,，给出一个简单的例子.</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span><span class="hljs-variable">b</span><span class="hljs-operator">,</span><span class="hljs-variable">c</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">d</span><span class="hljs-operator">,</span><span class="hljs-variable">e</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">f[&#123;a, b, c&#125;, &#123;d, e&#125;]<br></code></pre></td></tr></table></figure>
+<p><strong>第1层</strong><br>
+在第一层应用(此时有一个缩写，为<code>@@@</code>), 也就是把列表中的每一个元素作为函数每一次作用的形参，作用得到的维度等于列表的维度</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span><span class="hljs-variable">b</span><span class="hljs-operator">,</span><span class="hljs-variable">c</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">d</span><span class="hljs-operator">,</span><span class="hljs-variable">e</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">&#123;f[a, b, c], f[d, e]&#125;<br></code></pre></td></tr></table></figure>
+<div class="note note-success">
+            <ul><li><code>Map</code>默认在第一层操作</li><li><code>Apply</code>默认在第零层操作</li></ul>
+          </div>
+<h4 id="">@</h4>
+<p>这个是指普通函数应用,一个简单的示例</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">f</span><span class="hljs-operator">@</span><span class="hljs-variable">x</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">f[x]<br></code></pre></td></tr></table></figure>
+<h4 id="多参数匿名函数作用于列表">多参数匿名函数作用于列表</h4>
+<p>此时一般不能够用简写的形式， 但是<code>Apply</code>有一个<code>@@@</code>的简写,</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">g</span> <span class="hljs-operator">=</span> <span class="hljs-type">#</span> <span class="hljs-operator">+</span> <span class="hljs-type">#2</span> <span class="hljs-operator">+</span> <span class="hljs-type">#3</span><span class="hljs-operator">&amp;;</span><br><br><span class="hljs-variable">g</span><span class="hljs-operator">@@</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">g</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br><br><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">g</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">4</span><span class="hljs-operator">,</span> <span class="hljs-number">5</span><span class="hljs-operator">,</span> <span class="hljs-number">6</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br><span class="hljs-variable">g</span><span class="hljs-operator">@@@</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">4</span><span class="hljs-operator">,</span> <span class="hljs-number">5</span><span class="hljs-operator">,</span> <span class="hljs-number">6</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">6<br>6<br>&#123;6, 15&#125;<br>&#123;6, 15&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="3-5-同时作用多层">3.5 同时作用多层</h3>
+<p>既然我们可一选择作用在一个层，那么想当然的，我们可以作用于多个层，具体的作用方式就有以下的几种：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-comment">(* 解释：这里是先作用在第0层，然后再作用到得到结果的第1层 *)</span><br><br><span class="hljs-comment">(* 检验 *)</span><br><span class="hljs-string">&quot;作用在第0层后得到:&quot;</span> <span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span><span class="hljs-variable">b</span><span class="hljs-operator">,</span><span class="hljs-variable">c</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">d</span><span class="hljs-operator">,</span><span class="hljs-variable">e</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-operator">//</span><span class="hljs-built_in">ToString</span><br><span class="hljs-string">&quot;对上面的结果作用在第1层后得到:&quot;</span> <span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span><span class="hljs-variable">b</span><span class="hljs-operator">,</span><span class="hljs-variable">c</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">d</span><span class="hljs-operator">,</span><span class="hljs-variable">e</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br><span class="hljs-string">&quot;最终的结果:&quot;</span><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span><span class="hljs-variable">b</span><span class="hljs-operator">,</span><span class="hljs-variable">c</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">d</span><span class="hljs-operator">,</span><span class="hljs-variable">e</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">0</span><span class="hljs-operator">,</span> <span class="hljs-number">1</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">作用在第0层后得到: f[&#123;a, b, c&#125;, &#123;d, e&#125;]<br>对上面的结果作用在第1层后得到: f[f[a, b, c], f[d, e]]<br>最终的结果: f[f[a, b, c], f[d, e]]<br></code></pre></td></tr></table></figure>
+<h4 id="向下至层2-层0除外">向下至层2(层0除外)</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">&#123;f[f[&#123;&#123;a&#125;&#125;]]&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="层0至2">层0至2</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">0</span><span class="hljs-operator">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">f[f[f[&#123;&#123;a&#125;&#125;]]]<br></code></pre></td></tr></table></figure>
+<h4 id="所有层-从层1">所有层(从层1)</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Infinity</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">&#123;f[f[f[f[a]]]]&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="层0至所有层">层0至所有层</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Apply</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">a</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">0</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Infinity</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">f[f[f[f[f[a]]]]]<br></code></pre></td></tr></table></figure>
+<h4 id="函数符合顺序">函数符合顺序</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-type">#1</span><span class="hljs-operator">+</span><span class="hljs-type">#1</span><span class="hljs-operator">&amp;/@</span><span class="hljs-built_in">Plus</span><span class="hljs-punctuation">[</span><span class="hljs-type">#1</span><span class="hljs-operator">,</span> <span class="hljs-type">#2</span><span class="hljs-punctuation">]</span><span class="hljs-operator">&amp;@@</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">3<br></code></pre></td></tr></table></figure>
+<h3 id="3-5-一切-随处皆可匿">3.5 一切/随处皆可匿</h3>
+<div class="note note-success">
+            <p>也就是说，无论在什么地方你都可以使用匿名函数; 若匿名函数多个参数时：使用<code>[]</code>包括。</p>
+          </div>
+<p>我们可以把我们原来的简单的语句轻松的改成匿名函数语句，相关的操作可以参见下面的演示：</p>
+<h4 id="基本使用">基本使用</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">f</span><span class="hljs-punctuation">[</span><span class="hljs-type">x_</span><span class="hljs-operator">,</span> <span class="hljs-type">y_</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">:=</span> <span class="hljs-variable">x</span><span class="hljs-operator">+</span><span class="hljs-variable">y</span><span class="hljs-operator">;</span><br><span class="hljs-variable">f</span><span class="hljs-punctuation">[</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">]</span><br><br><span class="hljs-type">#</span><span class="hljs-operator">+</span><span class="hljs-type">#2</span><span class="hljs-operator">&amp;</span><span class="hljs-punctuation">[</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">]</span><br><br><span class="hljs-comment">(*必须使用括号括起来表明是一个函数*)</span><br><span class="hljs-punctuation">(</span><span class="hljs-type">#</span><span class="hljs-operator">+</span><span class="hljs-type">#2</span><span class="hljs-operator">&amp;</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">[</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">3<br>3<br>3<br></code></pre></td></tr></table></figure>
+<h4 id="实际案例">实际案例</h4>
+<p><strong>示例1</strong></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Rectangle</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">0</span><span class="hljs-operator">,</span> <span class="hljs-number">0</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-type">#</span><span class="hljs-operator">,</span> <span class="hljs-type">#2</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">&amp;</span> <span class="hljs-operator">@@</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">2438</span><span class="hljs-operator">,</span> <span class="hljs-number">1219</span><span class="hljs-punctuation">&#125;</span><br><br><span class="hljs-comment">(* 相比于这个直接命令方式要好：Rectangle[&#123;0, 0&#125;, &#123;2438, 1219&#125;]*)</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">Rectangle[&#123;0, 0&#125;, &#123;2438, 1219&#125;]<br></code></pre></td></tr></table></figure>
+<p><strong>示例2</strong></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Line</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-number">0</span><span class="hljs-operator">,</span> <span class="hljs-type">#</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-number">2438</span><span class="hljs-operator">,</span> <span class="hljs-type">#</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span> <span class="hljs-operator">&amp;</span><span class="hljs-punctuation">[</span><span class="hljs-number">490</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><br><br><span class="hljs-comment">(* 相比于这个命令好：Line[&#123;&#123;0, 490&#125;, &#123;2438, 490&#125;&#125;] *)</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">Line[&#123;&#123;0, 490&#125;, &#123;2438, 490&#125;&#125;]<br></code></pre></td></tr></table></figure>
+<p><strong>示例3</strong></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Table</span><span class="hljs-punctuation">[</span><span class="hljs-variable">i</span><span class="hljs-operator">^</span><span class="hljs-variable">j</span><span class="hljs-operator">,</span> <span class="hljs-type">##</span><span class="hljs-punctuation">]</span><span class="hljs-operator">&amp;</span> <span class="hljs-operator">@@</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">i</span><span class="hljs-operator">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">j</span><span class="hljs-operator">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">//</span><span class="hljs-built_in">MatrixForm</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">(</mo><mtable rowspacing="0.16em" columnalign="center center center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>2</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>4</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>8</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>16</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>3</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>9</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>27</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>81</mn></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow><annotation encoding="application/x-tex">\left(
+\begin{array}{cccc}
+ 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 2 &amp; 4 &amp; 8 &amp; 16 \\
+ 3 &amp; 9 &amp; 27 &amp; 81 \\
+\end{array}
+\right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.6em;vertical-align:-1.55em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.05em;"><span class="pstrut" style="height:5.6em;"></span><span style="width:0.875em;height:3.600em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.875em' height='3.600em' viewBox='0 0 875 3600'><path d='M863,9c0,-2,-2,-5,-6,-9c0,0,-17,0,-17,0c-12.7,0,-19.3,0.3,-20,1
+c-5.3,5.3,-10.3,11,-15,17c-242.7,294.7,-395.3,682,-458,1162c-21.3,163.3,-33.3,349,
+-36,557 l0,84c0.2,6,0,26,0,60c2,159.3,10,310.7,24,454c53.3,528,210,
+949.7,470,1265c4.7,6,9.7,11.7,15,17c0.7,0.7,7,1,19,1c0,0,18,0,18,0c4,-4,6,-7,6,-9
+c0,-2.7,-3.3,-8.7,-10,-18c-135.3,-192.7,-235.5,-414.3,-300.5,-665c-65,-250.7,-102.5,
+-544.7,-112.5,-882c-2,-104,-3,-167,-3,-189
+l0,-92c0,-162.7,5.7,-314,17,-454c20.7,-272,63.7,-513,129,-723c65.3,
+-210,155.3,-396.3,270,-559c6.7,-9.3,10,-15.3,10,-18z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-1.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span></span></span><span style="top:-1.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">9</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span></span></span><span style="top:-1.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">27</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">16</span></span></span><span style="top:-1.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">81</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.05em;"><span class="pstrut" style="height:5.6em;"></span><span style="width:0.875em;height:3.600em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.875em' height='3.600em' viewBox='0 0 875 3600'><path d='M76,0c-16.7,0,-25,3,-25,9c0,2,2,6.3,6,13c21.3,28.7,42.3,60.3,
+63,95c96.7,156.7,172.8,332.5,228.5,527.5c55.7,195,92.8,416.5,111.5,664.5
+c11.3,139.3,17,290.7,17,454c0,28,1.7,43,3.3,45l0,9
+c-3,4,-3.3,16.7,-3.3,38c0,162,-5.7,313.7,-17,455c-18.7,248,-55.8,469.3,-111.5,664
+c-55.7,194.7,-131.8,370.3,-228.5,527c-20.7,34.7,-41.7,66.3,-63,95c-2,3.3,-4,7,-6,11
+c0,7.3,5.7,11,17,11c0,0,11,0,11,0c9.3,0,14.3,-0.3,15,-1c5.3,-5.3,10.3,-11,15,-17
+c242.7,-294.7,395.3,-681.7,458,-1161c21.3,-164.7,33.3,-350.7,36,-558
+l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
+-470,-1265c-4.7,-6,-9.7,-11.7,-15,-17c-0.7,-0.7,-6.7,-1,-18,-1z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h3 id="3-6-关联">3.6 关联</h3>
+<div class="note note-success">
+            <p>关联将把键符与其值相关联，(用 <code>-&gt;</code> 输入<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span>); 其实和Python中的字典差不多，就是一些键值对组成的一个列表。Python或者是其他语言学的好，理解这个也没有什么难的</p>
+          </div>
+<h4 id="基本使用-2">基本使用</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">ass</span> <span class="hljs-operator">=</span> <span class="hljs-operator">&lt;|</span><span class="hljs-string">&quot;a&quot;</span> <span class="hljs-operator">-&gt;</span> <span class="hljs-variable">x</span><span class="hljs-operator">,</span> <span class="hljs-string">&quot;b&quot;</span> <span class="hljs-operator">-&gt;</span> <span class="hljs-variable">y</span><span class="hljs-operator">|&gt;</span><br><span class="hljs-variable">ass</span><span class="hljs-operator">//</span><span class="hljs-built_in">Head</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">&lt;|&quot;a&quot; -&gt; x, &quot;b&quot; -&gt; y|&gt;<br>Association<br></code></pre></td></tr></table></figure>
+<h4 id="给出键值">给出键值</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">ass</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;a&quot;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">1<br></code></pre></td></tr></table></figure>
+<h4 id="纯函数应用">纯函数应用</h4>
+<p>在纯函数中，<code>#key</code> 选出在关联中对应于&quot;key&quot;的值,一个简单的示例:</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-punctuation">&#123;</span><span class="hljs-type">#b</span><span class="hljs-operator">,</span> <span class="hljs-number">1</span><span class="hljs-operator">+</span><span class="hljs-type">#b</span><span class="hljs-punctuation">&#125;</span> <span class="hljs-operator">&amp;</span> <span class="hljs-punctuation">[</span><span class="hljs-operator">&lt;|</span><span class="hljs-string">&quot;a&quot;</span><span class="hljs-operator">-&gt;</span><span class="hljs-variable">x</span><span class="hljs-operator">,</span> <span class="hljs-string">&quot;b&quot;</span> <span class="hljs-operator">-&gt;</span> <span class="hljs-variable">y</span> <span class="hljs-operator">|&gt;</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-type">#a</span><span class="hljs-operator">,</span> <span class="hljs-number">1</span><span class="hljs-operator">+</span><span class="hljs-type">#a</span><span class="hljs-punctuation">&#125;</span> <span class="hljs-operator">&amp;</span> <span class="hljs-punctuation">[</span><span class="hljs-operator">&lt;|</span><span class="hljs-string">&quot;a&quot;</span><span class="hljs-operator">-&gt;</span><span class="hljs-variable">x</span><span class="hljs-operator">,</span> <span class="hljs-string">&quot;b&quot;</span> <span class="hljs-operator">-&gt;</span> <span class="hljs-variable">y</span> <span class="hljs-operator">|&gt;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">&#123;15, 16&#125;<br>&#123;1, 2&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="3-7-插符序列">3.7 插符序列</h3>
+<h4 id="-2">##</h4>
+<p><code>##</code>表示提供给纯函数的完全的参数序列,<code>##</code> 是 <code>##1</code> 的一个简短形式，指的是函数的所有参数.</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">f</span><span class="hljs-punctuation">[</span><span class="hljs-variable">x</span><span class="hljs-operator">,</span> <span class="hljs-type">##</span><span class="hljs-operator">,</span> <span class="hljs-variable">y</span><span class="hljs-operator">,</span> <span class="hljs-type">##</span><span class="hljs-punctuation">]</span><span class="hljs-operator">&amp;</span><span class="hljs-punctuation">[</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span> <span class="hljs-variable">b</span><span class="hljs-operator">,</span> <span class="hljs-variable">c</span><span class="hljs-operator">,</span> <span class="hljs-variable">d</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">f[x, a, b, c, d, y, a, b, c, d]<br></code></pre></td></tr></table></figure>
+<p>对应于##的原对象是一个<code>Sequence</code>,见下面的案例:</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-type">##</span><span class="hljs-operator">&amp;</span><span class="hljs-punctuation">[</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span> <span class="hljs-variable">b</span><span class="hljs-operator">,</span> <span class="hljs-variable">c</span><span class="hljs-operator">,</span> <span class="hljs-variable">d</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">Sequence[a, b, c, d]<br></code></pre></td></tr></table></figure>
+<h4 id="指定参数起始位置">指定参数起始位置</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">f</span><span class="hljs-punctuation">[</span><span class="hljs-variable">x</span><span class="hljs-operator">,</span> <span class="hljs-type">##2</span><span class="hljs-operator">,</span> <span class="hljs-variable">y</span><span class="hljs-punctuation">]</span><span class="hljs-operator">&amp;</span><span class="hljs-punctuation">[</span><span class="hljs-variable">a</span><span class="hljs-operator">,</span> <span class="hljs-variable">b</span><span class="hljs-operator">,</span> <span class="hljs-variable">c</span><span class="hljs-operator">,</span> <span class="hljs-variable">d</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">f[x, b, c, d, y]<br></code></pre></td></tr></table></figure>
+<h4 id="迭代列表插入到一个Table">迭代列表插入到一个Table</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Table</span><span class="hljs-punctuation">[</span><span class="hljs-variable">a</span><span class="hljs-punctuation">[</span><span class="hljs-variable">i</span><span class="hljs-operator">,</span> <span class="hljs-variable">j</span><span class="hljs-punctuation">]</span><span class="hljs-operator">,</span> <span class="hljs-type">##</span><span class="hljs-punctuation">]</span><span class="hljs-operator">&amp;@@</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">i</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">j</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">//</span><span class="hljs-built_in">MatrixForm</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">(</mo><mtable rowspacing="0.16em" columnalign="center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>2</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>2</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>3</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo stretchy="false">[</mo><mn>3</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow><annotation encoding="application/x-tex">\left(
+\begin{array}{cc}
+ a[1,1] &amp; a[1,2] \\
+ a[2,1] &amp; a[2,2] \\
+ a[3,1] &amp; a[3,2] \\
+\end{array}
+\right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.6em;vertical-align:-1.55em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.05em;"><span class="pstrut" style="height:5.6em;"></span><span style="width:0.875em;height:3.600em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.875em' height='3.600em' viewBox='0 0 875 3600'><path d='M863,9c0,-2,-2,-5,-6,-9c0,0,-17,0,-17,0c-12.7,0,-19.3,0.3,-20,1
+c-5.3,5.3,-10.3,11,-15,17c-242.7,294.7,-395.3,682,-458,1162c-21.3,163.3,-33.3,349,
+-36,557 l0,84c0.2,6,0,26,0,60c2,159.3,10,310.7,24,454c53.3,528,210,
+949.7,470,1265c4.7,6,9.7,11.7,15,17c0.7,0.7,7,1,19,1c0,0,18,0,18,0c4,-4,6,-7,6,-9
+c0,-2.7,-3.3,-8.7,-10,-18c-135.3,-192.7,-235.5,-414.3,-300.5,-665c-65,-250.7,-102.5,
+-544.7,-112.5,-882c-2,-104,-3,-167,-3,-189
+l0,-92c0,-162.7,5.7,-314,17,-454c20.7,-272,63.7,-513,129,-723c65.3,
+-210,155.3,-396.3,270,-559c6.7,-9.3,10,-15.3,10,-18z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span><span style="top:-1.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mclose">]</span></span></span><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mclose">]</span></span></span><span style="top:-1.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.05em;"><span class="pstrut" style="height:5.6em;"></span><span style="width:0.875em;height:3.600em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.875em' height='3.600em' viewBox='0 0 875 3600'><path d='M76,0c-16.7,0,-25,3,-25,9c0,2,2,6.3,6,13c21.3,28.7,42.3,60.3,
+63,95c96.7,156.7,172.8,332.5,228.5,527.5c55.7,195,92.8,416.5,111.5,664.5
+c11.3,139.3,17,290.7,17,454c0,28,1.7,43,3.3,45l0,9
+c-3,4,-3.3,16.7,-3.3,38c0,162,-5.7,313.7,-17,455c-18.7,248,-55.8,469.3,-111.5,664
+c-55.7,194.7,-131.8,370.3,-228.5,527c-20.7,34.7,-41.7,66.3,-63,95c-2,3.3,-4,7,-6,11
+c0,7.3,5.7,11,17,11c0,0,11,0,11,0c9.3,0,14.3,-0.3,15,-1c5.3,-5.3,10.3,-11,15,-17
+c242.7,-294.7,395.3,-681.7,458,-1161c21.3,-164.7,33.3,-350.7,36,-558
+l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
+-470,-1265c-4.7,-6,-9.7,-11.7,-15,-17c-0.7,-0.7,-6.7,-1,-18,-1z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2 id="4-常用函数">4. 常用函数</h2>
+<h3 id="4-1-Moudle">4.1 Moudle</h3>
+<div class="note note-success">
+            <p>主要有两种用法：</p><ol><li><code>Module[{x,y,...}, expr]</code>: 指定在 <code>expr</code> 中出现的符号 <code>x, y, ...</code> 应被当作局部值.(且不会受到全局变量的影响)</li><li><code>Module[{x=x0,...}, expr]</code>: 用来定义 <code>x, ...</code>的初始值.</li></ol>
+          </div>
+<h4 id="变量的作用域">变量的作用域</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span><br><span class="hljs-variable">y</span> <span class="hljs-operator">=</span> <span class="hljs-number">4</span><br><span class="hljs-built_in">Module</span><span class="hljs-punctuation">[</span><br>  <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">x</span><span class="hljs-operator">,</span> <span class="hljs-variable">y</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span>  <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-operator">;</span> <span class="hljs-variable">y</span><span class="hljs-operator">=</span><span class="hljs-number">2</span><span class="hljs-operator">;</span><br>  <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-variable">x</span><span class="hljs-operator">+</span><span class="hljs-variable">y</span><span class="hljs-operator">;</span><br><span class="hljs-punctuation">]</span><br><br><span class="hljs-comment">(* 不会受到全局变量的影响 *)</span><br><span class="hljs-variable">res</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">3<br>4<br>3<br></code></pre></td></tr></table></figure>
+<h4 id="变量生命周期">变量生命周期</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Module</span><span class="hljs-punctuation">[</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-variable">x1</span><span class="hljs-operator">,</span> <span class="hljs-variable">y1</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span>  <span class="hljs-variable">x1</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-operator">;</span> <span class="hljs-variable">y1</span><span class="hljs-operator">=</span><span class="hljs-number">2</span><span class="hljs-operator">;</span><br>	<span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-variable">x1</span> <span class="hljs-operator">+</span> <span class="hljs-variable">y1</span><span class="hljs-operator">;</span><br><span class="hljs-punctuation">]</span><br><br><span class="hljs-comment">(* 一旦出了Module之外，变量就被清除了 *)</span><br><span class="hljs-variable">res</span><br><span class="hljs-variable">x1</span><br><span class="hljs-variable">y1</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">2<br>x1<br>y1<br></code></pre></td></tr></table></figure>
+<h3 id="4-2-With">4.2 With</h3>
+<div class="note note-success">
+            <p>用法解释：<br><code>With[{x=x0, y=y0, ...},expr]</code>: 指定在 <code>expr</code> 中出现的符号 <code>x, y, ...</code> 应当由<code>x=x0, y=y0, ...</code>替换.</p><p>备注：<code>With</code> 似乎比 <code>Module</code> 快</p>
+          </div>
+<h4 id="基本使用-3">基本使用</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">With</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">x</span><span class="hljs-operator">=</span><span class="hljs-number">7</span><span class="hljs-operator">,</span> <span class="hljs-variable">y</span><span class="hljs-operator">=</span><span class="hljs-variable">z</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-variable">x</span><span class="hljs-operator">^</span><span class="hljs-number">2</span><span class="hljs-operator">+</span><span class="hljs-variable">y</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">49 + z<br></code></pre></td></tr></table></figure>
+<h4 id="没有估值">没有估值</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-comment">(* 一个简单的函数变自量符号替换 *)</span><br><span class="hljs-built_in">With</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">x</span><span class="hljs-operator">=</span><span class="hljs-variable">a</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">(</span><span class="hljs-number">1</span><span class="hljs-operator">+</span><span class="hljs-variable">x</span><span class="hljs-operator">^</span><span class="hljs-number">2</span><span class="hljs-punctuation">)</span><span class="hljs-operator">&amp;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">1 + a^2 &amp;<br></code></pre></td></tr></table></figure>
+<h4 id="多次替换">多次替换</h4>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">With</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">y</span><span class="hljs-operator">=</span><span class="hljs-built_in">Sin</span><span class="hljs-punctuation">[</span><span class="hljs-number">1.0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span> <span class="hljs-built_in">Sum</span><span class="hljs-punctuation">[</span><span class="hljs-variable">y</span><span class="hljs-operator">^</span><span class="hljs-variable">i</span><span class="hljs-operator">,</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">i</span><span class="hljs-operator">,</span><span class="hljs-number">0</span><span class="hljs-operator">,</span><span class="hljs-number">10</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">5.36323<br></code></pre></td></tr></table></figure>
+<h3 id="4-3-Nest">4.3 Nest</h3>
+<div class="note note-success">
+            <p><code>Nest[f,expr,n]</code>: 返回一个将<code>f</code>作用于 <code>expr</code> 上 <code>n</code> 次后得到的表达式.</p>
+          </div>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">Nest</span><span class="hljs-punctuation">[</span><span class="hljs-variable">g</span><span class="hljs-operator">,</span> <span class="hljs-variable">x</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span><span class="hljs-punctuation">]</span><br><br><br><span class="hljs-built_in">Clear</span><span class="hljs-punctuation">[</span><span class="hljs-variable">y</span><span class="hljs-punctuation">]</span><br><span class="hljs-variable">f</span><span class="hljs-punctuation">[</span><span class="hljs-type">x_</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">:=</span> <span class="hljs-variable">x</span><span class="hljs-operator">^</span><span class="hljs-number">2</span><span class="hljs-operator">;</span><br><span class="hljs-built_in">Nest</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-variable">y</span><span class="hljs-operator">+</span><span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-punctuation">]</span><br><br><br><span class="hljs-built_in">Nest</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">(</span><span class="hljs-number">1</span><span class="hljs-operator">+</span><span class="hljs-type">#</span><span class="hljs-punctuation">)</span><span class="hljs-operator">^</span><span class="hljs-number">2</span><span class="hljs-operator">&amp;,</span> <span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">(</span><span class="hljs-punctuation">(</span><span class="hljs-number">1</span><span class="hljs-operator">+</span><span class="hljs-punctuation">(</span><span class="hljs-number">1</span><span class="hljs-operator">+</span><span class="hljs-punctuation">(</span><span class="hljs-number">1</span><span class="hljs-operator">+</span><span class="hljs-number">1</span><span class="hljs-punctuation">)</span><span class="hljs-operator">^</span><span class="hljs-number">2</span><span class="hljs-punctuation">)</span><span class="hljs-operator">^</span><span class="hljs-number">2</span><span class="hljs-punctuation">)</span><span class="hljs-operator">^</span><span class="hljs-number">2</span><span class="hljs-punctuation">)</span><br><span class="hljs-comment">(* 计算过程：(1+1)^2 -&gt; (1+(1+1)^2)^2 -&gt; (1+(1+(1+1)^2)^2)^2 *)</span><br></code></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mathmatica">g[g[g[3]]]<br>(1+y)^4<br>676<br>676<br></code></pre></td></tr></table></figure>
+<h3 id="4-4-TreeForm">4.4 TreeForm</h3>
+<p>可以使用<code>TreeForm</code>查看Mathematica内部表达式的机构,一个示例:</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-punctuation">(</span><span class="hljs-number">1</span><span class="hljs-operator">+</span><span class="hljs-number">1</span><span class="hljs-punctuation">)</span><span class="hljs-operator">*</span><span class="hljs-number">3</span><span class="hljs-operator">//</span><span class="hljs-built_in">HoldForm</span><span class="hljs-operator">//</span><span class="hljs-built_in">TreeForm</span><br></code></pre></td></tr></table></figure>
+<p>运行结果<br>
+<img src="/img/mathematica_advance/tree_form.svg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="5-结语">5. 结语</h2>
+<p>有了这些操作，再也不用担心你的队友看得懂你的代码，说你代码写的菜了。你直接怼他：把我代码看懂再说。</p>
+<blockquote>
+<p>还是尽量不要使用太多则会个玩意儿，不然你连你自己的代码都看不明白。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/mathematica/" class="print-no-link">#mathematica</a>
+      
+        <a href="/tags/operator/" class="print-no-link">#operator</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mathematica Advanced I</div>
+      <div>https://zongpingding.github.io/2024/03/27/mathematica/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 27, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/27/what_is_tensor/" title="What is Tensor">
+                        <span class="hidden-mobile">What is Tensor</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
