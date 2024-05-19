@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Hexo Admin</title>
+    <link href="/2024/05/19/Rounded-Corner-Listing/"/>
+    <url>/2024/05/19/Rounded-Corner-Listing/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Hexo-admin">Hexo admin</h2><p>Hexo admin makes your hexo something like dynamic blog. Making writing and posting blogs easier.</p><h3 id="install">install</h3><p>install <code>hexo-admin</code> using</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install --save hexo-admin<br></code></pre></td></tr></table></figure><h3 id="security">security</h3><p>set passwd for admin see <a href="https://github.com/jaredly/hexo-admin">github-admin-passwd</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Pip Tutorial</title>
     <link href="/2024/05/16/pip_tutorial/"/>
     <url>/2024/05/16/pip_tutorial/</url>
