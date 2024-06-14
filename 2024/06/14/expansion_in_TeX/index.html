@@ -1,0 +1,890 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="引入 宏展开是 LaTeX\rm\LaTeXLATE​X 中一个很重要的概念，为了引入这个概念，参加下面的例子: 12\def\cmda&#123;abc&#125;\uppercase&#123;\cmda&#125; 那么你猜猜，这段代码输出的结果是什么? abc ? ABC ?  结果是 abc. 我不是都让它uppercase了么？为什么还是没有uppercase，反而是给我直接输出了?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TeX 中的宏展开">
+<meta property="og:url" content="https://zongpingding.github.io/2024/06/14/expansion_in_TeX/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="引入 宏展开是 LaTeX\rm\LaTeXLATE​X 中一个很重要的概念，为了引入这个概念，参加下面的例子: 12\def\cmda&#123;abc&#125;\uppercase&#123;\cmda&#125; 那么你猜猜，这段代码输出的结果是什么? abc ? ABC ?  结果是 abc. 我不是都让它uppercase了么？为什么还是没有uppercase，反而是给我直接输出了?">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-14T08:44:36.570Z">
+<meta property="article:modified_time" content="2024-06-14T10:04:51.754Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="expansion">
+<meta property="article:tag" content="protect">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>TeX 中的宏展开 - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="TeX 中的宏展开"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-14 16:44" pubdate>
+          June 14, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">TeX 中的宏展开</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="引入">引入</h2>
+<p>宏展开是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\rm\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord"><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></span> 中一个很重要的概念，为了引入这个概念，参加下面的例子:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\cmda</span>&#123;abc&#125;<br><span class="hljs-keyword">\uppercase</span>&#123;<span class="hljs-keyword">\cmda</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>那么你猜猜，这段代码输出的结果是什么? abc ? ABC ?  结果是 abc. 我不是都让它uppercase了么？为什么还是没有uppercase，反而是给我直接输出了?</p>
+<p>背后的原理就是宏展开, 下面我们来细说这个宏展开.</p>
+<h2 id="LaTeX-2e">LaTeX 2e</h2>
+<h3 id="expand-once">expand once</h3>
+<p>先讲一下\expandafter的作用:  expand the <strong>first token</strong> after the <code>&#123;</code>.  所以下面的命令：</p>
+ <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\uppercase</span><span class="hljs-keyword">\expandafter</span>&#123;<span class="hljs-keyword">\cmda</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>会先展开 { 后的第一个token，这个token就是\cmda, 于是\cmda被展开为 ‘abc’ , 从而就变成了 \uppercase{abc}了.</p>
+<blockquote>
+<p>TeX only uppercases explicit character tokens (using the <code>\uccode</code> table)</p>
+</blockquote>
+<p>The <code>\expandafter</code>  primitive expands the token after the next one, 所以上述的 the next one 就是 ‘{’， 而那个after的东西就是 \cmda.</p>
+<blockquote>
+<p>如果你的命令是 \uppercase\expandafter{abc\cmda}, 那么这个 \expandafter首先展开的其实是letter ‘a’,而不是macro \cmda. 毕竟\expandafter只负责展开它后面的第二个token (the token after the next one)</p>
+</blockquote>
+<h3 id="expanding-process">expanding process</h3>
+<h4 id="expand-rule">expand rule</h4>
+<p>一个\expandafter命令可以认为包含下面这三个步骤, 针对示例: \expandafter T\cmda</p>
+<ul>
+<li>首先把第一个token 'T’保存 (read: a\cmda)</li>
+<li>然后展开第二个token ‘\cmda’ (\cmda -&gt; abc)</li>
+<li>随后把第一个token重新放到input中, 让TeX再次read (read:Tabc)</li>
+</ul>
+<p>相当于一个\expandafter要吃两个参数,第一个参数先存着，第二个参数进行展开.  有了这个原理之后我们在看一看multiple \expandafter的情况. 一个具体的例子,参考自 Overleaf Understanding expandafter ,  网址如下:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">https://www.overleaf.com/learn/latex/Articles/How_does_%5Cexpandafter_work%3A_A_detailed_study_of_consecutive_%5Cexpandafter_commands<br></code></pre></td></tr></table></figure>
+<p>定义 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>T</mtext><mi>Y</mi></msub><mo>=</mo><msubsup><mtext>T</mtext><mi>Y</mi><mn>1</mn></msubsup><msubsup><mtext>T</mtext><mi>Y</mi><mn>2</mn></msubsup><mo>⋯</mo><msubsup><mtext>T</mtext><mi>Y</mi><mi>N</mi></msubsup></mrow><annotation encoding="application/x-tex">\text{T}_Y = \text{T}^1_{Y}\text{T}^2_{Y}\cdots\text{T}^N_{Y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1616em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9146em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span> , 然后 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mtext>T</mtext><mi>Y</mi><mn>1</mn></msubsup><mo>=</mo><msubsup><mtext>T</mtext><mrow><mi>Y</mi><mn>1</mn></mrow><mi>A</mi></msubsup><msubsup><mtext>T</mtext><mrow><mi>Y</mi><mn>1</mn></mrow><mi>B</mi></msubsup><msubsup><mtext>T</mtext><mrow><mi>Y</mi><mn>1</mn></mrow><mi>C</mi></msubsup></mrow><annotation encoding="application/x-tex">\text{T}^1_{Y} = \text{T}^A_{Y1}\text{T}^B_{Y1}\text{T}^C_{Y1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1343em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1616em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9146em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9146em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9146em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>​，然后使用如下的命令:</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>1</mn></msub><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>2</mn></msub><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>3</mn></msub><msub><mtext>T</mtext><mi>X</mi></msub><msub><mtext>T</mtext><mi>Y</mi></msub></mrow><annotation encoding="application/x-tex">\backslash\text{expandafter}_1\backslash\text{expandafter}_2\backslash\text{expandafter}_3\text{T}_X\text{T}_Y
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>下面我们来分析这个展开的过程:</p>
+<ul>
+<li>
+<p>首先TeX在read过程中，首先读到第一个token-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\backslash\text{expandafter}_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span></span></span></span>，然后这个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\backslash\text{expandafter}_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span></span></span></span> 把它后面的第一个 token-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\backslash\text{expandafter}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span></span></span></span> save，把它后面的第二个token-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\backslash\text{expandafter}_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span></span></span></span> 展开(执行此token).</p>
+<ul>
+<li>现在我们进入到了<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\backslash\text{expandafter}_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span></span></span></span>展开的子过程 (这其实是一个子递归)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\backslash\text{expandafter}_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span></span></span></span> 会把它后面的第一个token-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>T</mtext><mi>X</mi></msub></mrow><annotation encoding="application/x-tex">\text{T}_X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> save, 然后把它后面的第二个 token-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>T</mtext><mi>Y</mi></msub></mrow><annotation encoding="application/x-tex">\text{T}_Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 展开</li>
+<li>最后这个子过程得到的token list为: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>T</mtext><mi>X</mi></msub><msubsup><mtext>T</mtext><mi>Y</mi><mn>1</mn></msubsup><msubsup><mtext>T</mtext><mi>Y</mi><mn>2</mn></msubsup><mo>⋯</mo><msubsup><mtext>T</mtext><mi>Y</mi><mi>N</mi></msubsup></mrow><annotation encoding="application/x-tex">\text{T}_X\text{T}^1_{Y}\text{T}^2_{Y}\cdots\text{T}^N_{Y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1616em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9146em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>​</li>
+</ul>
+</li>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\backslash\text{expandafter}_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span></span></span></span>子过程(子递归)结束，把前面 save 的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\backslash\text{expandafter}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span></span></span></span> 重新 re-inserted 进 input . 所以现在的 token list 为: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>2</mn></msub><msub><mtext>T</mtext><mi>X</mi></msub><msubsup><mtext>T</mtext><mi>Y</mi><mn>1</mn></msubsup><msubsup><mtext>T</mtext><mi>Y</mi><mn>2</mn></msubsup><mo>⋯</mo><msubsup><mtext>T</mtext><mi>Y</mi><mi>N</mi></msubsup></mrow><annotation encoding="application/x-tex">\backslash\text{expandafter}_2\text{T}_X\text{T}^1_{Y}\text{T}^2_{Y}\cdots\text{T}^N_{Y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1646em;vertical-align:-0.25em;"></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9146em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>, TeX 继续处理这个 token list 的展开</p>
+</li>
+<li>
+<p>对于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">\</mi><msub><mtext>expandafter</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\backslash\text{expandafter}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">\</span><span class="mord"><span class="mord text"><span class="mord">expandafter</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span></span></span></span>, 其后的第一个 token-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>T</mtext><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">\text{T}_x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 被 save, 其后的第二个token-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mtext>T</mtext><mi>Y</mi><mn>1</mn></msubsup></mrow><annotation encoding="application/x-tex">\text{T}^1_Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1343em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span> 被展开.</p>
+</li>
+<li>
+<p>token-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mtext>T</mtext><mi>Y</mi><mn>1</mn></msubsup></mrow><annotation encoding="application/x-tex">\text{T}_Y^1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1343em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span> 的展开结束，把前面 save 的token-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>T</mtext><mi>X</mi></msub></mrow><annotation encoding="application/x-tex">\text{T}_X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 再次 re-inserted 进 input</p>
+</li>
+<li>
+<p>这个过程结束得到的 token list 为: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext>T</mtext><mi>X</mi></msub><msubsup><mtext>T</mtext><mrow><mi>Y</mi><mn>1</mn></mrow><mi>A</mi></msubsup><msubsup><mtext>T</mtext><mrow><mi>Y</mi><mn>1</mn></mrow><mi>B</mi></msubsup><msubsup><mtext>T</mtext><mrow><mi>Y</mi><mn>1</mn></mrow><mi>C</mi></msubsup><msubsup><mtext>T</mtext><mi>Y</mi><mn>2</mn></msubsup><mo>⋯</mo><msubsup><mtext>T</mtext><mi>Y</mi><mi>N</mi></msubsup></mrow><annotation encoding="application/x-tex">\text{T}_X\text{T}^A_{Y1}\text{T}^B_{Y1}\text{T}^C_{Y1}\text{T}^2_{Y}\cdots\text{T}^N_{Y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1616em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9146em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9146em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9146em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9146em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>这个 token list 便是最终的展开结果 ,  其实可以把最后的展开结果总结为 :</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mtext>T</mtext><mi>X</mi></msub><mo stretchy="false">⟨</mo><mtext>expansion of the first token in </mtext><msub><mtext>T</mtext><mi>Y</mi></msub><mo stretchy="false">⟩</mo><mo stretchy="false">⟨</mo><mtext> remaining tokens in </mtext><msub><mtext>T</mtext><mi>Y</mi></msub><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\text{T}_X\langle\text{expansion of the first token in } \text{T}_Y\rangle \langle\text{ remaining tokens in }\text{T}_Y\rangle
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">⟨</span><span class="mord text"><span class="mord">expansion of the first token in </span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">⟩</span><span class="mopen">⟨</span><span class="mord text"><span class="mord"> remaining tokens in </span></span><span class="mord"><span class="mord text"><span class="mord">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">⟩</span></span></span></span></span></p>
+</li>
+</ul>
+<p>把上面抽象的分析实体化为一个具体的实例如下:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% T_X</span><br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\foo</span><span class="hljs-params">#1</span>&#123;<span class="hljs-keyword">\textbf</span>&#123;<span class="hljs-params">#1</span>&#125;&#125;<br><br><span class="hljs-comment">% T_Y</span><br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\abc</span>&#123;Hello&#125;, <span class="hljs-keyword">\def</span><span class="hljs-keyword">\xyz</span>&#123;, World&#125;<br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\bar</span>&#123;<span class="hljs-keyword">\abc</span><span class="hljs-keyword">\xyz</span>&#125;<br><br><span class="hljs-comment">% example</span><br><span class="hljs-keyword">\expandafter</span><span class="hljs-keyword">\expandafter</span><span class="hljs-keyword">\expandafter</span><span class="hljs-keyword">\foo</span><span class="hljs-keyword">\bar</span><br></code></pre></td></tr></table></figure>
+<p>最终得到的结果就是: <strong>H</strong>ello, world</p>
+<p>也就是只加粗了第一个字母 ‘H’, 可以对比如下命令的结果来理解:</p>
+<ul>
+<li>\foo\bar: <strong>Hello, World</strong></li>
+<li>\expandafter\foo\bar: <strong>Hello</strong>, world</li>
+</ul>
+<p>这样也许你就能看出\expandafter到底有啥作用? 到底是怎么作用的 ?</p>
+<blockquote>
+<p>别忘了 \expandafter 命令本身就可以看作一个 token</p>
+</blockquote>
+<p>其实LaTeX2e中有一个比较好用的命令: <code>\@expandtwoargs</code>, 可以在命令把这两个参数吃进去时，提前展开这两个参数</p>
+<blockquote>
+<p>突然感觉这个\expandafter 应该改名为\expandfirst了. 但是如果从整个命令的角度来看，就是 \uppercase operation expand after macro \cmda: means that \cmda will expand first.</p>
+</blockquote>
+<h4 id="read-expand">read expand</h4>
+<p>现在分享一个怎么读懂别人<code>\expanafter</code> 代码的方法，这个案例是本博客后续会用到的一个回答，代码如下:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\protected</span><span class="hljs-keyword">\def</span><span class="hljs-keyword">\pempty</span>&#123;&#125;<br><br><span class="hljs-keyword">\edef</span><span class="hljs-keyword">\withedef</span>&#123;x<span class="hljs-keyword">\pempty</span> x&#125;<br><span class="hljs-keyword">\expandafter</span><span class="hljs-keyword">\def</span><span class="hljs-keyword">\expandafter</span><span class="hljs-keyword">\withexpandafter</span><span class="hljs-keyword">\expandafter</span>&#123;<span class="hljs-keyword">\expandafter</span> x<span class="hljs-keyword">\pempty</span> x&#125;<br><br><span class="hljs-keyword">\tt</span><br><span class="hljs-keyword">\meaning</span><span class="hljs-keyword">\pempty</span>.<br><br><span class="hljs-keyword">\meaning</span><span class="hljs-keyword">\withedef</span>.<br><br><span class="hljs-keyword">\meaning</span><span class="hljs-keyword">\withexpandafter</span>.<br></code></pre></td></tr></table></figure>
+<p>我们重点分析那一长串的 \expandafter, 这里先给出我的一个分析方法:</p>
+<ul>
+<li>
+<p>从左往右，依次划掉  “1个  \expandafter + 1个 token”</p>
+</li>
+<li>
+<p>最后从后往前分析，把之前划掉的 token 一步一步的加回来(如果划掉的token是 \expanafter 也要加回来)</p>
+</li>
+</ul>
+<p>所以你可以按照如下过程分析:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% 划掉 token:\def</span><br><span class="hljs-keyword">\expandafter</span><span class="hljs-keyword">\def</span><span class="hljs-keyword">\expandafter</span><span class="hljs-keyword">\withexpandafter</span><span class="hljs-keyword">\expandafter</span>&#123;<span class="hljs-keyword">\expandafter</span> x<span class="hljs-keyword">\pempty</span> x&#125;<br><br><span class="hljs-comment">% 划掉 token:\withexpandafter</span><br><span class="hljs-keyword">\expandafter</span><span class="hljs-keyword">\withexpandafter</span><span class="hljs-keyword">\expandafter</span>&#123;<span class="hljs-keyword">\expandafter</span> x<span class="hljs-keyword">\pempty</span> x&#125;<br><br><span class="hljs-comment">% 划掉 token:&#123;</span><br><span class="hljs-keyword">\expandafter</span>&#123;<span class="hljs-keyword">\expandafter</span> x<span class="hljs-keyword">\pempty</span> x&#125;<br><br><span class="hljs-comment">% 划掉 token:x</span><br><span class="hljs-keyword">\expandafter</span> x<span class="hljs-keyword">\pempty</span> x&#125;<br><br><span class="hljs-comment">% 最后expand \pempty</span><br>x&#125;<br></code></pre></td></tr></table></figure>
+<p>因为最后的一个  \pempty 虽然被 \protected 保护了, 但是使用 \expandafter 仍然可以把它给展开. 于是我们一步一步的加回来被划掉的 token，过程如下:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs latex">x&#125;<br><br>xx&#125;<br><br>&#123;xx&#125;<br><br><span class="hljs-keyword">\withexpandafter</span>&#123;xx&#125;<br><br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\withexpandafter</span>&#123;xx&#125;<br></code></pre></td></tr></table></figure>
+<p>所以最后得到的结果就是:</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs crystal">\<span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">macro</span>:<span class="hljs-title">-</span></span>&gt;.<br><span class="hljs-function"><span class="hljs-keyword">macro</span>:<span class="hljs-title">-</span></span>&gt;x\pempty x.<br><span class="hljs-function"><span class="hljs-keyword">macro</span>:<span class="hljs-title">-</span></span>&gt;xx.<br></code></pre></td></tr></table></figure>
+<p>第一个命令 \withedef 中的  \pempty 由于被 \protected 了，所以不能被 \edef 给展开.</p>
+<blockquote>
+<p>因为 \pempty  是一个macro，所以它和后面  ‘x’ 之间的空格会被吃掉</p>
+</blockquote>
+<h4 id="write-expand">write expand</h4>
+<p>我们当然不能局限于仅仅只是看懂expand，很多时候其实我们需要的是自己去写这个expand，知道了原理之后其实并不复杂. 就以前面的那个</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\uppercase</span>&#123;abc<span class="hljs-keyword">\cmda</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>为例. 为了一步一步的引导新手怎么写这个<code>\expandafter</code>，我们先从一个简单的例子开始. 下面这个代码片段是错误的:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\uppercase</span><span class="hljs-keyword">\expandafter</span>&#123;a<span class="hljs-keyword">\cmda</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>怎么把这个展开写正确? 在此之前，让我先给出我总结这个规律：</p>
+<div class="note note-success">
+            <p>在一个要被前一个<code>\expandafter</code>展开的 token 前添加一个<code>\expandafter</code>，可以让这个 token 后面的宏提前展开</p>
+          </div>
+<p>在这里的情况就是：上述的expand会去展开字母 ‘a’, 但是我们想要的是去展开 ‘a’ 后面的 macro <code>\cmda</code>, 那么就需要让这个<code>\expandafter</code>的展开对象后移1个 token. 所以只需要在这个 ‘a’ 的前面添加一个 <code>\expandafter</code> 即可，所以正确的代码为:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\uppercase</span><span class="hljs-keyword">\expandafter</span>&#123;<span class="hljs-keyword">\expandafter</span> a<span class="hljs-keyword">\cmda</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>好，现在增大难度，有两个letters “ab”, 如果直接像下面这样写:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\uppercase</span><span class="hljs-keyword">\expandafter</span>&#123;b<span class="hljs-keyword">\expandafter</span> a<span class="hljs-keyword">\cmda</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>那么<code>\uppercese</code>后面的第一个 <code>\expanafter</code> 回去展开 ‘b’, 和前面类似，我们需要展开的对象后移一个 token; 所以直接在 ‘b’ 的前面加上一个 <code>\expandafter</code>, 正确的代码如下:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\uppercase</span><span class="hljs-keyword">\expandafter</span>&#123;<span class="hljs-keyword">\expandable</span> b<span class="hljs-keyword">\expandafter</span> a<span class="hljs-keyword">\cmda</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>所以对于三个letters下的正确展开代码就是:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\uppercase</span><span class="hljs-keyword">\expandafter</span>&#123;<span class="hljs-keyword">\expandafter</span> c<span class="hljs-keyword">\expandafter</span> b<span class="hljs-keyword">\expandafter</span> a<span class="hljs-keyword">\cmda</span>&#125;<br></code></pre></td></tr></table></figure>
+<div class="note note-success">
+            <p>所以最后看来：命令<code>\expandafter</code>展开 token 的过程就是以 token 为单位，从左至右，跳着展开的.</p>
+          </div>
+<h3 id="noexpand-and-protect">noexpand and protect</h3>
+<p>如果你不想提前展开某些 macro 呢? 这个特性在 TeX 中其实是随处可见的，比如常用的 \thepage 命令，如果我们设置这个 macro 为具体的数值肯定是不行的，这个 \thepage 的数值得随着不同的页面变化. 可以认为这个 \thepage 里面就有一些 macro 没有被完全展开，它们只有在打印具体的页数的时候才会被完全展开.</p>
+<blockquote>
+<p>这个机制应该就叫做 lazy evaluation 吧, 类似于 mma 中的延迟赋值 f[x_] := x;</p>
+</blockquote>
+<p>再来一个简单的例子:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\cmda</span>&#123;a&#125;<br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\cmdb</span>&#123;<span class="hljs-keyword">\cmda</span>&#125;<br><br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\cmda</span>&#123;A&#125;<br></code></pre></td></tr></table></figure>
+<p>上述定义的\cmdb就是没有被展开的例子, 当我 \cmda 重定义为&quot;A&quot;后，对应命令 \cmdb 也会被重定义为 “A”.</p>
+<p>这里可以介绍几个基本的命令:</p>
+<ul>
+<li>
+<p>\noexpand: prevents doing an expansion of the next token (only <strong>one</strong> token).</p>
+</li>
+<li>
+<p>\unexpanded: e-TeX includes an additional primitive \unexpanded, which will prevent expansion of <strong>multiple</strong> tokens.</p>
+</li>
+</ul>
+<p>既然都说到这里的，就必须要提到这一系列命令了: \def, \gdef, \edef, \xdef. 以及对应的 e-TeX 拓展的命令\protected 了. 这里必须抄一段 <a target="_blank" rel="noopener" href="https://tex.stackexchange.com/a/12148/294585">TEX SE 的回答</a> :</p>
+<p>The prefix <code>\protected</code>  can be used before <code>\def</code> and friends to define a protected, i.e. “robust” macro which doesn’t expand inside an <code>\edef</code> context (like in <code>\write</code>). However, <code>\expandafter</code> does expand such a macro.</p>
+<blockquote>
+<ul>
+<li>这个所谓的  robust 在你们刚入门的时候应该也不理解吧</li>
+<li>所谓的 \xdef 可以看成是 \gdef 和 \edef 的结合体</li>
+</ul>
+</blockquote>
+<h3 id="further-reading">further reading</h3>
+<p>更多的详细教程可以参见: <a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/Articles">Overleaf Articles</a>, 里面有挺多不错的东西.</p>
+<h2 id="LaTeX-3">LaTeX 3</h2>
+<p>在LaTeX 3中是可以很方便的操控宏展开的，可以有如下的来给你个途径:</p>
+<ul>
+<li>\exp_args:</li>
+<li>\cs_generate_variation:Nn</li>
+</ul>
+<p>这个两个命令用的好，就不用担心展开的问题了. 下面讲解一些关于argument specifier的东西，毕竟这个东西你是必要要学会的，如果你要使用 LaTeX 3 中的上面两个命令的话.</p>
+<h3 id="argument-specifier">argument specifier</h3>
+<p>Every function must include an argument specifier. For functions which take no arguments, this will be blank and the function name will end ‘:’.</p>
+<ul>
+<li><strong>N</strong> and <strong>n</strong>: means “no manipulation”, pass the argument through exactly as given</li>
+<li><strong>c</strong>: means “csname”, argument be turned into a csname. like \csname mycmd \csname.</li>
+<li><strong>V</strong> and <strong>v</strong>: means “value of variable”, get the content of a variable A V argument will be a single token (similar to N), using v a csname is constructed first, and then the value is recovered. So<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% 两个等价的命令</span><br><span class="hljs-keyword">\foo</span>:V <span class="hljs-keyword">\MyVariable</span><br><span class="hljs-keyword">\foo</span>:v &#123;MyVariable&#125;<br></code></pre></td></tr></table></figure>
+You can only define a base function argument is n instead of v, x, e, o etc. Then generiant the variant(only n can be variant).</li>
+<li><strong>o</strong>: means “expansion once” (Is it equvilant to expand only the first macro once?), while that V,v are prefered.</li>
+<li><strong>x</strong>: means “exhaustive expansion”, fully expand every macro(until only unexpandable ones remain). Functions which feature an x-type argument are not expandable.</li>
+<li><strong>e</strong>: means “expandable functions”, The e specifier is in many respects identical to x, Functions which feature an e-type argument may be expandable. Besides, Parameter character (usually #) in the argument need not be doubled (when in nest loop).</li>
+<li><strong>f</strong>: means “full(first) expansion”. The f specifier stands for full expansion, and in contrast to x, this type stops at the first non-expandable token(<space> is gobbled) (reading the argument from left to right) without trying to expand it.</li>
+<li><strong>T/F</strong>: Ture/False in logic test.</li>
+<li><strong>p</strong>: means TeX “traditional parameters”, like  <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\cs_set:Npn</span> <span class="hljs-keyword">\foo</span>:n <span class="hljs-params">#1</span>&#123;<span class="hljs-keyword">\textbf</span>&#123;<span class="hljs-params">#1</span>&#125;&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><strong>w</strong>: means “weird arguments”, This covers everything else, but mainly applies to delimited values</li>
+</ul>
+<h3 id="f-type">f-type</h3>
+<p>f-type 这一个argument specifier 可能比较奇怪，但是可以参见如下的示例:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% &#x27;f&#x27;-type expansion</span><br><span class="hljs-keyword">\tl_new:N</span> <span class="hljs-keyword">\l_tmpaa_tl</span><br><span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\l_tmpa_tl</span> &#123; A &#125;<br><span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\l_tmpaa_tl</span> &#123; <span class="hljs-keyword">\l_tmpa_tl</span> &#125;<br><span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\l_tmpb_tl</span> &#123; B &#125;<br><span class="hljs-comment">% &#x27;x&#x27; type</span><br><span class="hljs-keyword">\tl_set:Nx</span> <span class="hljs-keyword">\l_tmpc_tl</span> &#123; <span class="hljs-keyword">\l_tmpaa_tl</span> <span class="hljs-keyword">\l_tmpb_tl</span> &#125;<br><span class="hljs-keyword">\quad</span><span class="hljs-keyword">\;</span>(`x&#x27;-expand)<span class="hljs-keyword">\cs_meaning:N</span> <span class="hljs-keyword">\l_tmpc_tl</span><span class="hljs-keyword">\par</span><br><br><span class="hljs-comment">% &#x27;f&#x27; type expand</span><br><span class="hljs-keyword">\tl_set:Nf</span> <span class="hljs-keyword">\l_tmpc_tl</span> &#123; <span class="hljs-keyword">\l_tmpaa_tl</span> <span class="hljs-keyword">\l_tmpb_tl</span> &#125;<br>(`f&#x27;-expand)<span class="hljs-keyword">\cs_meaning:N</span> <span class="hljs-keyword">\l_tmpc_tl</span><span class="hljs-keyword">\par</span><br><br><span class="hljs-comment">% expans step by step</span><br><span class="hljs-comment">% expand once</span><br><span class="hljs-keyword">\tl_set:No</span> <span class="hljs-keyword">\l_tmpc_tl</span> &#123; <span class="hljs-keyword">\l_tmpaa_tl</span> <span class="hljs-keyword">\l_tmpb_tl</span> &#125;<br>(`o&#x27;-type~ once)<span class="hljs-keyword">\cs_meaning:N</span> <span class="hljs-keyword">\l_tmpc_tl</span><span class="hljs-keyword">\par</span><br><span class="hljs-comment">% expand twice</span><br><span class="hljs-keyword">\tl_set:No</span> <span class="hljs-keyword">\l_tmpc_tl</span> &#123; <span class="hljs-keyword">\l_tmpa_tl</span> <span class="hljs-keyword">\l_tmpb_tl</span> &#125;<br>(`o&#x27;-type~ twice)<span class="hljs-keyword">\cs_meaning:N</span> <span class="hljs-keyword">\l_tmpc_tl</span><span class="hljs-keyword">\par</span><br><span class="hljs-comment">% expand third</span><br><span class="hljs-keyword">\tl_set:No</span> <span class="hljs-keyword">\l_tmpc_tl</span> &#123; <span class="hljs-keyword">\l_tmpa_tl</span> <span class="hljs-keyword">\l_tmpb_tl</span> &#125;<br>(`o&#x27;-type~ third)<span class="hljs-keyword">\cs_meaning:N</span> <span class="hljs-keyword">\l_tmpc_tl</span><br></code></pre></td></tr></table></figure>
+<p>最终的结果为:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs latex">(‘x’-expand)macro:-&gt;AB<br>(‘f’-expand)macro:-&gt;A<span class="hljs-keyword">\l_tmpb_tl</span><br>(‘o’-type once)macro:-&gt;<span class="hljs-keyword">\l_tmpa_tl</span> <span class="hljs-keyword">\l_tmpb_tl</span><br>(‘o’-type twice)macro:-&gt;A<span class="hljs-keyword">\l_tmpb_tl</span><br>(‘o’-type third)macro:-&gt;A<span class="hljs-keyword">\l</span><span class="hljs-built_in">_</span>tmpb<span class="hljs-built_in">_</span>t<br></code></pre></td></tr></table></figure>
+<p>所以把这个f-type 看作 (first) expansion 个人觉得还是比较好理解的.</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/expansion/" class="print-no-link">#expansion</a>
+      
+        <a href="/tags/protect/" class="print-no-link">#protect</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>TeX 中的宏展开</div>
+      <div>https://zongpingding.github.io/2024/06/14/expansion_in_TeX/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 14, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/14/create_macro_in_latex/" title="Create Macro in LaTeX">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Create Macro in LaTeX</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/29/mathematica_tip/" title="Mathematica Tip">
+                        <span class="hidden-mobile">Mathematica Tip</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

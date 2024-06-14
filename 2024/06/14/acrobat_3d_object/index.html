@@ -16,27 +16,24 @@
   <meta name="author" content="Eureka">
   <meta name="keywords" content="">
   
-    <meta name="description" content="模式匹配 模式匹配可以说是 Mathematica 的精华，下面例举几个常用的在 Mathematica 中自定义函数时可能会用到的模式匹配: 可变个数参数 123x_   : 匹配任意表达式x__  : 一个或者多个变量x___ : 零个,一个或多个变量 参数类型 我们还可以限定自定义函数参数匹配的类型, 分为简单模式和复杂模式: 12x_Integer   : 匹配整数x_?NumberQ">
+    <meta name="description" content="way 1 解决方法如下，方法来自Adobe官网: 关闭Adobe Acrobat Pro版本并重命名以下文件夹：   把 C:\Users\UserName\AppData\Local\Adobe\AcrobatDC 重命名为C:\Users\UserName\AppData\Local\Adobe\AcrobatDC_OLD   如果可见，请将 C:\Users\UserName\AppDat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mathematica Tip">
-<meta property="og:url" content="https://zongpingding.github.io/2024/05/29/mathematica_tip/index.html">
+<meta property="og:title" content="3D object in Acrobat">
+<meta property="og:url" content="https://zongpingding.github.io/2024/06/14/acrobat_3d_object/index.html">
 <meta property="og:site_name" content="Eureka">
-<meta property="og:description" content="模式匹配 模式匹配可以说是 Mathematica 的精华，下面例举几个常用的在 Mathematica 中自定义函数时可能会用到的模式匹配: 可变个数参数 123x_   : 匹配任意表达式x__  : 一个或者多个变量x___ : 零个,一个或多个变量 参数类型 我们还可以限定自定义函数参数匹配的类型, 分为简单模式和复杂模式: 12x_Integer   : 匹配整数x_?NumberQ">
+<meta property="og:description" content="way 1 解决方法如下，方法来自Adobe官网: 关闭Adobe Acrobat Pro版本并重命名以下文件夹：   把 C:\Users\UserName\AppData\Local\Adobe\AcrobatDC 重命名为C:\Users\UserName\AppData\Local\Adobe\AcrobatDC_OLD   如果可见，请将 C:\Users\UserName\AppDat">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zongpingding.github.io/img/mathematica_tip/MaTeX_example.png">
-<meta property="article:published_time" content="2024-05-29T09:30:11.189Z">
-<meta property="article:modified_time" content="2024-06-14T11:43:05.754Z">
+<meta property="article:published_time" content="2024-06-14T10:33:58.116Z">
+<meta property="article:modified_time" content="2024-06-14T10:37:05.274Z">
 <meta property="article:author" content="Eureka">
-<meta property="article:tag" content="mathematica">
-<meta property="article:tag" content="MaTeX">
+<meta property="article:tag" content="Acrobat">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zongpingding.github.io/img/mathematica_tip/MaTeX_example.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Mathematica Tip - Eureka</title>
+  <title>3D object in Acrobat - Eureka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Mathematica Tip"></span>
+            <span id="subtitle" data-typed-text="3D object in Acrobat"></span>
           
         </div>
 
@@ -213,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-29 17:30" pubdate>
-          May 29, 2024 pm
+        <time datetime="2024-06-14 18:33" pubdate>
+          June 14, 2024 pm
         </time>
       </span>
     
@@ -225,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          339 words
+          115 words
         
       </span>
     
@@ -236,7 +233,7 @@
         
         
         
-          3 mins
+          1 mins
         
       </span>
     
@@ -273,33 +270,27 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Mathematica Tip</h1>
+            <h1 id="seo-header">3D object in Acrobat</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="模式匹配">模式匹配</h2>
-<p>模式匹配可以说是 Mathematica 的精华，下面例举几个常用的在 Mathematica 中自定义函数时可能会用到的模式匹配:</p>
-<h3 id="可变个数参数">可变个数参数</h3>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-type">x_</span>   <span class="hljs-operator">:</span> 匹配任意表达式<br><span class="hljs-type">x__</span>  <span class="hljs-operator">:</span> 一个或者多个变量<br><span class="hljs-type">x___</span> <span class="hljs-operator">:</span> 零个<span class="hljs-operator">,</span>一个或多个变量<br></code></pre></td></tr></table></figure>
-<h3 id="参数类型">参数类型</h3>
-<p>我们还可以限定自定义函数参数匹配的类型, 分为简单模式和复杂模式:</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-type">x_Integer</span>   <span class="hljs-operator">:</span> 匹配整数<br><span class="hljs-type">x_</span><span class="hljs-operator">?</span><span class="hljs-built_in">NumberQ</span>  <span class="hljs-operator">:</span> 检验对应的参数是否为数字<br></code></pre></td></tr></table></figure>
-<h2 id="一个应用">一个应用</h2>
-<p>Mathematica中有一个 <code>MaTeX</code> 包，可以用于在 Mathematica 中使用 LaTeX 公式,但是很多时候这个MaTeX命令并不能很好的和 Mathematica 的命令结合，所以我定义了一个如下命令,用于输出一个函数的积分的 LaTeX 表达式. 命令如下:</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">TeXint</span><span class="hljs-punctuation">[</span><span class="hljs-type">f_</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">Module</span><span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">res</span><span class="hljs-operator">,</span> <span class="hljs-variable">expression</span><span class="hljs-operator">,</span> <span class="hljs-variable">stringConcat</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span><br>    <span class="hljs-comment">(* string concat function *)</span><br>    <span class="hljs-variable">stringConcat</span><span class="hljs-punctuation">[</span><span class="hljs-type">list__</span><span class="hljs-punctuation">]</span><span class="hljs-operator">:=</span><span class="hljs-built_in">ToString</span><span class="hljs-operator">/@</span><span class="hljs-built_in">List</span><span class="hljs-punctuation">[</span><span class="hljs-variable">list</span><span class="hljs-punctuation">]</span><span class="hljs-operator">//</span><span class="hljs-built_in">StringJoin</span><span class="hljs-operator">;</span><br>    <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">Integrate</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-variable">x</span><span class="hljs-punctuation">]</span><span class="hljs-operator">;</span><br>    <span class="hljs-variable">expression</span><span class="hljs-operator">=</span><span class="hljs-variable">stringConcat</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;\\int&quot;</span><span class="hljs-operator">,</span> <span class="hljs-variable">f</span><span class="hljs-operator">//</span><span class="hljs-built_in">TeXForm</span><span class="hljs-operator">,</span> <span class="hljs-string">&quot;\\mathrm&#123;d&#125;x&quot;</span><span class="hljs-operator">,</span> <span class="hljs-string">&quot;=&quot;</span><span class="hljs-operator">,</span> <span class="hljs-variable">res</span><span class="hljs-operator">//</span><span class="hljs-built_in">TeXForm</span><span class="hljs-punctuation">]</span><span class="hljs-operator">;</span><br>    <span class="hljs-comment">(* return a TeX Formula *)</span><br>    <span class="hljs-variable">MaTeX</span><span class="hljs-punctuation">[</span><span class="hljs-variable">expression</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
-<p>安装 MaTeX 后运行如下命令:</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-operator">&lt;&lt;</span> <span class="hljs-variable">MaTeX</span><span class="hljs-operator">`</span><br><br><span class="hljs-comment">(* or *)</span><br><span class="hljs-built_in">Needs</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;MaTeX`&quot;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
-<p>然后在运行我上面定义的那个 <code>TeXint[]</code> 函数:</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">TeXint</span><span class="hljs-punctuation">[</span><span class="hljs-number">1</span><span class="hljs-operator">/</span><span class="hljs-punctuation">(</span><span class="hljs-variable">x</span><span class="hljs-operator">^</span><span class="hljs-number">2</span><span class="hljs-operator">+</span><span class="hljs-variable">x</span><span class="hljs-operator">+</span><span class="hljs-number">3</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
-<p>最终你就可以得到如下的一个漂亮输出：</p>
-<p><img src="/img/mathematica_tip/MaTeX_example.png" srcset="/img/loading.gif" lazyload alt="MaTeX Example"></p>
-<h2 id="More">More</h2>
-<p>其实 Mathematical 有一个插件仓库的东西,地址如下:</p>
+                <h2 id="way-1">way 1</h2>
+<p>解决方法如下，方法来自Adobe官网:</p>
+<p>关闭Adobe Acrobat Pro版本并重命名以下文件夹：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://resources.wolframcloud.com/PacletRepository/">PacletRepository</a></li>
+<li>
+<p>把 C:\Users\UserName\AppData\Local\Adobe\Acrobat<strong>DC</strong> 重命名为C:\Users\UserName\AppData\Local\Adobe\Acrobat<strong>DC_OLD</strong></p>
+</li>
+<li>
+<p>如果可见，请将 C:\Users\UserName\AppData\Local\Adobe\Acrobat<strong>20XX</strong> 更改为C:\Users\UserName\AppData\Local\Adobe\Acrobat<strong>20XX_OLD</strong></p>
+</li>
 </ul>
-<p>这个里面也许有一些你能用的上的插件.</p>
+<p>然后重新打开三维PDF文件以查看</p>
+<h2 id="way-2">way 2</h2>
+<p>重新安装Adobe Reader</p>
+<h2 id="warning">warning</h2>
+<p>并非所有PDF阅读器都将查看三维PDF，如果遇到问题，请首先尝试其他PDF阅读器</p>
 
                 
               </div>
@@ -318,7 +309,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
   
   
 
@@ -333,9 +324,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/mathematica/" class="print-no-link">#mathematica</a>
-      
-        <a href="/tags/MaTeX/" class="print-no-link">#MaTeX</a>
+        <a href="/tags/Acrobat/" class="print-no-link">#Acrobat</a>
       
     </div>
   
@@ -347,8 +336,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Mathematica Tip</div>
-      <div>https://zongpingding.github.io/2024/05/29/mathematica_tip/</div>
+      <div>3D object in Acrobat</div>
+      <div>https://zongpingding.github.io/2024/06/14/acrobat_3d_object/</div>
     </div>
     <div class="license-meta">
       
@@ -360,7 +349,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 29, 2024</div>
+          <div>June 14, 2024</div>
         </div>
       
       
@@ -392,9 +381,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/14/expansion_in_TeX/" title="TeX 中的宏展开">
+                      <a href="/2024/06/14/arc_command/" title="\arc command in TikZ">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">TeX 中的宏展开</span>
+                        <span class="hidden-mobile">\arc command in TikZ</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -402,8 +391,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/29/l3keyval/" title="Something about l3key2e TeX">
-                        <span class="hidden-mobile">Something about l3key2e TeX</span>
+                      <a href="/2024/06/14/inkscape_export_tex/" title="Export TeX using Inkscape">
+                        <span class="hidden-mobile">Export TeX using Inkscape</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

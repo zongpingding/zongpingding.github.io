@@ -16,27 +16,27 @@
   <meta name="author" content="Eureka">
   <meta name="keywords" content="">
   
-    <meta name="description" content="模式匹配 模式匹配可以说是 Mathematica 的精华，下面例举几个常用的在 Mathematica 中自定义函数时可能会用到的模式匹配: 可变个数参数 123x_   : 匹配任意表达式x__  : 一个或者多个变量x___ : 零个,一个或多个变量 参数类型 我们还可以限定自定义函数参数匹配的类型, 分为简单模式和复杂模式: 12x_Integer   : 匹配整数x_?NumberQ">
+    <meta name="description" content="引入 闲来无事，在编译的一个TeX文档的过程中看到了如下的警告: 123456789101112LaTeX Font Warning: Font shape &#96;TU&#x2F;NewCM10-Book.otf(2)&#x2F;m&#x2F;it&#x27; undefined(Font)              using &#96;TU&#x2F;NewCM10-Book.otf(2)&#x2F;m&#x2F;n&#x27; instead on input">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mathematica Tip">
-<meta property="og:url" content="https://zongpingding.github.io/2024/05/29/mathematica_tip/index.html">
+<meta property="og:title" content="读懂 TeX 的 Font Warning">
+<meta property="og:url" content="https://zongpingding.github.io/2024/06/14/font_warning/index.html">
 <meta property="og:site_name" content="Eureka">
-<meta property="og:description" content="模式匹配 模式匹配可以说是 Mathematica 的精华，下面例举几个常用的在 Mathematica 中自定义函数时可能会用到的模式匹配: 可变个数参数 123x_   : 匹配任意表达式x__  : 一个或者多个变量x___ : 零个,一个或多个变量 参数类型 我们还可以限定自定义函数参数匹配的类型, 分为简单模式和复杂模式: 12x_Integer   : 匹配整数x_?NumberQ">
+<meta property="og:description" content="引入 闲来无事，在编译的一个TeX文档的过程中看到了如下的警告: 123456789101112LaTeX Font Warning: Font shape &#96;TU&#x2F;NewCM10-Book.otf(2)&#x2F;m&#x2F;it&#x27; undefined(Font)              using &#96;TU&#x2F;NewCM10-Book.otf(2)&#x2F;m&#x2F;n&#x27; instead on input">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zongpingding.github.io/img/mathematica_tip/MaTeX_example.png">
-<meta property="article:published_time" content="2024-05-29T09:30:11.189Z">
-<meta property="article:modified_time" content="2024-06-14T11:43:05.754Z">
+<meta property="og:image" content="https://zongpingding.github.io/img/font_warning/cmr.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/font_warning/lmr.png">
+<meta property="article:published_time" content="2024-06-14T10:06:17.304Z">
+<meta property="article:modified_time" content="2024-06-14T10:41:46.006Z">
 <meta property="article:author" content="Eureka">
-<meta property="article:tag" content="mathematica">
-<meta property="article:tag" content="MaTeX">
+<meta property="article:tag" content="font">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zongpingding.github.io/img/mathematica_tip/MaTeX_example.png">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/font_warning/cmr.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Mathematica Tip - Eureka</title>
+  <title>读懂 TeX 的 Font Warning - Eureka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -47,6 +47,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -202,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Mathematica Tip"></span>
+            <span id="subtitle" data-typed-text="读懂 TeX 的 Font Warning"></span>
           
         </div>
 
@@ -213,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-29 17:30" pubdate>
-          May 29, 2024 pm
+        <time datetime="2024-06-14 18:06" pubdate>
+          June 14, 2024 pm
         </time>
       </span>
     
@@ -225,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          339 words
+          477 words
         
       </span>
     
@@ -236,7 +238,7 @@
         
         
         
-          3 mins
+          4 mins
         
       </span>
     
@@ -273,33 +275,85 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Mathematica Tip</h1>
+            <h1 id="seo-header">读懂 TeX 的 Font Warning</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="模式匹配">模式匹配</h2>
-<p>模式匹配可以说是 Mathematica 的精华，下面例举几个常用的在 Mathematica 中自定义函数时可能会用到的模式匹配:</p>
-<h3 id="可变个数参数">可变个数参数</h3>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-type">x_</span>   <span class="hljs-operator">:</span> 匹配任意表达式<br><span class="hljs-type">x__</span>  <span class="hljs-operator">:</span> 一个或者多个变量<br><span class="hljs-type">x___</span> <span class="hljs-operator">:</span> 零个<span class="hljs-operator">,</span>一个或多个变量<br></code></pre></td></tr></table></figure>
-<h3 id="参数类型">参数类型</h3>
-<p>我们还可以限定自定义函数参数匹配的类型, 分为简单模式和复杂模式:</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-type">x_Integer</span>   <span class="hljs-operator">:</span> 匹配整数<br><span class="hljs-type">x_</span><span class="hljs-operator">?</span><span class="hljs-built_in">NumberQ</span>  <span class="hljs-operator">:</span> 检验对应的参数是否为数字<br></code></pre></td></tr></table></figure>
-<h2 id="一个应用">一个应用</h2>
-<p>Mathematica中有一个 <code>MaTeX</code> 包，可以用于在 Mathematica 中使用 LaTeX 公式,但是很多时候这个MaTeX命令并不能很好的和 Mathematica 的命令结合，所以我定义了一个如下命令,用于输出一个函数的积分的 LaTeX 表达式. 命令如下:</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">TeXint</span><span class="hljs-punctuation">[</span><span class="hljs-type">f_</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">:=</span> <span class="hljs-built_in">Module</span><span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><span class="hljs-variable">res</span><span class="hljs-operator">,</span> <span class="hljs-variable">expression</span><span class="hljs-operator">,</span> <span class="hljs-variable">stringConcat</span><span class="hljs-punctuation">&#125;</span><span class="hljs-operator">,</span><br>    <span class="hljs-comment">(* string concat function *)</span><br>    <span class="hljs-variable">stringConcat</span><span class="hljs-punctuation">[</span><span class="hljs-type">list__</span><span class="hljs-punctuation">]</span><span class="hljs-operator">:=</span><span class="hljs-built_in">ToString</span><span class="hljs-operator">/@</span><span class="hljs-built_in">List</span><span class="hljs-punctuation">[</span><span class="hljs-variable">list</span><span class="hljs-punctuation">]</span><span class="hljs-operator">//</span><span class="hljs-built_in">StringJoin</span><span class="hljs-operator">;</span><br>    <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">Integrate</span><span class="hljs-punctuation">[</span><span class="hljs-variable">f</span><span class="hljs-operator">,</span> <span class="hljs-variable">x</span><span class="hljs-punctuation">]</span><span class="hljs-operator">;</span><br>    <span class="hljs-variable">expression</span><span class="hljs-operator">=</span><span class="hljs-variable">stringConcat</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;\\int&quot;</span><span class="hljs-operator">,</span> <span class="hljs-variable">f</span><span class="hljs-operator">//</span><span class="hljs-built_in">TeXForm</span><span class="hljs-operator">,</span> <span class="hljs-string">&quot;\\mathrm&#123;d&#125;x&quot;</span><span class="hljs-operator">,</span> <span class="hljs-string">&quot;=&quot;</span><span class="hljs-operator">,</span> <span class="hljs-variable">res</span><span class="hljs-operator">//</span><span class="hljs-built_in">TeXForm</span><span class="hljs-punctuation">]</span><span class="hljs-operator">;</span><br>    <span class="hljs-comment">(* return a TeX Formula *)</span><br>    <span class="hljs-variable">MaTeX</span><span class="hljs-punctuation">[</span><span class="hljs-variable">expression</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
-<p>安装 MaTeX 后运行如下命令:</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-operator">&lt;&lt;</span> <span class="hljs-variable">MaTeX</span><span class="hljs-operator">`</span><br><br><span class="hljs-comment">(* or *)</span><br><span class="hljs-built_in">Needs</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;MaTeX`&quot;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
-<p>然后在运行我上面定义的那个 <code>TeXint[]</code> 函数:</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">TeXint</span><span class="hljs-punctuation">[</span><span class="hljs-number">1</span><span class="hljs-operator">/</span><span class="hljs-punctuation">(</span><span class="hljs-variable">x</span><span class="hljs-operator">^</span><span class="hljs-number">2</span><span class="hljs-operator">+</span><span class="hljs-variable">x</span><span class="hljs-operator">+</span><span class="hljs-number">3</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
-<p>最终你就可以得到如下的一个漂亮输出：</p>
-<p><img src="/img/mathematica_tip/MaTeX_example.png" srcset="/img/loading.gif" lazyload alt="MaTeX Example"></p>
-<h2 id="More">More</h2>
-<p>其实 Mathematical 有一个插件仓库的东西,地址如下:</p>
+                <h2 id="引入">引入</h2>
+<p>闲来无事，在编译的一个TeX文档的过程中看到了如下的警告:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">LaTeX Font Warning: Font shape `TU/NewCM10-Book.otf(2)/m/it&#x27; undefined<br>(Font)              using `TU/NewCM10-Book.otf(2)/m/n&#x27; instead on input line 43<br><br><br>LaTeX Font Warning: Font shape `TU/NewCM10-Book.otf(2)/b/n&#x27; undefined<br>(Font)              using `TU/NewCM10-Book.otf(2)/m/n&#x27; instead on input line 55<br>.<br><br><br>LaTeX Font Warning: Font shape `TU/NewCM10-Book.otf(2)/m/sl&#x27; undefined<br>(Font)              using `TU/NewCM10-Book.otf(2)/m/it&#x27; instead on input line 5<br>8.<br></code></pre></td></tr></table></figure>
+<p>那么问题来了，这个里面的 <code>/m/it</code>, <code>/b/n</code>, <code>/m/sl</code> 是什么意思 ?</p>
+<h2 id="参考">参考</h2>
+<p>本博客内容参考(抄袭)内容过多，但是大致可以例举如下:</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://resources.wolframcloud.com/PacletRepository/">PacletRepository</a></li>
+<li><a target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/552407/ot1-xcmss-b-n-undefined-using-ot1-xcmss-bx-n-instead">TeX SE 的回答 1</a></li>
+<li><a target="_blank" rel="noopener" href="https://tex.stackexchange.com/a/5012/294585">TeX SE visaul markup</a></li>
+<li>The LaTeX Companion-III part1 9.2-Understanding font characteristics</li>
+<li>The LaTeX Companion-III part1 9.5-Standard LATEX font support</li>
+<li>The LaTeX Companion-III part1-9.4.1-Defining new alphabet identifiers</li>
 </ul>
-<p>这个里面也许有一些你能用的上的插件.</p>
+<h2 id="正文">正文</h2>
+<p>In NFSS, there are four font parameters：</p>
+<ul>
+<li>the encoding
+<ul>
+<li><code>OT1 encoding</code>: The fonts that were originally distributed with TEX had only 128 glyphs per font and therefore did not include any accented characters as individual glyphs.</li>
+<li><code>T1 encoding</code> : As an alternative encoding, the TEX user community defined a 256-character encoding called T1 that enables TEX to typeset correctly (with proper hyphenation and kerning) in more than 30 languages based on the Latin alphabet</li>
+<li><code>TU encoding</code>: use Unicode fonts and thus use Unicode as the encoding, made the default if <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\rm\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord"><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></span> is used with such an engine, like <code>xelatex</code>.</li>
+</ul>
+</li>
+<li>the font family
+<ul>
+<li><code>lmr</code>: Latin Modern Roman</li>
+<li><code>cmss</code>: Computer Modern Sans Serif</li>
+<li>…</li>
+</ul>
+</li>
+<li>the series: typeface of current font
+<ul>
+<li><code>m</code>: selects a font with <strong>medium</strong> values for the width and the weight</li>
+<li><code>b/x</code>: switches to a <strong>bolder</strong> series, <code>x</code> refers to ‘extend’.</li>
+</ul>
+</li>
+<li>the shape:
+<ul>
+<li><code>n</code>: The normal(upright) shape</li>
+<li><code>it</code>: The italic shape</li>
+<li><code>sl</code>: The slanted or oblique shape</li>
+<li><code>sc</code>: The Small Caps shape</li>
+<li>The swash letter shape</li>
+</ul>
+</li>
+</ul>
+<p>采用缩写的具体历史原理是因为MS-DOS文件系统的限制，见如下:</p>
+<blockquote>
+<p>This naming scheme dates back to when MS-DOS limited all filenames to be eight characters, a dot, and a three-character file type, so they had to be terse.</p>
+</blockquote>
+<p>关于这个属于的区别: 可以参见下面的这些命令: The visual <code>\textXX</code> commands will change 3 <code>axes</code> of the text: <strong>shape</strong>, <strong>family</strong> and <strong>weight</strong>.</p>
+<ul>
+<li>The shape axis covers: \textup, \textit, \textsc and \textsl</li>
+<li>The family axis covers: \textrm, \textsf, \texttt</li>
+<li>The weight axis covers: \textbf, \textmd</li>
+</ul>
+<h2 id="Table">Table</h2>
+<p>下面从 <code>The LaTeX Companion-3rd edition</code> 中截取了两张表格用于对上面的内容进行一个补充:</p>
+<p><img src="/img/font_warning/cmr.png" srcset="/img/loading.gif" lazyload alt="Computer Modern"></p>
+<p><img src="/img/font_warning/lmr.png" srcset="/img/loading.gif" lazyload alt="Latin Modern"></p>
+<h2 id="Math-Alphabets">Math Alphabets</h2>
+<p>在了解如上所述的基本字体知识后，我们可以对数学公式下手了. 你也许经常看到下面这个命令:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\DeclareMathAlphabet</span>&#123;cmd&#125;&#123;encoding&#125;&#123;family&#125;&#123;series&#125;&#123;shape&#125;<br></code></pre></td></tr></table></figure>
+<p>这个玩意儿到底是什么意思? 其实你在看了前面的 <strong>看懂TeX的字体警告</strong> 之后应该就能看懂这个命令了.</p>
+<h3 id="new-identifier">new identifier</h3>
+<p>Suppose that you want to make a <strong>slanted sans serif</strong> typeface available as a math alphabet. You will find that the Computer Modern Sans family, for example, consists of a medium series with upright and slanted shapes.  Then declare and use it as follows:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\DeclareMathAlphabet</span>&#123;<span class="hljs-keyword">\mathsfsl</span>&#125;&#123;T1&#125;&#123;cmss&#125;&#123;m&#125;&#123;sl&#125;<br><br>We demonstrate this with the formula<br><span class="hljs-keyword">\begin</span>&#123;equation&#125;<br><span class="hljs-keyword">\sum</span> <span class="hljs-keyword">\mathsfsl</span>&#123;A&#125;<span class="hljs-built_in">_</span>&#123;i&#125; = a <span class="hljs-keyword">\tan</span> <span class="hljs-keyword">\beta</span><br><span class="hljs-keyword">\end</span>&#123;equation&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="redefine-identifier">redefine identifier</h3>
+<p>It is also possible to redefine an existing math alphabet identifier in a package file or in the preamble of your document. For example, the declaration</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\DeclareMathAlphabet</span>&#123;<span class="hljs-keyword">\mathsf</span>&#125;&#123;T1&#125;&#123;qag&#125;&#123;m&#125;&#123;n&#125;<br></code></pre></td></tr></table></figure>
+<p>Then <code>\mathsf</code> will switch to <strong>Adventor (Avant Garde)</strong> in your formulas.</p>
+<blockquote>
+<p>如果一个math alphabet 已经被某一个symbol font 加载了，那么最好使用命令 <code>\DeclareSymbolFontAlphabet</code>，这样可以节约资源</p>
+</blockquote>
 
                 
               </div>
@@ -318,7 +372,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
   
   
 
@@ -333,9 +387,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/mathematica/" class="print-no-link">#mathematica</a>
-      
-        <a href="/tags/MaTeX/" class="print-no-link">#MaTeX</a>
+        <a href="/tags/font/" class="print-no-link">#font</a>
       
     </div>
   
@@ -347,8 +399,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Mathematica Tip</div>
-      <div>https://zongpingding.github.io/2024/05/29/mathematica_tip/</div>
+      <div>读懂 TeX 的 Font Warning</div>
+      <div>https://zongpingding.github.io/2024/06/14/font_warning/</div>
     </div>
     <div class="license-meta">
       
@@ -360,7 +412,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 29, 2024</div>
+          <div>June 14, 2024</div>
         </div>
       
       
@@ -392,9 +444,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/14/expansion_in_TeX/" title="TeX 中的宏展开">
+                      <a href="/2024/06/14/marker_in_TeX/" title="Marker in TeX">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">TeX 中的宏展开</span>
+                        <span class="hidden-mobile">Marker in TeX</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -402,8 +454,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/29/l3keyval/" title="Something about l3key2e TeX">
-                        <span class="hidden-mobile">Something about l3key2e TeX</span>
+                      <a href="/2024/06/14/create_macro_in_latex/" title="Create Macro in LaTeX">
+                        <span class="hidden-mobile">Create Macro in LaTeX</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -495,6 +547,11 @@
 
 
   
+
+
+  
+  
+
 
 
 
