@@ -16,24 +16,25 @@
   <meta name="author" content="Eureka">
   <meta name="keywords" content="">
   
-    <meta name="description" content="引入 尽管常见的 tcolorbox,  framed, boites 等宏包提供了一个可跨页的盒子，但是这个跨页的原理是什么? 到底怎么实现的? TeX SE 上的如下问题: breakable box 有一个关于“可跨页盒子” 的实现代码(这里是简化后代码): 1234567891011121314151617181920212223242526272829303132333435363738">
+    <meta name="description" content="现象描述 一个很奇怪的现象，在chrome 中打印的 pdf 复制出来的文字是乱码，虽然看着这个文件的确是矢量图，但是你去复制文字就会得到乱码. 解决方法 在 Ctrl+P 调出打印菜单时，选择 另存为pdf, 而不是去选择 PDFCreator. 操作示意图:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Page-breakable Box in TeX">
-<meta property="og:url" content="https://zongpingding.github.io/2024/06/15/breakable_box/index.html">
+<meta property="og:title" content="Chrome pdf export">
+<meta property="og:url" content="https://zongpingding.github.io/2024/06/29/chrome_pdf_export/index.html">
 <meta property="og:site_name" content="Eureka">
-<meta property="og:description" content="引入 尽管常见的 tcolorbox,  framed, boites 等宏包提供了一个可跨页的盒子，但是这个跨页的原理是什么? 到底怎么实现的? TeX SE 上的如下问题: breakable box 有一个关于“可跨页盒子” 的实现代码(这里是简化后代码): 1234567891011121314151617181920212223242526272829303132333435363738">
+<meta property="og:description" content="现象描述 一个很奇怪的现象，在chrome 中打印的 pdf 复制出来的文字是乱码，虽然看着这个文件的确是矢量图，但是你去复制文字就会得到乱码. 解决方法 在 Ctrl+P 调出打印菜单时，选择 另存为pdf, 而不是去选择 PDFCreator. 操作示意图:">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-06-15T09:30:20.167Z">
-<meta property="article:modified_time" content="2024-06-15T09:41:21.629Z">
+<meta property="og:image" content="https://zongpingding.github.io/img/chrome_pdf_export/example.png">
+<meta property="article:published_time" content="2024-06-29T15:45:36.955Z">
+<meta property="article:modified_time" content="2024-06-29T15:47:50.007Z">
 <meta property="article:author" content="Eureka">
-<meta property="article:tag" content="breakable box">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/chrome_pdf_export/example.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Page-breakable Box in TeX - Eureka</title>
+  <title>Chrome pdf export - Eureka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Page-breakable Box in TeX"></span>
+            <span id="subtitle" data-typed-text="Chrome pdf export"></span>
           
         </div>
 
@@ -210,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-15 17:30" pubdate>
-          June 15, 2024 pm
+        <time datetime="2024-06-29 23:45" pubdate>
+          June 29, 2024 pm
         </time>
       </span>
     
@@ -222,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          272 words
+          88 words
         
       </span>
     
@@ -233,7 +234,7 @@
         
         
         
-          3 mins
+          1 mins
         
       </span>
     
@@ -270,16 +271,16 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Page-breakable Box in TeX</h1>
+            <h1 id="seo-header">Chrome pdf export</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="引入">引入</h2>
-<p>尽管常见的 <code>tcolorbox</code>,  <code>framed</code>, <code>boites</code> 等宏包提供了一个可跨页的盒子，但是这个跨页的原理是什么? 到底怎么实现的? TeX SE 上的如下问题: <a target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/52943/background-color-of-breakable-box-with-thin-blank-lines">breakable box</a> 有一个关于“可跨页盒子” 的实现代码(这里是简化后代码):</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>[11pt]&#123;article&#125;<br><span class="hljs-keyword">\usepackage</span>[utf8]&#123;inputenc&#125;<br><span class="hljs-keyword">\usepackage</span>[T1]&#123;fontenc&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;lipsum&#125;<br><span class="hljs-keyword">\pagestyle</span>&#123;empty&#125;<br><br><span class="hljs-keyword">\newbox</span><span class="hljs-keyword">\boxhead</span><br><span class="hljs-keyword">\newbox</span><span class="hljs-keyword">\boxtail</span><br><span class="hljs-keyword">\newbox</span><span class="hljs-keyword">\boxtemp</span><br><br><span class="hljs-keyword">\newdimen</span><span class="hljs-keyword">\dimtemp</span><br><br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\boxsplit</span>&#123;<span class="hljs-comment">%</span><br>  <span class="hljs-comment">% total height of original box</span><br>  <span class="hljs-keyword">\dimtemp</span><span class="hljs-keyword">\ht</span><span class="hljs-keyword">\boxtail</span><br>  <span class="hljs-keyword">\advance</span><span class="hljs-keyword">\dimtemp</span><span class="hljs-keyword">\dp</span><span class="hljs-keyword">\boxtail</span><br>  <span class="hljs-comment">% split original box in order to retrieve its first line</span><br>  <span class="hljs-keyword">\setbox</span><span class="hljs-keyword">\boxhead</span><span class="hljs-keyword">\vsplit</span><span class="hljs-keyword">\boxtail</span> to 0pt<br>  <span class="hljs-comment">% fix the height of the first line</span><br>  <span class="hljs-keyword">\setbox</span><span class="hljs-keyword">\boxhead</span><span class="hljs-keyword">\vbox</span>&#123;<span class="hljs-keyword">\unvbox</span><span class="hljs-keyword">\boxhead</span>&#125;<span class="hljs-comment">%</span><br>  <span class="hljs-comment">% restore original size</span><br>  <span class="hljs-keyword">\setbox</span><span class="hljs-keyword">\boxtemp</span><span class="hljs-keyword">\vbox</span>&#123;<span class="hljs-keyword">\copy</span><span class="hljs-keyword">\boxhead</span><span class="hljs-keyword">\copy</span><span class="hljs-keyword">\boxtail</span>&#125;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\advance</span><span class="hljs-keyword">\dimtemp</span>-<span class="hljs-keyword">\ht</span><span class="hljs-keyword">\boxtemp</span><br>  <span class="hljs-keyword">\advance</span><span class="hljs-keyword">\dimtemp</span>-<span class="hljs-keyword">\dp</span><span class="hljs-keyword">\boxtemp</span><br>  <span class="hljs-keyword">\advance</span><span class="hljs-keyword">\dimtemp</span><span class="hljs-keyword">\dp</span><span class="hljs-keyword">\boxhead</span><br>  <span class="hljs-keyword">\dp</span><span class="hljs-keyword">\boxhead</span><span class="hljs-keyword">\dimtemp</span><br>&#125;<br><br><span class="hljs-keyword">\newenvironment</span>&#123;mybox&#125;&#123;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\ifhmode</span><span class="hljs-keyword">\par</span><span class="hljs-keyword">\fi</span><br>  <span class="hljs-keyword">\setbox</span><span class="hljs-keyword">\boxtail</span><span class="hljs-keyword">\vbox</span><span class="hljs-keyword">\bgroup</span><br>&#125;&#123;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\egroup</span><br>  &#123;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\noindent</span><br>    <span class="hljs-keyword">\fboxsep</span> 0pt<br>    <span class="hljs-keyword">\splittopskip</span> 0pt<br>    <span class="hljs-keyword">\baselineskip</span> 0pt<br>    <span class="hljs-keyword">\lineskiplimit</span> 0pt<br>    <span class="hljs-keyword">\lineskip</span> 0pt<br>    <span class="hljs-keyword">\vfuzz</span><span class="hljs-keyword">\maxdimen</span><br>    <span class="hljs-keyword">\leavevmode</span><br>    <span class="hljs-keyword">\loop</span><br>      <span class="hljs-keyword">\ifvoid</span><span class="hljs-keyword">\boxtail</span><br>      <span class="hljs-keyword">\else</span><br>        <span class="hljs-keyword">\boxsplit</span><br>        <span class="hljs-keyword">\hbox</span> to <span class="hljs-keyword">\linewidth</span>&#123;<span class="hljs-keyword">\box</span><span class="hljs-keyword">\boxhead</span>&#125;<span class="hljs-keyword">\hfil</span><span class="hljs-comment">%</span><br>        <span class="hljs-keyword">\hfil</span><br>        <span class="hljs-keyword">\repeat</span><br>  &#125;<span class="hljs-comment">%</span><br>&#125;<br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><br><span class="hljs-keyword">\begin</span>&#123;mybox&#125;<br>  <span class="hljs-keyword">\lipsum</span>[1-5]<br><span class="hljs-keyword">\end</span>&#123;mybox&#125;<br><br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="目标">目标</h2>
-<p>我想要根据上述的原理，自己定义一个对应的可跨页的盒子，然后把这个盒子的声明封装为一个命令，方便在之后的模板 <code>zlatex</code> 中调用.</p>
+                <h2 id="现象描述">现象描述</h2>
+<p>一个很奇怪的现象，在chrome 中打印的 pdf 复制出来的文字是乱码，虽然看着这个文件的确是矢量图，但是你去复制文字就会得到乱码.</p>
+<h2 id="解决方法">解决方法</h2>
+<p>在 Ctrl+P 调出打印菜单时，选择 <code>另存为pdf</code>, 而不是去选择 <code>PDFCreator</code>. 操作示意图:</p>
+<p><img src="/img/chrome_pdf_export/example.png" srcset="/img/loading.gif" lazyload alt="res"></p>
 
                 
               </div>
@@ -298,7 +299,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
+  <a href="/categories/%E6%9D%82%E9%A1%B9/" class="category-chain-item">杂项</a>
   
   
 
@@ -310,13 +311,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/breakable-box/" class="print-no-link">#breakable box</a>
-      
-    </div>
-  
 </div>
 
 
@@ -325,8 +319,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Page-breakable Box in TeX</div>
-      <div>https://zongpingding.github.io/2024/06/15/breakable_box/</div>
+      <div>Chrome pdf export</div>
+      <div>https://zongpingding.github.io/2024/06/29/chrome_pdf_export/</div>
     </div>
     <div class="license-meta">
       
@@ -338,7 +332,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>June 15, 2024</div>
+          <div>June 29, 2024</div>
         </div>
       
       
@@ -370,9 +364,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/29/website_domain/" title="website domain">
+                      <a href="/2024/06/29/print_cs/" title="Print control sequence">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">website domain</span>
+                        <span class="hidden-mobile">Print control sequence</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -380,8 +374,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/14/footnote/" title="Footnote style">
-                        <span class="hidden-mobile">Footnote style</span>
+                      <a href="/2024/06/29/website_domain/" title="website domain">
+                        <span class="hidden-mobile">website domain</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

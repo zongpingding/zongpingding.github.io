@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="背景 往往一个文档说明或者是手册中需要用到部分的命令抄录环境，用于模板作者说明命令的使用格式或者是参数. 某天在一个文档类中看到了如下的声明, 用于打印控制序列(下文简写为 cs): 12345678910111213141516171819202122232425262728293031323334\NewDocumentCommand\MySubScript&#123;m&#125;&amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Print control sequence">
+<meta property="og:url" content="https://zongpingding.github.io/2024/06/29/print_cs/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="背景 往往一个文档说明或者是手册中需要用到部分的命令抄录环境，用于模板作者说明命令的使用格式或者是参数. 某天在一个文档类中看到了如下的声明, 用于打印控制序列(下文简写为 cs): 12345678910111213141516171819202122232425262728293031323334\NewDocumentCommand\MySubScript&#123;m&#125;&amp;#123">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/print_cs/l3doc_env.png">
+<meta property="article:published_time" content="2024-06-29T15:50:47.309Z">
+<meta property="article:modified_time" content="2024-06-29T16:21:36.975Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="control sequence">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/print_cs/l3doc_env.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Print control sequence - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Print control sequence"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 23:50" pubdate>
+          June 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          843 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Print control sequence</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="背景">背景</h2>
+<p>往往一个文档说明或者是手册中需要用到部分的命令抄录环境，用于模板作者说明命令的使用格式或者是参数. 某天在一个文档类中看到了如下的声明, 用于打印控制序列(下文简写为 <code>cs</code>):</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\NewDocumentCommand</span><span class="hljs-keyword">\MySubScript</span>&#123;m&#125;&#123;<span class="hljs-built_in">$</span><span class="hljs-built_in">_</span>&#123;<span class="hljs-params">#1</span>&#125;<span class="hljs-built_in">$</span>&#125;<br><br><span class="hljs-keyword">\ExplSyntaxOn</span><br><span class="hljs-keyword">\NewDocumentCommand</span><span class="hljs-keyword">\PrintVarList</span>&#123;m&#125;&#123;<br>  <span class="hljs-keyword">\clist_set:Nn</span> <span class="hljs-keyword">\l_tmpa_clist</span> &#123;<span class="hljs-params">#1</span>&#125;<br>  <span class="hljs-keyword">\clist_map_inline:Nn</span> <span class="hljs-keyword">\l_tmpa_clist</span><br>    &#123;<br>      <span class="hljs-keyword">\token_to_str:N</span> <span class="hljs-params">##1</span> ~<br>    &#125;<br>&#125;<br><span class="hljs-keyword">\NewDocumentCommand</span><span class="hljs-keyword">\RelaceChacters</span>&#123;m&#125;&#123;<br>  <span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\lTmpaTl</span> &#123;<span class="hljs-params">#1</span>&#125;<br>  <span class="hljs-keyword">\regex_replace_once:nnN</span> &#123; <span class="hljs-keyword">\_</span> &#125; &#123; <span class="hljs-keyword">\c</span>&#123;MySubScript&#125; &#125; <span class="hljs-keyword">\lTmpaTl</span><br>&#125;<br><span class="hljs-keyword">\NewDocumentCommand</span><span class="hljs-keyword">\RelaceUnderScoreAll</span>&#123;m&#125;&#123;<br>  <span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\lTmpaTl</span> &#123;<span class="hljs-params">#1</span>&#125;<br>  <span class="hljs-keyword">\regex_replace_all:nnN</span> &#123; <span class="hljs-keyword">\_</span> &#125; &#123; <span class="hljs-keyword">\c</span>&#123;<span class="hljs-built_in">_</span>&#125; &#125; <span class="hljs-keyword">\lTmpaTl</span><br>  <span class="hljs-keyword">\lTmpaTl</span><br>&#125;<br><span class="hljs-keyword">\ExplSyntaxOff</span><br><br><span class="hljs-keyword">\NewDocumentEnvironment</span>&#123;variable&#125;&#123;om&#125;&#123;<br>  <span class="hljs-keyword">\vspace</span>&#123;5pt&#125;<br>  <span class="hljs-keyword">\begin</span>&#123;minipage&#125;&#123;<span class="hljs-keyword">\linewidth</span>&#125;<br>  <span class="hljs-keyword">\hrule</span><span class="hljs-keyword">\vspace</span>&#123;4pt&#125;<span class="hljs-keyword">\obeylines</span><span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\begingroup</span><br>  <span class="hljs-keyword">\ttfamily</span><span class="hljs-keyword">\bfseries</span><span class="hljs-keyword">\color</span>&#123;azure3&#125;<br>  <span class="hljs-keyword">\PrintVarList</span>&#123;<span class="hljs-params">#2</span>&#125;<br>  <span class="hljs-keyword">\endgroup</span><br>  <span class="hljs-keyword">\par</span><span class="hljs-keyword">\vspace</span>&#123;4pt&#125;<span class="hljs-keyword">\hrule</span><br>  <span class="hljs-keyword">\end</span>&#123;minipage&#125;<span class="hljs-keyword">\par</span><span class="hljs-keyword">\nopagebreak</span><span class="hljs-keyword">\vspace</span>&#123;4pt&#125;<br>&#125;&#123;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\vspace</span>&#123;5pt&#125;<span class="hljs-comment">%</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="l3doc-class">l3doc class</h2>
+<p>然后在 <code>l3doc</code> 文档类中发现了如下命令:</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livescript"><span class="hljs-string">\DeclareDocumentCommand</span> <span class="hljs-string">\cmd</span> &#123; O&#123;&#125; m &#125;<br>  &#123; <span class="hljs-string">\__codedoc_cmd:no</span> &#123;<span class="hljs-comment">#1&#125; &#123; \token_to_str:N #2 &#125; &#125;</span><br></code></pre></td></tr></table></figure>
+<p>所以我追溯到命令 <code>\__codedoc_cmd:no</code> , 发现如下声明:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\keys_define:nn</span> &#123; l3doc/cmd &#125;<br>  &#123;<br>    index     .tl<span class="hljs-built_in">_</span>set:N     = <span class="hljs-keyword">\l__codedoc_cmd_index_tl</span>        ,<br>    module    .tl<span class="hljs-built_in">_</span>set:N     = <span class="hljs-keyword">\l__codedoc_cmd_module_tl</span>       ,<br>    no-index  .bool<span class="hljs-built_in">_</span>set:N   = <span class="hljs-keyword">\l__codedoc_cmd_noindex_bool</span>    ,<br>    replace   .bool<span class="hljs-built_in">_</span>set:N   = <span class="hljs-keyword">\l__codedoc_cmd_replace_bool</span>    ,<br>  &#125;<br><br><span class="hljs-keyword">\cs_new_protected:Npn</span> <span class="hljs-keyword">\__codedoc_cmd:nn</span> <span class="hljs-params">#1</span><span class="hljs-params">#2</span><br>  &#123;<br>    <span class="hljs-keyword">\bool_set_false:N</span> <span class="hljs-keyword">\l__codedoc_cmd_noindex_bool</span><br>    <span class="hljs-keyword">\bool_set_true:N</span> <span class="hljs-keyword">\l__codedoc_cmd_replace_bool</span><br>    <span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\l__codedoc_cmd_index_tl</span> &#123; <span class="hljs-keyword">\q_no_value</span> &#125;<br>    <span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\l__codedoc_cmd_module_tl</span> &#123; <span class="hljs-keyword">\q_no_value</span> &#125;<br>    <span class="hljs-keyword">\keys_set:nn</span> &#123; l3doc/cmd &#125; &#123;<span class="hljs-params">#1</span>&#125;<br>    <span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\l__codedoc_cmd_tl</span> &#123;<span class="hljs-params">#2</span>&#125;<br>    <span class="hljs-keyword">\bool_if:NT</span> <span class="hljs-keyword">\l__codedoc_cmd_replace_bool</span><br>      &#123;<br>        <span class="hljs-keyword">\tl_set_rescan:Nnn</span> <span class="hljs-keyword">\l__codedoc_tmpb_tl</span> &#123; &#125; &#123; <span class="hljs-built_in">_</span> &#125;<br>        <span class="hljs-keyword">\tl_replace_all:NVn</span> <span class="hljs-keyword">\l__codedoc_cmd_tl</span> <span class="hljs-keyword">\l__codedoc_tmpb_tl</span> &#123; <span class="hljs-built_in">_</span> &#125;<br>        <span class="hljs-keyword">\__codedoc_replace_at_at:N</span> <span class="hljs-keyword">\l__codedoc_cmd_tl</span><br>        <span class="hljs-keyword">\tl_replace_all:NnV</span> <span class="hljs-keyword">\l__codedoc_cmd_tl</span> &#123; <span class="hljs-built_in">_</span> &#125; <span class="hljs-keyword">\l__codedoc_tmpb_tl</span><br>      &#125;<br>    <span class="hljs-keyword">\mode_if_math:T</span> &#123; <span class="hljs-keyword">\mbox</span> &#125;<br>      &#123;<br>        <span class="hljs-keyword">\bool_if:NT</span> <span class="hljs-keyword">\l__codedoc_allow_indexing_bool</span> &#123; <span class="hljs-keyword">\__codedoc_target:</span> &#125;<br>        <span class="hljs-keyword">\verbatim@font</span><br>        <span class="hljs-keyword">\__codedoc_if_almost_str:VT</span> <span class="hljs-keyword">\l__codedoc_cmd_tl</span><br>          &#123;<br>            <span class="hljs-keyword">\__kernel_tl_set:Nx</span> <span class="hljs-keyword">\l__codedoc_cmd_tl</span> &#123; <span class="hljs-keyword">\tl_to_str:N</span> <span class="hljs-keyword">\l__codedoc_cmd_tl</span> &#125;<br>            <span class="hljs-keyword">\bool_if:NT</span> <span class="hljs-keyword">\g__codedoc_cs_break_bool</span><br>              &#123;<br>                <span class="hljs-keyword">\regex_replace_all:nnN</span><br>                  &#123; ([<span class="hljs-built_in">^</span><span class="hljs-keyword">\\</span><span class="hljs-keyword">\_</span>]<span class="hljs-keyword">\_</span>*) <span class="hljs-keyword">\_</span> ([<span class="hljs-built_in">^</span><span class="hljs-keyword">\_</span>]) &#125;<br>                  &#123; <span class="hljs-keyword">\1</span> <span class="hljs-keyword">\c</span>&#123;BreakableUnderscore&#125; <span class="hljs-keyword">\2</span> &#125;<br>                  <span class="hljs-keyword">\l__codedoc_cmd_tl</span><br>              &#125;<br>          &#125;<br>        <span class="hljs-keyword">\tl_replace_all:Nnn</span> <span class="hljs-keyword">\l__codedoc_cmd_tl</span> &#123; ~ &#125; &#123; <span class="hljs-keyword">\@xobeysp</span> &#125;<br>        <span class="hljs-keyword">\l__codedoc_cmd_tl</span><br>        <span class="hljs-keyword">\@</span><br>      &#125;<br>    <span class="hljs-keyword">\bool_if:NT</span> <span class="hljs-keyword">\l__codedoc_allow_indexing_bool</span><br>      &#123;<br>        <span class="hljs-keyword">\bool_if:NF</span> <span class="hljs-keyword">\l__codedoc_cmd_noindex_bool</span><br>          &#123;<br>            <span class="hljs-keyword">\quark_if_no_value:NF</span> <span class="hljs-keyword">\l__codedoc_cmd_index_tl</span><br>              &#123;<br>                <span class="hljs-keyword">\__kernel_tl_set:Nx</span> <span class="hljs-keyword">\l__codedoc_cmd_tl</span><br>                  &#123; <span class="hljs-keyword">\c_backslash_str</span> <span class="hljs-keyword">\exp_not:o</span> &#123; <span class="hljs-keyword">\l__codedoc_cmd_index_tl</span> &#125; &#125;<br>              &#125;<br>            <span class="hljs-keyword">\exp_args:No</span> <span class="hljs-keyword">\__codedoc_key_get:n</span> &#123; <span class="hljs-keyword">\l__codedoc_cmd_tl</span> &#125;<br>            <span class="hljs-keyword">\quark_if_no_value:NF</span> <span class="hljs-keyword">\l__codedoc_cmd_module_tl</span><br>              &#123;<br>                <span class="hljs-keyword">\__kernel_tl_set:Nx</span> <span class="hljs-keyword">\l__codedoc_index_module_tl</span><br>                  &#123; <span class="hljs-keyword">\tl_to_str:N</span> <span class="hljs-keyword">\l__codedoc_cmd_module_tl</span> &#125;<br>              &#125;<br>            <span class="hljs-keyword">\__codedoc_special_index_module:ooonN</span><br>              &#123; <span class="hljs-keyword">\l__codedoc_index_key_tl</span> &#125;<br>              &#123; <span class="hljs-keyword">\l__codedoc_index_macro_tl</span> &#125;<br>              &#123; <span class="hljs-keyword">\l__codedoc_index_module_tl</span> &#125;<br>              &#123; usage &#125;<br>              <span class="hljs-keyword">\l__codedoc_index_internal_bool</span><br>          &#125;<br>      &#125;<br>  &#125;<br><span class="hljs-keyword">\cs_generate_variant:Nn</span> <span class="hljs-keyword">\__codedoc_cmd:nn</span> &#123; no &#125;<br></code></pre></td></tr></table></figure>
+<p>其中有一个变量 <code>\l__codedoc_allow_indexing_bool</code> 的声明如下:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\bool_new:N</span> <span class="hljs-keyword">\l__codedoc_allow_indexing_bool</span><br><span class="hljs-keyword">\bool_set_true:N</span> <span class="hljs-keyword">\l__codedoc_allow_indexing_bool</span><br><span class="hljs-keyword">\use:e</span><br>  &#123;<br>    <span class="hljs-keyword">\exp_not:n</span> &#123; <span class="hljs-keyword">\cs_set_nopar:Npn</span> <span class="hljs-keyword">\@starttoc</span> <span class="hljs-params">#1</span> &#125;<br>      &#123;<br>        <span class="hljs-keyword">\group_begin:</span><br>          <span class="hljs-keyword">\bool_set_false:N</span> <span class="hljs-keyword">\l__codedoc_allow_indexing_bool</span><br>          <span class="hljs-keyword">\exp_not:o</span> &#123; <span class="hljs-keyword">\@starttoc</span> &#123;<span class="hljs-params">#1</span>&#125; &#125;<br>        <span class="hljs-keyword">\group_end:</span><br>      &#125;<br>  &#125;<br></code></pre></td></tr></table></figure>
+<p>所以如果想要写手册之类的东西，可以考虑使用 <code>l3doc</code> 文档类，其中提供了丰富的命令可以方便我们文档类作者的手册排版, 如:</p>
+<ul>
+<li><code>\cmd [⟨options⟩] ⟨control sequence⟩</code></li>
+<li><code>\cs [⟨options⟩] &#123;⟨csname⟩&#125;</code></li>
+<li><code>\tn [⟨options⟩] &#123;⟨csname⟩&#125;</code></li>
+</ul>
+<p>除此之外还提供了 <code>function</code>, <code>varible</code>, <code>syntax</code> 等环境，用于排版类似如下的命令说明:<br>
+<img src="/img/print_cs/l3doc_env.png" srcset="/img/loading.gif" lazyload alt="l3doc environment"></p>
+<h2 id="解决方案">解决方案</h2>
+<p>最后可以通过命令 <code>\str_set</code> 解决，多余的空格也可以使用 str replace 相关的命令替换掉</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\NewDocumentCommand</span>&#123;<span class="hljs-keyword">\zlatexVerb</span>&#125;&#123;O&#123;T&#125;m&#125;&#123;<br>  <span class="hljs-keyword">\str_set:Nn</span> <span class="hljs-keyword">\l_tmpa_str</span> &#123; <span class="hljs-params">#2</span> &#125; <br>  <span class="hljs-keyword">\tl_if_eq:nnT</span> &#123;<span class="hljs-params">#1</span>&#125;&#123;F&#125;&#123;<br>    <span class="hljs-keyword">\str_replace_all:Nnn</span> <span class="hljs-keyword">\l_tmpa_str</span> &#123;~&#125;&#123;&#125; <br>  &#125;<br>  <span class="hljs-keyword">\texttt</span>&#123;<span class="hljs-keyword">\l_tmpa_str</span>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这里声明的 <code>\cmd</code> 命令中第一个可选参数含义如下:</p>
+<ul>
+<li><code>T</code>: 保留所有空格</li>
+<li><code>F</code>: 去掉所有空格</li>
+</ul>
+<p>默认保留所有空格.</p>
+<h2 id="bug">bug</h2>
+<p>目前还有部分的问题:比如会去掉控制序列中的所有空格，所以你使用:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\cmd</span>&#123;<span class="hljs-keyword">\foo</span>[a b]&#125;<br></code></pre></td></tr></table></figure>
+<p>得到的是 <code>\foo[ab]</code>, 但是我们肯定希望得到的是 <code>\foo[a b]</code>. 所以目前这个命令还不够完善.</p>
+<blockquote>
+<p>但是想来，你一个 <code>cs</code> 中为什么要出现空格呢?</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/control-sequence/" class="print-no-link">#control sequence</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Print control sequence</div>
+      <div>https://zongpingding.github.io/2024/06/29/print_cs/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/chrome_pdf_export/" title="Chrome pdf export">
+                        <span class="hidden-mobile">Chrome pdf export</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
