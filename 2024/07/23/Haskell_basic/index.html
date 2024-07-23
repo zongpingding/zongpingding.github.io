@@ -1,0 +1,974 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Basic              Reference: https:&#x2F;&#x2F;learnyouahaskell.github.io&#x2F;chapters.html            ghci ghci  is REPL like other language. some  operator is:  +,  -,  *,  &#x2F;, ^: arithmetic operator &#x3D;&#x3D;: means eq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to Haskell">
+<meta property="og:url" content="https://zongpingding.github.io/2024/07/23/Haskell_basic/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="Basic              Reference: https:&#x2F;&#x2F;learnyouahaskell.github.io&#x2F;chapters.html            ghci ghci  is REPL like other language. some  operator is:  +,  -,  *,  &#x2F;, ^: arithmetic operator &#x3D;&#x3D;: means eq">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-23T08:37:51.833Z">
+<meta property="article:modified_time" content="2024-07-23T08:47:45.382Z">
+<meta property="article:author" content="Eureka">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Introduction to Haskell - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/fluid_theme_pic/default.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Introduction to Haskell"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-23 16:37" pubdate>
+          July 23, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          850 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Introduction to Haskell</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Basic">Basic</h2>
+<div class="note note-danger">
+            <p>Reference: <a target="_blank" rel="noopener" href="https://learnyouahaskell.github.io/chapters.html">https://learnyouahaskell.github.io/chapters.html</a></p>
+          </div>
+<h3 id="ghci">ghci</h3>
+<p><code>ghci</code>  is REPL like other language. some  operator is:</p>
+<ul>
+<li>+,  -,  *,  /, ^: arithmetic operator</li>
+<li>==: means equal</li>
+<li>/=: means not equal</li>
+<li>||, &amp;&amp;, not: boolean operator</li>
+<li>True, False</li>
+</ul>
+<p>string is decleared by <code>&quot;&lt;string&gt;&quot;</code>.</p>
+<h3 id="function">function</h3>
+<h4 id="call-function">call function</h4>
+<p>In Haskell function are called by <code>function name</code>, <code>&lt;space&gt;</code>, <code>parameter</code> (separatered by <code>&lt;space&gt;</code>)</p>
+<blockquote>
+<p>Unlike other language, call function by writing function name and then writing paramenters in parentheses, usually separatered by comma.</p>
+</blockquote>
+<p>A simple function <code>succ</code> (return the successor of  an object if defined)</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">succ</span> <span class="hljs-number">8</span>	<br><br><span class="hljs-comment">-- 9</span><br></code></pre></td></tr></table></figure>
+<p>Other 2 functions are <code>min</code>, <code>max</code>, which will return the lesser or greater one.</p>
+<blockquote>
+<p>these 2 functions accept only 2 parameters that can be put in order</p>
+</blockquote>
+<p><strong>Def (Function Application)</strong>: calling a function then put parameter(s) after it</p>
+<p>function application has the highest precedence. so the code:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">succ</span> <span class="hljs-number">9</span> + max <span class="hljs-number">5</span> <span class="hljs-number">4</span> + <span class="hljs-number">1</span><br><br><span class="hljs-comment">-- 10 + 5 + 1</span><br><span class="hljs-comment">-- 16</span><br></code></pre></td></tr></table></figure>
+<p>To change the precedence: just use paratheses ‘()’. so</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">succ</span> <span class="hljs-number">9</span> * <span class="hljs-number">10</span>  <span class="hljs-comment">-- 10*10=100</span><br><br><span class="hljs-comment">-- different form</span><br><br><span class="hljs-title">succ</span> (<span class="hljs-number">9</span> * <span class="hljs-number">10</span>) <span class="hljs-comment">-- 90+1=91</span><br></code></pre></td></tr></table></figure>
+<p><strong>Def (infix function):</strong> a function takes 2 parameters</p>
+<p>infix function can be called in 2 forms:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">div</span> <span class="hljs-number">92</span> <span class="hljs-number">10</span><br><span class="hljs-number">92</span> `div` <span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
+<p><strong>Def (definition/name):</strong> a function doesn’t take any paramenter, which means we can’t change it once we have defined.</p>
+<h4 id="define-funnction">define funnction</h4>
+<p>Define a function is similar to call it.</p>
+<ul>
+<li>first write function name</li>
+<li>type out a <code>&lt;space&gt;</code>, then the paramenter(s), separated by <code>&lt;space&gt;</code></li>
+<li>type out <code>=</code>, after that we define what the function does</li>
+</ul>
+<p>Take this form as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mo>+</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">f(x)=x+x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>, for functions has 2 parameters, take as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mo>+</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">f(x, y)=x+y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>. So simple, is it ?  BTW, below is a function( without any paramenter) as well.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">hello</span> = <span class="hljs-string">&quot;Hello HasKell!&quot;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>apostrophe “'” can be part of a function name, but usually used in functions not lazy (recall lazy-evaluation in TeX).</li>
+<li>function name can’t begin with uppercase letters, it will be used in</li>
+</ul>
+</blockquote>
+<p>Take a function ‘doubleX’ for example (or directly writing this in ghci):</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">double</span> x = x + x<br></code></pre></td></tr></table></figure>
+<p>we can punch the function in a text file, like ‘test.hs’, then run ghci here. After loading it by</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell">:l test<br></code></pre></td></tr></table></figure>
+<p>we can use this function directly in ghci like</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">double</span> <span class="hljs-number">10</span><br><br><span class="hljs-comment">-- 20</span><br></code></pre></td></tr></table></figure>
+<p>For functions that have 2 parameters, see below:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">doubleUS</span> x y=x*<span class="hljs-number">2</span>+y*<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<p>Some Notations:</p>
+<ul>
+<li>Redefine a function by decaler it again.</li>
+<li>Functions in Haskell don’t have to be in any particular order, something like TeX, haha.</li>
+</ul>
+<h3 id="If-statement">If statement</h3>
+<p>Like ‘if’, ‘else’ in other languages, HasKell has:</p>
+<ul>
+<li>if</li>
+<li>then</li>
+<li>else</li>
+</ul>
+<p><strong>Def (expression):</strong> in haskell, every function and every expression must return something. All of the follows are expressions:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-number">5</span><br><span class="hljs-string">&#x27;a&#x27;</span><br><span class="hljs-string">&quot;abc&quot;</span><br><span class="hljs-number">1</span>+<span class="hljs-number">2</span><br><span class="hljs-title">succ</span> <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<p>Thus, the <code>else</code> part is mandatory in <code>if</code> statement. An example of if statement:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">doubleSmallNum</span> x=<span class="hljs-keyword">if</span> x&gt;<span class="hljs-number">100</span><br>	<span class="hljs-keyword">then</span> x<br>	<span class="hljs-keyword">else</span> x*<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<h3 id="data-structure">data structure</h3>
+<p>we’ll introduce some basic data structures in this section, such as:</p>
+<h4 id="list">list</h4>
+<h5 id="introduction">introduction</h5>
+<p>List store several elements of the same type, list denoted by brackets and values sparatered by commas in it. What we’ll introduce are:</p>
+<ul>
+<li>list</li>
+<li>string (which is list)</li>
+<li>list comprehensions</li>
+</ul>
+<p>Some lists:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">primeNum</span> = [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">11</span>]<br><br><span class="hljs-title">someAlphabets</span> = [<span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>]<br><br><span class="hljs-comment">-- can&#x27;t mix characters with integers</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>String is just syntactic sugar for (char) list, that is string “Hello” is equivlant to <code>someAlphabets</code> above.</p>
+</blockquote>
+<h5 id="basic-functions">basic functions</h5>
+<p>Functions about list:</p>
+<ul>
+<li><code>++</code>: accept 2 list, HasKell will go through every element in the first parameter.</li>
+<li><code>:(cons operator)</code>: put the first paramenter the head of the second. It takes a number and a list of numbers or a character and a list of characters</li>
+<li><code>!!</code>: get an element by a given index, indices start at 0.</li>
+</ul>
+<p>Some Examples:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs haskell">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>] ++ [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br>[<span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>] ++ [<span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>]<br><br><span class="hljs-number">1</span>:[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]<br><span class="hljs-string">&#x27;h&#x27;</span>:[<span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>]<br><br>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><span class="hljs-comment">-- equvilant to </span><br><span class="hljs-number">1</span>:<span class="hljs-number">2</span>:<span class="hljs-number">3</span>:[]<br></code></pre></td></tr></table></figure>
+<p>A notation, the following 3 items are different.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell">[]<br><br>[[]]<br><br>[[], []]<br></code></pre></td></tr></table></figure>
+<p>Some operations about list:</p>
+<ul>
+<li>
+<p>List can be nested,  length not required, but type must be the same.</p>
+</li>
+<li>
+<p>Lists can be compared if the stuff they contain can be compared whit operators: &gt;=, &lt;=, ==</p>
+</li>
+</ul>
+<h5 id="other-functions">other functions</h5>
+<p>Some useful list functions :</p>
+<ul>
+<li><code>head</code>: head of a list</li>
+<li><code>tail</code>: return a list that chops the first</li>
+<li><code>last</code>: return the last element</li>
+<li><code>init</code>: return a list that chops the last</li>
+</ul>
+<blockquote>
+<p>when use the ‘head, tail, last, init’ function, please check if the list empty !</p>
+</blockquote>
+<ul>
+<li><code>length</code>: ~</li>
+<li><code>null</code>: check if list empty, if empty return True, else False.</li>
+<li><code>reverse</code>: ~</li>
+<li><code>take</code>: extracts that many elements from the beginning</li>
+<li><code>drop</code>: drops that many elements from the beginning, return the remaining elements.</li>
+</ul>
+<p>some other functions:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">maximum</span><br><span class="hljs-title">minimum</span><br><span class="hljs-title">sum</span><br><span class="hljs-title">product</span><br><span class="hljs-title">elem</span> <span class="hljs-comment">-- if an element belongs to a list</span><br></code></pre></td></tr></table></figure>
+<h5 id="List-range">List range</h5>
+<p>Use <code>..</code> to construct a list range:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell">[<span class="hljs-number">1</span>..<span class="hljs-number">5</span>]<br><span class="hljs-comment">-- [1, 2, 3, 4, 5]</span><br><br>[<span class="hljs-string">&#x27;a&#x27;</span>..<span class="hljs-string">&#x27;d&#x27;</span>]<br><span class="hljs-comment">-- [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;]</span><br></code></pre></td></tr></table></figure>
+<p>How to assign a step? This is like <code>\foreach</code> syntax in TikZ,  just assign a simple pattern:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell">[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>..<span class="hljs-number">10</span>]<br><br><span class="hljs-comment">-- [1, 3, 5, 7, 9]</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>but don’t given too ambiguous list pattern or some complex pattern.</li>
+<li>avoid use float point numbers in range</li>
+</ul>
+</blockquote>
+<h5 id="infinite-list">infinite list</h5>
+<p>If Not specifying the upper limit can construct infinite list. A example of Lazy + Infinite list (for Haskell is Lazy, it’ll extract 10 elements instead of infinite elements):</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">take</span> <span class="hljs-number">10</span> [<span class="hljs-number">27</span>, <span class="hljs-number">54</span>..]<br><br><span class="hljs-comment">-- [27,54,81,108,135,162,189,216,243,270]</span><br></code></pre></td></tr></table></figure>
+<p>Some usefule functions to construct infinite list:</p>
+<ul>
+<li>cycle: ~</li>
+<li>repeat: just like cycle an one element list</li>
+</ul>
+<h5 id="list-comprehension">list comprehension</h5>
+<p>This conception originially comes from set comprehension in Mathematics. Take a set comprehension:</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><mn>2</mn><mo>⋅</mo><mi>x</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo>∈</mo><mi mathvariant="double-struck">N</mi><mo separator="true">,</mo><mi>x</mi><mo>≤</mo><mn>10</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S = \{2\cdot x | x\in \mathbb{N}, x\le 10\}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">x</span><span class="mord">∣</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8833em;vertical-align:-0.1944em;"></span><span class="mord mathbb">N</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">10</span><span class="mclose">}</span></span></span></span></span></p>
+<p>split this comprehension into 3 parts:</p>
+<ul>
+<li>a output function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>⋅</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">2\cdot x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> before pipe ‘|’</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> is draw from set <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">N</mi></mrow><annotation encoding="application/x-tex">\mathbb{N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">N</span></span></span></span></li>
+<li>predicate(s) <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≤</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">x\le 10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span>​ after the binding part, separatered by comma(s)</li>
+</ul>
+<p>In Haskell, list comprehension is much similar to the above:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell">[x^<span class="hljs-number">2</span> | x&lt;- [<span class="hljs-number">1</span>..<span class="hljs-number">10</span>], odd x]<br><br><span class="hljs-comment">-- [1,9,25,49,81]</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>If we consider the symbols <code>&lt;-</code> to mathematical symbol <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span></span></span></span> which it’s similar to, List comprehension is almost the same as set comprehension.</p>
+</blockquote>
+<p>We can also draw from several list in list comprehension, which will produce all combinations of the given lists and then join them by the output function. A simple example:</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><mi>x</mi><mo>⋅</mo><mi>y</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mn>5</mn><mo stretchy="false">}</mo><mo separator="true">,</mo><mi>y</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mn>5</mn><mo stretchy="false">}</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S = \{x\cdot y | x\in \{1, 2, ..., 5\}, y\in \{1, 2, ...5\} \}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord">∣</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">5</span><span class="mclose">}</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...5</span><span class="mclose">}}</span></span></span></span></span></p>
+<p>By that, the Haskell form is:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell">[x*y | x&lt;- [<span class="hljs-number">1</span>..<span class="hljs-number">5</span>], y&lt;-[<span class="hljs-number">1</span>..<span class="hljs-number">5</span>]]<br><br><span class="hljs-comment">-- [1,2,3,4,5,2,4,6,8,10,3,6,9,12,15,4,8,12,16,20,5,10,15,20,25]</span><br></code></pre></td></tr></table></figure>
+<p>Some application of list comprehension:</p>
+<p>1&gt; create the length function, which we will named as <code>length'</code>.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">length&#x27;</span> xs = sum[<span class="hljs-number">1</span> | _ &lt;- xs]<br></code></pre></td></tr></table></figure>
+<p>in the above, there is a symbol <code>_</code>, which means we don’t care what the variable name, just use <code>_</code>.</p>
+<p>2&gt; remove the lowercase letters in a string.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">removeNonUppercase</span> st = [ c | c &lt;- st, c `elem` [<span class="hljs-string">&#x27;A&#x27;</span>..<span class="hljs-string">&#x27;Z&#x27;</span>]]   <br></code></pre></td></tr></table></figure>
+<h4 id="tuples">tuples</h4>
+<h5 id="basic">basic</h5>
+<p>2 ways that tuples different from list:</p>
+<ul>
+<li>the tuples type depends on how many component it has and the types of the components</li>
+<li>a tuple can contain a combinations of several types, means it’s non-homogenous</li>
+</ul>
+<p>A big advantage is that we can create a list contains several tuples, then there will be less bugs. A vectors list:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell">[(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>), (<span class="hljs-number">3</span>, <span class="hljs-number">4</span>), (<span class="hljs-number">5</span>, <span class="hljs-number">7</span>)]<br><span class="hljs-comment">-- in this form, Haskell will check it for us, whilst</span><br><br>[[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>]]<br><span class="hljs-comment">-- will not throw an error,but this is not what we want</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>While there are singleton lists, there’s no such thing as a singleton tuple, it will just be the value it contains</p>
+</blockquote>
+<h5 id="basic-functions-2">basic functions</h5>
+<p>Some useful functions:</p>
+<ul>
+<li><code>fst</code>: takes a tuple of size 2, return the firtst element</li>
+<li><code>snd</code>: ~, return the second element</li>
+<li><code>zip</code>: takes 2 lists (not require these 2 list the same length) and zip them tegother in 1 list by joining the match elements into paris.</li>
+</ul>
+<p>A example for zip function:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">zip</span> [<span class="hljs-number">1</span> .. <span class="hljs-number">5</span>] [<span class="hljs-string">&quot;one&quot;</span>, <span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-string">&quot;three&quot;</span>, <span class="hljs-string">&quot;four&quot;</span>, <span class="hljs-string">&quot;five&quot;</span>] <br><br><span class="hljs-comment">-- [(1,&quot;one&quot;),(2,&quot;two&quot;),(3,&quot;three&quot;),(4,&quot;four&quot;),(5,&quot;five&quot;)]  </span><br></code></pre></td></tr></table></figure>
+<h5 id="a-problem">a problem</h5>
+<p><strong>Problem:</strong> which right triangle that has integers for all sides and all sides equal to or smaller than 10 has a perimeter of 24? (assume <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi><mo>&lt;</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">a&lt;b&lt;c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>, where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">a,b,c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span></span></span></span> is the egde of this triangle)</p>
+<p>We use tuples and list comprehension to solve this problem:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">rightTriangles&#x27;</span> = [ (a,b,c) | c &lt;- [<span class="hljs-number">1</span>..<span class="hljs-number">10</span>], b &lt;- [<span class="hljs-number">1</span>..c], a &lt;- [<span class="hljs-number">1</span>..b], a^<span class="hljs-number">2</span> + b^<span class="hljs-number">2</span> == c^<span class="hljs-number">2</span>, a+b+c == <span class="hljs-number">24</span>]  <br><br><span class="hljs-comment">-- [(6,8,10)] </span><br></code></pre></td></tr></table></figure>
+<p><strong>Notations:</strong> we can ignore the order of these 3 predicates, that’s</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">rightTriangles&#x27;</span> = [ (a,b,c) | b &lt;- [<span class="hljs-number">1</span>..c], a &lt;- [<span class="hljs-number">1</span>..b], c&lt;-[<span class="hljs-number">1</span>..<span class="hljs-number">10</span>], a^<span class="hljs-number">2</span> + b^<span class="hljs-number">2</span> == c^<span class="hljs-number">2</span>, a+b+c == <span class="hljs-number">24</span>]<br><br><span class="hljs-comment">-- throw error:&lt;interactive&gt;:7:40: error: Variable not in scope: c</span><br></code></pre></td></tr></table></figure>
+<h2 id="Types-and-Typeclasses">Types and Typeclasses</h2>
+<h3 id="types">types</h3>
+<p>basic types (type name is b begin with uppercase letter)</p>
+<ul>
+<li>Int</li>
+<li>Interger</li>
+<li>Float</li>
+<li>Double</li>
+<li>Bool</li>
+<li>Char</li>
+</ul>
+<p>Use <code>:t</code> in ghci to show type of a function or an expression. For that checking type of an expression is simple, we then move the functions.</p>
+<p>We can given an explicit type declaration to the function we define as a good practice, but for some simple function, Haskell can infer the type of a function. A simple example is:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">removeNonUppercase</span> :: [<span class="hljs-type">Char</span>] -&gt; [<span class="hljs-type">Char</span>]  <br><span class="hljs-title">removeNonUppercase</span> st = [ c | c &lt;- st, c `elem` [<span class="hljs-string">&#x27;A&#x27;</span>..<span class="hljs-string">&#x27;Z&#x27;</span>]]  <br></code></pre></td></tr></table></figure>
+<p>The above symbol <code>::</code> means “has type of”. How to declare a function which has more than 1 paramenters ?</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">addThree</span> :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span>  <br><span class="hljs-title">addThree</span> x y z = x + y + z  <br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>Instead of writing as <code>addThree :: Int,Int,Int -&gt; Int</code>, we separate theme by <code>-&gt;</code> . Later on we’ll see why.</p>
+</blockquote>
+<h3 id="typevariable">typevariable</h3>
+<p>To refer to a Specified type, we use <code>Typevariable</code> which always write as a lowercase letter such as “a, b, c, etc”. Let’s check a function type:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">ghci</span>&gt; :t head<br><span class="hljs-comment">-- head :: [a] -&gt; a</span><br><span class="hljs-title">head</span> :: <span class="hljs-type">GHC</span>.<span class="hljs-type">Stack</span>.<span class="hljs-type">Types</span>.<span class="hljs-type">HasCallStack</span> =&gt; [a] -&gt; a<br></code></pre></td></tr></table></figure>
+<p>which means that function <code>head</code> take a List consists of elements of the same type and this type can ba any, like <code>Int</code>, <code>Float</code>, etc.</p>
+<h3 id="typeclass">typeclass</h3>
+<h4 id="definition">definition</h4>
+<p>What is TypeClass ? In my opinion, it can be see as:</p>
+<p><strong>Def (typeclass):</strong> a typeclass defines the behavior of some types belongs to it.</p>
+<blockquote>
+<p>The typeclass is not like the class in object oriented languages.</p>
+</blockquote>
+<p>Let check the <code>type interface</code> of function <code>==</code>.</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xl">ghci&gt; :t (==)<br>(==) :: E<span class="hljs-function"><span class="hljs-title">q</span> a =&gt; a -&gt;</span> <span class="hljs-function"><span class="hljs-title">a</span> -&gt;</span> Bool<br></code></pre></td></tr></table></figure>
+<p>We analysis this output step by step:</p>
+<ul>
+<li><code>::</code>: means function <code>==</code> has type of the following</li>
+<li><code>=&gt;</code>: <strong>class constraint</strong> symbol</li>
+<li><code>Eq a</code>: means that the following types of the 2 variables must be the same (for the typevariable is the same, it’s <code>a</code>, then both of them may be <code>Int</code>, <code>Float</code>, etc) and belong to class <code>Eq</code></li>
+</ul>
+<p>How to understand the definition that “TypeClass defines the behaviors of  some types belong to it” ? In the above example, type <code>a</code> must be a member of class <code>Eq</code>, so that this type of parameters can be compare. <strong>Compare</strong> is the behavior the <code>Eq	</code> class gives the type <code>a</code>. Indeed, there is some type that can be compare, that is <code>function</code>. We can’t compare 2 functions obviously.</p>
+<h4 id="some-typeclass">some typeclass</h4>
+<p>Some typeclasses as follows:</p>
+<ul>
+<li>
+<p>Eq</p>
+</li>
+<li>
+<p>Ord</p>
+</li>
+<li>
+<p>Enum</p>
+</li>
+<li>
+<p>Bounded</p>
+</li>
+<li>
+<p>Num</p>
+</li>
+<li>
+<p>Intergral: <code>Int</code> and <code>Integer</code></p>
+</li>
+<li>
+<p>Floating</p>
+</li>
+<li>
+<p>Show</p>
+</li>
+<li>
+<p>Read</p>
+</li>
+</ul>
+<p><code>read</code> and <code>show</code> are 2 functions belong to class <code>Read</code> and <code>Show</code> respectively. Function <code>show</code> takes a value whoes type is member of <code>Show</code> class and presents it as string.</p>
+<p>Whilst <code>read</code> takes a string and return a type which is member of class <code>Read</code>, sometimes, we need to declare the return type explictly. Such as the follows:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">read</span> <span class="hljs-string">&quot;3&quot;</span>::<span class="hljs-type">Int</span><br><span class="hljs-comment">-- must decalare explicitly</span><br><br>(read <span class="hljs-string">&quot;3&quot;</span>::<span class="hljs-type">Int</span>) + <span class="hljs-number">5</span><br><span class="hljs-comment">-- optional, Haskell can automatically infer the return type</span><br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Haskell/" class="category-chain-item">Haskell</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Introduction to Haskell</div>
+      <div>https://zongpingding.github.io/2024/07/23/Haskell_basic/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 23, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/print_cs/" title="Print control sequence">
+                        <span class="hidden-mobile">Print control sequence</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
