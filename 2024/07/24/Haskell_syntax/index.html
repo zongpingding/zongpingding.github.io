@@ -1,0 +1,772 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="pattern match definition By define a function, we can map some type to another type. Pattern match can apply to any data type: Int, Char, String, etc. A simple patter match case, mapping a type belong">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Syntax of Haskell">
+<meta property="og:url" content="https://zongpingding.github.io/2024/07/24/Haskell_syntax/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="pattern match definition By define a function, we can map some type to another type. Pattern match can apply to any data type: Int, Char, String, etc. A simple patter match case, mapping a type belong">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-24T05:16:31.583Z">
+<meta property="article:modified_time" content="2024-07-24T05:22:08.575Z">
+<meta property="article:author" content="Eureka">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Syntax of Haskell - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/fluid_theme_pic/default.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Syntax of Haskell"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-24 13:16" pubdate>
+          July 24, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          490 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Syntax of Haskell</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="pattern-match">pattern match</h2>
+<h3 id="definition">definition</h3>
+<p>By define a function, we can map some type to another type. Pattern match can apply to any data type: <code>Int</code>, <code>Char</code>, <code>String</code>, etc.</p>
+<p>A simple patter match case, mapping a type belong to <code>Integral</code> to <code>String</code> (in other word, it is to match a varible whoes type that belong to <code>Integral</code>):</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-comment">-- pattern define</span><br><span class="hljs-title">lucky</span> :: (<span class="hljs-type">Integral</span> a) =&gt; a-&gt;<span class="hljs-type">String</span><br><span class="hljs-title">lucky</span> <span class="hljs-number">7</span> = <span class="hljs-string">&quot;you are so lucky&quot;</span> <br><span class="hljs-title">lucky</span> x = <span class="hljs-string">&quot;you are not lucky&quot;</span><br></code></pre></td></tr></table></figure>
+<p><strong>Notation:</strong></p>
+<ul>
+<li>any typevariable like <code>a</code>, <code>b</code>, …, <code>z</code> or <code>abc</code>, <code>bcd</code>; Then patter will match any numbers but only numbers, for the <code>Integral</code> in function declaration. This pattern can be also used in other function type, like <code>Char -&gt; String</code>. Remember to add a catch-all pattern in case of program crash.</li>
+<li>Patterns are checked form top to the bottom.</li>
+</ul>
+<p>If we writing <code>lucky 'a'</code>, it will throw error:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">ghci</span>&gt; lucky <span class="hljs-string">&#x27;a&#x27;</span><br><br>&lt;interactive&gt;:<span class="hljs-number">21</span>:<span class="hljs-number">1</span>: error:<br>    • <span class="hljs-type">No</span> <span class="hljs-keyword">instance</span> for (<span class="hljs-type">Integral</span> <span class="hljs-type">Char</span>) arising from a use <span class="hljs-keyword">of</span> ‘lucky’<br>    • <span class="hljs-type">In</span> the expression: lucky <span class="hljs-string">&#x27;a&#x27;</span><br>      <span class="hljs-type">In</span> an equation for ‘it’: it = lucky <span class="hljs-string">&#x27;a&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>which means that Type <code>Char</code> is not a instance of class <code>Integral</code>. (haha, something like instance in OOP ~~)</p>
+<p>A factorial function implementation:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">factorial</span> :: (<span class="hljs-type">Integral</span> a) =&gt; a -&gt; a  <br><span class="hljs-title">factorial</span> <span class="hljs-number">0</span> = <span class="hljs-number">1</span>  <br><span class="hljs-title">factorial</span> n = n * factorial (n - <span class="hljs-number">1</span>)  <br></code></pre></td></tr></table></figure>
+<p>For that patterns are check from top to bottom, we can’t place the second pattern on the top of the first one. Otherwise, this recursive will never end, for that the seconed catchs all numbers !</p>
+<h3 id="usefull-pattern">usefull pattern</h3>
+<p>Some useful patterns list as below:</p>
+<ul>
+<li><code>[]</code>: match list</li>
+<li><code>(x:[])</code> / <code>[x]</code>: match the first element (It is just a syntactic sugar)</li>
+<li><code>(x:xs)</code>: match first to <code>x</code>, the rest to <code>xs</code> . In the case, the return type probably be a List. Otherwise it will raise error. <code>(_:xs)</code> matchs non-empty list.</li>
+</ul>
+<blockquote>
+<p>if the pattern consists of several variables, surround them with parentheses.</p>
+</blockquote>
+<p>An example:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">tell</span> :: (<span class="hljs-type">Show</span> a) =&gt; [a] -&gt; <span class="hljs-type">String</span>  <br><span class="hljs-title">tell</span> [] = <span class="hljs-string">&quot;The list is empty&quot;</span>  <br><span class="hljs-title">tell</span> (x:[]) = <span class="hljs-string">&quot;The list has one element: &quot;</span> ++ show x  <br><span class="hljs-title">tell</span> (x:y:[]) = <span class="hljs-string">&quot;The list has two elements: &quot;</span> ++ show x ++ <span class="hljs-string">&quot; and &quot;</span> ++ show y  <br><span class="hljs-title">tell</span> (x:y:_) = <span class="hljs-string">&quot;This list is long. The first two elements are: &quot;</span> ++ show x ++ <span class="hljs-string">&quot; and &quot;</span> ++ show y <br></code></pre></td></tr></table></figure>
+<p>Another implement of length function with pattern match and recursive:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">length&#x27;</span> :: (<span class="hljs-type">Num</span> b) =&gt; [a] -&gt; b  <br><span class="hljs-title">length&#x27;</span> [] = <span class="hljs-number">0</span>  <br><span class="hljs-title">length&#x27;</span> (_:xs) = <span class="hljs-number">1</span> + length&#x27; xs  <br></code></pre></td></tr></table></figure>
+<h3 id="as-patterns">as patterns</h3>
+<p><strong>Def (as patterns)</strong>: binding a name refers to the whole thing whilst keep the pattern</p>
+<p>An example of use:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">capital</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">String</span>  <br><span class="hljs-title">capital</span> <span class="hljs-string">&quot;&quot;</span> = <span class="hljs-string">&quot;Empty string, whoops!&quot;</span>  <br><span class="hljs-title">capital</span> all@(x:xs) = <span class="hljs-string">&quot;The first letter of &quot;</span> ++ all ++ <span class="hljs-string">&quot; is &quot;</span> ++ [x]<br><br><span class="hljs-comment">-- ghci&gt; capital &quot;Dracula&quot;  </span><br><span class="hljs-comment">-- &quot;The first letter of Dracula is D&quot;</span><br></code></pre></td></tr></table></figure>
+<h2 id="guards">guards</h2>
+<p><strong>Def (guards)</strong>: test if a value satisfies some properties. Something like <code>switch-case-</code> in C programming language.</p>
+<h3 id="basic">basic</h3>
+<p>Just give an axample to see how to use it:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">densityTell</span> :: (<span class="hljs-type">RealFloat</span> a) =&gt; a -&gt; <span class="hljs-type">String</span>  <br><span class="hljs-title">densityTell</span> density  <br>    | density &lt; <span class="hljs-number">1.2</span> = <span class="hljs-string">&quot;Wow! You&#x27;re going for a ride in the sky!&quot;</span>  <br>    | density &lt;= <span class="hljs-number">1000.0</span> = <span class="hljs-string">&quot;Have fun swimming, but watch out for sharks!&quot;</span>  <br>    | otherwise   = <span class="hljs-string">&quot;If it&#x27;s sink or swim, you&#x27;re going to sink.&quot;</span> <br></code></pre></td></tr></table></figure>
+<p>each guard <code>|</code> are followed by an boolean expression, if True, then the function is used, if False, jump to the next guard.</p>
+<blockquote>
+<ul>
+<li><code>otherwise</code> is of boolean type, the value is <code>True</code></li>
+<li>Note that there’s no <code>=</code> right after the function name and its parameters</li>
+</ul>
+</blockquote>
+<h3 id="where">where</h3>
+<p><code>where</code> in <code>guards</code>, which can be used to make calculations less, an example:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">densityTell</span> :: (<span class="hljs-type">RealFloat</span> a) =&gt; a -&gt; a -&gt; <span class="hljs-type">String</span>  <br><span class="hljs-title">densityTell</span> mass volume  <br>    | density &lt; air = <span class="hljs-string">&quot;Wow! You&#x27;re going for a ride in the sky!&quot;</span>  <br>    | density &lt;= water = <span class="hljs-string">&quot;Have fun swimming, but watch out for sharks!&quot;</span>  <br>    | otherwise   = <span class="hljs-string">&quot;If it&#x27;s sink or swim, you&#x27;re going to sink.&quot;</span>  <br>    <span class="hljs-keyword">where</span> density = mass / volume  <br>          air = <span class="hljs-number">1.2</span>  <br>          water = <span class="hljs-number">1000.0</span> <br>          <br><span class="hljs-comment">-- the variables &#x27;density&#x27;, &#x27;air&#x27;, &#x27;water&#x27; is only visible </span><br><span class="hljs-comment">-- in this function &#x27;densityTell&#x27;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>align these variables proper in case that Haskell don’t know that</p>
+</blockquote>
+<p>Use <code>where</code> with <strong>pattern match</strong>, an example:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">initials</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">String</span> -&gt; <span class="hljs-type">String</span>  <br><span class="hljs-title">initials</span> firstname lastname = [f] ++ <span class="hljs-string">&quot;. &quot;</span> ++ [l] ++ <span class="hljs-string">&quot;.&quot;</span>  <br>    <span class="hljs-keyword">where</span> (f:_) = firstname  <br>          (l:_) = lastname  <br></code></pre></td></tr></table></figure>
+<p>You can also define functions in <code>where</code> section.Code as follows:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">calcuDensities</span> :: (<span class="hljs-type">RealFloat</span> a) =&gt; [(a, a)] -&gt; [a]<br><span class="hljs-title">calcuDensities</span> xs = [density m v | (m, v) &lt;- xs]<br>    <span class="hljs-keyword">where</span> density m v = m / v<br>    <br><span class="hljs-comment">-- ghci&gt; calcuDensities [(1, 2), (1, 3), (1, 4)]</span><br><span class="hljs-comment">-- [0.5,0.3333333333333333,0.25]</span><br></code></pre></td></tr></table></figure>
+<h2 id="let-in">let-in</h2>
+<p>Syntax form: <code>let &lt;bindings&gt; in &lt;expression&gt;</code></p>
+<p>An example:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">cylinder</span> :: (<span class="hljs-type">RealFloat</span> a) =&gt; a -&gt; a -&gt; a  <br><span class="hljs-title">cylinder</span> r h = <br>    <span class="hljs-keyword">let</span> sideArea = <span class="hljs-number">2</span> * pi * r * h  <br>        topArea = pi * r ^<span class="hljs-number">2</span>  <br>    <span class="hljs-keyword">in</span>  sideArea + <span class="hljs-number">2</span> * topArea <br></code></pre></td></tr></table></figure>
+<p>Or use it like <code>if</code> statement:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-number">4</span> * (<span class="hljs-keyword">let</span> a = <span class="hljs-number">9</span> <span class="hljs-keyword">in</span> a + <span class="hljs-number">1</span>) + <span class="hljs-number">2</span> <br></code></pre></td></tr></table></figure>
+<p><code>Let</code> with <strong>list comprehension</strong>, then we don’t need to define a additional function.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">calcDensities</span> :: (<span class="hljs-type">RealFloat</span> a) =&gt; [(a, a)] -&gt; [a]  <br><span class="hljs-title">calcDensities</span> xs = [density | (m, v) &lt;- xs, <span class="hljs-keyword">let</span> density = m / v, density &lt; <span class="hljs-number">1.2</span>]<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>remeber that: Haskell goes from left ro right  after pipe</p>
+</blockquote>
+<p>Binding several variables inline need to separater with semicolon, that’s:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell">(<span class="hljs-keyword">let</span> a = <span class="hljs-number">100</span>; b = <span class="hljs-number">200</span>; c = <span class="hljs-number">300</span> <span class="hljs-keyword">in</span> a*b*c, <span class="hljs-keyword">let</span> foo=<span class="hljs-string">&quot;Hey &quot;</span>; bar = <span class="hljs-string">&quot;there!&quot;</span> <span class="hljs-keyword">in</span> foo ++ bar)  <br><br><span class="hljs-comment">-- (6000000,&quot;Hey there!&quot;) </span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><code>let-in</code> is local, whilst <code>where</code> is visible in all guards.</p>
+</blockquote>
+<h2 id="case-of">case-of</h2>
+<p>The styntax is:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">case</span> expression <span class="hljs-keyword">of</span> pattern -&gt; result  <br>                   pattern -&gt; result  <br>                   pattern -&gt; result  <br>                   ... <br></code></pre></td></tr></table></figure>
+<p>A simple example:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">head&#x27;</span> :: [a] -&gt; a  <br><span class="hljs-title">head&#x27;</span> xs = <span class="hljs-keyword">case</span> xs <span class="hljs-keyword">of</span> [] -&gt; error <span class="hljs-string">&quot;No head for empty lists!&quot;</span>  <br>                      (x:_) -&gt; x <br></code></pre></td></tr></table></figure>
+<p>Pattern matching against something in the middle of an expression example:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">describeList</span> :: [a] -&gt; <span class="hljs-type">String</span>  <br><span class="hljs-title">describeList</span> xs = <span class="hljs-string">&quot;The list is &quot;</span> ++ what xs  <br>    <span class="hljs-keyword">where</span> what [] = <span class="hljs-string">&quot;empty.&quot;</span>  <br>          what [x] = <span class="hljs-string">&quot;a singleton list.&quot;</span>  <br>          what xs = <span class="hljs-string">&quot;a longer list.&quot;</span> <br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Haskell/" class="category-chain-item">Haskell</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Syntax of Haskell</div>
+      <div>https://zongpingding.github.io/2024/07/24/Haskell_syntax/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 24, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/23/Haskell_basic/" title="Introduction to Haskell">
+                        <span class="hidden-mobile">Introduction to Haskell</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
