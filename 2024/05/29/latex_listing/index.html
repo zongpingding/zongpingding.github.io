@@ -16,16 +16,19 @@
   <meta name="author" content="Eureka">
   <meta name="keywords" content="">
   
-    <meta name="description" content="minted代码环境 一个自己使用的基于minted 宏包的代码抄录环境，样式说明  增加圆角 背景色浅色 可跨页  对应环境的声明代码为: 12345678910111213141516171819202122232425\usepackage&#123;minted&#125;\usepackage&#123;tcolorbox&#125;\tcbuselibrary&#123;minted,">
+    <meta name="description" content="listing only 一个自己使用的基于minted 和 tcolorbox 宏包的代码抄录环境，样式说明  增加圆角 浅色背景 可跨页  其实关于代码抄录的核心选项为: listing only, 自定义环境的完整声明为: 123456789101112131415161718192021222324252627\usepackage&#123;minted&#125;\usepackage">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A minted code printing box">
+<meta property="og:title" content="LaTeX listing">
 <meta property="og:url" content="https://zongpingding.github.io/2024/05/29/latex_listing/index.html">
 <meta property="og:site_name" content="Eureka">
-<meta property="og:description" content="minted代码环境 一个自己使用的基于minted 宏包的代码抄录环境，样式说明  增加圆角 背景色浅色 可跨页  对应环境的声明代码为: 12345678910111213141516171819202122232425\usepackage&#123;minted&#125;\usepackage&#123;tcolorbox&#125;\tcbuselibrary&#123;minted,">
+<meta property="og:description" content="listing only 一个自己使用的基于minted 和 tcolorbox 宏包的代码抄录环境，样式说明  增加圆角 浅色背景 可跨页  其实关于代码抄录的核心选项为: listing only, 自定义环境的完整声明为: 123456789101112131415161718192021222324252627\usepackage&#123;minted&#125;\usepackage">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zongpingding.github.io/img/latex_listing/example.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/latex_listing/example_2.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/latex_listing/example_3.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/latex_listing/example_4.png">
 <meta property="article:published_time" content="2024-05-29T08:32:05.118Z">
-<meta property="article:modified_time" content="2024-05-29T08:47:58.196Z">
+<meta property="article:modified_time" content="2024-07-26T10:29:05.151Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="tcolorbox">
 <meta property="article:tag" content="minted">
@@ -36,7 +39,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>A minted code printing box - Eureka</title>
+  <title>LaTeX listing - Eureka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="A minted code printing box"></span>
+            <span id="subtitle" data-typed-text="LaTeX listing"></span>
           
         </div>
 
@@ -225,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          152 words
+          832 words
         
       </span>
     
@@ -236,7 +239,7 @@
         
         
         
-          2 mins
+          7 mins
         
       </span>
     
@@ -273,26 +276,53 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">A minted code printing box</h1>
+            <h1 id="seo-header">LaTeX listing</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="minted代码环境">minted代码环境</h2>
-<p>一个自己使用的基于<code>minted</code> 宏包的代码抄录环境，样式说明</p>
+                <h2 id="listing-only">listing only</h2>
+<p>一个自己使用的基于<code>minted</code> 和 <code>tcolorbox</code> 宏包的代码抄录环境，样式说明</p>
 <ul>
 <li>增加圆角</li>
-<li>背景色浅色</li>
+<li>浅色背景</li>
 <li>可跨页</li>
 </ul>
-<p>对应环境的声明代码为:</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs LaTeX"><span class="hljs-keyword">\usepackage</span>&#123;minted&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;tcolorbox&#125;<br><span class="hljs-keyword">\tcbuselibrary</span>&#123;minted, breakable, skins&#125;<br><span class="hljs-keyword">\tcbset</span>&#123;listing engine=minted&#125;<br><span class="hljs-keyword">\definecolor</span>&#123;bg&#125;&#123;RGB&#125;&#123;242, 242, 242&#125;<br><span class="hljs-keyword">\newtcblisting</span>&#123;code&#125;[1][text]&#123;<br>    enhanced,<br>    breakable,<br>    listing only, <br>    minted language=<span class="hljs-params">#1</span>, <br>    minted style=manni,<br>    colback=bg, <br>    frame hidden, <br>    left=1mm, right=1mm,<br>    top=0mm, bottom=0mm, <br>    minted options = &#123;  <br>        autogobble,<br>        tabsize=2,<br>        breaklines=true, <br>        breakanywhere=true,<br>        breakanywheresymbolpre=,<br>        breaksymbolleft=,<br>        fontsize=<span class="hljs-keyword">\footnotesize</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="使用">使用</h2>
+<p>其实关于代码抄录的核心选项为: <code>listing only</code>, 自定义环境的完整声明为:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs LaTeX"><span class="hljs-keyword">\usepackage</span>&#123;minted&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;tcolorbox&#125;<br><span class="hljs-keyword">\tcbuselibrary</span>&#123;minted, breakable, skins&#125;<br><span class="hljs-keyword">\tcbset</span>&#123;listing engine=minted&#125;<br><span class="hljs-keyword">\definecolor</span>&#123;bg&#125;&#123;RGB&#125;&#123;242, 242, 242&#125;<br><span class="hljs-keyword">\newtcblisting</span>&#123;code&#125;[1][text]&#123;<br>  <span class="hljs-comment">% basic settings</span><br>  enhanced,<br>  breakable,<br>  listing only, <br>  colback=bg, <br>  frame hidden, <br>  left=1mm, right=1mm,<br>  top=0mm, bottom=0mm, <br>  <span class="hljs-comment">% minted options</span><br>  minted language=<span class="hljs-params">#1</span>, <br>  minted style=manni,<br>  minted options = &#123;  <br>    autogobble,<br>    tabsize=2,<br>    breaklines=true, <br>    breakanywhere=true,<br>    breakanywheresymbolpre=,<br>    breaksymbolleft=,<br>    fontsize=<span class="hljs-keyword">\footnotesize</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>使用方法如下:</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs LaTeX"><span class="hljs-keyword">\begin</span>&#123;code&#125;[&lt;language&gt;]<br>&lt;your code&gt;<br><span class="hljs-keyword">\end</span>&#123;code&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="效果">效果</h2>
 <p>使用效果如下<br>
 <img src="/img/latex_listing/example.png" srcset="/img/loading.gif" lazyload alt="跨页效果"></p>
+<h2 id="text-and-listing">text and listing</h2>
+<p>在制作文档类或者是宏包时，作者或许需要一些示例，这些示例的展现形式为:</p>
+<ul>
+<li>左侧源代码</li>
+<li>右侧结果展示</li>
+</ul>
+<p>更过详细信息可以参见: <a target="_blank" rel="noopener" href="https://tex.stackexchange.com/q/19295/294585">https://tex.stackexchange.com/q/19295/294585</a>, 或对应的宏包手册. <code>tcolorbox</code> 提供了这个接口，对应选项为: <code>listing and text</code>. 和此选项相关的几个选项为:</p>
+<ul>
+<li><code>sidebyside</code>: 源码和结果横向分布，默认上下分布</li>
+<li><code>listing and text</code>/<code>text and listing</code>: 源码和结果先后顺序</li>
+</ul>
+<p>下面是一个我自己常用的代码样例环境:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\usepackage</span>&#123;xparse&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;minted&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;tcolorbox&#125;<br><span class="hljs-keyword">\tcbuselibrary</span>&#123;listings, minted, breakable, skins&#125;<br><span class="hljs-keyword">\tcbset</span>&#123;listing engine=minted&#125;<br><span class="hljs-keyword">\definecolor</span>&#123;bg&#125;&#123;RGB&#125;&#123;242, 242, 242&#125;<br><span class="hljs-keyword">\DeclareTCBListing</span>&#123;code&#125;&#123;!O&#123;tex&#125;&#125;&#123;<br>  <span class="hljs-comment">% ==&gt; basic settings</span><br>  enhanced,<br>  breakable,<br>  colback=bg, <br>  frame hidden, <br>  left=1mm, right=1mm,<br>  top=0mm, bottom=0mm, <br>  <span class="hljs-comment">%</span><br>  <span class="hljs-comment">% </span><br>  <span class="hljs-comment">% ==&gt; source and ouput</span><br>  sidebyside, <br>  listing and text,<br>  <span class="hljs-comment">% listing only, </span><br>  <span class="hljs-comment">% text and listing,</span><br>  <span class="hljs-comment">% listing outside text,</span><br>  <span class="hljs-comment">%</span><br>  <span class="hljs-comment">% </span><br>  <span class="hljs-comment">% ==&gt; minted options</span><br>  minted language=<span class="hljs-params">#1</span>, <br>  minted style=manni,<br>  minted options = &#123;  <br>    autogobble,<br>    tabsize=2,<br>    breaklines=true, <br>    breakanywhere=true,<br>    breakanywheresymbolpre=,<br>    breaksymbolleft=,<br>    fontsize=<span class="hljs-keyword">\footnotesize</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>这里我使用了命令 <code>\DeclareTCBListing</code>, 需要 <code>xparse</code> 宏包来为此环境提供默认参数功能，其中符号 <code>!</code> 表示不忽略默认参数中的空格.</p>
+</blockquote>
+<p>使用效果如下<br>
+<img src="/img/latex_listing/example_2.png" srcset="/img/loading.gif" lazyload alt="text and listing"></p>
+<h2 id="tkzexample">tkzexample</h2>
+<p>处理使用 <code>tcolorbox</code> 提供的接口外，我们还可使用宏包 <code>tkzexample</code> 来实现此功能. 一个基本配置样例:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% settings</span><br><span class="hljs-keyword">\usepackage</span>&#123;tkzexample&#125; <br><span class="hljs-keyword">\usepackage</span>[protrusion = true,<br>            expansion, final,<br>            verbose = false, babel   = true]&#123;microtype&#125;<br><span class="hljs-keyword">\DisableLigatures</span>&#123;encoding = T1, family = tt*&#125;  <br><span class="hljs-keyword">\colorlet</span>&#123;graphicbackground&#125;&#123;blue!10!white&#125;<br><span class="hljs-keyword">\colorlet</span>&#123;codebackground&#125;&#123;red!10&#125;<br><br><br><span class="hljs-comment">% example </span><br><span class="hljs-keyword">\begin</span>&#123;tkzexample&#125;[latex=.5<span class="hljs-keyword">\linewidth</span>]<br><span class="hljs-keyword">\newcommand</span>&#123;<span class="hljs-keyword">\foo</span>&#125;&#123;foo&#125;<br><span class="hljs-keyword">\foo</span><br><span class="hljs-keyword">\end</span>&#123;tkzexample&#125;<br></code></pre></td></tr></table></figure>
+<p>具体效果如下:<br>
+<img src="/img/latex_listing/example_3.png" srcset="/img/loading.gif" lazyload alt="text and listing"></p>
+<h2 id="使用aux辅助">使用aux辅助</h2>
+<p>也可以参考: <a target="_blank" rel="noopener" href="https://github.com/CTeX-org/lshort-zh-cn/blob/e95288a697822a6f63e6f2eb1b9160a6f324c566/src/lshort-zh-cn-style.sty">lshort-zh-cn-style.sty</a> 的思路，先把环境中的内容输出到一个外部文件，然后使用 <code>verbatim</code> 宏包提供的 <code>verbatiminput</code> 命令导入刚才输出的文本.</p>
+<p>具体的实现细节如下:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\usepackage</span>&#123;verbatim&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;xcolor&#125;<br><br><br><span class="hljs-comment">% &#x27;example&#x27; environment</span><br><span class="hljs-keyword">\makeatletter</span><br><span class="hljs-keyword">\newwrite</span><span class="hljs-keyword">\example@out</span><br><span class="hljs-keyword">\newlength</span><span class="hljs-keyword">\savefboxrule</span><br><span class="hljs-keyword">\newlength</span><span class="hljs-keyword">\savefboxsep</span><br><span class="hljs-keyword">\edef</span><span class="hljs-keyword">\example@name</span>&#123;<span class="hljs-keyword">\jobname</span>-example.aux&#125;<br><span class="hljs-keyword">\newenvironment</span>&#123;example&#125;<span class="hljs-comment">%</span><br>&#123;<span class="hljs-keyword">\begingroup</span><span class="hljs-keyword">\@bsphack</span><br>  <span class="hljs-keyword">\immediate</span><span class="hljs-keyword">\openout</span><span class="hljs-keyword">\example@out</span>=<span class="hljs-keyword">\example@name</span><br>  <span class="hljs-keyword">\let</span><span class="hljs-keyword">\do</span><span class="hljs-keyword">\@makeother</span><span class="hljs-keyword">\dospecials</span><span class="hljs-keyword">\catcode</span>`<span class="hljs-keyword">\^^M</span><span class="hljs-keyword">\active</span><br>  <span class="hljs-keyword">\def</span><span class="hljs-keyword">\verbatim@processline</span>&#123;<span class="hljs-keyword">\immediate</span><span class="hljs-keyword">\write</span><span class="hljs-keyword">\example@out</span>&#123;<span class="hljs-keyword">\the</span><span class="hljs-keyword">\verbatim@line</span>&#125;&#125;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\verbatim@start</span>&#125;<span class="hljs-comment">%</span><br>&#123;<span class="hljs-keyword">\immediate</span><span class="hljs-keyword">\closeout</span><span class="hljs-keyword">\example@out</span><span class="hljs-keyword">\@esphack</span><span class="hljs-keyword">\endgroup</span><span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\trivlist</span><span class="hljs-keyword">\item</span><span class="hljs-keyword">\relax</span><br>  <span class="hljs-keyword">\setlength</span>&#123;<span class="hljs-keyword">\savefboxrule</span>&#125;&#123;<span class="hljs-keyword">\fboxrule</span>&#125;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\setlength</span>&#123;<span class="hljs-keyword">\savefboxsep</span>&#125;&#123;<span class="hljs-keyword">\fboxsep</span>&#125;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\setlength</span>&#123;<span class="hljs-keyword">\fboxsep</span>&#125;&#123;0.015<span class="hljs-keyword">\textwidth</span>&#125;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\setlength</span>&#123;<span class="hljs-keyword">\fboxrule</span>&#125;&#123;0.4pt&#125;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\fcolorbox</span>[gray]&#123;0&#125;&#123;0.95&#125;&#123;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\begin</span>&#123;minipage&#125;[c]&#123;0.45<span class="hljs-keyword">\textwidth</span>&#125;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\setlength</span>&#123;<span class="hljs-keyword">\fboxrule</span>&#125;&#123;<span class="hljs-keyword">\savefboxrule</span>&#125;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\setlength</span>&#123;<span class="hljs-keyword">\fboxsep</span>&#125;&#123;<span class="hljs-keyword">\savefboxsep</span>&#125;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\small</span><span class="hljs-keyword">\verbatiminput</span>&#123;<span class="hljs-keyword">\example@name</span>&#125;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\end</span>&#123;minipage&#125;<span class="hljs-comment">%</span><br>  &#125;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\hfill</span><span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\fbox</span>&#123;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\begin</span>&#123;minipage&#125;[c]&#123;0.45<span class="hljs-keyword">\textwidth</span>&#125;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\setlength</span>&#123;<span class="hljs-keyword">\fboxrule</span>&#125;&#123;<span class="hljs-keyword">\savefboxrule</span>&#125;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\setlength</span>&#123;<span class="hljs-keyword">\fboxsep</span>&#125;&#123;<span class="hljs-keyword">\savefboxsep</span>&#125;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\setlength</span>&#123;<span class="hljs-keyword">\parskip</span>&#125;&#123;1ex plus 0.4ex minus 0.2ex&#125;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\normalsize</span><span class="hljs-keyword">\input</span>&#123;<span class="hljs-keyword">\example@name</span>&#125;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\end</span>&#123;minipage&#125;<span class="hljs-comment">%</span><br>  &#125;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\endtrivlist</span><br>&#125;<br><span class="hljs-keyword">\makeatother</span><br><br><br><span class="hljs-comment">% usage </span><br><span class="hljs-keyword">\begin</span>&#123;example&#125;<br>daughter-in-law, X-rated<span class="hljs-keyword">\\</span><br>pages 13--67<span class="hljs-keyword">\\</span><br>yes---or no?<br><span class="hljs-keyword">\end</span>&#123;example&#125;<br></code></pre></td></tr></table></figure>
+<p>具体呈现效果如下:<br>
+<img src="/img/latex_listing/example_4.png" srcset="/img/loading.gif" lazyload alt="text and listing"></p>
 
                 
               </div>
@@ -340,7 +370,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>A minted code printing box</div>
+      <div>LaTeX listing</div>
       <div>https://zongpingding.github.io/2024/05/29/latex_listing/</div>
     </div>
     <div class="license-meta">
