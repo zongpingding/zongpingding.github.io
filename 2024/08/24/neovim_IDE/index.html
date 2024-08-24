@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="编辑器&#x2F;IDE 我们所说的编辑器和IDE到底有怎样的区别？而被人常常说 Neovim 只是一编辑器，而不是IDE。在我看来一个IDE至少应该是具有以下特点的编辑器：  LSP&#x2F;代码补全，这个就需要相应的的LSP，也就是Language Server Protocol Highlight&#x2F;代码高亮, 虽然说这个功能Neovim自带了，但是很多的时候，它的高亮结果并不是那么的理想，亦或者是说时错误的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Config Neovim to IDE">
+<meta property="og:url" content="https://zongpingding.github.io/2024/08/24/neovim_IDE/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="编辑器&#x2F;IDE 我们所说的编辑器和IDE到底有怎样的区别？而被人常常说 Neovim 只是一编辑器，而不是IDE。在我看来一个IDE至少应该是具有以下特点的编辑器：  LSP&#x2F;代码补全，这个就需要相应的的LSP，也就是Language Server Protocol Highlight&#x2F;代码高亮, 虽然说这个功能Neovim自带了，但是很多的时候，它的高亮结果并不是那么的理想，亦或者是说时错误的。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/Neovim_IDE/NeoIDE.jpg">
+<meta property="article:published_time" content="2024-08-24T12:44:26.091Z">
+<meta property="article:modified_time" content="2024-08-24T16:41:03.204Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="Neovim">
+<meta property="article:tag" content="IDE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/Neovim_IDE/NeoIDE.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Config Neovim to IDE - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/fluid_theme_pic/default.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Config Neovim to IDE"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-24 20:44" pubdate>
+          August 24, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Config Neovim to IDE</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="编辑器-IDE">编辑器/IDE</h2>
+<p>我们所说的编辑器和IDE到底有怎样的区别？而被人常常说 Neovim 只是一编辑器，而不是IDE。在我看来一个IDE至少应该是具有以下特点的编辑器：</p>
+<ul>
+<li><code>LSP/代码补全</code>，这个就需要相应的的LSP，也就是Language Server Protocol</li>
+<li><code>Highlight/代码高亮</code>, 虽然说这个功能Neovim自带了，但是很多的时候，它的高亮结果并不是那么的理想，亦或者是说时错误的。于是就需要相应的 Highlight 插件.</li>
+<li><code>定义跳转</code>，很多时候我们都需要在多个文件之间进行跳转.</li>
+<li><code>Formatter/代码格式化</code>，虽然说很多的大型工程都有对于国内的代码规范。我这里就狭义的理解为最普通的代码格式化，比如说代码的缩进，代码的换行，多余的空格控制等等.要在Neovim 中实现对于的Fromat功能，就需要对应的 Formatter，比如针对于Python的Black，针对于C++的Clang-format等等.</li>
+<li><code>Linter/代码检查</code>，其实就是很简单的在我们写代码的时候，进行一些基本的静态检查.比如说变量未定义，函数未定义, 类型不匹配等。这个时候就需要对应的Lint插件，比如说针对于Python的Pylint，针对于C++的Clang-tidy等等.</li>
+<li><code>Dap/调试</code>, 就是Debug，比如加一些断点，单步调试等等.</li>
+<li>…</li>
+</ul>
+<p>其实 IDE 具有的东西还不只上面这些，这里只是例举了一些常用的，必备的功能. 下面就来说一说这些东西怎么配置;</p>
+<h2 id="Neovim-插件">Neovim 插件</h2>
+<p>以下的内容均是基于Neovim社区现有的插件进行配置, 我使用的插件管理器是 lazyvim, 淡然你也可以使用其他的插件管理器，比如说vim-plug, dein.vim等等.</p>
+<blockquote>
+<ul>
+<li>没有必要太纠结插件管理器，我选lazyvim 也不是因为它的lazy load，只是觉得配置起来比较方便而已.</li>
+<li>插件的 lazy load 其实并不是那么的重要，必要的插件在你需要的时候还是会被加载的，所以不必太纠结这个问题.</li>
+</ul>
+</blockquote>
+<p>我的Neovim配置文件结构如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs shell">├── init.lua<br>├── lazy-lock.json<br>└── lua<br>    ├── config<br>    │   ├── lazy.lua<br>    │   └── options.lua<br>    ├── plugins<br>    │   ├── code.lua<br>    │   ├── copilot.lua<br>    │   ├── EXPERIMENT.lua<br>    │   ├── luarocks.lua<br>    │   ├── note.lua<br>    │   ├── scheme.lua<br>    │   └── whick-key.lua<br>    └── snippets<br>        ├── luasnip<br>        │   ├── all.lua<br>        │   ├── LuaSnipTool.lua<br>        │   └── tex.lua<br>        └── vscode<br>            ├── all.json<br>            ├── latex.jsonc<br>            ├── lua.json<br>            ├── markdown.jsonc<br>            └── package.json<br></code></pre></td></tr></table></figure>
+<h2 id="配置文件">配置文件</h2>
+<p>我的所有东西都是从头开始写的，所以结构可能不想官方推荐的那样, 仅供参考. 上述各个文件夹包含的内容:</p>
+<ul>
+<li><code>init.lua</code>: Neovim 的初始化文件，我在这个里面拉起来了所有的配置文件.</li>
+<li><code>lua\config</code>: 这个里面是一些Lazyvim 本体和一份与插件无关的配置文件.</li>
+<li><code>lua\plugins</code>: 这个里面是所有加载的插件，我分为了几个大类:
+<ul>
+<li><code>code.lua</code>: 代码相关的插件，比如说LSP, Highlight</li>
+<li><code>scheme.lua</code>: 主题，语法高亮以及一些UI的插件.</li>
+<li><code>note.lua</code>: 用于书写笔记相关的插件，如 <code>Markdown</code>, <code>TeX</code>, <code>Typst</code>等.</li>
+<li><code>which-key.lua</code>: 显示快捷键的插件，当然，如果你熟悉自己的快捷键，这个插件可以不用.</li>
+<li><code>copilot.lua</code>: Github copilot AI 自动补全插件. (需要你自己申请，但是配置起来是很简单的)</li>
+<li><code>luarocks.lua</code>: 必要的用于插件管理的插件.</li>
+</ul>
+</li>
+<li><code>lua\snippets</code>: 代码片段，我这里分为了两个大类，每一个语言的snppets对应的文件:
+<ul>
+<li><code>luasnip</code>: 用 LuaSnip 写的代码片段, 这里我使用的 <code>LuaSnip</code> 插件个人感觉比 vscode 自带的Snippets 强大.</li>
+<li><code>vscode</code>: 这里我是直接从我以前VSCode中导出的，因为我不行再写一遍.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>目前我把 <code>Formatter</code>, <code>Linter</code>等的配置放入了 <code>EXPERIMENT.lua</code> 中，因为我认为这部分还不够的稳定.</li>
+<li>对于Vscode 的sniipets，对于的文件夹中必须要有对应的 <code>package.json</code> 文件，否则对应的Vscode snippets无法加载.</li>
+<li>对于 LuaSnip，对应的snippets 的文件名必须是合法的文件类型, 如 <code>tex.lua</code>, <code>markdown.lua</code>等等.</li>
+</ul>
+</blockquote>
+<h2 id="安装">安装</h2>
+<h3 id="Mason">Mason</h3>
+<p>其实对于 LSP, Linter, Formatter 等的东西，完全可以手动安装的，无非就是一个可执行文件嘛, 你自己安装好之后，把这些东西对应的可执行文件的路径加入到 <code>Path</code> 中就可以了. 但是我还是推荐新手使用 <code>Mason</code> 这个插件，它可以帮助你自动安装这些东西，以及对应的依赖.</p>
+<div class="note note-danger">
+            <p>在 Windows 下，你可以需要把 Mason 的那个 <code>bin</code> 路径加入到 <code>Path</code> 中，否则 Mason 安装的这些Linter, Formatter 可能就无法正常工作.</p>
+          </div>
+<p>虽然说 Mason 提供给了很多的安装插件，但是部分的 Linter, Formatter 可能并没有提供，这个时候你就需要自己手动安装了. 比如说我需要使用的 <code>chktex</code> ，这个东西在 Mason 中并没有提供，所以我就需要自己手动安装了. 但是我使用的是 <code>nvim-lint</code>这个插件，它提供了一个 <code>chktex</code> 的插件，所以我就不需要自己手动安装了.</p>
+<blockquote>
+<p>如果你想要配置对应的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext><mn>3</mn></mrow><annotation encoding="application/x-tex">\LaTeX 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span><span class="mord">3</span></span></span></span> 环境的话，目前还没有比较好的 LSP，TeXLab 对此好像还没有动静，更不用说对应的 Linter 了. 在这里还是推荐使用 vscode 的 LaTeX Workshop 插件，它提供了比较好的 LaTeX 3 的 LSP 支持.</p>
+</blockquote>
+<p>对于新手来说，你把 Mason 当作一个专门用于安装 Dap, Linter, Formatter, LSP 的工具就行了. 当你安装好对应的插件后，你就可以在你的配置文件中配置对应的插件了.</p>
+<blockquote>
+<p>如果你只是在 Mason 中安装了这个插件，但是并没有进行相应的配置或者是调用，它们也是不会生效的. 这里我是用的是 <code>nvimdev/guard.nvim</code> + <code>mfussenegger/nvim-lint</code> 这两个插件. 其中前者主要是用于格式化代码，也就是 Formatter，后者主要是用于检查代码，也就是 Linter. (主要是后者提供的 linter 比前者丰富，所以我才会如此配置.)</p>
+</blockquote>
+<p>如果你想手动配置 LSP，那么可以参见: <a target="_blank" rel="noopener" href="https://github.com/L3MON4D3/LuaSnip/wiki/Cool-Snippets">neovim-lspconfig</a>, 这个里面有详细的配置说明. 说明了哪些语言应该配置什么样的LSP.</p>
+<h3 id="Tree-sitter">Tree-sitter</h3>
+<p>这个 <code>Tree-sitter</code> 是用于解析文件，然后提供代码高亮的。但是这个的安装可能优点麻烦, 建议把对应的编译器改为 <code>zig</code>, 设置如下:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">config</span> = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_, opts)</span></span><br>    <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;nvim-treesitter.install&#x27;</span>).compilers = &#123;<span class="hljs-string">&quot;zig&quot;</span>, <span class="hljs-string">&quot;clang&quot;</span>, <span class="hljs-string">&quot;gcc&quot;</span>&#125;<br>    <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;nvim-treesitter.install&quot;</span>).prefer_git = <span class="hljs-literal">true</span><br>    <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;nvim-treesitter.configs&quot;</span>).setup(opts)<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h3 id="其余插件">其余插件</h3>
+<p>由于目前 lazyvim 还是挺流行的，所以很多的插件仓库中都有对应的 lazyvim 的配置，你只需要稍微改一改就能用了.</p>
+<h2 id="配置">配置</h2>
+<h3 id="snippets">snippets</h3>
+<p>什么是snippets？这个你自己去网上了解. 目前我使用的是 <code>LuaSnip</code> 插件，一方面它可以复用我以前在 Vscode 中已经写好的 snippets，另一方面，它也有自己的一套书写 snippets 的语法, 比vscode的强大很多. 比如它提供的 Node 类型就非常的多:</p>
+<ul>
+<li><code>insert node</code>: 插入节点</li>
+<li><code>choice node</code>: 选择节点</li>
+<li><code>function node</code>: 函数节点</li>
+<li><code>text node</code>: 文本节点</li>
+<li><code>dynamic node</code>: 动态节点</li>
+<li><code>snippet node</code>: 代码片段节点</li>
+<li><code>restore node</code>: 恢复节点</li>
+<li>…</li>
+</ul>
+<p>有了这些类型的节点，再加上 lua 本身的特性，你就可以写出一些非常强大的 snippets 了. 详细的教程可以参见:<a target="_blank" rel="noopener" href="https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md">LuaSnip</a>.一些很 cool 的snippets 可以参见: <a target="_blank" rel="noopener" href="https://github.com/L3MON4D3/LuaSnip/wiki/Cool-Snippets">awesome-snippets</a>.</p>
+<p>有一个需要说明的是，文件 <code>require</code> 时的路径是相对于 <code>./nvim/lua</code> 文件夹的. 比如上述的配置结构下我的加载 snippets 的命令为:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;luasnip.loaders.from_vscode&quot;</span>).lazy_load(&#123;paths = <span class="hljs-string">&quot;./lua/snippets/vscode&quot;</span>&#125;)<br><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;luasnip.loaders.from_lua&quot;</span>).lazy_load(&#123;paths = <span class="hljs-string">&quot;./lua/snippets/luasnip&quot;</span>&#125;)<br></code></pre></td></tr></table></figure>
+<h3 id="plugin-spec">plugin spec</h3>
+<p>在你下载插件的时候，其实你有一系列的东西可以配置，参见如下的一个示例:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- terminal: toggleterm.nvim</span><br>&#123;<br>  <span class="hljs-string">&#x27;akinsho/toggleterm.nvim&#x27;</span>, <br>  version = <span class="hljs-string">&quot;*&quot;</span>, <br>  event = <span class="hljs-string">&quot;VeryLazy&quot;</span>,<br>  opts = &#123;<br>    direction = <span class="hljs-string">&#x27;float&#x27;</span>,<br>    shell = <span class="hljs-string">&quot;pwsh.exe&quot;</span>,<br>    float_opts = &#123; border=<span class="hljs-string">&quot;curved&quot;</span> &#125;<br>  &#125;,<br>  <span class="hljs-built_in">config</span> = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_, opts)</span></span><br>    <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;toggleterm&quot;</span>).setup(opts)<br>  <span class="hljs-keyword">end</span>,<br>  keys = &#123;<br>    &#123;<span class="hljs-string">&#x27;&lt;leader&gt;t&#x27;</span>, <span class="hljs-string">&quot;&lt;cmd&gt;ToggleTerm&lt;CR&gt;&quot;</span>, mode = <span class="hljs-string">&quot;n&quot;</span>, noremap = <span class="hljs-literal">true</span>, desc = <span class="hljs-string">&quot;toggle terminal&quot;</span>&#125;,<br>    &#123;<span class="hljs-string">&#x27;jj&#x27;</span>,        <span class="hljs-string">&quot;&lt;C-\\&gt;&lt;C-n&gt;&quot;</span>,         mode = <span class="hljs-string">&quot;t&quot;</span>, noremap = <span class="hljs-literal">true</span>, desc = <span class="hljs-string">&quot;enter normal mode in terminal&quot;</span>&#125;,<br>    &#123;<span class="hljs-string">&#x27;&lt;Esc&gt;&#x27;</span>,     <span class="hljs-string">&quot;&lt;C-\\&gt;&lt;C-n&gt;:q&lt;CR&gt;&quot;</span>,   mode = <span class="hljs-string">&quot;t&quot;</span>, noremap = <span class="hljs-literal">true</span>, desc = <span class="hljs-string">&quot;exit terminal mode&quot;</span>&#125;,<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上述的配置中关于 lazy_load 的可选配置有:</p>
+<ul>
+<li><code>event</code>: 在什么事件发生的时候加载这个插件, 可以注意一下这个 <code>VeryLazy</code> 事件.</li>
+<li><code>cmd</code>: 在某个命令运行时加载这个插件</li>
+<li><code>ft</code>: 在某个文件类型加载这个插件</li>
+<li><code>keys</code>: 在某个快捷键运行时加载这个插件</li>
+</ul>
+<p>关于 nvim 事件，可以参见: <a target="_blank" rel="noopener" href="https://vi.stackexchange.com/a/36593/48595">What is the order of WinEnter, BufEnter, BufRead, Syntax, FileType events?</a></p>
+<p>对于插件的选项配置，可以放到 <code>opts</code>  这个 field 中, lazyvim 会自动把这个 <code>opts</code> 传递给对应插件的 <code>setup()</code> 函数,但是部分的插件并没有提供对应的 <code>setup()</code> 函数，这个时候你就需要自己写一个 <code>config</code> 函数，然后在这个函数中进行配置.</p>
+<p>更多详细的配置，可以参见: <a target="_blank" rel="noopener" href="https://lazy.folke.io/">lazyvim</a></p>
+<h3 id="terminal-emulator">terminal emulator</h3>
+<p>这里我必须要说一些关于 terminal emulator 的事情，因为很多你认为是 Neovim bug 的时候，其实是 terminal emulator 的问题. 还有一个 <strong>日经</strong> 问题：为什么我的Neovim底部有一个空白的行？这个问题多半就是你的 terminal emulator 的问题.针对与这个问题，如果使用的是 <code>wezterm</code>, 那么可以在配置文件中加入如下的配置:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">config</span>.window_decorations = <span class="hljs-string">&quot;INTEGRATED_BUTTONS|RESIZE&quot;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>当然，这个问题也可能是你的 cmdheight 的问题，亦或者是你的终端字体大小问题.</p>
+</blockquote>
+<h2 id="最终效果">最终效果</h2>
+<p>我的 Neovim 最后的配置效果如下:</p>
+<p><img src="/img/Neovim_IDE/NeoIDE.jpg" srcset="/img/loading.gif" lazyload alt="Final Neovim"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Neovim/" class="category-chain-item">Neovim</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Neovim/" class="print-no-link">#Neovim</a>
+      
+        <a href="/tags/IDE/" class="print-no-link">#IDE</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Config Neovim to IDE</div>
+      <div>https://zongpingding.github.io/2024/08/24/neovim_IDE/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 24, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/24/latex_font/" title="LaTeX Font">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LaTeX Font</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/24/Haskell_syntax/" title="Syntax of Haskell">
+                        <span class="hidden-mobile">Syntax of Haskell</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
