@@ -344,7 +344,7 @@
     <link href="/2024/06/14/acrobat_3d_object/"/>
     <url>/2024/06/14/acrobat_3d_object/</url>
     
-    <content type="html"><![CDATA[<h2 id="way-1">way 1</h2><p>解决方法如下，方法来自Adobe官网:</p><p>关闭Adobe Acrobat Pro版本并重命名以下文件夹：</p><ul><li><p>把 C:\Users\UserName\AppData\Local\Adobe\Acrobat<strong>DC</strong> 重命名为C:\Users\UserName\AppData\Local\Adobe\Acrobat<strong>DC_OLD</strong></p></li><li><p>如果可见，请将 C:\Users\UserName\AppData\Local\Adobe\Acrobat<strong>20XX</strong> 更改为C:\Users\UserName\AppData\Local\Adobe\Acrobat<strong>20XX_OLD</strong></p></li></ul><p>然后重新打开三维PDF文件以查看</p><h2 id="way-2">way 2</h2><p>重新安装Adobe Reader</p><h2 id="warning">warning</h2><p>并非所有PDF阅读器都将查看三维PDF，如果遇到问题，请首先尝试其他PDF阅读器</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="way-1">way 1</h2><p>解决方法如下，方法来自Adobe官网:</p><p>关闭Adobe Acrobat Pro版本并重命名以下文件夹：</p><ul><li><p>把 C:\Users\UserName\AppData\Local\Adobe\Acrobat*<em>DC</em>* 重命名为C:\Users\UserName\AppData\Local\Adobe\Acrobat*<em>DC_OLD</em>*</p></li><li><p>如果可见，请将 C:\Users\UserName\AppData\Local\Adobe\Acrobat*<em>20XX</em>* 更改为C:\Users\UserName\AppData\Local\Adobe\Acrobat*<em>20XX_OLD</em>*</p></li></ul><p>然后重新打开三维PDF文件以查看</p><h2 id="way-2">way 2</h2><p>重新安装Adobe Reader</p><h2 id="warning">warning</h2><p>并非所有PDF阅读器都将查看三维PDF，如果遇到问题，请首先尝试其他PDF阅读器</p>]]></content>
     
     
     <categories>
