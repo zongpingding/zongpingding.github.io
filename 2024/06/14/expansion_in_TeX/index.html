@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://zongpingding.github.io/img/expansion_in_tex/output.png">
 <meta property="og:image" content="https://zongpingding.github.io/img/expansion_in_tex/error_log.png">
 <meta property="article:published_time" content="2024-06-14T08:44:36.570Z">
-<meta property="article:modified_time" content="2024-06-15T09:40:31.273Z">
+<meta property="article:modified_time" content="2024-09-26T16:52:26.286Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="expansion">
 <meta property="article:tag" content="protect">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.4k words
+          5.7k words
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          37 mins
+          48 mins
         
       </span>
     
@@ -509,27 +509,108 @@
 <h3 id="further-reading">further reading</h3>
 <p>更多的详细教程可以参见: <a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/Articles">Overleaf Articles</a>, 里面有挺多不错的东西.</p>
 <h2 id="LaTeX-3">LaTeX 3</h2>
+<h3 id="introduction">introduction</h3>
 <p>在LaTeX 3中是可以很方便的操控宏展开的，可以有如下的来给你个途径:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\exp_not:N</span> <br><br><span class="hljs-keyword">\exp_args:N</span>⟨variant⟩ <br><br><span class="hljs-keyword">\exp_args_generate:n</span><br><br><span class="hljs-keyword">\cs_generate_variation:Nn</span> <br><br><span class="hljs-keyword">\prg_generate_conditional_variant:Nnn</span> <br></code></pre></td></tr></table></figure>
+<p>这5个命令用的好，就不用担心绝大部分的展开问题了. 第一个 <code>\exp_not:N</code> 可以控制一个宏不被 <code>e</code>-type 或者是 <code>x</code>-type 展开.</p>
+<h3 id="expandable-variable">expandable variable</h3>
+<p>部分用户也许经常在 interface 3 中看到诸如下面这样的 TeXhackers note, 下面这个例子是 <code>\tl_tail:N</code> 的 note:</p>
+<blockquote>
+<p>The result is returned within \exp_not:n, which means that the token<br>
+list does not expand further when appearing in an e-type or x-type argument expansion</p>
+</blockquote>
+<p>我们下面就写一个具体的例子来说明这个 note 到底说了怎样一回事:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\l_tmpa_tl</span> &#123;a<span class="hljs-keyword">\l_tmpb_tl</span>&#125;<br><span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\l_tmpb_tl</span> &#123;b&#125;<br><span class="hljs-keyword">\tl_set:Nx</span> <span class="hljs-keyword">\l_tmpd_tl</span> &#123;<span class="hljs-keyword">\l_tmpb_tl</span> <span class="hljs-keyword">\tl_tail:N</span><span class="hljs-keyword">\l_tmpa_tl</span>&#125;<br><span class="hljs-keyword">\cs_meaning:N</span> <span class="hljs-keyword">\l_tmpd_tl</span><br></code></pre></td></tr></table></figure>
+<p>这段代码的结果是: <code>macro:-&gt;b\l_tmpb_tl</code>; 因为 <code>\tl_tail:N</code> 的结果是 <code>\l_tmpa_tl</code>, 而这个宏是 within <code>\exp_not:n</code> 的，也就是说:上面 <code>\tl_set:Nx</code> 这一行其实等价于:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\tl_set:Nx</span> <span class="hljs-keyword">\l_tmpd_tl</span> &#123;<span class="hljs-keyword">\l_tmpb_tl</span> <span class="hljs-keyword">\exp_not:n</span> &#123;<span class="hljs-keyword">\l_tmpb_tl</span>&#125;&#125;<br></code></pre></td></tr></table></figure>
+<p>这样我们的 <code>\l_tmpa_tl</code> 中的第二个 token 自然就是 <code>\l_tmpb_tl</code> 的原始定义了，而不是 <code>b</code>.</p>
+<p>被 <code>\protected</code> 的宏也不会被 <code>e</code>-type 和 <code>x</code>-type 展开; 故而 <code>xparse</code> 提供的 <code>\NewDocumentCommand</code> 等一系列的命令定义的宏和被 <code>\noexpand</code> 修饰定义的宏无法被正常展开.</p>
+<p>注意区分 <code>\protect</code> 与 <code>\protected</code>; 这两者是没有关系的, <code>\protected</code> 和 <code>\long</code> 的作用类似。还可以这样理解: 前者是 LaTeX 内部提供的为了弥补没有 <code>\protected</code> 宏的一个 trick，后者是 eTeX 提供的; 对于 <code>\protect</code>, 它会在 normal context 中，它会被展开为 <code>\relax</code>; 在部分特殊的 context 中会被定义为 <code>\noexpand\protect\noexpand</code>, 在部分的 context 中也会被定义为 <code>\noexpand</code>.</p>
+<p>详细信息,可以参见:<a target="_blank" rel="noopener" href="https://tex.stackexchange.com/a/4747/294585">why do we need \protect</a> (可以认为这个参考样例中的 <code>\protect</code> 起了一个传递作用，为了把 <code>\noexpand</code> 传递到第二个过程中；个人觉得也可以在第一步传递一个 <code>\foobar</code> 过去，得到 <code>\foobar\foo</code>, 然后在把行命令写到 toc 文件之前，把 <code>\foobar</code> 定义为 <code>\noexpand</code> 也行。但是两次都用 <code>\protect</code> 我觉得更好，更加的统一.)</p>
+<p>下面就是一个示例:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\l_tmpa_tl</span> &#123;a&#125;<br><span class="hljs-keyword">\protected</span><span class="hljs-keyword">\def</span><span class="hljs-keyword">\cmda</span>&#123;CMD-A&#125;<br><span class="hljs-keyword">\newcommand</span><span class="hljs-keyword">\cmdb</span>&#123;CMD-B&#125;<br><span class="hljs-keyword">\NewDocumentCommand</span><span class="hljs-keyword">\cmdc</span>&#123;&#125;&#123;CMD-C&#125;<br><span class="hljs-keyword">\tl_set:Nx</span> <span class="hljs-keyword">\l_tmpb_tl</span> &#123;<span class="hljs-keyword">\l_tmpa_tl</span> <span class="hljs-keyword">\cmda</span> <span class="hljs-keyword">\noexpand</span><span class="hljs-keyword">\cmdb</span> <span class="hljs-keyword">\cmdc</span>&#125;<br><span class="hljs-keyword">\cs_meaning:N</span> <span class="hljs-keyword">\l_tmpb_tl</span><span class="hljs-keyword">\par</span><br></code></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">macro:-&gt;a<span class="hljs-keyword">\cmda</span> <span class="hljs-keyword">\cmdb</span> <span class="hljs-keyword">\cmdc</span><br></code></pre></td></tr></table></figure>
+<p>如果把上述的 <code>\noexpand</code> 去掉，那么 <code>\cmdb</code> 就会被展开为 <code>CMD-B</code>. 可以参见前一节: “noexpand and protect”. 然后再来说一下这个 robust,见示例:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\tl_set:Nn</span> <span class="hljs-keyword">\l_tmpa_tl</span> &#123;a&#125;<br><span class="hljs-keyword">\DeclareRobustCommand</span><span class="hljs-keyword">\robcmd</span>&#123;ROBUST-CMD&#125;<br><span class="hljs-keyword">\tl_set:Nx</span> <span class="hljs-keyword">\l_tmpb_tl</span> &#123;<span class="hljs-keyword">\l_tmpa_tl</span> <span class="hljs-keyword">\robcmd</span>&#125;<br><span class="hljs-keyword">\cs_meaning:N</span> <span class="hljs-keyword">\l_tmpb_tl</span><br></code></pre></td></tr></table></figure>
+<p>对应的输出为:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">macro:-&gt;a<span class="hljs-keyword">\protect</span> ROBUST-CMD<br></code></pre></td></tr></table></figure>
+<p>我们也可以用 <code>\MakeRobust</code>这个命令来让一个已经存在的 fragile command 编程 robust command.</p>
+<h3 id="expandable-function">expandable function</h3>
+<p>其实把 LaTeX 中的宏划分为 Variable 和 Function 是不太准确的，但是为了说明 <code>xparse</code> 宏包中 <code>\NewExpandableDocumentCommand</code> 等系列命令存在的意义，我这里就认为的进行了划分，并且 LaTeX 3 中也是区分了变量和函数的.</p>
+<blockquote>
+<p>大部分的用户如果弄不清一个函数是不是 expandable 的，那么建议你一律使用 <code>\newcommand</code>.</p>
+</blockquote>
+<p>一个函数是 expandable 的，就意味着你可以直接把这个函数当成一个值（前提是你的函数要有返回值,并且处于一个 expand 的 context 中）直接在一个表达式中参与运算, 而不用再新建一个变量来存储这个函数返回的值，然后再用这个新的变量进行表达式的操作.</p>
+<p>一个普通示例:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\newcommand</span>&#123;<span class="hljs-keyword">\double</span>&#125;[1]&#123;<span class="hljs-params">#1</span>*2&#125;<br><span class="hljs-keyword">\NewDocumentCommand</span>&#123;<span class="hljs-keyword">\triple</span>&#125;&#123;m&#125;&#123;<span class="hljs-params">#1</span>*3&#125;<br><span class="hljs-keyword">\NewExpandableDocumentCommand</span>&#123;<span class="hljs-keyword">\quart</span>&#125;&#123;m&#125;&#123;<span class="hljs-params">#1</span>*4&#125;<br><span class="hljs-keyword">\edef</span><span class="hljs-keyword">\Expandcmd</span>&#123;<span class="hljs-keyword">\double</span>&#123;2&#125;&#125;<br><span class="hljs-keyword">\edef</span><span class="hljs-keyword">\nonExpandcmd</span>&#123;<span class="hljs-keyword">\triple</span>&#123;3&#125;&#125;<br><span class="hljs-keyword">\edef</span><span class="hljs-keyword">\NewExpandcmd</span>&#123;<span class="hljs-keyword">\quart</span>&#123;4&#125;&#125;<br><span class="hljs-keyword">\meaning</span><span class="hljs-keyword">\Expandcmd</span><span class="hljs-keyword">\par</span><br><span class="hljs-keyword">\meaning</span><span class="hljs-keyword">\nonExpandcmd</span><span class="hljs-keyword">\par</span><br><span class="hljs-keyword">\meaning</span><span class="hljs-keyword">\NewExpandcmd</span><span class="hljs-keyword">\par</span><br></code></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex">macro:-&gt;2*2<br>macro:-&gt;<span class="hljs-keyword">\triple</span> &#123;3&#125;<br>macro:-&gt;4*4<br></code></pre></td></tr></table></figure>
+<p>从 TeXLive 2019 开始, pdfTeX, XeTeX, LuaTeX 中提供了 <code>\expanded</code> 这个primitive (最开始仅在 LuaTeX 中可用, 更多的信息可以参见: <a target="_blank" rel="noopener" href="https://tex.stackexchange.com/q/489063/294585">Does \expanded replace the \romannumeral trick for expansion?</a>), 这个 primitive 和 LaTeX 3 中的 <code>e</code>-type 是密切相关的，并且也是 <code>e</code>-type 和 <code>x</code>-type 的一个重要区别(LaTeX3 中 <code>\tex_expanded:D</code> 的原定义即为 <code>\expanded</code>).</p>
+<blockquote>
+<p><code>\expanded</code> gives a nice mix of both <code>\edef</code> and <code>\romannumeral</code>, allowing us to get the full expansion of a token list while being itself expndable</p>
+</blockquote>
+<p>在介绍之前，先复制粘贴几个 interface 3 中的 remark:</p>
+<blockquote>
 <ul>
-<li>\exp_args:</li>
-<li>\cs_generate_variation:Nn</li>
+<li><strong>Fully expandable functions</strong>: Some functions are fully expandable, which allows them to be used within an x-type or e-type argument (in plain TEX terms, inside an \edef or \expanded), as well as within an f-type argument. These fully expandable functions are indicated in the documentation by a <strong>star(★)</strong></li>
+<li><strong>Restricted expandable functions</strong>: A few functions are fully expandable but cannot be fully expanded within an f-type argument. In this case a <strong>hollow star(☆)</strong> is used to indicate this</li>
 </ul>
-<p>这个两个命令用的好，就不用担心展开的问题了. 下面讲解一些关于argument specifier的东西，毕竟这个东西你是必要要学会的，如果你要使用 LaTeX 3 中的上面两个命令的话.</p>
-<h3 id="argument-specifier">argument specifier</h3>
-<p>Every function must include an argument specifier. For functions which take no arguments, this will be blank and the function name will end ‘:’.</p>
+</blockquote>
+<p>好了，接下来我们看看 <code>\expanded</code> 的使用方法:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\aaa</span>&#123;aaa&#125;<br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\Oldupercase</span><span class="hljs-params">#1</span>&#123;<br>  <span class="hljs-keyword">\uppercase</span>&#123;<span class="hljs-params">#1</span>&#125;<br>&#125;<br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\Newupercase</span><span class="hljs-params">#1</span>&#123;<br>  <span class="hljs-keyword">\expanded</span>&#123;<span class="hljs-keyword">\uppercase</span>&#123;<span class="hljs-params">#1</span>&#125;&#125;<br>&#125;<br><span class="hljs-keyword">\Oldupercase</span>&#123;<span class="hljs-keyword">\aaa</span>&#125;<span class="hljs-keyword">\Newupercase</span>&#123;<span class="hljs-keyword">\aaa</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">aaa AAA<br></code></pre></td></tr></table></figure>
+<h3 id="argument-specifier-Ref">argument specifier Ref</h3>
+<p>下面讲解一些关于argument specifier的东西，毕竟这个东西你是必要要学会的，如果你要使用 LaTeX 3 中的上面两个命令的话. Every function must include an argument specifier. For functions which take no arguments, this will be blank and the function name will end ‘:’.</p>
 <ul>
 <li><strong>N</strong> and <strong>n</strong>: means “no manipulation”, pass the argument through exactly as given</li>
-<li><strong>c</strong>: means “csname”, argument be turned into a csname. like \csname mycmd \csname.</li>
-<li><strong>V</strong> and <strong>v</strong>: means “value of variable”, get the content of a variable A V argument will be a single token (similar to N), using v a csname is constructed first, and then the value is recovered. So<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% 两个等价的命令</span><br><span class="hljs-keyword">\foo</span>:V <span class="hljs-keyword">\MyVariable</span><br><span class="hljs-keyword">\foo</span>:v &#123;MyVariable&#125;<br></code></pre></td></tr></table></figure>
-You can only define a base function argument is n instead of v, x, e, o etc. Then generiant the variant(only n can be variant).</li>
-<li><strong>o</strong>: means “expansion once” (Is it equvilant to expand only the first macro once?), while that V,v are prefered.</li>
-<li><strong>x</strong>: means “exhaustive expansion”, fully expand every macro(until only unexpandable ones remain). Functions which feature an x-type argument are not expandable.</li>
-<li><strong>e</strong>: means “expandable functions”, The e specifier is in many respects identical to x, Functions which feature an e-type argument may be expandable. Besides, Parameter character (usually #) in the argument need not be doubled (when in nest loop).</li>
-<li><strong>f</strong>: means “full(first) expansion”. The f specifier stands for full expansion, and in contrast to x, this type stops at the first non-expandable token(<space> is gobbled) (reading the argument from left to right) without trying to expand it.</li>
+<li><strong>c</strong>: means “csname”, argument be turned into a csname. like <code>\csname mycmd \csname</code>.</li>
+<li><strong>V</strong> and <strong>v</strong>: means “value of variable”, get the content of a variable: <code>V</code> argument will be a single token (similar to <code>N</code>), using <code>v</code> a csname is constructed first, and then the value is recovered. So<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% 两个等价的命令</span><br><span class="hljs-keyword">\foo</span>:V <span class="hljs-keyword">\MyVariable</span><br><span class="hljs-keyword">\foo</span>:v &#123;MyVariable&#125;<br></code></pre></td></tr></table></figure>
+You can only define a base function argument is <code>n</code> instead of <code>v</code>, <code>x</code>, <code>e</code>, <code>o</code> etc. Then generiant the variant(only <code>n</code> can be variant).</li>
+<li><strong>o</strong>: means “expansion once” (Is it equvilant to expand only the first macro once?), while that <code>V</code>,<code>v</code> are prefered.</li>
+<li><strong>x</strong>: means “exhaustive expansion”, fully expand every macro(until only unexpandable ones remain). Functions which feature an <code>x</code>-type argument are not expandable.</li>
+<li><strong>e</strong>: means “expandable functions”, The <code>e</code> specifier is in many respects identical to <code>x</code>, Functions which feature an <code>e</code>-type argument may be expandable. Besides, Parameter character (like <code>#1</code>, <code>#2</code>, …) in the argument need not be doubled (when in nest loop).</li>
+<li><strong>f</strong>: means “first token expansion”. The <code>f</code> specifier stands for full expansion, and in contrast to <code>x</code>, this type stops at the first non-expandable token(<code>&lt;space&gt;</code> is gobbled) (reading the argument from left to right) without trying to expand it.</li>
 <li><strong>T/F</strong>: Ture/False in logic test.</li>
 <li><strong>p</strong>: means TeX “traditional parameters”, like  <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\cs_set:Npn</span> <span class="hljs-keyword">\foo</span>:n <span class="hljs-params">#1</span>&#123;<span class="hljs-keyword">\textbf</span>&#123;<span class="hljs-params">#1</span>&#125;&#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><strong>w</strong>: means “weird arguments”, This covers everything else, but mainly applies to delimited values</li>
+</ul>
+<p>再看一个来自 interface 3.pdf 和 expl3.pdf 中的简短总结:</p>
+<ul>
+<li><code>N</code> is used for single-token arguments while <code>c</code> constructs a control sequence from its name and passes it to a parent function as an <code>N</code>-type argument.</li>
+<li>Many argument types extract or expand some tokens and provide it as an <code>n</code>-type argument, namely a braced multipe-token argument: <code>V</code> extracts the value of a variable, <code>v</code> extracts the value from the name of a variable, <code>n</code> uses the argument as it is, <code>o</code> expands once, <code>f</code> expands fully the front of the token list, <code>e</code> and <code>x</code> expand<br>
+fully all tokens (This type is not <strong>nestable</strong>, thus <code>x</code>-type does not work in <code>e</code> or <code>x</code>-type, while <code>e</code>-type does work in <code>x</code> and <code>e</code>-type; And it can only be used to create <strong>non-expandable</strong> functions).</li>
+<li>A few odd argument types remain: <code>T</code> and <code>F</code> for conditional processing, otherwise identical to <code>n</code>-type arguments, <code>p</code> for the parameter text in definitions, <code>w</code> for arguments with a specific syntax, and <code>D</code> to denote primitives that should not be used directly.</li>
+</ul>
+<blockquote>
+<p>In almost all cases, <code>e</code>-type should be preferred, <code>x</code>-type retained largely for historical reasons, and should where possible be replaced by the <code>e</code>-type equivalent. — From <code>expl3.pdf</code></p>
+</blockquote>
+<h3 id="expand-or-excute">expand or excute</h3>
+<p>关于 expand 和 excute 的区别? 目前我觉得 expand 就是替换，而 excute 就是“吃(前面被展开的)参数”，这个参数可以是一个控制序列，也可以是一个 token list. 比如下面这个case:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\foo</span><span class="hljs-params">#1</span>&#123;<span class="hljs-params">#1</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果在 expand only 的 context 中，<code>\def</code> 并不会把 <code>\foo</code> 这个token 吃进去，返回会留在这个；然后再继续去展开这个 <code>\foo</code> 如果 <code>\foo</code> 没有定义，那么必然报错.</p>
+<p>那么哪些 context 是 expand only 的呢？常见的有:</p>
+<ul>
+<li><code>\edef</code></li>
+<li><code>\write</code></li>
+<li><code>\csname \endcsname</code></li>
+<li>我们前面讲到的 <code>\expandafter</code></li>
+<li><code>f</code> and <code>e</code> specifier in LaTeX 3.</li>
+</ul>
+<p>所以这个时候我们也许就需要另外一个 data type 了: <code>Expandable flags</code>. 看看文档中对这个 data type 的定义:</p>
+<blockquote>
+<p>Flags are the only data-type that can be modified in expansion-only contexts.</p>
+</blockquote>
+<p>但是我们也不用太过担心这个 expand only, 一般都是 kernel 或者是 toc 之类的东西才会涉及到. 普通情况下用 int, 或者是<br>
+boolean 之类的就行了.</p>
+<h3 id="How-to-generate-variants">How to generate variants</h3>
+<p>First of all, only <code>n</code> and <code>N</code> arguments can be changed to other types. The only allowed changes are:</p>
+<ul>
+<li><code>c</code> variant of an <code>N</code> parent;</li>
+<li><code>o</code>, <code>V</code>, <code>v</code>, <code>f</code>, <code>e</code>, or <code>x</code> variant of an n parent;</li>
+<li><code>N</code>, <code>n</code>, <code>T</code>, <code>F</code>, or <code>p</code> <strong>argument unchanged</strong>, useful in command <code>\cs_generate_variation:Nn</code>, see <a target="_blank" rel="noopener" href="https://tex.stackexchange.com/q/404860/294585">LaTeX3 variants with TF arguments</a>.</li>
 </ul>
 <h3 id="f-type">f-type</h3>
 <p>f-type 这一个argument specifier 可能比较奇怪，但是可以参见如下的示例:</p>
