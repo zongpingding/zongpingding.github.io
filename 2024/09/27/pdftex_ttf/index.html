@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ttf2afm 准备  需要转化的字体, 这里以 Palatino 为例, 字体的文件名为: pala.ttf encoding 文件，把 charcode 对应到 glyph. 这个 encoding 文件的名称为: ec-uni.enc.  .enc 文件 因为 ttf 字体的 glyph name 不是必须的，或者是全部错误，亦或者是部分错误。于是最可靠的一个映射是: Unicode --&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pdfTeX 调用 TrueType Font">
+<meta property="og:url" content="https://zongpingding.github.io/2024/09/27/pdftex_ttf/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="ttf2afm 准备  需要转化的字体, 这里以 Palatino 为例, 字体的文件名为: pala.ttf encoding 文件，把 charcode 对应到 glyph. 这个 encoding 文件的名称为: ec-uni.enc.  .enc 文件 因为 ttf 字体的 glyph name 不是必须的，或者是全部错误，亦或者是部分错误。于是最可靠的一个映射是: Unicode --&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/pdftex_ttf/pdftex_ttf_example.png">
+<meta property="article:published_time" content="2024-09-27T15:03:28.072Z">
+<meta property="article:modified_time" content="2024-09-27T15:09:52.686Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="font">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/pdftex_ttf/pdftex_ttf_example.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>pdfTeX 调用 TrueType Font - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/fluid_theme_pic/default.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="pdfTeX 调用 TrueType Font"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-27 23:03" pubdate>
+          September 27, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">pdfTeX 调用 TrueType Font</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="ttf2afm">ttf2afm</h2>
+<h3 id="准备">准备</h3>
+<ul>
+<li>需要转化的字体, 这里以 Palatino 为例, 字体的文件名为: <code>pala.ttf</code></li>
+<li>encoding 文件，把 charcode 对应到 glyph. 这个 encoding 文件的名称为: <code>ec-uni.enc</code>.</li>
+</ul>
+<h3 id="enc-文件">.enc 文件</h3>
+<p>因为 ttf 字体的 glyph name 不是必须的，或者是全部错误，亦或者是部分错误。于是最可靠的一个映射是: <code>Unicode --&gt; glyph index</code>.  每一个可用的 TrueType 字体一定会提供了从 unicode 到 glyph index 的正确映射.</p>
+<p>有了 glyph index,  我们能干啥呢? 由于在 TrueTypefont 中，并不是像 T1 encoding 那样使用一个 glyph name 来对应一个 glyph。在 TrueType 中使用的是 <code>indices</code> 来和 glyph 进行一一对应,  TrueType 通过一个 叫 <code>cmap</code> 的机制来解决这个编码问题(一一对应问题). 这个 cmap 中有很多张不同的表用于解决不同 编码下的映射问题，每一张表包含了  <code>glyph index --&gt; glyph</code> 这样的一一映射.</p>
+<p><code>.enc</code> 文件里面有些什么东西呢？这些东西又有什么用呢? 比例这里会用到的 <code>ec-uni.enc</code> 文件，其中有这样的内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">/encqecuni[<br>/uni0060<br>/uni00B4<br>/uni02C6<br>/uni02DC<br>/uni00A8<br>/uni02DD<br>...<br>/uni00FD<br>/uni00FE<br>/uni00DF<br>] def<br></code></pre></td></tr></table></figure>
+<p>要让 pdftex 正常使用这个字体，就必须要让 pdftex 能够找到这个字体里面的 glyphs。从 pdftex 1.21a 开始，pdftex 能够完成这样的事情（进队 TrueType 管用）:</p>
+<ul>
+<li>可以读取一个 font 的 <code>unicode -&gt; glyph index</code> 表, 寻找这个 unicode 码对应的 glyph index.</li>
+<li>当读取到对应的 <code>glyph index</code> 后, 就能够找到这个 index 对应的 glyph 了.</li>
+</ul>
+<blockquote>
+<p>这个 .enc 里面的unicode 编码到底是怎么映射的  ? 比如这里的前面几个Unicode码对应的字符是:</p>
+<ul>
+<li>/uni0060：`  (反引号)</li>
+<li>/uni00B4：´ (尖音符)</li>
+<li>/uni02C6：ˆ (抑扬符)</li>
+<li>/uni02DC：˜ (波浪号)</li>
+<li>/uni00A8：¨ (分音符)</li>
+<li>/uni02DD：˝ (双分音符)</li>
+</ul>
+</blockquote>
+<p><code>ttf2afm</code> 这个寻找 glyph index 的过程和上面的 pdftex 寻找的过程相同.</p>
+<h3 id="afm-文件">.afm 文件</h3>
+<p>这个 <code>.afm</code> 文件到底有什么作用呢? 它的作用就是把一个字体里面的所有 glyph names 转化为 unicode 形式的编码: <code>uniXXXX</code>.</p>
+<p>一个关于 <code>.afm</code> 文件可以编码多少个 characters 的问题:</p>
+<ul>
+<li>每一个 Type 1 Font  + 它对应的 AFM 文件可以包含无数个 characters ,</li>
+<li>对于每一个字体，TFM 文件只可以编码最多 256 个 characters.</li>
+</ul>
+<p>下面我们就使用 ttf2afm 工具生成这个字体对应的 <code>.afm</code> 文件 (由于前面提及对于 TrueType font，从 <code>glyph name --&gt; glyph index</code> 这个mapping 是不靠谱的. 所以这里我们采用 <code>unicode --&gt; glyph index</code> 这个靠谱的映射. 下面的 <code>-u</code> 参数就表示 unicode):</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ttf2afm -u -e ec-uni.enc -o pala-t1.afm pala.ttf<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>This simple approach does not <strong>handle ligatures</strong>; see below.) This can be done easily enough by a script that reads the AGL (Adobe Glyph List)</p>
+</blockquote>
+<p>运行这个命令对应的 log:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs shell">Warning: ttf2afm (file pala.ttf): `unicode uni02DD&#x27; is not mapped to any glyph<br><br>Warning: ttf2afm (file pala.ttf): `unicode uni02DA&#x27; is not mapped to any glyph<br><br>Warning: ttf2afm (file pala.ttf): `unicode uni02C7&#x27; is not mapped to any glyph<br><br>...<br><br>Warning: ttf2afm (file pala.ttf): glyph 8 has multiple encodings (the first one being used): uni0025 uni2027 uni2028 uni2029 uni202A uni202B uni202C uni202D uni202E uni202F<br><br>Warning: ttf2afm (file pala.ttf): glyph 130 has multiple encodings (the first one being used): uni009F uni0178<br><br>Warning: ttf2afm (file pala.ttf): glyph 238 has multiple encodings (the first one being used): uni0111 uni20AB<br><br>Warning: ttf2afm (file pala.ttf): glyph 3 has multiple encodings (the first one being used): uni0020 uni2015 uni2016 uni2017 uni201B uni201F uni2023 uni2024 uni2025 uni2031<br><br>...<br></code></pre></td></tr></table></figure>
+<p>因为 <code>glyph index --&gt; unicode</code> 这个 mapping 也不总是靠谱的，可能一个 glyph index 对应了多个 unicode.</p>
+<blockquote>
+<p>?? 也可能 一个 Unicode 也不对应,  这个时候可能就会分配一个省却的 unicode 码 给这个 glyph index， 比如 <code>index123</code>. ？？</p>
+</blockquote>
+<p>上述的日志表明 glyph index 130 对应了两个 unicode 码：uni009F 和 uni0178. 而 ttf2afm 默认采用了第一个 unicode.</p>
+<p>现在让我们来看一看生成的 <code>pala-t1.afm</code> 文件长啥样:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs shell">StartFontMetrics 2.0<br>Comment Converted at Fri Sep 27 21:34:51 2024 by ttf2afm from font file `pala.ttf&#x27;<br>FontName Palatino<br>FullName Palatino<br>FamilyName Palatino<br>Weight Normal<br>ItalicAngle 0<br>IsFixedPitch false<br>FontBBox -545 -283 1020 1133<br>UnderlinePosition -48<br>UnderlineThickness 24<br>Version 1.0<br>Notice <br>EncodingScheme FontSpecific<br>CapHeight 708<br>XHeight 469<br>Ascender 728<br>Descender -292<br>StartCharMetrics 423<br>C 0 ; WX 333 ; N uni0060 ; B 30 505 254 676 ;<br>C 1 ; WX 333 ; N uni00B4 ; B 78 505 301 676 ;<br>C 2 ; WX 333 ; N uni02C6 ; B 11 509 323 676 ;<br>C 3 ; WX 333 ; N uni02DC ; B 1 535 332 640 ;<br>C 4 ; WX 333 ; N uni00A8 ; B 17 537 315 637 ;<br>C 9 ; WX 333 ; N uni00AF ; B 11 538 323 590 ;<br>C 11 ; WX 333 ; N uni00B8 ; B 96 -225 304 -9 ;<br>...<br>C -1 ; WX 0 ; N index418 ; B -532 735 -252 1029 ;<br>C -1 ; WX 0 ; N index419 ; B -532 735 -137 1046 ;<br>C -1 ; WX 0 ; N index420 ; B -535 735 -241 1020 ;<br>C -1 ; WX 0 ; N index421 ; B -532 69 -253 876 ;<br>C -1 ; WX 777 ; N index422 ; B 0 0 0 -7825 ;<br>EndCharMetrics<br>EndFontMetrics<br></code></pre></td></tr></table></figure>
+<h3 id="map-pl-文件">.map / .pl 文件</h3>
+<p>当我们生成这个 <code>.afm</code> 文件后，其实还不可以在 pdftex 下使用这个字体了，比如你编译下面的这样一个使用样例:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% test.tex</span><br><span class="hljs-keyword">\pdfmapline</span>&#123;+pala-t1 &lt;ec-uni.enc &lt;pala.ttf&#125;<br><span class="hljs-keyword">\font</span><span class="hljs-keyword">\f</span>=pala-t1<br><span class="hljs-keyword">\f</span> This is Palatino in the T1 encoding.<br><span class="hljs-keyword">\bye</span><br></code></pre></td></tr></table></figure>
+<p>在命令行使用命令 <code>pdftex  test.tex</code> 编译，日志输出为:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs shell">This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdftex)<br> restricted \write18 enabled.<br>entering extended mode<br>(./test.tex&#123;c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map&#125;<br>kpathsea: Running mktextfm pala-t1<br><br>The command name is C:\texlive\2024\bin\windows\mktextfm<br><br>kpathsea: Running mktexmf pala-t1.mf<br><br>The command name is C:\texlive\2024\bin\windows\mktexmf<br>name = pala-t1, rootname = pala-t, pointsize = 1<br>mktexmf: empty or non-existent rootfile!<br>Cannot find pala-t1.mf.<br>kpathsea: Appending font creation commands to missfont.log.<br><br>! Font \f=pala-t1 not loadable: Metric (TFM) file not found.<br>&lt;to be read again&gt;<br>                   \f<br>l.3 \f<br>       This is Palatino in the T1 encoding.<br>?<br></code></pre></td></tr></table></figure>
+<p>报错说找不到对应的 <code>.tfm</code> 文件, 那么我们接下来就生成其对应的 <code>.tfm</code> 文件. 首先运行:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">afm2pl pala-t1.afm<br></code></pre></td></tr></table></figure>
+<p>运行这个命令后生成了 <code>pala-t1.map</code>, <code>pala-t1.pl</code> 两个文件，两个文件中的内容为:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% pala-t1.map</span><br>pala-t1 Palatino &lt;pala-t1.pfb<br></code></pre></td></tr></table></figure>
+<p>第二个文件中的内容为:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% pala-t1.pl</span><br>(FAMILY pala-t1)<br>(CODINGSCHEME FONTSPECIFIC)<br>(DESIGNSIZE R 10.0)<br>(DESIGNUNITS R 1000)<br>(COMMENT DESIGNSIZE (1 em) IS IN POINTS)<br>(COMMENT OTHER DIMENSIONS ARE MULTIPLES OF DESIGNSIZE/1000)<br>(BOUNDARYCHAR O 5)<br>(FONTDIMEN<br>   (SLANT R 0.000000)<br>   (SPACE D 500)<br>   (STRETCH D 250)<br>   (SHRINK D 166)<br>   (XHEIGHT D 469)<br>   (QUAD D 1000)<br>   (EXTRASPACE D 166)<br>   )<br>(LIGTABLE<br>   )<br>(CHARACTER O 0 (comment uni0060)<br>   (CHARWD R 333)<br>   (CHARHT R 676)<br>   )<br>(CHARACTER O 1 (comment uni00B4)<br>   (CHARWD R 333)<br>   (CHARHT R 676)<br>   )<br>(CHARACTER O 2 (comment uni02C6)<br>   (CHARWD R 333)<br>   (CHARHT R 676)<br>   )<br>(CHARACTER O 3 (comment uni02DC)<br>   (CHARWD R 333)<br>   (CHARHT R 640)<br>   )<br>   <br>...<br><br>(CHARACTER O 375 (comment uni00FD)<br>   (CHARWD R 556)<br>   (CHARHT R 670)<br>   (CHARDP R 283)<br>   )<br>(CHARACTER O 376 (comment uni00FE)<br>   (CHARWD R 601)<br>   (CHARHT R 726)<br>   (CHARDP R 280)<br>   )<br>(CHARACTER O 377 (comment uni00DF)<br>   (CHARWD R 556)<br>   (CHARHT R 730)<br>   (CHARDP R 8)<br>   )<br></code></pre></td></tr></table></figure>
+<h3 id="tfm-文件">.tfm 文件</h3>
+<p>然后再使用如下命令生成对应的 <code>.tfm</code> 文件:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pltotf pala-t1.pl<br></code></pre></td></tr></table></figure>
+<p>运行这个命令后，生成了 <code>pala-tl.tfm</code> 文件, 运行的 log 为:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">I had to round some heights by 13.0000000 units.<br>I had to round some depths by 2.5000000 units.<br></code></pre></td></tr></table></figure>
+<p>那么现在我们有了这样一些文件(按照时间顺序列举):</p>
+<ul>
+<li>pala.ttf</li>
+<li>ec-uni.enc</li>
+<li>pala-t1.afm</li>
+<li>pala-t1.map</li>
+<li><a target="_blank" rel="noopener" href="http://pala-t1.pl">pala-t1.pl</a></li>
+<li>pala-t1.tfm</li>
+</ul>
+<p>可以编译通过了吗 ? 试试:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs text">$ pdftex test.tex<br>This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdftex)<br> restricted \write18 enabled.<br>entering extended mode<br>(./test.tex&#123;c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map&#125;<br>[1&#123;ec-uni.enc&#125;] )&lt;pala.ttf&gt;&lt;c:/texlive/2024/texmf-dist/fonts/type1/public/amsfo<br>nts/cm/cmr10.pfb&gt;<br>Output written on test.pdf (1 page, 12444 bytes).<br>Transcript written on test.log.<br></code></pre></td></tr></table></figure>
+<p>编译结果截图如下:</p>
+<p><img src="/img/pdftex_ttf/pdftex_ttf_example.png" srcset="/img/loading.gif" lazyload alt="pdftex ttf using example"></p>
+<h3 id="测试必要文件">测试必要文件</h3>
+<p>上面生成了一大堆的文件，这些个文件都是必须的吗？我们试试看哪些文件才是必须的。经过一番的测试，发现只有:</p>
+<ul>
+<li>pala.ttf</li>
+<li>ec-uni.enc</li>
+<li>pala-t1.tfm</li>
+</ul>
+<p>三个文件时必须的. 但是始终感觉这个 <code>.enc</code> 文件比较碍眼.</p>
+<h2 id="fontinst">fontinst</h2>
+<p>前面我们借助的工具是 <code>ttf2afm</code>, 并且使用它生成了对应的 afm 文件。但是对于 <code>fontinst</code> 来说，使用 ttf2afm 生成的 afm 文件对 fontinst 是无效的。我们需要 <code>afm file with AGL names</code>。下面来演示以下这个流程:</p>
+<h3 id="生成-afm-文件">生成 afm 文件</h3>
+<p>使用命令:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ttf2afm -u -o pala.afm pala.ttf<br></code></pre></td></tr></table></figure>
+<h3 id="生成-AGL-afm-文件">生成 AGL afm 文件</h3>
+<p>需要自己去完成对应 glyph names to Unicode 的工作. 没有找到对应的脚本。 关于这个 fontinst ，我也不会用。</p>
+<h2 id="参考">参考</h2>
+<p><a target="_blank" rel="noopener" href="https://tug.org/TUGboat/tb30-1/tb94thanh.pdf">A closer look at TrueType fonts and pdfTEX</a></p>
+<p>毕竟这是一篇 2009 年的文章，会不会存在过时的原因 ? 啥时候看看目前比较流行的 pdftex 下调用 ttf 字体的方案.  这篇文章就记录到这里吧.</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/font/" class="print-no-link">#font</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>pdfTeX 调用 TrueType Font</div>
+      <div>https://zongpingding.github.io/2024/09/27/pdftex_ttf/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 27, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/16/l3build_Note/" title="l3duild introduction">
+                        <span class="hidden-mobile">l3duild introduction</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
