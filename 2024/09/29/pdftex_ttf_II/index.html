@@ -1,0 +1,897 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="There is something wrong with current article and do not read it. I may fixed later.            Preface we have write a blog about using TrueType Font under pdfTeX in TeX in the previous">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TrueType Font in pdfTeX - II">
+<meta property="og:url" content="https://zongpingding.github.io/2024/09/29/pdftex_ttf_II/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="There is something wrong with current article and do not read it. I may fixed later.            Preface we have write a blog about using TrueType Font under pdfTeX in TeX in the previous">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/pdftex_ttf_II/pdftex_ttf_II_bitmap_font.png">
+<meta property="article:published_time" content="2024-09-29T11:10:41.374Z">
+<meta property="article:modified_time" content="2024-09-30T02:14:40.918Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="font">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/pdftex_ttf_II/pdftex_ttf_II_bitmap_font.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>TrueType Font in pdfTeX - II - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/fluid_theme_pic/default.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="TrueType Font in pdfTeX - II"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-29 19:10" pubdate>
+          September 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">TrueType Font in pdfTeX - II</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-danger">
+            <p>There is something wrong with current article and <strong>do not read it</strong>. I may fixed later.</p>
+          </div>
+<h2 id="Preface">Preface</h2>
+<p>we have write a blog about using TrueType Font under pdfTeX in <code>TeX</code> in the <a target="_blank" rel="noopener" href="https://www.zpding.tech/2024/09/27/pdftex_ttf/">previous article</a>. Here we will continue to discuss the details of using TrueType Font under pdfTeX. And the configuration under <code>LaTeX</code>.</p>
+<p>This blog will be totally copy from the blog:<a target="_blank" rel="noopener" href="http://www.radamir.com/tex/ttf-tex.htm">Using TrueType fonts with TeX and pdfTeX</a>. There will be some more information during the process and some error correction for the original blog.</p>
+<p>At the same time, i refer to the blog: <a target="_blank" rel="noopener" href="https://www.monperrus.net/martin/using-truetype-fonts-with-texlive-pdftex-pdflatex">using TrueType Fonts with TexLive pdftex pdflatex</a> as well.</p>
+<blockquote>
+<ul>
+<li><strong>Why i make a copy of this blog</strong> ? Just in case of the original blog is not available in the future. The author of the original blog says that: “This note describes how to add TrueType fonts support to TeX and LaTeX. This information is provided for educational purpose only. I do not know if procedures described here violate any copywrite/license agreement. Also, names ectimes and <code>winfonts</code> are used just for example. I do not know how they should be named correctly.”</li>
+<li>All the following commands are running in <code>Powershell</code> in Windows 11. TeXLive 2024 is installed in the system.</li>
+<li>Assume that <code>PC</code> is the username of the computer.</li>
+</ul>
+</blockquote>
+<h2 id="Before-we-begin-TeX">Before we begin (TeX)</h2>
+<p>Suppose, we want to typeset in Times New Roman instead of Computer Modern Roman (cmr). Times New Roman in Windows 9x/NT 4 is a Unicode font which has almost all symbols from Computer Modern. Certainly, they are in different places. To use these fonts in TeX (LaTeX) and PDF documents, it is necessary to create two more fonts: raw tex font, containing necessary characters but without kerning information, and virtual tex font with kerns and ligatures. For simplicity, we’ll use the rule that if TrueType font file has a name  <code>foo.ttf</code>, than virtual tex font in <code>T1</code> encoding will be named <code>ecfoo</code> and raw tex font will be named recfoo. Times New Roman family of fonts is presented by the files <code>times.ttf</code>, <code>timesi.ttf</code>, <code>timesbd.ttf</code> and <code>timesbi.ttf</code>, found in <code>c:\windows\fonts</code> directory in Windows 9x or <code>c:\winnt\fonts</code> in Windows NT. The family has Regular, Italic, Bold and BoldItalic members. We’ll also create oblique (slanted) versions of Regular and Bold members, which will be marked by letter “o” at the end of the name. The above is summarized in a table:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>TrueType File Name (<code>.ttf</code>)</th>
+<th>TeX Name (virtual font; <code>.vf</code>, <code>.tfm</code>)</th>
+<th>Raw TeX Name (<code>.tfm</code>, <code>.afm</code>, <code>.pk</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regular</td>
+<td>times</td>
+<td>ectimes</td>
+<td>rectimes</td>
+</tr>
+<tr>
+<td>Italic</td>
+<td>timesi</td>
+<td>ectimesi</td>
+<td>rectimesi</td>
+</tr>
+<tr>
+<td>Bold</td>
+<td>timesbd</td>
+<td>ectimesbd</td>
+<td>rectimesbd</td>
+</tr>
+<tr>
+<td>BoldItalic</td>
+<td>timesbi</td>
+<td>ectimesbi</td>
+<td>rectimesbi</td>
+</tr>
+<tr>
+<td>Oblique</td>
+<td>-</td>
+<td>ectimeso</td>
+<td>rectimeso</td>
+</tr>
+<tr>
+<td>BoldOblique</td>
+<td>-</td>
+<td>ectimesbdo</td>
+<td>rectimesbdo</td>
+</tr>
+</tbody>
+</table>
+<p>Also we’ll need an encoding vector—a file which determines characters positions in a new fonts. We’ll use a file <a target="_blank" rel="noopener" href="http://www.radamir.com/tex/T1-WGL4.enc">T1-WGL4.enc</a> which corresponds to T1 encoding.</p>
+<blockquote>
+<p>To be able to typeset with Cyrillic characters, you should use <code>T2A-mod0.enc</code> file or similar, found in T2 package.</p>
+</blockquote>
+<p>Create a temporary working directory and copy font files ( <code>times.ttf</code>, <code>timesbd.ttf</code>, <code>timesbi.ttf</code>, <code>timesi.ttf</code> from <code>c:\windows\fonts</code> ) and encoding file (<code>T1-WGL4.enc</code>) there. Now we are ready for actual work.</p>
+<h2 id="Creating-TeX-Font-Metrics-tfm">Creating TeX Font Metrics (tfm)</h2>
+<p>Change to the working directory and run the following commands:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">ttf2tfm times.ttf -q -T T1-WGL4.enc -v ectimes.vpl rectimes.tfm &gt;&gt; ttfonts.map<br>ttf2tfm timesi.ttf -q -T T1-WGL4.enc -v ectimesi.vpl rectimesi.tfm &gt;&gt; ttfonts.map<br>ttf2tfm timesbd.ttf -q -T T1-WGL4.enc -v ectimesbd.vpl rectimesbd.tfm &gt;&gt; ttfonts.map<br>ttf2tfm timesbi.ttf -q -T T1-WGL4.enc -v ectimesbi.vpl rectimesbi.tfm &gt;&gt; ttfonts.map<br></code></pre></td></tr></table></figure>
+<p>When running these commands, you may get some warning messages:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs shell">ttf2tfm: WARNING: Cannot find character `compwordmark&#x27;<br>         specified in input encoding.<br>ttf2tfm: WARNING: Cannot find character `perthousandzero&#x27;<br>         specified in input encoding.<br>ttf2tfm: WARNING: Cannot find character `dotlessj&#x27;<br>         specified in input encoding.<br>ttf2tfm: WARNING: Cannot find character `ff&#x27;<br>         specified in input encoding.<br>ttf2tfm: WARNING: Cannot find character `ffi&#x27;<br>         specified in input encoding.<br>ttf2tfm: WARNING: Cannot find character `ffl&#x27;<br>         specified in input encoding.<br>ttf2tfm: WARNING: Cannot find character `visualspace&#x27;<br>         specified in input encoding.<br>ttf2tfm: WARNING: Character `hyphen&#x27; encoded twice in input encoding<br>         (positions 2d and 7f; the latter is ignored).<br>ttf2tfm: WARNING: Cannot map character `compwordmark&#x27;<br>         specified in output encoding.<br>ttf2tfm: WARNING: Cannot map character `perthousandzero&#x27;<br>         specified in output encoding.<br>ttf2tfm: WARNING: Cannot map character `dotlessj&#x27;<br>         specified in output encoding.<br>ttf2tfm: WARNING: Cannot map character `ff&#x27;<br>         specified in output encoding.<br>ttf2tfm: WARNING: Cannot map character `ffi&#x27;<br>         specified in output encoding.<br>ttf2tfm: WARNING: Cannot map character `ffl&#x27;<br>         specified in output encoding.<br>ttf2tfm: WARNING: Cannot map character `visualspace&#x27;<br>         specified in output encoding.<br></code></pre></td></tr></table></figure>
+<p>This will create a tfm files of raw fonts and vpl files of virtual fonts. To generate slanted versions of regular and bold font, command should be extended like this:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">ttf2tfm times.ttf -q -T T1-WGL4.enc -s .167 -v ectimeso.vpl rectimeso.tfm &gt;&gt; ttfonts.map<br>ttf2tfm timesbd.ttf -q -T T1-WGL4.enc -s .167 -v ectimesbdo.vpl rectimesbdo.tfm &gt;&gt; ttfonts.map<br></code></pre></td></tr></table></figure>
+<p>Then your project directory should contain the following files:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs shell">.<br>├── ectimes.vpl<br>├── ectimesbd.vpl<br>├── ectimesbdo.vpl<br>├── ectimesbi.vpl<br>├── ectimesi.vpl<br>├── ectimeso.vpl<br>├── rectimes.tfm<br>├── rectimesbd.tfm<br>├── rectimesbdo.tfm<br>├── rectimesbi.tfm<br>├── rectimesi.tfm<br>├── rectimeso.tfm<br>├── T1-WGL4.enc<br>├── times.ttf<br>├── timesbd.ttf<br>├── timesbi.ttf<br>├── timesi.ttf<br>└── ttfonts.map<br></code></pre></td></tr></table></figure>
+<h2 id="Creating-Virtual-Fonts-vf">Creating Virtual Fonts (vf)</h2>
+<p>Run commands:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">vptovf ectimes.vpl ectimes.vf ectimes.tfm<br>vptovf ectimesi.vpl ectimesi.vf ectimesi.tfm<br>vptovf ectimesbd.vpl ectimesbd.vf ectimesbd.tfm<br>vptovf ectimesbi.vpl ectimesbi.vf ectimesbi.tfm<br>vptovf ectimeso.vpl ectimeso.vf ectimeso.tfm<br>vptovf ectimesbdo.vpl ectimesbdo.vf ectimesbdo.tfm<br></code></pre></td></tr></table></figure>
+<p>You will see such log when generating the virtual fonts:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">I had to round some heights by 12.0000000 units.<br>I had to round some depths by 1.0000000 units.<br>I had to round some italic corrections by 0.5000000 units.<br></code></pre></td></tr></table></figure>
+<p>This creates vf and tfm files for virtual fonts. After that you can delete vpl files, just run command:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">rm -Force *.vpl<br></code></pre></td></tr></table></figure>
+<p>to delete them all. Now your project directory should contain the following files:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs shell">.<br>├── ectimes.tfm<br>├── ectimes.vf<br>├── ectimesbd.tfm<br>├── ectimesbd.vf<br>├── ectimesbdo.tfm<br>├── ectimesbdo.vf<br>├── ectimesbi.tfm<br>├── ectimesbi.vf<br>├── ectimesi.tfm<br>├── ectimesi.vf<br>├── ectimeso.tfm<br>├── ectimeso.vf<br>├── rectimes.tfm<br>├── rectimesbd.tfm<br>├── rectimesbdo.tfm<br>├── rectimesbi.tfm<br>├── rectimesi.tfm<br>├── rectimeso.tfm<br>├── T1-WGL4.enc<br>├── times.ttf<br>├── timesbd.ttf<br>├── timesbi.ttf<br>├── timesi.ttf<br>└── ttfonts.map<br></code></pre></td></tr></table></figure>
+<h2 id="Installation-of-fonts-for-TeX-and-LaTeX">Installation of fonts for TeX and LaTeX</h2>
+<p>Now vf and tfm files should be moved to the place where TeXLive can find them. Move all vf files to <code>&lt;localtexmf&gt;\fonts\vf\ms\times\</code>, and all tfm files to <code>&lt;localtexmf&gt;\fonts\tfm\ms\times\</code>. What is the path of <code>&lt;localtexmf&gt;</code> ? In Linux this path is usually at:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">~/texmf/tex/latex/<br></code></pre></td></tr></table></figure>
+<p>For Windows, the <code>&lt;localtexmf&gt;</code> directory is usually at:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">C:\Users\PC\texmf\tex\latex\<br></code></pre></td></tr></table></figure>
+<p>To move these files, run the following commands:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">mv *.vf C:\Users\PC\texmf\fonts\vf\ms\times<br>mv *.tfm C:\Users\PC\texmf\fonts\tfm\ms\times<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>The directories <code>ms\times</code> are not mandatory, you can leave the files even in parent dirs, but this way it is easier to maintain them and it corresponds to the general rule of placement: <code>&lt;supplier&gt;\&lt;family&gt;</code>.</p>
+</blockquote>
+<p>Now your project directory should contain the following files:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">.<br>├── T1-WGL4.enc<br>├── times.ttf<br>├── timesbd.ttf<br>├── timesbi.ttf<br>├── timesi.ttf<br>└── ttfonts.map<br></code></pre></td></tr></table></figure>
+<hr>
+<p>Open the file <code>ttfonts.map</code> in a temporary working directory with your favorite text editor (<code>notepad</code>, <code>vscode</code>, <code>vim</code> etc) and copy its contents to clipboard. <code>ttfonts.map</code> contains:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">rectimes   times.ttf Encoding=T1-WGL4.enc<br>rectimesi   timesi.ttf Encoding=T1-WGL4.enc<br>rectimesbd   timesbd.ttf Encoding=T1-WGL4.enc<br>rectimesbi   timesbi.ttf Encoding=T1-WGL4.enc<br>rectimeso   times.ttf Slant=.167 Encoding=T1-WGL4.enc<br>rectimesbdo   timesbd.ttf Slant=.167 Encoding=T1-WGL4.enc<br></code></pre></td></tr></table></figure>
+<p>Now open a file <code>C:\texlive\2024\tlpkg\dviout\map\ttfonts.map</code> with the same editor and paste the lines from clipboard and save it. The added part looks like:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs shell">wnsri8r		&quot;Times New Roman&quot;		italic<br>wcpbs8r		&quot;Copperplate Gothic Bold&quot;<br>wcpls8r		&quot;Copperplate Gothic Light&quot;<br><span class="hljs-meta prompt_">% </span><span class="language-bash">&lt;before part&gt;</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">%</span><span class="language-bash">%%%%%%%%%%%%%%  My Own TTF and OTF Config %%%%%%%%%%%%%%%</span><br>rectimes   times.ttf Encoding=T1-WGL4.enc<br>rectimesi   timesi.ttf Encoding=T1-WGL4.enc<br>rectimesbd   timesbd.ttf Encoding=T1-WGL4.enc<br>rectimesbi   timesbi.ttf Encoding=T1-WGL4.enc<br>rectimeso   times.ttf Slant=.167 Encoding=T1-WGL4.enc<br>rectimesbdo   timesbd.ttf Slant=.167 Encoding=T1-WGL4.enc<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">% </span><span class="language-bash">&lt;after part&gt;</span><br><span class="hljs-meta prompt_">%</span><span class="language-bash">input	pttfonts.map</span><br><span class="hljs-meta prompt_">%</span><span class="language-bash">input	morisawa.map</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>You may need to run the editor as <strong>administrator</strong> to be able to save the file.</p>
+</blockquote>
+<hr>
+<p>This is sufficient for generating DVI file, but to view or print it, there should be a raster <code>pk</code> font. TeXLive will attempt to generate it automatically with new utility: <code>ttf2pk</code>. For successful generation ttf2pk should find both TrueType font and encoding file.</p>
+<ul>
+<li>It happens that ttf2pk can find ttf files, if they are installed and are in a system fonts directory,</li>
+<li>and it looks for encoding files in a directory <code>C:\texlive\2024\texmf-dist\fonts\enc\ttf2pk\base</code> (among others).Therefore if there is no such encoding file, you have to copy <code>T1-WGL4.enc</code> to <code>C:\texlive\2024\texmf-dist\fonts\enc\ttf2pk\base</code>.</li>
+</ul>
+<blockquote>
+<p>In TeXLive 2024, there may be already a <code>T1-WGL4.enc</code> file in the directory <code>C:\texlive\2024\texmf-dist\fonts\enc\ttf2pk\base</code>, so you don’t need to copy it again.</p>
+</blockquote>
+<p>Now we have to update databases, open the <code>Powershell</code> as <strong>administrator</strong> and run the following commands:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">texhash <br></code></pre></td></tr></table></figure>
+<h2 id="Testing-the-installation-in-TeX-don’t-skip-this-step">Testing the installation in TeX (don’t skip this step)</h2>
+<p>Change current directory from temporary working to some other where there are no files related to fonts creation. To have a look at our brand new fonts, run a command</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs shell">❯ tex testfont<br>This is TeX, Version 3.141592653 (TeX Live 2024) (preloaded format=tex)<br>(c:/texlive/2024/texmf-dist/tex/plain/knuth-lib/testfont.tex<br><br>Name of the font to test = ectimes<br>Now type a test command (\help for help):)<br>*\table\eject\init<br>[1]<br>Name of the font to test = ectimeso<br>Now type a test command (\help for help):<br>*\table\eject\init<br>[2]<br>Name of the font to test = ectimesbd<br>Now type a test command (\help for help):<br>*\table\eject\init<br>[3]<br>Name of the font to test = ectimesi<br>Now type a test command (\help for help):<br>*\table\eject\init<br>[4]<br>Name of the font to test = ectimesbd<br>Now type a test command (\help for help):<br>*\table\eject\init<br>[5]<br>Name of the font to test = ectimesbdo<br>Now type a test command (\help for help):<br>*\bye<br>[6]<br>Output written on testfont.dvi (6 pages, 53556 bytes).<br>Transcript written on testfont.log.<br></code></pre></td></tr></table></figure>
+<p>It will ask about a font to test. Enter “<code>ectimes</code>”. It will ask about a command. Enter “<code>\table\eject\init</code>”. This time enter “<code>ectimeso</code>”, then “<code>ectimesbd</code>” and so on. After all fonts are tested, enter a command “<code>\bye</code>”. This will create a file <code>testfont.dvi</code> in current directory.</p>
+<blockquote>
+<p>If you have problems at this stage, it is either wrong font names or tfm, vf files placement.</p>
+</blockquote>
+<p>But <strong>do not hurry</strong> to open <code>testfont.dvi</code> with YAP. If something goes wrong, it is quite hard to trace the problem in YAP. Better try converting dvi to PostScript:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">dvips testfont.dvi<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><code>YAP</code> is a viewer for DVI files in the past. Nowadays you should use <code>dviout.exe</code> which has already contained in TeXLive.</p>
+</blockquote>
+<p>Here you will have plenty of messages about what is happening. In particular, the generation of pk for TrueType will look like this:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">❯ ttf2pk.exe -q rectimes 600<br>ttf2pk: WARNING: Cannot map character `compwordmark&#x27;.<br>ttf2pk: WARNING: Cannot map character `perthousandzero&#x27;.<br>ttf2pk: WARNING: Cannot map character `dotlessj&#x27;.<br>ttf2pk: WARNING: Cannot map character `ff&#x27;.<br>ttf2pk: WARNING: Cannot map character `ffi&#x27;.<br>ttf2pk: WARNING: Cannot map character `ffl&#x27;.<br>ttf2pk: WARNING: Cannot map character `visualspace&#x27;.<br>ttf2pk: WARNING: Cannot map character `Germandbls&#x27;.<br></code></pre></td></tr></table></figure>
+<p>If the previous file location or file name is wrong, that causes <code>mktexpk</code> can not find the now font <code>rectimes</code>, you will see the following log:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs shell">❯ dvips testfont.dvi<br>This is dvips(k) 2024.1 (TeX Live 2024)  Copyright 2024 Radical Eye Software (www.radicaleye.com)<br>&#x27; TeX output 2024.09.29:2035&#x27; -&gt; testfont.ps<br><br>kpathsea: Running mktexpk --mfmode ljfour --bdpi 600 --mag 1+0/600 --dpi 600 rectimes<br><br>The command name is C:\texlive\2024\bin\windows\mktexpk<br><br>kpathsea: Running mktexmf rectimes.mf<br><br>The command name is C:\texlive\2024\bin\windows\mktexmf<br>name = rectimes, rootname = rectimes, pointsize =<br>mktexmf: empty or non-existent rootfile!<br>Cannot find rectimes.mf .<br>I try ps2pk --&gt; gsftopk --&gt; ttf2pk --&gt; hbf2gf.<br>ps2pk cannot be used.<br>I try gsftopk.<br>gsftopk.exe rectimes 600<br>Cannot find font rectimes in map file(s).<br>gsftopk cannot be used.<br>Next I try ttf2pk.<br>ttf2pk.exe -q rectimes 600<br>ttf2pk failed.<br>Finally I try hbf2gf.<br>hbf2gf.exe -q -p rectimes 600<br>All trials failed.<br>kpathsea: Appending font creation commands to missfont.log.<br>C:\texlive\2024\bin\windows\dvips.exe: PK font rectimes not found; using cmr10<br>&lt;c:/Users/PC/.texlive2024/texmf-var/fonts/pk/ljfour/public/cm/cmr10.600pk&gt;<br>C:\texlive\2024\bin\windows\dvips.exe: ! [scanpage] invalid char 128 from font rectimes<br></code></pre></td></tr></table></figure>
+<h2 id="Using-new-fonts-in-TeX">Using new fonts in TeX</h2>
+<p>create a simple tex source file <code>test.tex</code>:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\font</span><span class="hljs-keyword">\myfont</span>=ectimes<br><span class="hljs-keyword">\font</span><span class="hljs-keyword">\mybigfont</span>=ectimes at 36pt<br><span class="hljs-keyword">\myfont</span> Hello, I am being typeset in Times New Roman<br><br><span class="hljs-keyword">\mybigfont</span> Me too...<br><span class="hljs-keyword">\bye</span><br></code></pre></td></tr></table></figure>
+<p>Compile it with <code>pdftex</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pdftex test.tex<br></code></pre></td></tr></table></figure>
+<p>The the log should be like:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs shell">This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdftex)<br> restricted \write18 enabled.<br>entering extended mode<br>(./test.tex [1&#123;c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map&#125;] )<br><br>kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 3+360/600 --dpi 2160 rectimes<br><br>The command name is C:\texlive\2024\bin\windows\mktexpk<br><br>kpathsea: Running mktexmf rectimes.mf<br><br>The command name is C:\texlive\2024\bin\windows\mktexmf<br>name = rectimes, rootname = rectimes, pointsize =<br>mktexmf: empty or non-existent rootfile!<br>Cannot find rectimes.mf .<br>I try ps2pk --&gt; gsftopk --&gt; ttf2pk --&gt; hbf2gf.<br>ps2pk cannot be used.<br>I try gsftopk.<br>gsftopk.exe rectimes 2160<br>Cannot find font rectimes in map file(s).<br>gsftopk cannot be used.<br>Next I try ttf2pk.<br>ttf2pk.exe -q rectimes 2160<br>ttf2pk: WARNING: Cannot map character `compwordmark&#x27;.<br>ttf2pk: WARNING: Cannot map character `perthousandzero&#x27;.<br>ttf2pk: WARNING: Cannot map character `dotlessj&#x27;.<br>ttf2pk: WARNING: Cannot map character `ff&#x27;.<br>ttf2pk: WARNING: Cannot map character `ffi&#x27;.<br>ttf2pk: WARNING: Cannot map character `ffl&#x27;.<br>ttf2pk: WARNING: Cannot map character `visualspace&#x27;.<br>ttf2pk: WARNING: Cannot map character `Germandbls&#x27;.<br>mktexupd failed<br> &lt;c:/Users/PC/.texlive2024/texmf-var/fonts/pk/modeless/ms/times/rectimes.2160pk<br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash"></span><br><span class="language-bash">kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 rectimes</span><br><br>The command name is C:\texlive\2024\bin\windows\mktexpk<br><br>kpathsea: Running mktexmf rectimes.mf<br><br>The command name is C:\texlive\2024\bin\windows\mktexmf<br>name = rectimes, rootname = rectimes, pointsize =<br>mktexmf: empty or non-existent rootfile!<br>Cannot find rectimes.mf .<br>I try ps2pk --&gt; gsftopk --&gt; ttf2pk --&gt; hbf2gf.<br>ps2pk cannot be used.<br>I try gsftopk.<br>gsftopk.exe rectimes 600<br>Cannot find font rectimes in map file(s).<br>gsftopk cannot be used.<br>Next I try ttf2pk.<br>ttf2pk.exe -q rectimes 600<br>ttf2pk: WARNING: Cannot map character `compwordmark&#x27;.<br>ttf2pk: WARNING: Cannot map character `perthousandzero&#x27;.<br>ttf2pk: WARNING: Cannot map character `dotlessj&#x27;.<br>ttf2pk: WARNING: Cannot map character `ff&#x27;.<br>ttf2pk: WARNING: Cannot map character `ffi&#x27;.<br>ttf2pk: WARNING: Cannot map character `ffl&#x27;.<br>ttf2pk: WARNING: Cannot map character `visualspace&#x27;.<br>ttf2pk: WARNING: Cannot map character `Germandbls&#x27;.<br>mktexupd failed<br> &lt;c:/Users/PC/.texlive2024/texmf-var/fonts/pk/modeless/ms/times/rectimes.600pk<br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&lt;c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb&gt;</span><br>Output written on test.pdf (1 page, 17004 bytes).<br>Transcript written on test.log.<br></code></pre></td></tr></table></figure>
+<p>The second time you run it, you will see the following log:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdftex)<br> restricted \write18 enabled.<br>entering extended mode<br>(./test.tex [1&#123;c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map&#125;] )<br> &lt;c:/Users/PC/.texlive2024/texmf-var/fonts/pk/modeless/ms/times/rectimes.2160pk<br><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">&lt;c:/Users/PC/.texlive2024/texmf-var/fonts/pk/modeless/ms/times/rectimes.600pk</span><br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&lt;c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb&gt;</span><br>Output written on test.pdf (1 page, 17004 bytes).<br>Transcript written on test.log.<br></code></pre></td></tr></table></figure>
+<p>and you will get the pdf <code>test.pdf</code>. But the pdf looks a little bit weird, see below:<br>
+<img src="/img/pdftex_ttf_II/pdftex_ttf_II_bitmap_font.png" srcset="/img/loading.gif" lazyload alt="bitmap font in pdf"></p>
+<h2 id="Using-new-fonts-in-LaTeX">Using new fonts in LaTeX</h2>
+<p>LaTeX requires some additional efforts. Create a font definition file <code>t1tnr.fd</code> in <code>&lt;localtexmf&gt;\tex\latex\winfonts</code> directory with the following contents:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\ProvidesFile</span>&#123;t1tnr.fd&#125;[Put your description of font here]<br><br><span class="hljs-keyword">\DeclareFontFamily</span>&#123;T1&#125;&#123;tnr&#125;&#123;&#125;<br><br><span class="hljs-keyword">\DeclareFontShape</span>&#123;T1&#125;&#123;tnr&#125;&#123;b&#125;&#123;n&#125;&#123;&lt;-&gt;ectimesbd&#125;&#123;&#125;<br><span class="hljs-keyword">\DeclareFontShape</span>&#123;T1&#125;&#123;tnr&#125;&#123;b&#125;&#123;sl&#125;&#123;&lt;-&gt; ectimesbdo&#125;&#123;&#125;<br><span class="hljs-keyword">\DeclareFontShape</span>&#123;T1&#125;&#123;tnr&#125;&#123;b&#125;&#123;it&#125;&#123;&lt;-&gt; ectimesbi&#125;&#123;&#125;<br><br><span class="hljs-keyword">\DeclareFontShape</span>&#123;T1&#125;&#123;tnr&#125;&#123;m&#125;&#123;n&#125;&#123;&lt;-&gt; ectimes&#125;&#123;&#125;<br><span class="hljs-keyword">\DeclareFontShape</span>&#123;T1&#125;&#123;tnr&#125;&#123;m&#125;&#123;sl&#125;&#123;&lt;-&gt; ectimeso&#125;&#123;&#125;<br><span class="hljs-keyword">\DeclareFontShape</span>&#123;T1&#125;&#123;tnr&#125;&#123;m&#125;&#123;it&#125;&#123;&lt;-&gt; ectimesi&#125;&#123;&#125;<br><br><span class="hljs-keyword">\DeclareFontShape</span>&#123;T1&#125;&#123;tnr&#125;&#123;bx&#125;&#123;n&#125;&#123;&lt;-&gt;ssub * tnr/b/n&#125;&#123;&#125;<br><span class="hljs-keyword">\DeclareFontShape</span>&#123;T1&#125;&#123;tnr&#125;&#123;bx&#125;&#123;sl&#125;&#123;&lt;-&gt;ssub * tnr/b/sl&#125;&#123;&#125;<br><span class="hljs-keyword">\DeclareFontShape</span>&#123;T1&#125;&#123;tnr&#125;&#123;bx&#125;&#123;it&#125;&#123;&lt;-&gt;ssub * tnr/b/it&#125;&#123;&#125;<br><br><span class="hljs-keyword">\endinput</span><br></code></pre></td></tr></table></figure>
+<p>Now you can use new fonts in LaTeX like the following:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\usefont</span>&#123;T1&#125;&#123;tnr&#125;&#123;m&#125;&#123;sl&#125; <br><br>Hello, I am being typeset in Times New Roman Slanted <br><br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<p>Finally, if you want to use Times New Roman as you default roman font, put two <code>\renewcommand</code> command in preamble:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><br><span class="hljs-keyword">\renewcommand</span>&#123;<span class="hljs-keyword">\encodingdefault</span>&#125;&#123;T1&#125;<br><span class="hljs-keyword">\renewcommand</span>&#123;<span class="hljs-keyword">\rmdefault</span>&#125;&#123;tnr&#125;<br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><br>Hello, I am being typeset in <span class="hljs-keyword">\textsl</span>&#123;Times New Roman Slanted&#125; <br><br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<p>Now you can try use pdftex and pdflatex to create PDF documents but new fonts will be embeded as bitmaps which makes the whole pdf-story half useless. Let’s see how to embed TrueType fonts in PDF documents in native format.</p>
+<h2 id="Before-we-begin-pdfTeX">Before we begin (pdfTeX)</h2>
+<p>First you shoulld check that your pdfTeX is up and running. A command</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pdftex story<br></code></pre></td></tr></table></figure>
+<p>will give the following screen messages:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">C:\texmf&gt;pdftex story<br>This is pdfTeX, Version 3.14159-12r (MiKTeX 1.11c)<br>(pdftex.cfg) (story.tex [1&lt;cm.map&gt;])<br>*<br></code></pre></td></tr></table></figure>
+<p>Enter a command \bye and you should get</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">*\bye<br>&lt;cmtext.enc&gt;&lt;cmr10.pfb&gt;&lt;cmsl10.pfb&gt;&lt;cmbx10.pfb&gt;<br>Output written on story.pdf (1 page, 31672 bytes).<br>Transcript written on story.log.<br></code></pre></td></tr></table></figure>
+<p>There are two important things in these lines. First is (<code>pdftex.cfg</code>) and &lt;<code>cm.map</code>&gt;, which means that pdftex has found its configuration file and loaded the Computer Modern fonts map. Second is &lt;<code>cmtext.enc</code>&gt;&lt;<code>cmr10.pfb</code>&gt;…, which means that Type 1 PostScript fonts CMR10, CMSL10 and CMBX10 were included in document along with encoding file.</p>
+<h2 id="Creating-Adobe-Font-Metrics-afm">Creating Adobe Font Metrics (afm)</h2>
+<p>To create afm files, go back to temporary working directory and run the following commands:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs latex">ttf2afm -e T1-WGL4.enc -o rectimes.afm times.ttf<br>ttf2afm -e T1-WGL4.enc -o rectimesi.afm timesi.ttf<br>ttf2afm -e T1-WGL4.enc -o rectimesbd.afm timesbd.ttf<br>ttf2afm -e T1-WGL4.enc -o rectimesbi.afm timesbi.ttf<br></code></pre></td></tr></table></figure>
+<p>The program will complain it can not find few characters but will create desired afm files.</p>
+<h2 id="Gathering-map-file">Gathering map file</h2>
+<p>Now we have to create a map file whiich will map raw tex font names to actual TrueType names. Though this can be done by copying necessary strings from afm files, it also can be accomplished by afm2tfm program. As the name implies, it creates tfm files whcih we already have. But a side effect of this proram is outputting a string which is necessary for map file. Run the following commands:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex">afm2tfm rectimes.afm -T T1-WGL4.enc rectimes.tfm &gt;&gt;winfonts.map<br>afm2tfm rectimesi.afm -T T1-WGL4.enc rectimesi.tfm &gt;&gt;winfonts.map<br>afm2tfm rectimesbd.afm -T T1-WGL4.enc rectimesbd.tfm &gt;&gt;winfonts.map<br>afm2tfm rectimesbi.afm -T T1-WGL4.enc rectimesbi.tfm &gt;&gt;winfonts.map<br>afm2tfm rectimes.afm -T T1-WGL4.enc -s .167 rectimeso.tfm &gt;&gt;winfonts.map<br>afm2tfm rectimesbd.afm -T T1-WGL4.enc -s .167 rectimesbdo.tfm &gt;&gt;winfonts.map<br></code></pre></td></tr></table></figure>
+<p>Open winfonts.map file for editing and add near the end of each line a name of the corresponding ttf file :</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex">rectimes TimesNewRomanPSMT &quot; T1Encoding ReEncodeFont &quot; &lt;times.ttf T1-WGL4.enc<br>rectimesi TimesNewRomanPS-ItalicMT &quot; T1Encoding ReEncodeFont &quot; &lt;timesi.ttf T1-WGL4.enc<br>rectimesbd TimesNewRomanPS-BoldMT &quot; T1Encoding ReEncodeFont &quot; &lt;timesbd.ttf T1-WGL4.enc<br>rectimesbi TimesNewRomanPS-BoldItalicMT &quot; T1Encoding ReEncodeFont &quot; &lt;timesbi.ttf T1-WGL4.enc<br>rectimeso TimesNewRomanPSMT &quot; .167 SlantFont T1Encoding ReEncodeFont &quot; &lt;times.ttf T1-WGL4.enc<br>rectimesbdo TimesNewRomanPS-BoldMT &quot; .167 SlantFont T1Encoding ReEncodeFont &quot; &lt;timesbd.ttf T1-WGL4.enc<br></code></pre></td></tr></table></figure>
+<h2 id="Installation-of-fonts-for-pdfTeX-and-pdfLaTeX">Installation of fonts for pdfTeX and pdfLaTeX</h2>
+<p>Create a directory in localtexmf tree <code>&lt;localtexmf&gt;\fonts\afm\ms\times</code> and move all afm files there.</p>
+<p>Create a directory in localtexmf tree <code>&lt;localtexmf&gt;\pdftex\base</code> and move <code>winfonts.map</code> file there.</p>
+<p>Edit the file <code>c:\texmf\miktex\config\miktex.ini</code>: find the line which starts with “<code>TrueType Font Dirs=</code>” and add windows fonts directory:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">TrueType Font Dirs=.;<span class="hljs-comment">%R\fonts\truetype//;c:\windows\fonts</span><br></code></pre></td></tr></table></figure>
+<p>Open <code>c:\texmf\pdftex\base\pdftex.cfg</code> file for editing and add the following line:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">map +winfonts.map<br></code></pre></td></tr></table></figure>
+<p>As you can see, there are a lot of other map files available in this dir, but most of them require that you additionaly purchase font files.</p>
+<p>Now we have to update databases:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Start=&gt;Programs=&gt;MiKTeX=&gt;Refresh databases<br></code></pre></td></tr></table></figure>
+<h2 id="Testing-the-installation-in-pdfTeX">Testing the installation in pdfTeX</h2>
+<p>Change current directory from temporary working to some other where there are no files related to fonts creation and run a command</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">pdftex testfont<br></code></pre></td></tr></table></figure>
+<p>It will ask about a font to test. Enter “<code>ectimes</code>”. It will ask about a command. Enter “<code>\table\eject\init</code>”. This time enter “<code>ectimeso</code>”, then “<code>ectimesbd</code>” and so on. After all fonts are tested, enter a command “<code>\bye</code>”. Screen output will be like this:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell">pdftex testfont<br>This is pdfTeX, Version 3.14159-12r (MiKTeX 1.11c)<br>(pdftex.cfg) (testfont.tex<br>Name of the font to test = ectimes<br>Now type a test command (\help for help):)<br>*\table\eject\init<br>[1&lt;cm.map&gt;&lt;winfonts.map&gt;]<br>Name of the font to test = ectimesbdo<br>Now type a test command (\help for help):<br>*\table\bye<br>[2]&lt;T1-WGL4.enc&gt;&lt;timesbd.ttf&gt;&lt;cmttext.enc&gt;&lt;cmtt10.pfb&gt;&lt;times.ttf&gt;&lt;cmitext.enc&gt;&lt;<br>cmti10.pfb&gt;&lt;T1-WGL4.enc&gt;&lt;cmr10.pfb&gt;&lt;cmr7.pfb&gt;<br>Output written on testfont.pdf (2 pages, 195888 bytes).<br>Transcript written on testfont.log. <br></code></pre></td></tr></table></figure>
+<p>As you can see, this time pdftex has found <code>winfonts.map</code> and embeded encodingg file <code>T1-WGL4.enc</code> and TrueType fonts <code>times.ttf</code> and <code>timesbd.ttf</code> into resulting PDF document. Open <code>testfont.pdf</code> with GSview and you will see:</p>
+<p>Adobe Acrobat users, please read a Bug Note at the end of the document.</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/font/" class="print-no-link">#font</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>TrueType Font in pdfTeX - II</div>
+      <div>https://zongpingding.github.io/2024/09/29/pdftex_ttf_II/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/29/pdftex_ttf_III/" title="TrueType Font in pdfTeX - III">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">TrueType Font in pdfTeX - III</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/27/pdftex_ttf/" title="TrueType Font in pdfTeX - I">
+                        <span class="hidden-mobile">TrueType Font in pdfTeX - I</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
