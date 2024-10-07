@@ -24,7 +24,7 @@
 <meta property="og:description" content="long macro LaTeX 2e 在 LaTeX2e 中可以看到下面这样的命令: 12\newcommand*\renewcommand* 那么这两个带*的命令和传统的 \newcommand 命令有什么区别？其实就是long macro和macro的区别:  \newcommand* 定义的 macro 不是 \long 的，意味着你不能在宏参数中包含 \par,空行等东西 然而常用的 \">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-06-14T10:00:50.197Z">
-<meta property="article:modified_time" content="2024-06-14T10:53:28.922Z">
+<meta property="article:modified_time" content="2024-10-07T06:47:29.602Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="parameter">
 <meta property="article:tag" content="long macro">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          353 words
+          453 words
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          3 mins
+          4 mins
         
       </span>
     
@@ -297,8 +297,12 @@
 <p>对于在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext><mn>3</mn></mrow><annotation encoding="application/x-tex">\rm\LaTeX 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord"><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span><span class="mord mathrm">3</span></span></span></span></span>中创建新的函数，往往有下面两种方式:</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs LaTeX"><span class="hljs-keyword">\cs_new:Nn</span> <span class="hljs-keyword">\foo</span>:nn &#123;&#125;<br><span class="hljs-keyword">\cs_new:Npn</span> <span class="hljs-keyword">\foo</span>:nn <span class="hljs-params">#1</span><span class="hljs-params">#2</span> &#123;&#125;<br></code></pre></td></tr></table></figure>
 <p>那么我们到底需要用 <code>p-signature</code> 来显示的声明我们所创建的命令 <code>\foo:nn</code> 接受的参数个数吗?</p>
-<p>其实是不需要的，下面以 <code>\foo:nn</code> 命令进行说明。其实 <code>\foo:nn</code> 命令后面的两个 <code>n-signature</code> 就表示这个命令会吃掉两个参数, 而且在声明过程中也可以直接用 #1, #2来分别表示接收到的参数.</p>
-<p>但是我个人还是比较喜欢第二种方式.</p>
+<p>其实是不需要的，下面以 <code>\foo:nn</code> 命令进行说明。其实 <code>\foo:nn</code> 命令后面的两个 <code>n-signature</code> 就表示这个命令会吃掉两个参数, 而且在声明过程中也可以直接用 #1, #2来分别表示接收到的参数. 但是我个人还是比较喜欢第二种方式.</p>
+<blockquote>
+<p>其实还有一种比较奇怪的声明方式: <code>\cs_new:Npn \foo &#123;&#125;</code>, 因为 “The functions with <code>p</code> allow for <code>non-colon</code> macro names, the other ones must have a colon at the end”. 一个具体的示例:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\cs_gset_nopar:Npn</span> <span class="hljs-keyword">\world</span>(<span class="hljs-params">#1</span>) &#123;WORLD=&gt;~|<span class="hljs-params">#1</span>|~|<span class="hljs-params">#1</span>|&#125;<br><span class="hljs-keyword">\world</span> (world)AAA<br><span class="hljs-comment">% RESULT:</span><br><span class="hljs-comment">% WORLD=&gt; |world| |world|AAA</span><br></code></pre></td></tr></table></figure>
+<p>其实这种情况下，你就可以直接把前面的一堆 <code>\cs_gset_nopar:Npn</code> 等价成一个 <code>\def</code> 了，毕竟 <code>p</code> specifier 的含义就是 <code>traditional paramerter</code>. 更多详细信息可以参见: <a target="_blank" rel="noopener" href="https://tex.stackexchange.com/q/350908/294585">A LaTeX3 new macro/function definition problems</a></p>
+</blockquote>
 
                 
               </div>
