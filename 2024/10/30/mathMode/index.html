@@ -16,25 +16,32 @@
   <meta name="author" content="Eureka">
   <meta name="keywords" content="">
   
-    <meta name="description" content="什么是精确跳转 在 LaTeX\LaTeXLATE​X 中使用 \label-\ref 一组命令用于标签的跳转时往往会出现下面的情况:  我命令在某一行定义的这个label，但是为什么在后文ref引用后，点击跳转到了一个很奇怪的地方，而不是我自己定义label的所在行  其实这个并不是 LaTeX\LaTeXLATE​X 的问题，你可以理解为这个label激活的位置是与这个便签最邻近的如下元素:">
+    <meta name="description" content="Preliminery   font familt in plain tex   math roman fonts    (family 0)   math italic fonts       (family 1)   symbol fonts              (family 2)   the extension fonts   (family 3)     math symbol t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Hyperref进行精确跳转">
-<meta property="og:url" content="https://zongpingding.github.io/2024/05/29/hyperref/index.html">
+<meta property="og:title" content="Math mode in LaTeX">
+<meta property="og:url" content="https://zongpingding.github.io/2024/10/30/mathMode/index.html">
 <meta property="og:site_name" content="Eureka">
-<meta property="og:description" content="什么是精确跳转 在 LaTeX\LaTeXLATE​X 中使用 \label-\ref 一组命令用于标签的跳转时往往会出现下面的情况:  我命令在某一行定义的这个label，但是为什么在后文ref引用后，点击跳转到了一个很奇怪的地方，而不是我自己定义label的所在行  其实这个并不是 LaTeX\LaTeXLATE​X 的问题，你可以理解为这个label激活的位置是与这个便签最邻近的如下元素:">
+<meta property="og:description" content="Preliminery   font familt in plain tex   math roman fonts    (family 0)   math italic fonts       (family 1)   symbol fonts              (family 2)   the extension fonts   (family 3)     math symbol t">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-05-29T08:48:25.599Z">
-<meta property="article:modified_time" content="2024-05-29T09:44:12.465Z">
+<meta property="og:image" content="https://zongpingding.github.io/img/mathMode/atomtype.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/mathMode/mathcode.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/mathMode/mathchar.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/mathMode/xetexref.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/mathMode/operatorfont.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/mathMode/mathpalette.png">
+<meta property="article:published_time" content="2024-10-29T16:34:43.553Z">
+<meta property="article:modified_time" content="2024-10-29T17:29:27.935Z">
 <meta property="article:author" content="Eureka">
-<meta property="article:tag" content="hyperref">
-<meta property="article:tag" content="label&#x2F;ref">
+<meta property="article:tag" content="font">
+<meta property="article:tag" content="math">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/mathMode/atomtype.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>使用Hyperref进行精确跳转 - Eureka</title>
+  <title>Math mode in LaTeX - Eureka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -45,8 +52,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -202,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="使用Hyperref进行精确跳转"></span>
+            <span id="subtitle" data-typed-text="Math mode in LaTeX"></span>
           
         </div>
 
@@ -213,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-29 16:48" pubdate>
-          May 29, 2024 pm
+        <time datetime="2024-10-30 00:34" pubdate>
+          October 30, 2024 am
         </time>
       </span>
     
@@ -225,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          291 words
+          289 words
         
       </span>
     
@@ -273,30 +278,84 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">使用Hyperref进行精确跳转</h1>
+            <h1 id="seo-header">Math mode in LaTeX</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="什么是精确跳转">什么是精确跳转</h2>
-<p>在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 中使用 <code>\label-\ref</code> 一组命令用于标签的跳转时往往会出现下面的情况:</p>
+                <h2 id="Preliminery">Preliminery</h2>
+<ul>
+<li>
+<p>font familt in <strong>plain tex</strong></p>
+<ul>
+<li>
+<p>math roman fonts    (family 0)</p>
+</li>
+<li>
+<p>math italic fonts       (family 1)</p>
+</li>
+<li>
+<p>symbol fonts              (family 2)</p>
+</li>
+<li>
+<p>the extension fonts   (family 3)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>math symbol type(atom type):<br>
+<img src="/img/mathMode/atomtype.png" srcset="/img/loading.gif" lazyload alt="atom code"></p>
+</li>
+</ul>
+<h2 id="strut-and-phantom">strut and phantom</h2>
+<ul>
+<li>
+<p>\mathstrut: <code>\DeclareRobustCommand\mathstrut&#123;\vphantom(&#125;</code></p>
+</li>
+<li>
+<p>phantom related:</p>
+</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\DeclareRobustCommand</span><span class="hljs-keyword">\vphantom</span>&#123;<span class="hljs-keyword">\v@true</span><span class="hljs-keyword">\h@false</span><span class="hljs-keyword">\ph@nt</span>&#125;<br><span class="hljs-keyword">\DeclareRobustCommand</span><span class="hljs-keyword">\hphantom</span>&#123;<span class="hljs-keyword">\v@false</span><span class="hljs-keyword">\h@true</span><span class="hljs-keyword">\ph@nt</span>&#125;<br><span class="hljs-keyword">\DeclareRobustCommand</span><span class="hljs-keyword">\phantom</span>&#123;<span class="hljs-keyword">\v@true</span><span class="hljs-keyword">\h@true</span><span class="hljs-keyword">\ph@nt</span>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="mathcode-mathcahr-mathchardef">\mathcode, \mathcahr, \mathchardef</h2>
+<h3 id="TeXbook">TeXbook</h3>
+<p><img src="/img/mathMode/mathcode.png" srcset="/img/loading.gif" lazyload alt="math code"></p>
+<p>Thus the syntax of command <code>\mathcode</code> is:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\mathcode</span>`&lt;class(atom type)&gt;&lt;font family&gt;&lt;slot number(2 digits)&gt;<br></code></pre></td></tr></table></figure>
+<p>There is a command <code>\mathchar</code> – <code>\mathchardef</code> similar to <code>\char</code> – <code>\chardef</code> for text font. See below:</p>
+<p><img src="/img/mathMode/mathchar.png" srcset="/img/loading.gif" lazyload alt="math char"></p>
+<h3 id="xetexref">xetexref</h3>
+<p><img src="/img/mathMode/xetexref.png" srcset="/img/loading.gif" lazyload alt="math slot in xetex"></p>
+<h3 id="operator-font">operator font</h3>
+<p>Is this a Bug for <code>\operator@font</code> in <code>amsopn.sty</code> or <code>ctex.sty</code>? See definition in latex2e: Page 631</p>
+<p><img src="/img/mathMode/operatorfont.png" srcset="/img/loading.gif" lazyload alt="operator font"></p>
+<p>The definition in ctex:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">❯ latexdef -p ctex \symoperators<br><br>\symoperators:<br>\char&quot;0<br><br><br>\the\symoperators:<br>0<br></code></pre></td></tr></table></figure>
+<h2 id="How-many-are-‘math-symol-font’-types">How many are ‘math symol font’ types ?</h2>
+<p>see below:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% 1.</span><br><span class="hljs-keyword">\DeclareSymbolFont</span>&#123;sfoperators&#125;&#123;OT1&#125;&#123;cmss&#125;&#123;m&#125;&#123;n&#125;<br><span class="hljs-keyword">\DeclareSymbolFontAlphabet</span>&#123;<span class="hljs-keyword">\mathsf</span>&#125;&#123;sfoperators&#125;<br><br><span class="hljs-comment">% 2.</span><br><span class="hljs-keyword">\DeclareSymbolFont</span>&#123;LMletters&#125;&#123;OML&#125;&#123;lmm&#125;&#123;m&#125;&#123;it&#125;<br><span class="hljs-keyword">\DeclareMathSymbol</span>&#123;<span class="hljs-keyword">\lmstar</span>&#125;&#123;<span class="hljs-keyword">\mathbin</span>&#125;&#123;LMletters&#125;&#123;63&#125;<br></code></pre></td></tr></table></figure>
+<p>There are infinite many math symbol font, see <code>fntguide</code> Page 14:</p>
 <blockquote>
-<p>我命令在某一行定义的这个label，但是为什么在后文ref引用后，点击跳转到了一个很奇怪的地方，而不是我自己定义label的所在行</p>
+<p><code>\DeclareSymbolFont &#123;⟨sym-font⟩&#125; &#123;⟨encoding⟩&#125; &#123;⟨family⟩&#125; &#123;⟨series⟩&#125; &#123;⟨shape⟩&#125;</code><br>
+If this is the first declaration for ⟨sym-font⟩ then a new symbol font with this name is created (i.e. this identifier is assigned to a new TEX math group)</p>
 </blockquote>
-<p>其实这个并不是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 的问题，你可以理解为这个label激活的位置是与这个便签最邻近的如下元素:</p>
+<p>So math symbol font from 3 sources:</p>
 <ul>
-<li>chpater/section/subsection 等元素</li>
-<li>由<code>\newtheorem</code> 声明的定理类环境位置</li>
+<li>the predefine 4 types: <code>operators</code>, <code>letters</code>, <code>symbols</code>, <code>largesymbols</code></li>
+<li>From some package: like <code>AMSa</code>, <code>AMSb</code> in amsfont package; <code>zeur</code> in eulervm package</li>
+<li>The type that your define by command <code>\DeclareSymbolFont</code></li>
 </ul>
-<p>然后你点击后就会跳转到上述的&quot;奇怪&quot;的位置</p>
-<h2 id="方法">方法</h2>
-<p>但是总归是有方法的，其实就是使用宏包 <code>hyperref</code>, 使用它提供的如下两个命令</p>
-<ul>
-<li><code>\hypertarget</code> 进行label的定义</li>
-<li><code>\hyperlink</code> 进行跳转操作</li>
-</ul>
-<p>一个完整的示例如下</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;ctexart&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;zhlipsum&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;hyperref&#125;<br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\section</span>&#123;Test 1&#125;<br><span class="hljs-keyword">\zhlipsum</span>[1-10]<br><br><span class="hljs-keyword">\noindent</span><span class="hljs-keyword">\rule</span>&#123;1<span class="hljs-keyword">\linewidth</span>&#125;&#123;2pt&#125;<br><span class="hljs-keyword">\hypertarget</span>&#123;label-1&#125;&#123;<span class="hljs-keyword">\textbf</span>&#123;Destination&#125;&#125;<br><br><span class="hljs-keyword">\zhlipsum</span>[1-10]<br><br><span class="hljs-keyword">\section</span>&#123;Test 2&#125;<br><span class="hljs-keyword">\zhlipsum</span>[3-4]<br><span class="hljs-keyword">\hyperlink</span>&#123;label-1&#125;&#123;<span class="hljs-keyword">\textbf</span>&#123;ClickMe&#125;&#125;<br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="mathpalette-and-mathchoice">\mathpalette and \mathchoice</h2>
+<p>Definition of <code>\mathpalette</code>, see:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\mathpalette</span><span class="hljs-params">#1</span><span class="hljs-params">#2</span>&#123;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\mathchoice</span><br>    &#123;<span class="hljs-params">#1</span><span class="hljs-keyword">\displaystyle</span>&#123;<span class="hljs-params">#2</span>&#125;&#125;<span class="hljs-comment">%</span><br>    &#123;<span class="hljs-params">#1</span><span class="hljs-keyword">\textstyle</span>&#123;<span class="hljs-params">#2</span>&#125;&#125;<span class="hljs-comment">%</span><br>    &#123;<span class="hljs-params">#1</span><span class="hljs-keyword">\scriptstyle</span>&#123;<span class="hljs-params">#2</span>&#125;&#125;<span class="hljs-comment">%</span><br>    &#123;<span class="hljs-params">#1</span><span class="hljs-keyword">\scriptscriptstyle</span>&#123;<span class="hljs-params">#2</span>&#125;&#125;&#125;<br></code></pre></td></tr></table></figure>
+<p>What is <code>\mathchoice</code> doing for us? Use different construction in different math style.  Syntax of this command is:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\mathchoice</span>&#123;⟨D/D&#x27; math⟩&#125;&#123;⟨T/T&#x27; math⟩&#125;&#123;⟨S/S&#x27; math⟩&#125;&#123;⟨SS/SS&#x27; math⟩&#125;<br></code></pre></td></tr></table></figure>
+<p>An example using example for “The TeX book”:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\puzzle</span>&#123;&#123;<span class="hljs-keyword">\mathchoice</span>&#123;D&#125;&#123;T&#125;&#123;S&#125;&#123;SS&#125;&#125;&#125;<br><span class="hljs-built_in">$</span><span class="hljs-built_in">$</span><span class="hljs-keyword">\puzzle</span>&#123;<span class="hljs-keyword">\puzzle</span><span class="hljs-keyword">\over</span><span class="hljs-keyword">\puzzle</span><span class="hljs-built_in">^</span>&#123;<span class="hljs-keyword">\puzzle</span><span class="hljs-built_in">^</span><span class="hljs-keyword">\puzzle</span>&#125;&#125;<span class="hljs-built_in">$</span><span class="hljs-built_in">$</span><br></code></pre></td></tr></table></figure>
+<p>The output look like:<br>
+<img src="/img/mathMode/mathpalette.png" srcset="/img/loading.gif" lazyload alt="math palette"></p>
+<p>Then you may know what <code>\mathpalette</code> doing .</p>
+
                 
               </div>
             
@@ -329,9 +388,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/hyperref/" class="print-no-link">#hyperref</a>
+        <a href="/tags/font/" class="print-no-link">#font</a>
       
-        <a href="/tags/label-ref/" class="print-no-link">#label/ref</a>
+        <a href="/tags/math/" class="print-no-link">#math</a>
       
     </div>
   
@@ -343,8 +402,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>使用Hyperref进行精确跳转</div>
-      <div>https://zongpingding.github.io/2024/05/29/hyperref/</div>
+      <div>Math mode in LaTeX</div>
+      <div>https://zongpingding.github.io/2024/10/30/mathMode/</div>
     </div>
     <div class="license-meta">
       
@@ -356,7 +415,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 29, 2024</div>
+          <div>October 30, 2024</div>
         </div>
       
       
@@ -388,18 +447,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/29/mathematica_dark_theme/" title="Mathematica Dark Theme">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Mathematica Dark Theme</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/29/latex_listing/" title="LaTeX listing">
-                        <span class="hidden-mobile">LaTeX listing</span>
+                      <a href="/2024/10/30/hyperref-II/" title="Label, Ref and Hyperref in LaTeX">
+                        <span class="hidden-mobile">Label, Ref and Hyperref in LaTeX</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -491,11 +544,6 @@
 
 
   
-
-
-  
-  
-
 
 
 
