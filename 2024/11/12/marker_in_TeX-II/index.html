@@ -1,0 +1,822 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Main stages 2 stages to of constructing pages:  finding page breaks shipping out completed pages to a PDF file  The internal \ps@&lt;style&gt; :  The \ps@&lt;style&gt;  command defines the macros \@od">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Marker in TeX - II">
+<meta property="og:url" content="https://zongpingding.github.io/2024/11/12/marker_in_TeX-II/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="Main stages 2 stages to of constructing pages:  finding page breaks shipping out completed pages to a PDF file  The internal \ps@&lt;style&gt; :  The \ps@&lt;style&gt;  command defines the macros \@od">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/marker_in_latex_II/HeadFootArticle_example.svg">
+<meta property="og:image" content="https://zongpingding.github.io/img/marker_in_latex_II/HeadFootArticle_example_2.svg">
+<meta property="og:image" content="https://zongpingding.github.io/img/marker_in_latex_II/empty_rightmark.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/marker_in_latex_II/rightmark_solution.png">
+<meta property="article:published_time" content="2024-11-11T23:11:28.620Z">
+<meta property="article:modified_time" content="2024-11-11T23:17:18.868Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="marker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/marker_in_latex_II/HeadFootArticle_example.svg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Marker in TeX - II - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/fluid_theme_pic/default.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Marker in TeX - II"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-12 07:11" pubdate>
+          November 12, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          673 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Marker in TeX - II</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Main-stages">Main stages</h2>
+<p>2 stages to of constructing pages:</p>
+<ul>
+<li>finding page breaks</li>
+<li>shipping out completed pages to a PDF file</li>
+</ul>
+<p>The internal <code>\ps@&lt;style&gt;</code> :</p>
+<blockquote>
+<p>The <code>\ps@&lt;style&gt;</code>  command defines the macros <code>\@oddhead</code>, <code>\@oddfoot</code>,  <code>\@evenhead</code>, and <code>\@evenfoot</code> to define the running heads and feet.</p>
+</blockquote>
+<p>For example, see <code>article.cls</code>:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\if@twoside</span><br>  <span class="hljs-keyword">\def</span><span class="hljs-keyword">\ps@headings</span>&#123;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\let</span><span class="hljs-keyword">\@oddfoot</span><span class="hljs-keyword">\@empty</span><span class="hljs-keyword">\let</span><span class="hljs-keyword">\@evenfoot</span><span class="hljs-keyword">\@empty</span><br>      <span class="hljs-keyword">\def</span><span class="hljs-keyword">\@evenhead</span>&#123;<span class="hljs-keyword">\thepage</span><span class="hljs-keyword">\hfil</span><span class="hljs-keyword">\slshape</span><span class="hljs-keyword">\leftmark</span>&#125;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\def</span><span class="hljs-keyword">\@oddhead</span>&#123;&#123;<span class="hljs-keyword">\slshape</span><span class="hljs-keyword">\rightmark</span>&#125;<span class="hljs-keyword">\hfil</span><span class="hljs-keyword">\thepage</span>&#125;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\let</span><span class="hljs-keyword">\@mkboth</span><span class="hljs-keyword">\markboth</span><br>    <span class="hljs-keyword">\def</span><span class="hljs-keyword">\sectionmark</span><span class="hljs-params">##1</span>&#123;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\markboth</span> &#123;<span class="hljs-keyword">\MakeUppercase</span>&#123;<span class="hljs-comment">%</span><br>        <span class="hljs-keyword">\ifnum</span> <span class="hljs-keyword">\c@secnumdepth</span> &gt;<span class="hljs-keyword">\z@</span><br>          <span class="hljs-keyword">\thesection</span><span class="hljs-keyword">\quad</span><br>        <span class="hljs-keyword">\fi</span><br>        <span class="hljs-params">##1</span>&#125;&#125;&#123;&#125;&#125;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\def</span><span class="hljs-keyword">\subsectionmark</span><span class="hljs-params">##1</span>&#123;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\markright</span> &#123;<span class="hljs-comment">%</span><br>        <span class="hljs-keyword">\ifnum</span> <span class="hljs-keyword">\c@secnumdepth</span> &gt;<span class="hljs-keyword">\@ne</span><br>          <span class="hljs-keyword">\thesubsection</span><span class="hljs-keyword">\quad</span><br>        <span class="hljs-keyword">\fi</span><br>        <span class="hljs-params">##1</span>&#125;&#125;&#125;<br><span class="hljs-keyword">\else</span><br>  <span class="hljs-keyword">\def</span><span class="hljs-keyword">\ps@headings</span>&#123;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\let</span><span class="hljs-keyword">\@oddfoot</span><span class="hljs-keyword">\@empty</span><br>    <span class="hljs-keyword">\def</span><span class="hljs-keyword">\@oddhead</span>&#123;&#123;<span class="hljs-keyword">\slshape</span><span class="hljs-keyword">\rightmark</span>&#125;<span class="hljs-keyword">\hfil</span><span class="hljs-keyword">\thepage</span>&#125;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\let</span><span class="hljs-keyword">\@mkboth</span><span class="hljs-keyword">\markboth</span><br>    <span class="hljs-keyword">\def</span><span class="hljs-keyword">\sectionmark</span><span class="hljs-params">##1</span>&#123;<span class="hljs-comment">%</span><br>      <span class="hljs-keyword">\markright</span> &#123;<span class="hljs-keyword">\MakeUppercase</span>&#123;<span class="hljs-comment">%</span><br>        <span class="hljs-keyword">\ifnum</span> <span class="hljs-keyword">\c@secnumdepth</span> &gt;<span class="hljs-keyword">\m@ne</span><br>          <span class="hljs-keyword">\thesection</span><span class="hljs-keyword">\quad</span><br>        <span class="hljs-keyword">\fi</span><br>        <span class="hljs-params">##1</span>&#125;&#125;&#125;&#125;<br><span class="hljs-keyword">\fi</span><br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\ps@myheadings</span>&#123;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\let</span><span class="hljs-keyword">\@oddfoot</span><span class="hljs-keyword">\@empty</span><span class="hljs-keyword">\let</span><span class="hljs-keyword">\@evenfoot</span><span class="hljs-keyword">\@empty</span><br>    <span class="hljs-keyword">\def</span><span class="hljs-keyword">\@evenhead</span>&#123;<span class="hljs-keyword">\thepage</span><span class="hljs-keyword">\hfil</span><span class="hljs-keyword">\slshape</span><span class="hljs-keyword">\leftmark</span>&#125;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\def</span><span class="hljs-keyword">\@oddhead</span>&#123;&#123;<span class="hljs-keyword">\slshape</span><span class="hljs-keyword">\rightmark</span>&#125;<span class="hljs-keyword">\hfil</span><span class="hljs-keyword">\thepage</span>&#125;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\let</span><span class="hljs-keyword">\@mkboth</span><span class="hljs-keyword">\@gobbletwo</span><br>    <span class="hljs-keyword">\let</span><span class="hljs-keyword">\sectionmark</span><span class="hljs-keyword">\@gobble</span><br>    <span class="hljs-keyword">\let</span><span class="hljs-keyword">\subsectionmark</span><span class="hljs-keyword">\@gobble</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>Why we need the macro <code>\ps@&lt;style&gt;</code> ? When you change the style of a page using <code>\pagestyle&#123;&lt;style&gt;&#125;</code> or <code>\thispagestyle&#123;&lt;style&gt;&#125;</code> LaTeX expects to find an internal command named <code>ps@&lt;style&gt;</code>—usually provided by the document class <code>.cls</code> file or perhaps a package.</p>
+<h2 id="OTR">OTR</h2>
+<h3 id="Definition">Definition</h3>
+<p>what is <strong>output routine</strong> ?</p>
+<blockquote>
+<p>One key feature of the final stage of page packaging (composition) is something called an <em>output routine</em> which is, in effect, a user-defined sequence of commands used to package-up the page of content to make it ready for sending to the PDF file. One example activity of “packaging-up” is to add headers and footers, but there are numerous ways to use output routines—for example, see <a target="_blank" rel="noopener" href="https://tug.org/TUGboat/tb11-1/tb27salomon.pdf">this article in TUGboat</a>. Output routines are a fairly complex area of TeX so we won’t go into detail here: for present purposes <strong>just remember that the final stage of page composition involves using some user-defined sequence of commands (collectively called an <em>output routine</em>)</strong>.</p>
+</blockquote>
+<p>The “packaging up” process: once TeX has a “suitably full” page (body) it passes that content to something called an <em>output routine</em>.</p>
+<h3 id="Asynchronous">Asynchronous</h3>
+<p>TeX’s typesetting activities <em>are not synchronised</em> with the process of outputting typeset pages via the output routine. See the two corresponding internal states of TeX:</p>
+<ul>
+<li>the location in your file corresponding to where the page break takes place</li>
+<li>the location TeX has actually reached in your <code>.tex</code> file (always ahead of the before)</li>
+</ul>
+<p>are very different in <strong>stored data</strong> , <strong>value of variables</strong>. See example:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\newtoks</span><span class="hljs-keyword">\headertoks</span><br><span class="hljs-keyword">\newtoks</span><span class="hljs-keyword">\footertoks</span><br><span class="hljs-keyword">\newcommand</span>&#123;<span class="hljs-keyword">\myheader</span>&#125;[1]&#123;<span class="hljs-keyword">\global</span><span class="hljs-keyword">\headertoks</span>=&#123;<span class="hljs-params">#1</span>&#125;&#125;<br><span class="hljs-keyword">\newcommand</span>&#123;<span class="hljs-keyword">\myfooter</span>&#125;[1]&#123;<span class="hljs-keyword">\global</span><span class="hljs-keyword">\footertoks</span>=&#123;<span class="hljs-params">#1</span>&#125;&#125;<br></code></pre></td></tr></table></figure>
+<p>Then see graphic below:</p>
+<p><img src="/img/marker_in_latex_II/HeadFootArticle_example.svg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="How-to-get-right-value">How to get right value ?</h3>
+<p>The current page header and footer should be: “This header” and “This footer”. So the problem is: which process happens first ?</p>
+<ul>
+<li>the page break(shipout) process ? (process of outputting a typeset page)</li>
+<li>the second red point in the above pgraphic ? (TeX’s typesetting (content construction) activities)</li>
+</ul>
+<p>If the first process happens first? Then everything will works right ! But we have see that:</p>
+<blockquote>
+<p>The second is always ahead of the fisrt, thus we need a rescue – <code>\mark</code> command .</p>
+</blockquote>
+<p>After the TeX engine has determined the location of a page break, these following have been happened in turn:</p>
+<ul>
+<li>TeX’s typesetting (content construction) activities – determined the location of a page break</li>
+<li>an internal routine (called <code>fire_up()</code>) does a lot of pre-processing – what <code>\mark</code> does. We call this process as <strong>mark process</strong> for future reference.</li>
+<li>process of outputting a typeset page</li>
+</ul>
+<p>See below for details:</p>
+<p><img src="/img/marker_in_latex_II/HeadFootArticle_example_2.svg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>In <strong>mark process</strong> , 3 variables will be set:</p>
+<ul>
+<li><code>\botmark</code> : the last mark seen on the <em>current</em> page</li>
+<li><code>\topmark</code> : the value of <code>\botmark</code> from the <em>previous</em> page</li>
+<li><code>\firstmark</code> : the first mark on the <em>current</em> page—the first mark between <code>\topmark</code> and <code>\botmark</code></li>
+</ul>
+<p>Then how do these marks determined ? See the graphic below:</p>
+<h2 id="Why-is-your-rightmark-empty">Why is your \rightmark empty ?</h2>
+<p>See the example:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;fancyhdr&#125;<br><span class="hljs-keyword">\pagestyle</span>&#123;fancy&#125;<br><span class="hljs-keyword">\lhead</span>&#123;<span class="hljs-keyword">\leftmark</span>&#125;<br><span class="hljs-keyword">\chead</span>&#123;&#125;<br><span class="hljs-keyword">\rhead</span>&#123;<span class="hljs-keyword">\rightmark</span>&#125;<br><span class="hljs-comment">% \rhead&#123;\botmark&#125;    %1 A-11.2 B-2</span><br><br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\section</span>&#123;A-1&#125;<br><span class="hljs-keyword">\subsection</span>&#123;B-1&#125;<br>B-1<br><br><span class="hljs-keyword">\subsection</span>&#123;B-2&#125;<br>B-2<br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<p>Compile it, the output will be:</p>
+<p><img src="/img/marker_in_latex_II/empty_rightmark.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>The rightmark is empty. Let’s check what happens behind it. Since <code>\rightmark</code> is the <strong>first</strong> <code>right item</code> in current page.</p>
+<blockquote>
+<p>Here, the <code>right item</code> refers to <code>&lt;arg&gt;</code>  in <code>\markright&#123;&lt;arg&gt;&#125;</code> or in <code>\markboth&#123;&#125;&#123;&lt;arg&gt;&#125;</code> .</p>
+</blockquote>
+<p>Thus we need to check the definition of <code>\sectionmark</code>, use command:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\meaning</span><span class="hljs-keyword">\sectionmark</span><br></code></pre></td></tr></table></figure>
+<p>The ouput is:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\sectionmark</span><span class="hljs-params">##1</span>&#123;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\markboth</span> &#123;<span class="hljs-keyword">\MakeUppercase</span>&#123;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\ifnum</span> <span class="hljs-keyword">\c@secnumdepth</span> &gt;<span class="hljs-keyword">\z@</span><br>      <span class="hljs-keyword">\thesection</span><span class="hljs-keyword">\quad</span><br>    <span class="hljs-keyword">\fi</span><br>    <span class="hljs-params">##1</span>&#125;&#125;&#123;&#125;&#125;<br></code></pre></td></tr></table></figure>
+<p>Then the fisrt <code>right item</code> is empty. As you have seen before ? this definition lies in the <code>twoside</code> page layout branch. If you add a test command:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">THE DEFAULT LAYPUT: <span class="hljs-keyword">\if@twoside</span> TWOSIDE <span class="hljs-keyword">\else</span> ONESIDE <span class="hljs-keyword">\fi</span><br></code></pre></td></tr></table></figure>
+<p>The output is <code>ONESIDE</code>. So weird ? No, this is because of the loading of package <code>fancyhdr</code>. If you remove this package you will see:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\sectionmark</span>=<span class="hljs-keyword">\long</span> macro:<span class="hljs-params">#1</span>-&gt;<br></code></pre></td></tr></table></figure>
+<p>This is equals to <code>\let\sectionmark\@gobble</code> in pagestyle <code>myheadings</code>:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\ps@myheadings</span>&#123;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\let</span><span class="hljs-keyword">\@oddfoot</span><span class="hljs-keyword">\@empty</span><span class="hljs-keyword">\let</span><span class="hljs-keyword">\@evenfoot</span><span class="hljs-keyword">\@empty</span><br>    <span class="hljs-keyword">\def</span><span class="hljs-keyword">\@evenhead</span>&#123;<span class="hljs-keyword">\thepage</span><span class="hljs-keyword">\hfil</span><span class="hljs-keyword">\slshape</span><span class="hljs-keyword">\leftmark</span>&#125;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\def</span><span class="hljs-keyword">\@oddhead</span>&#123;&#123;<span class="hljs-keyword">\slshape</span><span class="hljs-keyword">\rightmark</span>&#125;<span class="hljs-keyword">\hfil</span><span class="hljs-keyword">\thepage</span>&#125;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\let</span><span class="hljs-keyword">\@mkboth</span><span class="hljs-keyword">\@gobbletwo</span><br>    <span class="hljs-keyword">\let</span><span class="hljs-keyword">\sectionmark</span><span class="hljs-keyword">\@gobble</span><br>    <span class="hljs-keyword">\let</span><span class="hljs-keyword">\subsectionmark</span><span class="hljs-keyword">\@gobble</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>How to make is right when loading package <code>fancyhdr</code> ? A simple and <strong>recommended</strong> solution is to use the new mark mechnism  introduced in LaTeX2e. See below:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\pagestyle</span>&#123;fancy&#125;<br><span class="hljs-keyword">\lhead</span>&#123;<span class="hljs-keyword">\leftmark</span>&#125;<br><span class="hljs-keyword">\chead</span>&#123;&#125;<br><span class="hljs-keyword">\rhead</span>&#123;<span class="hljs-keyword">\FirstMark</span>&#123;2e-right-nonempty&#125;&#125;<br></code></pre></td></tr></table></figure>
+<p>Then the output will be:</p>
+<p><img src="/img/marker_in_latex_II/rightmark_solution.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>What is the diference between <code>2e-right-nonempty</code> and <code>2e-right</code>, see the explanation in source2e – 4.2<br>
+Legacy interface extensions:</p>
+<blockquote>
+<p>The difference between <code>2e-right</code> and <code>2e-right-nonempty</code> is that the latter will only be updated if the material for the mark is not empty. Thus <code>\markboth&#123;title&#125;&#123;&#125;</code> as issued by, say, <code>\sectionmark</code>, sets a <code>2e-left mark</code> with title and a <code>2e-right</code> mark with the empty string but does not add a <code>2e-right-nonempty</code> mark.</p>
+</blockquote>
+<p>Or you can re-define the <code>\sectionmark</code> command, for example:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\sectionmark</span><span class="hljs-params">#1</span>&#123;<span class="hljs-keyword">\markboth</span>&#123;<span class="hljs-params">#1</span>&#125;&#123;&lt;SOMETHING&gt;&#125;&#125;<br></code></pre></td></tr></table></figure>
+<p>Remark: If you’d like to use this method, please put this line after the loading of <code>fancyhdr</code>, otherwise, it will there will be no impact on <code>\sectionmark</code> command.</p>
+<h2 id="Create-ouput-routine-command">Create ouput routine command</h2>
+<p>The markers will be wrong if it have been directly used in normal text. So can we make our own output routine command to access the right value of a mark class ?</p>
+<p>There is no need to create such command, IMHO. You can re-define these commands:</p>
+<ul>
+<li>\chaptermark</li>
+<li>\sectionmark</li>
+<li>\subsectionmark</li>
+<li>\subsubsectionmark</li>
+<li>\paragraphmark</li>
+<li>\subparagraphmark</li>
+</ul>
+<p>An simple example:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\usepackage</span>&#123;fancyhdr&#125;<br><br><span class="hljs-comment">% create mark classes</span><br><span class="hljs-keyword">\mark_new_class:n</span> &#123;zslide-right&#125;<br><span class="hljs-keyword">\mark_new_class:n</span> &#123;zslide-left&#125;<br><br><span class="hljs-comment">% add entry to these new classes</span><br><span class="hljs-keyword">\renewcommand</span><span class="hljs-keyword">\sectionmark</span>[1]&#123;<span class="hljs-keyword">\mark_insert:nn</span> &#123;zslide-left&#125;&#123;<span class="hljs-params">#1</span>&#125;&#125;<br><span class="hljs-keyword">\renewcommand</span><span class="hljs-keyword">\subsectionmark</span>[1]&#123;<span class="hljs-keyword">\mark_insert:nn</span> &#123;zslide-right&#125;&#123;<span class="hljs-keyword">\thesubsection</span><span class="hljs-keyword">\ </span><span class="hljs-params">#1</span>&#125;&#125;<br><br><span class="hljs-comment">% use these classes</span><br><span class="hljs-keyword">\pagestyle</span>&#123;fancy&#125;<br><span class="hljs-keyword">\rhead</span>&#123;<span class="hljs-keyword">\FirstMark</span>&#123;zslide-left&#125;&#125;<br><span class="hljs-keyword">\rhead</span>&#123;<span class="hljs-comment">%</span><br>	<span class="hljs-keyword">\FirstMark</span>&#123;zslide-right&#125;--<span class="hljs-keyword">\LastMark</span>&#123;zslide-right&#125;<span class="hljs-comment">%</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>The command <code>\FirstMark</code> and <code>\LastMark</code> is still works perfect in hook, such as <code>shipout/foreground</code>, <code>shipout/background</code> and so forth.</p>
+<blockquote>
+<p>In these hooks, the class <code>2e-right-nonempty</code> may does NOT work properly !</p>
+</blockquote>
+<h2 id="REFERENCE">REFERENCE</h2>
+<ul>
+<li>source 2e</li>
+<li>ltmarks-doc</li>
+<li><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/Articles/How_does_LaTeX_typeset_headers_and_footers%3F">Overleaf How does LaTeX typeset headers and footers?</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/marker/" class="print-no-link">#marker</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Marker in TeX - II</div>
+      <div>https://zongpingding.github.io/2024/11/12/marker_in_TeX-II/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 12, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/12/physics2_analysis/" title="Physics 2 mechanism">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Physics 2 mechanism</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/30/mathMode/" title="Math mode in LaTeX">
+                        <span class="hidden-mobile">Math mode in LaTeX</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
