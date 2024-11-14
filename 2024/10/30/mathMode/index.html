@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://zongpingding.github.io/img/mathMode/operatorfont.png">
 <meta property="og:image" content="https://zongpingding.github.io/img/mathMode/mathpalette.png">
 <meta property="article:published_time" content="2024-10-29T16:34:43.553Z">
-<meta property="article:modified_time" content="2024-11-14T02:39:45.333Z">
+<meta property="article:modified_time" content="2024-11-14T05:06:12.716Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="font">
 <meta property="article:tag" content="math">
@@ -296,19 +296,19 @@
 </ul>
 <h2 id="math-atom">math atom</h2>
 <p>Each character(<code>a,b,c</code>, <code>+/-</code>, etc) or control sequence(<code>\alpha</code>, <code>\sum</code>, etc) in math fomulars has its own type, which control its spaces arround(before, after, top, below, etc) it. The math symbol type(atom type) is as follows:</p>
-<p><img src="/img/mathMode/atomtype.png" srcset="/img/loading.gif" lazyload alt="atom code"></p>
+<p><img src="/img/mathMode/atomtype.png" srcset="/img/loading.gif" lazyload alt="atom code of symbols"></p>
 <p>When you need some new math symbols, you need to specify to which atom type this symbol should belong during declaring it.</p>
 <h2 id="math-code">math code</h2>
 <p>All of these commands <code>\mathcode</code>, <code>\mathcahr</code>, <code>\mathchardef</code> are related to mathcode in TeX, which is similar to catcode in text but far more complex that it.</p>
 <h3 id="Plain-TeX">Plain TeX</h3>
 <p>In plain TeX, the syntax of command <code>\mathcode</code> is:<br>
-<img src="/img/mathMode/mathcode.png" srcset="/img/loading.gif" lazyload alt="Screenshot from &quot;The TeXbook -- D. E. K"></p>
+<img src="/img/mathMode/mathcode.png" srcset="/img/loading.gif" lazyload alt="mathcode command in Plain TeX"></p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\mathcode</span>`&lt;single token&gt;[=]<br>    &lt;class(atom type)(1 digits)&gt;<br>    &lt;font family(1 digits)&gt;<br>    &lt;glyph slot(2 digits)&gt;<br></code></pre></td></tr></table></figure>
 <p>There is a command <code>\mathchar</code> – <code>\mathchardef</code> similar to <code>\char</code> – <code>\chardef</code> for text font. See below:</p>
-<p><img src="/img/mathMode/mathchar.png" srcset="/img/loading.gif" lazyload alt="math char"></p>
+<p><img src="/img/mathMode/mathchar.png" srcset="/img/loading.gif" lazyload alt="mathchar command in Plain TeX"></p>
 <h3 id="XeTeX">XeTeX</h3>
 <p>XeTeX provides command <code>\Umathcode</code> (similar to the original command <code>\mathcode</code> in plain TeX). It also provides command <code>\Umathcodenum</code>, which use a <code>bit-packed</code> single argument.</p>
-<p><img src="/img/mathMode/xetexref.png" srcset="/img/loading.gif" lazyload alt="math slot in xetex"></p>
+<p><img src="/img/mathMode/xetexref.png" srcset="/img/loading.gif" lazyload alt="Umathcode command in XeTeX"></p>
 <p>Thus the syntax is:</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\Umathcode</span>&lt;char slot&gt;[=]<br>    &lt;atom type&gt;<br>    &lt;font family&gt;<br>    &lt;glyph slot&gt;<br><br><span class="hljs-keyword">\Umathcodenum</span>&lt;char slot&gt;[=]<br>    &lt;atom type/font family/glyph slot&gt;<br></code></pre></td></tr></table></figure>
 <h2 id="delimiter-code">delimiter code</h2>
@@ -329,7 +329,7 @@
 </ul>
 <h3 id="operator-font-bug">operator font bug ?</h3>
 <p>Is this a Bug for <code>\operator@font</code> in <code>amsopn.sty</code> or <code>ctex.sty</code>? See definition in latex2e: Page 631</p>
-<p><img src="/img/mathMode/operatorfont.png" srcset="/img/loading.gif" lazyload alt="operator font"></p>
+<p><img src="/img/mathMode/operatorfont.png" srcset="/img/loading.gif" lazyload alt="operator font in LaTeX 2e"></p>
 <p>The definition in ctex:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">❯ latexdef -p ctex \symoperators<br><br>\symoperators:<br>\char&quot;0<br><br><br>\the\symoperators:<br>0<br></code></pre></td></tr></table></figure>
 <h2 id="miscellany">miscellany</h2>
@@ -370,7 +370,7 @@
 <p>An example using example for “The TeX book”:</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\puzzle</span>&#123;&#123;<span class="hljs-keyword">\mathchoice</span>&#123;D&#125;&#123;T&#125;&#123;S&#125;&#123;SS&#125;&#125;&#125;<br><span class="hljs-built_in">$</span><span class="hljs-built_in">$</span><span class="hljs-keyword">\puzzle</span>&#123;<span class="hljs-keyword">\puzzle</span><span class="hljs-keyword">\over</span><span class="hljs-keyword">\puzzle</span><span class="hljs-built_in">^</span>&#123;<span class="hljs-keyword">\puzzle</span><span class="hljs-built_in">^</span><span class="hljs-keyword">\puzzle</span>&#125;&#125;<span class="hljs-built_in">$</span><span class="hljs-built_in">$</span><br></code></pre></td></tr></table></figure>
 <p>The output look like:<br>
-<img src="/img/mathMode/mathpalette.png" srcset="/img/loading.gif" lazyload alt="math palette"></p>
+<img src="/img/mathMode/mathpalette.png" srcset="/img/loading.gif" lazyload alt="math palette example"></p>
 <p>Then you may know what <code>\mathpalette</code> doing .</p>
 
                 

@@ -16,20 +16,22 @@
   <meta name="author" content="Eureka">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Preface example What is the meaning of these control sequence: 12^^M^^J You can see their definitions as below. Before we start, some basic knowledge we should know. 字符与编码 进制 在 TEX 的内部使用 &#39;(单引号)后加数字表示八">
+    <meta name="description" content="Preface Example 你也许在部分的模板或者是宏包中看到过类似下面的东西, 那么这些东西是啥意思呢 ? 12^^M^^J 如果你熟悉 ASCII 码表的话，你会发现这两个东西和 脱出字符表示 比较相似. 比如 回车(CR) 的脱出字符表示为: ^M . 而 换行(LF) 的表示为 ^J . 我们在后文会介绍的这个东西的，但是在介绍之前，你需要先了解部分的基础知识，关于字符和编码的基础知识">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Coding in TeX">
 <meta property="og:url" content="https://zongpingding.github.io/2024/11/14/tex_coding/index.html">
 <meta property="og:site_name" content="Eureka">
-<meta property="og:description" content="Preface example What is the meaning of these control sequence: 12^^M^^J You can see their definitions as below. Before we start, some basic knowledge we should know. 字符与编码 进制 在 TEX 的内部使用 &#39;(单引号)后加数字表示八">
+<meta property="og:description" content="Preface Example 你也许在部分的模板或者是宏包中看到过类似下面的东西, 那么这些东西是啥意思呢 ? 12^^M^^J 如果你熟悉 ASCII 码表的话，你会发现这两个东西和 脱出字符表示 比较相似. 比如 回车(CR) 的脱出字符表示为: ^M . 而 换行(LF) 的表示为 ^J . 我们在后文会介绍的这个东西的，但是在介绍之前，你需要先了解部分的基础知识，关于字符和编码的基础知识">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/tex_coding/overleaf_endlinechar.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/tex_coding/endlinechar.png">
 <meta property="og:image" content="https://zongpingding.github.io/img/tex_coding/mathcode.svg">
 <meta property="article:published_time" content="2024-11-14T00:26:29.949Z">
-<meta property="article:modified_time" content="2024-11-14T02:03:46.306Z">
+<meta property="article:modified_time" content="2024-11-14T05:01:36.977Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="Font">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zongpingding.github.io/img/tex_coding/mathcode.svg">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/tex_coding/overleaf_endlinechar.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -224,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k words
+          2.1k words
         
       </span>
     
@@ -235,7 +237,7 @@
         
         
         
-          10 mins
+          18 mins
         
       </span>
     
@@ -278,10 +280,10 @@
               <div class="markdown-body">
                 
                 <h2 id="Preface">Preface</h2>
-<h3 id="example">example</h3>
-<p>What is the meaning of these control sequence:</p>
+<h3 id="Example">Example</h3>
+<p>你也许在部分的模板或者是宏包中看到过类似下面的东西, 那么这些东西是啥意思呢 ?</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex">^^M<br>^^J<br></code></pre></td></tr></table></figure>
-<p>You can see their definitions as below. Before we start, some basic knowledge we should know.</p>
+<p>如果你熟悉 ASCII 码表的话，你会发现这两个东西和 <code>脱出字符表示</code> 比较相似. 比如 <code>回车(CR)</code> 的脱出字符表示为: <code>^M</code> . 而 <code>换行(LF)</code> 的表示为 <code>^J</code> . 我们在后文会介绍的这个东西的，但是在介绍之前，你需要先了解部分的基础知识，关于字符和编码的基础知识.</p>
 <h3 id="字符与编码">字符与编码</h3>
 <h4 id="进制">进制</h4>
 <p>在 TEX 的内部使用 <code>'</code>(单引号)后加数字表示八进制，<code>&quot;</code>(双引号)后接数字表示十六进制。下面便有几个示例。注：我们使用原语 (primitive) 的<code>\number</code>命令进行十进制输出:</p>
@@ -434,6 +436,31 @@
 </tr>
 </tbody>
 </table>
+<h4 id="end-line-char">end line char</h4>
+<p>其实现在我们已经把 <code>回车(CR/\r)</code> 和 <code>换行(LF/\n)</code> 两个概念给混淆了, 前者一般的 ASCII 码为 <code>13</code>, 后者为 <code>10</code>. 可以简单的认为 “回车” 就是把光标移动到当前行的行首(水平移动),  而 “换行” 就是把光标移动到下一行的同一水平位置(垂直移动).</p>
+<p>现代意义下的 “换行” 和 “回车”基本已经表示同一个东西了, 也就是 <code>CRLF</code>. 并且不同的操作系统上的这个现代意义上的“换行”的表示方法还不一样: Unix-base 的操作系统用的是 LF, 一些比较老的 MacOS 用的是 CR, 而大部分人用的 Windows 其实是 CRLF.</p>
+<p>TeX 是一个跨平台的应用, 这是大家都知道的。所以为了处理这个烦人的“换行”问题， TeX 引入了一个叫做: <code>\endlinechar</code> 的东西. 这个 <code>\endlinechar</code> 和 catcode 有啥关系呢 ? 其实就是下面这两句话:</p>
+<ul>
+<li><code>\endlinechar</code> 对应的字符一般是 ASCII 13 这个字符, 也就是 <code>\r</code> . 合法的 ASCII code 取值范围是: (-1, 256), 不取两个边界值 .</li>
+<li>同时 ASCII 13 这个字符 (<code>\r</code>) 对应的 catcode 一般是 <code>5</code> .</li>
+</ul>
+<p>TeX 处理你的 tex 文档的基本逻辑是这样的, 以下的讨论均基于默认情况下, 所注释的 ASCII 码和其它的数字均为 10 进制:</p>
+<ul>
+<li>逐行从你的 .tex 文件中读入 tokens, 并不是把整个文件同时塞到内存里面的.</li>
+<li>把每一行的换行符(<code>\r</code>, 或者是 <code>\n</code>) 及其末尾多余的空格(ASCII code 32)去掉, 但是并不会把 ASCII 码为 9 对应的 Tab 给移除掉.</li>
+<li>然后再把合法的 <code>\endlinechar</code> 添加到行末</li>
+<li>然后就开始扫描这一行中的具体内容了, 扫描每一个 token</li>
+<li>然后根据这个 <code>\endlinechar</code> 的 catcode 决定接下来该做什么，应为有时候面对复杂的任务，这个<code>\endlinechar</code> 对应的 catcode 也许是 <code>\active</code>  的.</li>
+<li>那么具体是做什么呢 ？ 也许是把这个 <code>\endlinechar</code> 变为 一个空格，也许是把两个连续的 <code>\endlinechar</code> 变为 <code>\par</code>  这个 token. (TeX 使用 catcode 为 5 的 character 去做这件事情)</li>
+</ul>
+<p>如果你觉得上述的文字描述不够直观，可以看看 Overleaf 上原博客中提供的这幅图:</p>
+<p><img src="/img/tex_coding/overleaf_endlinechar.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>所以，如果你想要避免换行，那么你可以把 <code>\endlinechar</code> 定义为一个非法字符或者是其它的字符. 下面就是一个示例:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br>AAA <br>BBB <br><br>CCC<br><br><span class="hljs-keyword">\endlinechar</span>=58<span class="hljs-comment">% ASCII oct code 58 = :</span><br>AAA <br>BBB <br><br>CCC<br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<p>对应的输出的 pdf 如下:</p>
+<p><img src="/img/tex_coding/endlinechar.png" srcset="/img/loading.gif" lazyload alt="end line char"></p>
+<p>可以看到，中间的那两个 <code>::</code> token, 在默认情况下就会被转为 <code>\par</code> 这个 token. 但是此时 <code>:</code> 对应的 catcode 并不是 5, 所以它并没有变成 <code>\par</code> .</p>
+<h4 id="active-character">active character</h4>
 <p>对于 <code>活动字符</code> 可以做的事情就比较多了, 你可以直接把 <code>活动字符</code> 看作一个 cs, 然后对它进行定义, 参见下面这个结合了 catcode 和 mathcode 的例子:</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;amsmath&#125;<br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\let</span><span class="hljs-keyword">\oricat</span><span class="hljs-keyword">\catcode</span><br><span class="hljs-keyword">\let</span><span class="hljs-keyword">\oricef</span><span class="hljs-keyword">\def</span><br><span class="hljs-keyword">\let</span><span class="hljs-keyword">\oriifmmoce</span><span class="hljs-keyword">\ifmmode</span><br><span class="hljs-keyword">\catcode</span>`d<span class="hljs-keyword">\active</span><br><span class="hljs-keyword">\oricef</span> d&#123;<span class="hljs-keyword">\oriifmmoce</span> <span class="hljs-keyword">\,</span><span class="hljs-keyword">\mathrm</span>&#123;<span class="hljs-keyword">\char</span>100&#125;<span class="hljs-keyword">\else</span> <span class="hljs-keyword">\char</span>100<span class="hljs-keyword">\fi</span>&#125;<br><br><span class="hljs-keyword">\section</span>&#123;catcode&#125;<br>Hello d<br><span class="hljs-keyword">\[</span><br>  <span class="hljs-keyword">\int</span> xdx = 1 + C<br><span class="hljs-keyword">\]</span><br><span class="hljs-keyword">\oricat</span>`d11<br><br><span class="hljs-keyword">\section</span>&#123;mathcode&#125;<br><span class="hljs-keyword">\mathcode</span>`d=&quot;7064<br>Hello d <br><span class="hljs-keyword">\[</span><br>  <span class="hljs-keyword">\int</span> xdx = 1 + C<br><span class="hljs-keyword">\]</span><br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
 <p>这段代码输出的结果为:<br>
@@ -446,7 +473,9 @@
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\catcode</span> `<span class="hljs-keyword">\\</span> =0     <span class="hljs-keyword">\catcode</span>`<span class="hljs-keyword">\=</span>10       <span class="hljs-keyword">\catcode</span> `<span class="hljs-keyword">\%</span> =14<br><span class="hljs-keyword">\catcode</span>`<span class="hljs-keyword">\^^@</span>=9     <span class="hljs-keyword">\catcode</span>`<span class="hljs-keyword">\^^M</span>=5     <span class="hljs-keyword">\catcode</span>`<span class="hljs-keyword">\^^?</span>=15<br></code></pre></td></tr></table></figure>
 <p>Thus <code>\</code> is already an escape character, <code>␣</code> is a space, and <code>%</code> is available for comments on the first line of the file;  ASCII <code>⟨null⟩</code> .</p>
 <h3 id="mathcode">mathcode</h3>
-<p>see table:</p>
+<p>The correcponding definitions as below:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^@</span>=&quot;2201     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^A</span>=&quot;3223     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^B</span>=&quot;010B <br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^C</span>=&quot;010C     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^D</span>=&quot;225E     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^E</span>=&quot;023A<br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^F</span>=&quot;3232     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^G</span>=&quot;0119     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^H</span>=&quot;0115<br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^I</span>=&quot;010D     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^J</span>=&quot;010E     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^K</span>=&quot;3222<br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^L</span>=&quot;2206     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^M</span>=&quot;2208     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^N</span>=&quot;0231<br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^O</span>=&quot;0140     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^P</span>=&quot;321A     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^Q</span>=&quot;321B<br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^R</span>=&quot;225C     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^S</span>=&quot;225B     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^T</span>=&quot;0238<br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^U</span>=&quot;0239     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^V</span>=&quot;220A     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^W</span>=&quot;3224<br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^X</span>=&quot;3220     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^Y</span>=&quot;3221     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^Z</span>=&quot;8000<br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^[</span>=&quot;2205     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^\</span>=&quot;3214     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^]</span>=&quot;3215<br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^^</span>=&quot;3211     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^_</span>=&quot;225F     <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\^^?</span>=&quot;1273<br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\ </span>=&quot;8000       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\!</span>=&quot;5021       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\’</span>=&quot;8000  <br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\(</span>=&quot;4028       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\)</span>=&quot;5029       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\*</span>=&quot;2203  <br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\+</span>=&quot;202B       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\,</span>=&quot;613B       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\-</span>=&quot;2200  <br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\.</span>=&quot;013A       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\/</span>=&quot;013D       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\:</span>=&quot;303A  <br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\;</span>=&quot;603B       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\&lt;</span>=&quot;313C       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\=</span>=&quot;303D  <br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\&gt;</span>=&quot;313E       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\?</span>=&quot;503F       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\[</span>=&quot;405B<br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\\</span>=&quot;026E       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\]</span>=&quot;505D       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\_</span>=&quot;8000     <br><span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\&#123;</span>=&quot;4266       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\|</span>=&quot;026A       <span class="hljs-keyword">\mathcode</span>`<span class="hljs-keyword">\&#125;</span>=&quot;5267  <br></code></pre></td></tr></table></figure>
+<p>Or you can see the table:</p>
 <table>
 <thead>
 <tr>
@@ -560,13 +589,16 @@
 </blockquote>
 <p>Plain format sets up the following nine values, based on the delimiters available in Computer Modern:</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\delcode</span>`<span class="hljs-keyword">\(</span>=&quot;028300     <span class="hljs-keyword">\delcode</span>`<span class="hljs-keyword">\/</span>=&quot;02F30E     <span class="hljs-keyword">\delcode</span>`<span class="hljs-keyword">\)</span>=&quot;029301<br><span class="hljs-keyword">\delcode</span>`<span class="hljs-keyword">\[</span>=&quot;05B302     <span class="hljs-keyword">\delcode</span>`<span class="hljs-keyword">\|</span>=&quot;26A30C     <span class="hljs-keyword">\delcode</span>`<span class="hljs-keyword">\]</span>=&quot;05D303<br><span class="hljs-keyword">\delcode</span>`<span class="hljs-keyword">\&lt;</span>=&quot;26830A     <span class="hljs-keyword">\delcode</span>`<span class="hljs-keyword">\\</span>=&quot;26E30F     <span class="hljs-keyword">\delcode</span>`<span class="hljs-keyword">\&gt;</span>=&quot;26930B<br></code></pre></td></tr></table></figure>
-<h3 id="REF">REF</h3>
+<h3 id="REFERENCE">REFERENCE</h3>
 <p>Reference as below:</p>
 <ul>
-<li>TeXbook – Appendix B: BasicControlSequences</li>
 <li>xetexref</li>
 <li>source2e</li>
 <li>TeXbyTopic</li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/ascii.html">runoob ascii table</a></li>
+<li>TeXbook – Appendix B: BasicControlSequences</li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/72703428/21276653">Difference between CR LF, LF and CR line break types</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/Articles/An_introduction_to_%5Cendlinechar%3A_How_TeX_reads_lines_from_text_files">An introduction to \endlinechar: How TeX reads lines from text files</a></li>
 </ul>
 
                 
