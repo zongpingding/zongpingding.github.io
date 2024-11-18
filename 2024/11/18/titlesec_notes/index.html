@@ -1,0 +1,925 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fluid_theme_pic/favicon.png">
+  <link rel="icon" href="/fluid_theme_pic/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eureka">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Preface How to make such command: 1234567891011121314151617% interface% #1: name% #2: level\cs_new:Npn \__title_new:nn #1#2   &#123;  &#125;% #1: name% #2: indent, beforeskip, afterskip, %     style(t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Titlesec Notes">
+<meta property="og:url" content="https://zongpingding.github.io/2024/11/18/titlesec_notes/index.html">
+<meta property="og:site_name" content="Eureka">
+<meta property="og:description" content="Preface How to make such command: 1234567891011121314151617% interface% #1: name% #2: level\cs_new:Npn \__title_new:nn #1#2   &#123;  &#125;% #1: name% #2: indent, beforeskip, afterskip, %     style(t">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-02-11-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-02-38-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-03-06-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-03-36-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-04-07-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-04-28-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-04-51-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-05-11-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-05-31-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-40-17-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-44-48-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-32-45-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-35-58-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-17-50-16-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-17-48-49-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-19-11-49-image.png">
+<meta property="og:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-19-04-36-image.png">
+<meta property="article:published_time" content="2024-11-18T12:51:21.806Z">
+<meta property="article:modified_time" content="2024-11-18T12:57:53.309Z">
+<meta property="article:author" content="Eureka">
+<meta property="article:tag" content="title">
+<meta property="article:tag" content="toc">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/titlesec_notes/2024-11-18-16-02-11-image.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Titlesec Notes - Eureka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zongpingding.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Place of Eureka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/fluid_theme_pic/default.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Titlesec Notes"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-18 20:51" pubdate>
+          November 18, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          835 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Titlesec Notes</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Preface">Preface</h2>
+<p>How to make such command:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% interface</span><br><span class="hljs-comment">% #1: name</span><br><span class="hljs-comment">% #2: level</span><br><span class="hljs-keyword">\cs_new:Npn</span> <span class="hljs-keyword">\__title_new:nn</span> <span class="hljs-params">#1</span><span class="hljs-params">#2</span> <br>  &#123;<br><br>  &#125;<br><br><span class="hljs-comment">% #1: name</span><br><span class="hljs-comment">% #2: indent, beforeskip, afterskip, </span><br><span class="hljs-comment">%     style(title, number),  label, sep, shape, etc.</span><br><span class="hljs-keyword">\cs_new:Npn</span> <span class="hljs-keyword">\__title_format:nn</span> <span class="hljs-params">#1</span><span class="hljs-params">#2</span> <br>  &#123;<br><br>  &#125;<br><br><span class="hljs-comment">% sec class ?? </span><br></code></pre></td></tr></table></figure>
+<p>What feature should we implement ? Here are some usefule sign:</p>
+<ol>
+<li>
+<p><code>ltdefns.dtx</code> contains some internal macros for package or class writers.</p>
+</li>
+<li>
+<p>The related <code>\csname #7mark\endcsname</code> should be defined.</p>
+</li>
+<li>
+<p>what a sec command will do:</p>
+<ul>
+<li>
+<p>handle some skip values (hard for me now)</p>
+</li>
+<li>
+<p>typeset sec head name</p>
+</li>
+<li>
+<p>typeset counter and <code>\refstepcounter</code> it</p>
+</li>
+<li>
+<p>set marker and <code>\addcontentsline</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<p>Maybe ? <code>xtemplate</code> is a better choice, thogh there is already a package named <code>xcontent</code>, see <a target="_blank" rel="noopener" href="https://github.com/latex3/latex3/tree/develop/xpackages/xcontents">latex3/xpackages/xcontents at develop · latex3/latex3 · GitHub</a></p>
+<p>In the following, we will disscuss something about <code>titlesec</code> package.</p>
+<h2 id="Typos">Typos</h2>
+<p>Page 2:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs latex">if sections have been defined without that macro, arbitrary<br>values for the format (an) the spacing are provided.<br><br><br><br>--&gt; if sections have been defined without that macro, arbitrary<br>values for the format (and) the spacing are provided,<br></code></pre></td></tr></table></figure>
+<h2 id="Exceptions">Exceptions</h2>
+<p>Two sec commands are special:</p>
+<ul>
+<li>
+<p><code>\chapter</code></p>
+</li>
+<li>
+<p><code>\part</code></p>
+</li>
+</ul>
+<p>These 2 commands need more attention when you need to change their style.</p>
+<h2 id="Shapes">Shapes</h2>
+<p>The test code snippet as below:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\titleformat</span>&#123;<span class="hljs-keyword">\section</span>&#125;[⟨shape⟩]&#123;<span class="hljs-keyword">\sffamily</span>&#125;&#123;<span class="hljs-keyword">\thesection</span>&#125;&#123;0pt&#125;&#123;&#125;[]<br><span class="hljs-keyword">\section</span>&#123;SECOND&#125;<br>The prior examples &#123;redefined existing&#125; sectional unit title.<br>commands. This defines a new one, illustrating the needed <br>counter and macros to display that counter. commands This <br>defines a new one, illustrating the needed counter and macros <br>to display that counter illustrating the needed defines a new one, <br>illustrating the needed counter and macros to display that counter.<br></code></pre></td></tr></table></figure>
+<p>Different section (title) shape example:</p>
+<ol>
+<li>
+<p>display:<br>
+<img src="/img/titlesec_notes/2024-11-18-16-02-11-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>block:<br>
+<img src="/img/titlesec_notes/2024-11-18-16-02-38-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>runin(插入):<br>
+<img src="/img/titlesec_notes/2024-11-18-16-03-06-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>leftmargin: Puts the title at the left margin. Since the mechanism used is independent from that of the margin pars, they can overlap. A deprecated synonymous is <code>margin</code>. (useful in <code>twoside</code> layout)<br>
+<img src="/img/titlesec_notes/2024-11-18-16-03-36-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>rightmargin: Similar as the above (useful in <code>twoside</code> layout)<br>
+<img src="/img/titlesec_notes/2024-11-18-16-04-07-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>drop: the space reserved in drop for the title is fixed<br>
+<img src="/img/titlesec_notes/2024-11-18-16-04-28-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>wrap: the space automatically readjusted to the longest line<br>
+<img src="/img/titlesec_notes/2024-11-18-16-04-51-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>frame: framed + display<br>
+<img src="/img/titlesec_notes/2024-11-18-16-05-11-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>hang: is the default value, with a hanging label. (Like the standard \section.)<br>
+<img src="/img/titlesec_notes/2024-11-18-16-05-31-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<h2 id="Format">Format</h2>
+<h3 id="syntax">syntax</h3>
+<p>Syntax of <code>\titleformat</code> as below, we call <code>SECNAME</code> by <code>text</code>, <code>1</code> by <code>label</code> in section title: <code>1.SECNAME</code></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\titleformat</span>&#123;⟨command⟩&#125;<br>    [⟨shape⟩]<br>    &#123;⟨format⟩&#125; <span class="hljs-comment">% apply to both label and text</span><br>    &#123;⟨label⟩&#125;  <span class="hljs-comment">% \thesection, \thesubsection, etc.</span><br>    &#123;⟨sep⟩&#125;    <span class="hljs-comment">% horizontal space between label and text </span><br>               <span class="hljs-comment">%    (1. vertical in &#x27;display&#x27; shape; </span><br>               <span class="hljs-comment">%    (2. in &#x27;frame&#x27; it is the distance from text to frame;</span><br>    &#123;⟨before-code⟩&#125; <span class="hljs-comment">% code before the text</span><br>    [⟨after-code⟩]  <span class="hljs-comment">% code after the text: </span><br><br></code></pre></td></tr></table></figure>
+<p>For code before and after, sec title is typeset in (c.f. <code>⟨sep⟩</code>):</p>
+<ul>
+<li>
+<p>vertical mode for <code>hang</code>, <code>block</code> and <code>display</code>;</p>
+</li>
+<li>
+<p>horizontal mode for <code>runin</code> and <code>leftmargin</code>;</p>
+</li>
+</ul>
+<p>Some Note about these arguments:</p>
+<ul>
+<li>
+<p><code>⟨label⟩</code> and <code>⟨sep⟩</code> are ignored in starred versions of sectioning commands.</p>
+</li>
+<li>
+<p><code>⟨before-code⟩</code> and <code>⟨after-code⟩</code> are not the proper places for penalties, see command <code>\sectionbreak</code>.</p>
+</li>
+</ul>
+<p>All of the arguments is within a sec group, something like:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs latex">⟨doc-text⟩<br><br><span class="hljs-keyword">\beginsec</span><br>⟨begin-shape⟩ <span class="hljs-comment">% ⟨shape⟩ determines whether vertical or horizontal mode</span><br>    ⟨format⟩⟨label⟩<br>    ⟨sep⟩     <span class="hljs-comment">% \vskip or \hskip</span><br>    ⟨before-code⟩<br>    ⟨text⟩<br>    ⟨after-code⟩<br>⟨end-shape⟩<br><span class="hljs-keyword">\endsec</span><br><br>⟨doc-text⟩<br></code></pre></td></tr></table></figure>
+<h3 id="examples">examples</h3>
+<h4 id="before-code">before-code</h4>
+<p>The horizontal mode and vertical mode test is similar to that in <code>⟨after-code⟩</code>, see example:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\titleformat</span>&#123;<span class="hljs-keyword">\section</span>&#125;[display]&#123;<span class="hljs-keyword">\sffamily</span>&#125;&#123;<span class="hljs-keyword">\thesection</span>&#125;&#123;0pt&#125;&#123;X<span class="hljs-keyword">\vskip</span>3em X&#125;[]<br><span class="hljs-keyword">\section</span>&#123;SECOND&#125;<br>The prior examples &#123;redefined existing&#125; sectional unit title.<br>commands. This defines a new one, illustrating the needed <br>counter and macros to display that counter. commands This <br>defines a new one, illustrating the needed counter and macros <br>to display that counter illustrating the needed defines a new one, <br>illustrating the needed counter and macros to display that counter.<br></code></pre></td></tr></table></figure>
+<p>output:</p>
+<p><img src="/img/titlesec_notes/2024-11-18-16-40-17-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>You can use a command that absorb 1 argument to handle the <code>text</code> in section body, see example:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\testcmd</span><span class="hljs-params">#1</span>&#123;<span class="hljs-keyword">\textbf</span>&#123;(<span class="hljs-params">#1</span>)&#125;&#125;<br><span class="hljs-keyword">\titleformat</span>&#123;<span class="hljs-keyword">\section</span>&#125;[hang]&#123;<span class="hljs-keyword">\sffamily</span>&#125;&#123;<span class="hljs-keyword">\thesection</span>&#125;&#123;0pt&#125;&#123;<span class="hljs-keyword">\testcmd</span>&#125;[]<br><span class="hljs-keyword">\section</span>&#123;SECOND&#125;<br>The prior examples &#123;redefined existing&#125; sectional unit title.<br>commands. This defines a new one, illustrating the needed <br>counter and macros to display that counter. commands This <br>defines a new one, illustrating the needed counter and macros <br>to display that counter illustrating the needed defines a new one, <br>illustrating the needed counter and macros to display that counter.<br><br></code></pre></td></tr></table></figure>
+<p>output:</p>
+<p><img src="/img/titlesec_notes/2024-11-18-16-44-48-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>If you load the <code>explicit</code> package option, the you should pass <code>#1</code> to your own function, c.f. the <code>\testcmd</code> command above.</p>
+<h4 id="after-cdoe">after-cdoe</h4>
+<p>An example about <code>⟨after-code⟩</code> in each mode:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% horizontal mode</span><br><span class="hljs-keyword">\titleformat</span>&#123;<span class="hljs-keyword">\section</span>&#125;[runin]&#123;<span class="hljs-keyword">\sffamily</span>&#125;&#123;<span class="hljs-keyword">\thesection</span>&#125;&#123;0pt&#125;&#123;&#125;[X<span class="hljs-keyword">\hskip</span>4em X]<br><span class="hljs-keyword">\section</span>&#123;SECOND&#125;<br>The prior examples &#123;redefined existing&#125; sectional unit title.<br>commands. This defines a new one, illustrating the needed <br>counter and macros to display that counter. commands This <br>defines a new one, illustrating the needed counter and macros <br>to display that counter illustrating the needed defines a new one, <br>illustrating the needed counter and macros to display that counter.<br></code></pre></td></tr></table></figure>
+<p>output:</p>
+<p><img src="/img/titlesec_notes/2024-11-18-16-32-45-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>Then test this code in vertical mode:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% vertical mode</span><br><span class="hljs-keyword">\titleformat</span>&#123;<span class="hljs-keyword">\section</span>&#125;[hang]&#123;<span class="hljs-keyword">\sffamily</span>&#125;&#123;<span class="hljs-keyword">\thesection</span>&#125;&#123;0pt&#125;&#123;&#125;[X<span class="hljs-keyword">\vskip</span>4em X]<br><span class="hljs-keyword">\section</span>&#123;SECOND&#125;<br>The prior examples &#123;redefined existing&#125; sectional unit title.<br>commands. This defines a new one, illustrating the needed <br>counter and macros to display that counter. commands This <br>defines a new one, illustrating the needed counter and macros <br>to display that counter illustrating the needed defines a new one, <br>illustrating the needed counter and macros to display that counter.<br></code></pre></td></tr></table></figure>
+<p>output:</p>
+<p><img src="/img/titlesec_notes/2024-11-18-16-35-58-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="Spacing">Spacing</h2>
+<h3 id="Syntax">Syntax</h3>
+<p>There are two ways to set these spacing, the fisrt is use command:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\titlespacing</span>*&#123;⟨command⟩&#125;<br>              &#123;⟨left⟩&#125; <span class="hljs-comment">% left margin, except in the:</span><br>                       <span class="hljs-comment">% (1. title width in &#x27;..margin&#x27;, and &#x27;drop&#x27; shapes</span><br>                       <span class="hljs-comment">% (2. maximum width in &#x27;wrap&#x27;</span><br>                       <span class="hljs-comment">% (3. indentation before the whole title</span><br>              &#123;⟨before-sep⟩&#125; <span class="hljs-comment">% vertical space before the title</span><br>              &#123;⟨after-sep⟩&#125;  <span class="hljs-comment">% separation between title and text:</span><br>                             <span class="hljs-comment">% (1. vertical with &#x27;hang&#x27;, &#x27;block&#x27;, &#x27;display&#x27;;</span><br>                             <span class="hljs-comment">% (2. horizontal with &#x27;runin&#x27;, &#x27;drop&#x27;, &#x27;wrap&#x27; and &#x27;...margin&#x27;;</span><br>              [⟨right-sep⟩]<br></code></pre></td></tr></table></figure>
+<h3 id="examples-2">examples</h3>
+<p>See example:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs latex">XXX-YYY<br><span class="hljs-keyword">\titleformat</span>&#123;<span class="hljs-keyword">\section</span>&#125;[hang]&#123;<span class="hljs-keyword">\bfseries</span>&#125;&#123;<span class="hljs-keyword">\thesection</span>&#125;&#123;0pt&#125;&#123;&#125;[]<br><span class="hljs-keyword">\titlespacing</span>*&#123;<span class="hljs-keyword">\section</span>&#125;&#123;0em&#125;&#123;2em&#125;&#123;2em&#125;<br><span class="hljs-keyword">\section</span>&#123;SECOND&#125;<br>The prior examples &#123;redefined existing&#125; sectional unit title.<br>commands. This defines a new one, illustrating the needed <br>counter and macros to display that counter. commands This <br>defines a new one, illustrating the needed counter and macros <br>to display that counter illustrating the needed defines a new one, <br>illustrating the needed counter and macros to display that counter.<br></code></pre></td></tr></table></figure>
+<p>output:</p>
+<p><img src="/img/titlesec_notes/2024-11-18-17-50-16-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>Example of <code>runin</code> shape:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs latex">XXX-YYY<br><span class="hljs-keyword">\titleformat</span>&#123;<span class="hljs-keyword">\section</span>&#125;[runin]&#123;<span class="hljs-keyword">\bfseries</span>&#125;&#123;<span class="hljs-keyword">\thesection</span>&#125;&#123;0pt&#125;&#123;&#125;[]<br><span class="hljs-keyword">\titlespacing</span>*&#123;<span class="hljs-keyword">\section</span>&#125;&#123;1em&#125;&#123;2em&#125;&#123;2em&#125;<br><span class="hljs-keyword">\section</span>&#123;SECOND&#125;<br>The prior examples &#123;redefined existing&#125; sectional unit title.<br>commands. This defines a new one, illustrating the needed <br>counter and macros to display that counter. commands This <br>defines a new one, illustrating the needed counter and macros <br>to display that counter illustrating the needed defines a new one, <br>illustrating the needed counter and macros to display that counter.<br><br></code></pre></td></tr></table></figure>
+<p>output:</p>
+<p><img src="/img/titlesec_notes/2024-11-18-17-48-49-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>There is an syntax abbreviation <code>*n</code> in <code>&#123;⟨before-sep⟩&#125;</code> and <code>&#123;⟨after-sep⟩&#125;</code>, which stands for <code>n</code> times of:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex">1ex plus .3ex minus .06ex<br>1ex plus .1ex<br></code></pre></td></tr></table></figure>
+<p>respectively.</p>
+<h2 id="Tools">Tools</h2>
+<h3 id="Rule">Rule</h3>
+<p><code>titlesec</code> also provides command to add rule above of below sec title:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\titleline</span>[⟨align⟩]&#123;⟨horizontal material⟩&#125;<br><span class="hljs-keyword">\titlerule</span>[⟨height⟩]<br><span class="hljs-keyword">\titlerule</span>*[⟨width⟩]&#123;⟨text⟩&#125;<br></code></pre></td></tr></table></figure>
+<p>The <code>\titlerule</code> command, which is enclosed automatically in <code>\titleline</code> if necessary. Example of <code>\titleline</code> and <code>\titlerule</code> :</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\titleformat</span>&#123;<span class="hljs-keyword">\section</span>&#125;[display]<br>  &#123;<span class="hljs-keyword">\color</span>&#123;red&#125;<span class="hljs-keyword">\bfseries</span><span class="hljs-keyword">\titlerule</span>&#125; <span class="hljs-comment">% always</span><br>  &#123;<span class="hljs-keyword">\thesection</span>&#125;&#123;0pt&#125;<br>  &#123;<span class="hljs-keyword">\color</span>&#123;blue&#125;<span class="hljs-keyword">\titleline</span>[c]&#123;AAA&#125;&#125;<br>  [<span class="hljs-keyword">\color</span>&#123;orange&#125;<span class="hljs-keyword">\titlerule</span>]       <span class="hljs-comment">% for &#x27;hang&#x27;, &#x27;display&#x27;, &#x27;block&#x27;;</span><br><span class="hljs-keyword">\section</span>&#123;SECOND&#125;<br>The prior examples &#123;redefined existing&#125; sectional unit title.<br>commands. This defines a new one, illustrating the needed <br>counter and macros to display that counter. commands This <br>defines a new one, illustrating the needed counter and macros <br>to display that counter illustrating the needed defines a new one, <br>illustrating the needed counter and macros to display that counter.<br></code></pre></td></tr></table></figure>
+<p>output:</p>
+<p><img src="/img/titlesec_notes/2024-11-18-19-11-49-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>Example of <code>\titlerule*</code>:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\titleformat</span>&#123;<span class="hljs-keyword">\section</span>&#125;[hang]<br>  &#123;<span class="hljs-keyword">\bfseries</span><span class="hljs-keyword">\titlerule</span>*[1pc]&#123;.&#125;&#125;<br>  &#123;<span class="hljs-keyword">\thesection</span>&#125;&#123;0pt&#125;<br>  &#123;<span class="hljs-keyword">\titlerule</span>*[2pc]&#123;x&#125;&#125;<br><span class="hljs-keyword">\section</span>&#123;SECOND&#125;<br>The prior examples &#123;redefined existing&#125; sectional unit title.<br>commands. This defines a new one, illustrating the needed <br>counter and macros to display that counter. commands This <br>defines a new one, illustrating the needed counter and macros <br>to display that counter illustrating the needed defines a new one, <br>illustrating the needed counter and macros to display that counter.<br><br></code></pre></td></tr></table></figure>
+<p>output:</p>
+<p><img src="/img/titlesec_notes/2024-11-18-19-04-36-image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="Extend-Syntax">Extend Syntax</h3>
+<p>The <code>first</code> argument of both <code>\titleformat</code> and <code>\titlespacing</code> has an extended syntax which allows to set different formats depending on the context. This argument can be a list of <code>key/value</code> pairs in the form:</p>
+<ul>
+<li>
+<p><code>name</code>: \chapter, \section, etc.</p>
+</li>
+<li>
+<p><code>page</code>: Only even, odd.</p>
+</li>
+<li>
+<p><code>numberless</code>: set different style for numbered and unnumbered (or those with level below <code>secnumdepth</code>) sec commands.</p>
+</li>
+</ul>
+<blockquote>
+<p>The “number” version is usually fine when generating unnumbered variants since removing the label is the only change required in most cases.</p>
+</blockquote>
+<p>An example from the doc:</p>
+<blockquote>
+<p>Let’s suppose we’d like a layout with titles in the outer margin. We might set something like:</p>
+</blockquote>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\titleformat</span>&#123;name=<span class="hljs-keyword">\section</span>,page=even&#125;[leftmargin]<br>    &#123;<span class="hljs-keyword">\filleft</span><span class="hljs-keyword">\scshape</span>&#125;&#123;<span class="hljs-keyword">\thesection</span>&#125;&#123;.5em&#125;&#123;&#125;<br><span class="hljs-keyword">\titleformat</span>&#123;name=<span class="hljs-keyword">\section</span>,page=odd&#125;[rightmargin]<br>    &#123;<span class="hljs-keyword">\filright</span><span class="hljs-keyword">\scshape</span>&#125;&#123;<span class="hljs-keyword">\thesection</span>&#125;&#123;.5em&#125;&#123;&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="Create-new-class">Create new class</h2>
+<p>You can define your own sec command rely on the internal class:</p>
+<ul>
+<li>
+<p><code>page</code>: command in a single page, like <code>\part</code>,</p>
+</li>
+<li>
+<p><code>top</code>: at the top in page, similar to <code>\chapter</code>,</p>
+</li>
+<li>
+<p><code>straight</code>: in the middle of text.</p>
+</li>
+</ul>
+<p>Syntax as below:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\titleclass</span>&#123;⟨name⟩&#125;&#123;⟨class⟩&#125;<br><span class="hljs-keyword">\titleclass</span>&#123;⟨name⟩&#125;&#123;⟨class⟩&#125;[⟨super-level-cmd⟩]<br><span class="hljs-keyword">\titleclass</span>&#123;⟨name⟩&#125;[⟨start-level-num⟩]&#123;⟨class⟩&#125;<br></code></pre></td></tr></table></figure>
+<p>NOTE:</p>
+<blockquote>
+<p>If there is a TOC and format for it is special, you may need package <code>titletoc</code> or change the hardcoded value in <code>titletoc</code>.</p>
+</blockquote>
+<p>A simple example:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\titleclass</span>&#123;<span class="hljs-keyword">\part</span>&#125;&#123;straight&#125;<br><span class="hljs-keyword">\titleformat</span>&#123;<span class="hljs-keyword">\part</span>&#125;&#123;<span class="hljs-keyword">\bfseries</span>&#125;&#123;<span class="hljs-keyword">\thepart</span>&#125;&#123;0pt&#125;&#123;&#125;<br></code></pre></td></tr></table></figure>
+<p>At the time you create this new sec command, you should define its format, or an error will occur.</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/title/" class="print-no-link">#title</a>
+      
+        <a href="/tags/toc/" class="print-no-link">#toc</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Titlesec Notes</div>
+      <div>https://zongpingding.github.io/2024/11/18/titlesec_notes/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eureka</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 18, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/16/otr_shipout/" title="LaTeX Output Routine">
+                        <span class="hidden-mobile">LaTeX Output Routine</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'zongpingding/Utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
