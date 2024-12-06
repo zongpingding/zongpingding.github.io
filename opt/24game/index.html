@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>24 Game Solver with Custom Target</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        #solver-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #solver-container input[type="text"],
+        #solver-container input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #solver-container button {
+            /*width: 100%;*/
+            padding: 10px;
+            background-color: #337ab7;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #solver-container button:hover {
+            background-color: #286090;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+
+        #results h2 {
+            color: #333;
+        }
+
+        #results ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #results li {
+            background-color: #eff6fc;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        .result-text {
+            flex: 1;
+        }
+
+        .copy-btn {
+            background-color: #5cb85c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 200px;
+        }
+
+        .copy-btn:hover {
+            background-color: #4cae4c;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            #solver-container {
+                padding: 15px 20px;
+            }
+
+            #solver-container button {
+                font-size: 14px;
+            }
+
+            .copy-btn {
+                padding: 5px 8px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="solver-container">
+        <h1>24 Game Solver</h1>
+        <input type="text" id="numbers" placeholder="Enter 2-10 numbers separated by spaces (e.g., 1 2 3 4)">
+        <input type="number" id="target" placeholder="Enter any target number" value="24">
+        <button onclick="solveGame()">Solve</button>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function solveGame() {
+        		const nums_min_len = 2;
+        		const nums_max_len = 10;
+            const input = document.getElementById('numbers').value;
+            const target = parseFloat(document.getElementById('target').value);
+            const numbers = input.split(' ').map(Number);
+            if (numbers.some(isNaN)) {
+                alert('Please enter valid numbers.');
+                return;
+            }
+            if (isNaN(target)) {
+                alert('Please enter a valid target number.');
+                return;
+            }
+            if (numbers.length < nums_min_len || numbers.length > nums_max_len) {
+                alert('Please enter between '+ nums_min_len +' to '+ nums_max_len +' numbers.');
+                return;
+            }
+            const startTime = performance.now();
+            const maxResults = 5;
+            const results = findSolutions(numbers, target, startTime, maxResults);
+            displayResults(results, target);
+        }
+
+        function findSolutions(numbers, target, startTime, maxResults) {
+            const resultsSet = new Set();
+            const operators = ['+', '-', '*', '/'];
+
+            function generateExpressions(nums, exprs) {
+                if (resultsSet.size >= maxResults) {
+                    return;
+                }
+
+                if (performance.now() - startTime > 5000) {
+                    return;
+                }
+
+                if (nums.length === 1) {
+                    if (Math.abs(nums[0] - target) < 1e-6) {
+                        const cleanExpr = removeOuterParentheses(exprs[0]);
+                        resultsSet.add(cleanExpr);
+                    }
+                    return;
+                }
+
+                for (let i = 0; i < nums.length; i++) {
+                    for (let j = 0; j < nums.length; j++) {
+                        if (i !== j) {
+                            const a = nums[i];
+                            const b = nums[j];
+                            const exprA = exprs[i];
+                            const exprB = exprs[j];
+
+                            const remainingNums = [];
+                            const remainingExprs = [];
+                            for (let k = 0; k < nums.length; k++) {
+                                if (k !== i && k !== j) {
+                                    remainingNums.push(nums[k]);
+                                    remainingExprs.push(exprs[k]);
+                                }
+                            }
+
+                            for (const op of operators) {
+                                if ((op === '+' || op === '*') && i > j) continue;
+                                if (op === '/' && Math.abs(b) < 1e-6) continue;
+
+                                let newNum;
+                                let newExpr;
+
+                                switch (op) {
+                                    case '+':
+                                        newNum = a + b;
+                                        newExpr = `(${exprA}+${exprB})`;
+                                        break;
+                                    case '-':
+                                        newNum = a - b;
+                                        newExpr = `(${exprA}-${exprB})`;
+                                        break;
+                                    case '*':
+                                        newNum = a * b;
+                                        newExpr = `(${exprA}*${exprB})`;
+                                        break;
+                                    case '/':
+                                        newNum = a / b;
+                                        newExpr = `(${exprA}/${exprB})`;
+                                        break;
+                                }
+
+                                const newNums = [newNum, ...remainingNums];
+                                const newExprs = [newExpr, ...remainingExprs];
+
+                                generateExpressions(newNums, newExprs);
+
+                                if (resultsSet.size >= maxResults) {
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            const initialExprs = numbers.map(n => n.toString());
+            generateExpressions(numbers, initialExprs);
+
+            return Array.from(resultsSet);
+        }
+
+        function removeOuterParentheses(expression) {
+            if (
+                expression.startsWith('(') &&
+                expression.endsWith(')') &&
+                isOuterMostParentheses(expression)
+            ) {
+                return expression.substring(1, expression.length - 1);
+            }
+            return expression;
+        }
+
+        function isOuterMostParentheses(expression) {
+            let count = 0;
+            for (let i = 0; i < expression.length; i++) {
+                if (expression[i] === '(') {
+                    count++;
+                } else if (expression[i] === ')') {
+                    count--;
+                    if (count === 0 && i < expression.length - 1) {
+                        return false;
+                    }
+                }
+            }
+            return count === 0;
+        }
+
+        function displayResults(results, target) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            if (results.length === 0) {
+                resultsDiv.textContent = 'No solutions found or computation took too long.';
+            } else {
+                const heading = document.createElement('h2');
+                heading.textContent = `Solutions to reach ${target}:`;
+                resultsDiv.appendChild(heading);
+
+                const ul = document.createElement('ul');
+                results.forEach(result => {
+                    const li = document.createElement('li');
+
+                    const span = document.createElement('span');
+                    span.className = 'result-text';
+                    span.textContent = result;
+
+                    const copyBtn = document.createElement('button');
+                    copyBtn.className = 'copy-btn';
+                    copyBtn.textContent = 'Copy';
+                    copyBtn.onclick = () => copyResult(result);
+
+                    li.appendChild(span);
+                    li.appendChild(copyBtn);
+                    ul.appendChild(li);
+                });
+                resultsDiv.appendChild(ul);
+            }
+        }
+
+        function copyResult(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                /* alert('Expression copied: ' + text);*/
+            } catch (err) {
+                alert('Failed to copy expression.');
+            }
+            document.body.removeChild(textarea);
+        }
+    </script>
+</body>
+</html>
