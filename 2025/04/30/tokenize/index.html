@@ -16,35 +16,20 @@
   <meta name="author" content="Eureka">
   <meta name="keywords" content="">
   
-    <meta name="description" content="reference 本文主要抄袭(参考)自如下地址:   How TeX macros actually work: Part 1 - Overleaf, Online LaTeX Editor   How TeX macros actually work: Part 2 - Overleaf, Online LaTeX Editor   How TeX macros actually work:">
+    <meta name="description" content="preface 在阅读此篇文章前, 我给诸位的几点警告:  本篇文章 并不是\color{red}并不是并不是 LaTeX\LaTeXLATE​X 或 TeX\TeXTE​X 教程 本篇文章可能含有诸多不当的说法，请自行辨别 本篇文章均抄袭自原 Overleaf 上的文章，如果英文水平还行请参见原文 本篇文章的封面图由 GPT-4o 生成  token introduction 在 TeX 的大部">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tokenize in TeX">
 <meta property="og:url" content="https://zongpingding.github.io/2025/04/30/tokenize/index.html">
 <meta property="og:site_name" content="Eureka">
-<meta property="og:description" content="reference 本文主要抄袭(参考)自如下地址:   How TeX macros actually work: Part 1 - Overleaf, Online LaTeX Editor   How TeX macros actually work: Part 2 - Overleaf, Online LaTeX Editor   How TeX macros actually work:">
+<meta property="og:description" content="preface 在阅读此篇文章前, 我给诸位的几点警告:  本篇文章 并不是\color{red}并不是并不是 LaTeX\LaTeXLATE​X 或 TeX\TeXTE​X 教程 本篇文章可能含有诸多不当的说法，请自行辨别 本篇文章均抄袭自原 Overleaf 上的文章，如果英文水平还行请参见原文 本篇文章的封面图由 GPT-4o 生成  token introduction 在 TeX 的大部">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://images.ctfassets.net/nrgyaltdicpt/4PD2sxxrQV8mEtzJYpmaAa/74bfd917208861ef3722a885ee932257/catcode0b-plain.svg">
-<meta property="og:image" content="https://zongpingding.github.io/image/tokenize/catcode0b-plain.svg">
-<meta property="og:image" content="https://images.ctfassets.net/nrgyaltdicpt/41g4aBtOgr4C0fNryDwygp/5aaf5cfd9161e78667ae464125b6511d/lookupcurcs-plain.svg">
-<meta property="og:image" content="https://zongpingding.github.io/image/tokenize/lookupcurcs-plain.svg">
-<meta property="og:image" content="https://images.ctfassets.net/nrgyaltdicpt/2VzDDIYFm3hIWXdKSh2LST/4bec7e15149f9419249cff2d8df649f2/tokenlinkedlist.svg">
-<meta property="og:image" content="https://zongpingding.github.io/image/tokenize/tokenlinkedlist.svg">
-<meta property="og:image" content="https://images.ctfassets.net/nrgyaltdicpt/4PkmtHDhO8KF892ZDWuLHP/2c9c8385c6948fd122b228c5c780a3a6/annotatednodelist-plain.svg">
-<meta property="og:image" content="https://zongpingding.github.io/image/tokenize/annotatednodelist-plain.svg">
-<meta property="og:image" content="https://images.ctfassets.net/nrgyaltdicpt/1BRvLToOOru6An7BR9ztWp/d553c04f665569c8455564a713edf735/withwithoutparameter_text---curves.svg">
-<meta property="og:image" content="https://zongpingding.github.io/image/tokenize/withwithoutparameter_text---curves.svg">
-<meta property="og:image" content="https://images.ctfassets.net/nrgyaltdicpt/79QkMnvDxMk7TCScm0SaJC/2ebf8f05ff71d413ca2b203a083e4a6a/docat-argument-plain.svg">
-<meta property="og:image" content="https://zongpingding.github.io/image/tokenize/docat-argument-plain.svg">
-<meta property="og:image" content="https://images.ctfassets.net/nrgyaltdicpt/2UjSE4ZFJf4CG0XLaLkDJF/e98e4aa94c8a8f903915b00bd6a831e7/docatexpansion--plain.svg">
-<meta property="og:image" content="https://zongpingding.github.io/image/tokenize/docatexpansion--plain.svg">
-<meta property="og:image" content="https://images.ctfassets.net/nrgyaltdicpt/2FIqqVRXjakdAzTpZsV0m9/10ccc1353741d42d3df18f1692d8aa84/newdocatexpansion--plain.svg">
-<meta property="og:image" content="https://zongpingding.github.io/image/tokenize/newdocatexpansion--plain.svg">
+<meta property="og:image" content="https://zongpingding.github.io/img/tokenize/tokenize.webp">
 <meta property="article:published_time" content="2025-04-30T13:13:48.442Z">
-<meta property="article:modified_time" content="2025-04-30T13:23:17.485Z">
+<meta property="article:modified_time" content="2025-04-30T13:58:47.707Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="tokenize">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://images.ctfassets.net/nrgyaltdicpt/4PD2sxxrQV8mEtzJYpmaAa/74bfd917208861ef3722a885ee932257/catcode0b-plain.svg">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/tokenize/tokenize.webp">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -248,7 +233,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/fluid_theme_pic/default.webp') no-repeat center center; background-size: cover;">
+     style="background: url('/img/tokenize/tokenize.webp') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -277,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k words
+          3.1k words
         
       </span>
     
@@ -288,7 +273,7 @@
         
         
         
-          26 mins
+          27 mins
         
       </span>
     
@@ -330,29 +315,14 @@
             
               <div class="markdown-body">
                 
-                <h2 id="reference">reference</h2>
-<p>本文主要抄袭(参考)自如下地址:</p>
+                <h2 id="preface">preface</h2>
+<p>在阅读此篇文章前, 我给诸位的几点警告:</p>
 <ul>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_1">How TeX macros actually work: Part 1 - Overleaf, Online LaTeX Editor</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_2">How TeX macros actually work: Part 2 - Overleaf, Online LaTeX Editor</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_3">How TeX macros actually work: Part 3 - Overleaf, Online LaTeX Editor</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_4">How TeX macros actually work: Part 4 - Overleaf, Online LaTeX Editor</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_5">How TeX macros actually work: Part 5 - Overleaf, Online LaTeX Editor</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_6">How TeX macros actually work: Part 6 - Overleaf, Online LaTeX Editor</a></p>
-</li>
+<li>本篇文章 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathcolor="red"><mtext>并不是</mtext></mstyle></mrow><annotation encoding="application/x-tex">\color{red}并不是</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback" style="color:red;">并不是</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>TeX</mtext></mrow><annotation encoding="application/x-tex">\TeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span> 教程</li>
+<li>本篇文章可能含有诸多不当的说法，请自行辨别</li>
+<li>本篇文章均抄袭自原 Overleaf 上的文章，如果英文水平还行请参见原文</li>
+<li>本篇文章的封面图由 GPT-4o 生成</li>
 </ul>
-<p>在后文中，不加说明时, 默认所讨论的对象为 D. E. K. 所使用的那个初始的 8-bit 引擎.</p>
 <h2 id="token">token</h2>
 <h3 id="introduction">introduction</h3>
 <p>在 TeX 的大部分阶段(实际上时除了 scan 阶段)， 处理的基本单位都是一个叫做 Token 的东西. TeX 中处理的 token 可以分为下面这两类:</p>
@@ -375,8 +345,8 @@
 <h3 id="identify-command">identify command</h3>
 <p>下面讨论 TeX 怎么处理 <code>\</code> 后面的这个 command token. 需要说明的是: TeX 在定义一个命令的时候并不会立马执行这个命令, 只是把这个 command 转化(TeX 用了一个 Hash Function)为一系列的整数(就是上述的 command token). 这个过程我们称之为 <strong>curcs</strong>， 在后面我们会讨论这个流程的内部细节. 我们从下面的图片开始讨论:</p>
 <!-- <img title="" src="https://images.ctfassets.net/nrgyaltdicpt/4PD2sxxrQV8mEtzJYpmaAa/74bfd917208861ef3722a885ee932257/catcode0b-plain.svg" srcset="/img/loading.gif" lazyload alt="TeX looking for a command name" data-align="center" width="547"> -->
-<p><img src="/image/tokenize/catcode0b-plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>那么上述的这个所谓的 <strong>internal table</strong> 是什么呢 ? 其实就是一个 command <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⟶</mo></mrow><annotation encoding="application/x-tex">\longrightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟶</span></span></span></span> 其具体定义. 那么这个对应过程是怎样的呢 ? 上面我们讲到了， TeX 会把 command token 转化为一个整数，所以上述的映射的原像其实就是一个 <strong>整数</strong>.</p>
+<p><img src="/img/tokenize/catcode0b-plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>那么上述的这个所谓的 <strong>internal table</strong> 是什么呢 ? 其实就是一个映射: command <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⟶</mo></mrow><annotation encoding="application/x-tex">\longrightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟶</span></span></span></span> command 定义. 那么这个对应过程是怎样的呢 ? 上面我们讲到了， TeX 会把 command token 转化为一个整数，所以上述的映射的原像其实就是一个 <strong>整数</strong>.</p>
 <h3 id="curcs-current-control-sequence">curcs(current control sequence)</h3>
 <p>经过上述的查表过程后，TeX 就能知道这个 command 的具体含义 （meaning）, 这个 meaning 包含两个部分:</p>
 <ul>
@@ -389,7 +359,7 @@
 </ul>
 <p>这个 curcs 的过程图示如下:</p>
 <!-- <img title="" src="https://images.ctfassets.net/nrgyaltdicpt/41g4aBtOgr4C0fNryDwygp/5aaf5cfd9161e78667ae464125b6511d/lookupcurcs-plain.svg" srcset="/img/loading.gif" lazyload alt="TeX converting a string of characters into an equivalent integer to lookup the command’s meaning" data-align="center" width="596"> -->
-<p><img src="/image/tokenize/lookupcurcs-plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tokenize/lookupcurcs-plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
 <h3 id="command-token">command token</h3>
 <p>我们常常想知道，一个 command 在 TeX 内部到底是怎么存储的，或者说 TeX 是怎么区分这一系列的命令的 ?</p>
 <p>常见的命令类型:</p>
@@ -518,7 +488,7 @@
 <h2 id="token-list">token list</h2>
 <p>下面在此回到抽象的底层, 我们讨论一个 token list(实际上就是一个整数数组) 是怎么存储的，以及怎么使用的. token list 的存储结构参见下图:</p>
 <!-- <img title="" src="https://images.ctfassets.net/nrgyaltdicpt/2VzDDIYFm3hIWXdKSh2LST/4bec7e15149f9419249cff2d8df649f2/tokenlinkedlist.svg" srcset="/img/loading.gif" lazyload alt="Diagram of a TeX macro token list stored as a linked-node node list" data-align="center" width="609"> -->
-<p><img src="/image/tokenize/tokenlinkedlist.svg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tokenize/tokenlinkedlist.svg" srcset="/img/loading.gif" lazyload alt=""></p>
 <h3 id="Macro-token-list">Macro token list</h3>
 <p>为什么要专门讨论这类 token list, 参见如下注解:</p>
 <blockquote>
@@ -528,7 +498,7 @@
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\foo</span> A<span class="hljs-params">#1</span><span class="hljs-keyword">\fake</span>&#123;123 <span class="hljs-params">#1</span>&#125;<br></code></pre></td></tr></table></figure>
 <p>那么对应的 TeX 处理流程如下:</p>
 <!-- <img title="" src="https://images.ctfassets.net/nrgyaltdicpt/4PkmtHDhO8KF892ZDWuLHP/2c9c8385c6948fd122b228c5c780a3a6/annotatednodelist-plain.svg" srcset="/img/loading.gif" lazyload alt="Diagram of an annoted TeX token list" data-align="center" width="562"> -->
-<p><img src="/image/tokenize/annotatednodelist-plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tokenize/annotatednodelist-plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>上述流程图中几个值得注意的点:</p>
 <ul>
 <li>
@@ -575,10 +545,10 @@
 </blockquote>
 <p>针对具体案例，一个简单的分析流程如下:</p>
 <!-- <img title="" src="https://images.ctfassets.net/nrgyaltdicpt/1BRvLToOOru6An7BR9ztWp/d553c04f665569c8455564a713edf735/withwithoutparameter_text---curves.svg" srcset="/img/loading.gif" lazyload alt="How TeX checks if a macro takes parameters" data-align="center" width="697"> -->
-<p><img src="/image/tokenize/withwithoutparameter_text---curves.svg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tokenize/withwithoutparameter_text---curves.svg" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>在 TeX 搜集命令的参数时，会把这系列的参数给 tokenize 掉(变成一系列的整数). 针对我们这个具体的例子来说, 这个 tokenize 的过程如下:</p>
 <!-- <img title="" src="https://images.ctfassets.net/nrgyaltdicpt/79QkMnvDxMk7TCScm0SaJC/2ebf8f05ff71d413ca2b203a083e4a6a/docat-argument-plain.svg" srcset="/img/loading.gif" lazyload alt="TeX token list generated for a macro argument" data-align="center" width="458"> -->
-<p><img src="/image/tokenize/docat-argument-plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tokenize/docat-argument-plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>为什么在上述 tokenize 过程中 <code>$</code> 对应的 catcode 为 3，参见我们前面的注解:</p>
 <blockquote>
 <p>Character tokens(token value) are created using the category code values <em>in operation at the time the character is read-in</em>—i.e., at the time the argument’s token list is created (turned into tokens).</p>
@@ -587,7 +557,7 @@
 <h4 id="expansion">expansion</h4>
 <p>当 TeX 完成了参数搜集的工作后就会开始执行 replacement text 中的展开工作(expansion)了. 在我们这个例子中，具体的展开流程如下:</p>
 <!-- <img title="" src="https://images.ctfassets.net/nrgyaltdicpt/2UjSE4ZFJf4CG0XLaLkDJF/e98e4aa94c8a8f903915b00bd6a831e7/docatexpansion--plain.svg" srcset="/img/loading.gif" lazyload alt="Showing the process of expanding the \docat macro" data-align="center" width="703"> -->
-<p><img src="/image/tokenize/docatexpansion--plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tokenize/docatexpansion--plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>这里还是再提醒一下: 我们处理的基本单位是 token，不是 character. 所以在执行 <code>\catcode</code> 语句后，</p>
 <p>replacement text 中任意的 <strong>显示(character 形式)</strong> 的 <code>$</code> 对应的 categroy code 都变成 11 了，但是传入的 argument 的形式是 token list – <code>804,3129,3120</code>，而不是具体的 character 形式的 – <code>$90</code>.</p>
 <h3 id="fix-it">fix it</h3>
@@ -608,13 +578,36 @@
 </blockquote>
 <p>具体的执行流程可以参见下图:</p>
 <!-- <img title="" src="https://images.ctfassets.net/nrgyaltdicpt/2FIqqVRXjakdAzTpZsV0m9/10ccc1353741d42d3df18f1692d8aa84/newdocatexpansion--plain.svg" srcset="/img/loading.gif" lazyload alt="Showing the process of expanding the modified \docat macro and the \getarg macro" data-align="center" width="678"> -->
-<p><img src="/image/tokenize/newdocatexpansion--plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/tokenize/newdocatexpansion--plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>但是上面这样写有一个坏处，那就是：在 <code>\docat</code> 之后的所有 <code>$</code> 的 catcode 都被改为了 <code>11</code>，我们无法再使用 <code>$</code> 的 mathshift 功能了. 当然，一个很简单的方法就是把 <code>\docat</code> 这个命令限制在一个局部组中, 像下面这样:</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">I paid &#123;<span class="hljs-keyword">\docat</span>&#123;<span class="hljs-built_in">$</span>90&#125;&#125; for that book.<br></code></pre></td></tr></table></figure>
 <p><strong>注意</strong>：不能写成下面这样(具体原因请自己分析):</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\docat</span>&#123;&#123;<span class="hljs-keyword">\catcode</span>`<span class="hljs-keyword">\$</span>=11&#125; <span class="hljs-keyword">\getarg</span>&#125; <br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\getarg</span><span class="hljs-params">#1</span>&#123;<span class="hljs-params">#1</span>&#125; <br>Now you can run it like this and it will work:<br><br>I paid <span class="hljs-keyword">\docat</span>&#123;<span class="hljs-built_in">$</span>90&#125; for that book.<br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="Furthermore">Furthermore</h2>
 <p>现在你知道了 tokenize 的概念了，已经可以尝试制作一个属于你自己的 <code>\verb</code> 命令了(同时也能够弄明白为啥 <code>\verb</code> 之类的命令不能作为其它命令的参数了)；至于看懂 <code>\obeylines</code> 的定义, 这个更是小 case.</p>
+<h2 id="reference">reference</h2>
+<p>本文主要抄袭(参考)自如下地址:</p>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_1">How TeX macros actually work: Part 1 - Overleaf, Online LaTeX Editor</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_2">How TeX macros actually work: Part 2 - Overleaf, Online LaTeX Editor</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_3">How TeX macros actually work: Part 3 - Overleaf, Online LaTeX Editor</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_4">How TeX macros actually work: Part 4 - Overleaf, Online LaTeX Editor</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_5">How TeX macros actually work: Part 5 - Overleaf, Online LaTeX Editor</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_6">How TeX macros actually work: Part 6 - Overleaf, Online LaTeX Editor</a></p>
+</li>
+</ul>
+<p>在后文中，不加说明时, 默认所讨论的对象为 D. E. K. 所使用的那个初始的 8-bit 引擎.</p>
 
                 
               </div>
