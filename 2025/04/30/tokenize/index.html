@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zongpingding.github.io/img/tokenize/tokenize.webp">
 <meta property="article:published_time" content="2025-04-30T13:13:48.442Z">
-<meta property="article:modified_time" content="2025-04-30T14:08:02.604Z">
+<meta property="article:modified_time" content="2025-05-01T23:43:44.352Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="tokenize">
 <meta name="twitter:card" content="summary_large_image">
@@ -262,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k words
+          3.3k words
         
       </span>
     
@@ -273,7 +273,7 @@
         
         
         
-          27 mins
+          28 mins
         
       </span>
     
@@ -582,8 +582,14 @@
 <p><img src="/img/tokenize/newdocatexpansion--plain.svg" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>但是上面这样写有一个坏处，那就是：在 <code>\docat</code> 之后的所有 <code>$</code> 的 catcode 都被改为了 <code>11</code>，我们无法再使用 <code>$</code> 的 mathshift 功能了. 当然，一个很简单的方法就是把 <code>\docat</code> 这个命令限制在一个局部组中, 像下面这样:</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">I paid &#123;<span class="hljs-keyword">\docat</span>&#123;<span class="hljs-built_in">$</span>90&#125;&#125; for that book.<br></code></pre></td></tr></table></figure>
-<p><strong>注意</strong>：不能写成下面这样(具体原因请自己分析):</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\docat</span>&#123;&#123;<span class="hljs-keyword">\catcode</span>`<span class="hljs-keyword">\$</span>=11&#125; <span class="hljs-keyword">\getarg</span>&#125; <br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\getarg</span><span class="hljs-params">#1</span>&#123;<span class="hljs-params">#1</span>&#125; <br>Now you can run it like this and it will work:<br><br>I paid <span class="hljs-keyword">\docat</span>&#123;<span class="hljs-built_in">$</span>90&#125; for that book.<br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<p>或者把上面的代码修改成这样:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\docat</span>&#123;<span class="hljs-keyword">\catcode</span>`<span class="hljs-keyword">\$</span>=11 <span class="hljs-keyword">\getarg</span>&#125;<br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\getarg</span><span class="hljs-params">#1</span>&#123;<span class="hljs-params">#1</span><span class="hljs-keyword">\catcode</span>`<span class="hljs-keyword">\$</span>=3&#123;&#125;&#125;<br>Now you can run it like this and it will work:<br><br>I paid <span class="hljs-keyword">\docat</span>&#123;<span class="hljs-built_in">$</span>90<span class="hljs-built_in">$</span>&#125; for that book, <span class="hljs-built_in">$</span>1+1<span class="hljs-built_in">$</span>.<br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>注意事项</strong>:</p>
+<ul>
+<li>上面的 <code>\docat</code> 命令不能这样修改(具体原因请自己分析):<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\docat</span>&#123;&#123;<span class="hljs-keyword">\catcode</span>`<span class="hljs-keyword">\$</span>=11&#125; <span class="hljs-keyword">\getarg</span>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>在使用这个新的 <code>\docat</code> 命令时, 也不能把它嵌套在另一个宏的参数里, 也就是说不能写成这样: <code>\textbf&#123;\docat&#123;$100&#125;&#125;</code>; 但是你可以变通一下，写成这样: <code>&#123;\bfseries \docat&#123;$100&#125;&#125;</code>. 也就是说，你可以做一个环境出来，这样就可以避免受到  tokenize 的影响了.</li>
+</ul>
 <h2 id="Furthermore">Furthermore</h2>
 <p>现在你知道了 tokenize 的概念了，已经可以尝试制作一个属于你自己的 <code>\verb</code> 命令了(同时也能够弄明白为啥 <code>\verb</code> 之类的命令不能作为其它命令的参数了)；至于看懂 <code>\obeylines</code> 的定义, 这个更是小 case.</p>
 <h2 id="reference">reference</h2>
