@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://zongpingding.github.io/img/l3keys/meta-key.png">
 <meta property="og:image" content="https://zongpingding.github.io/img/l3keys/output.svg">
 <meta property="article:published_time" content="2024-05-29T09:07:40.963Z">
-<meta property="article:modified_time" content="2025-05-01T23:18:32.895Z">
+<meta property="article:modified_time" content="2025-05-13T18:15:08.590Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="l3keys">
 <meta property="article:tag" content="package-option">
@@ -262,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k words
+          2.1k words
         
       </span>
     
@@ -273,7 +273,7 @@
         
         
         
-          17 mins
+          18 mins
         
       </span>
     
@@ -382,7 +382,12 @@
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\keys_define:nn</span> &#123; ParentA &#125; &#123;<br>  keyA  .code:n = &#123; ParentA-keyA&#x27;s~code<span class="hljs-keyword">\par</span> &#125;,<br>&#125;<br><span class="hljs-keyword">\keys_define:nn</span> &#123; &#125; &#123;<br>  ParentB .inherit:n = ParentA,<br>&#125;<br><span class="hljs-keyword">\keys_define:nn</span> &#123; ParentB &#125; &#123;<br>  keyB  .code:n = &#123; ParentB-keyB&#x27;s~code<span class="hljs-keyword">\par</span> &#125;,<br>&#125;<br><br><span class="hljs-keyword">\keys_set:nn</span> &#123; ParentB &#125; &#123; keyA = keyA-val, keyB = keyB-val &#125;<br></code></pre></td></tr></table></figure>
 <p>The output:</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">ParentA-keyA&#x27;s code<br>ParentB-keyB&#x27;s code<br></code></pre></td></tr></table></figure>
-<h3 id="example-III-delete-key">example III - delete key</h3>
+<h3 id="example-III-complicate-inherit">example III complicate inherit</h3>
+<p>The code as follows:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\keys_define:nn</span> &#123; XXX/ParentA &#125; &#123;<br>  keyA  .code:n = &#123; ParentA-keyA&#x27;s~code<span class="hljs-keyword">\par</span> &#125;,<br>&#125;<br><span class="hljs-keyword">\keys_define:nn</span> &#123; XXX &#125; &#123;<br>  ParentB .inherit:n = XXX/ParentA,<br>&#125;<br><span class="hljs-keyword">\keys_define:nn</span> &#123; XXX/ParentB &#125; &#123;<br>  keyB  .code:n = &#123; ParentB-keyB&#x27;s~code<span class="hljs-keyword">\par</span> &#125;,<br>&#125;<br><br><span class="hljs-keyword">\keys_set:nn</span> &#123; XXX/ParentB &#125; &#123; keyA = keyA-val, keyB = keyB-val &#125;<br></code></pre></td></tr></table></figure>
+<p>The output:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">ParentA-keyA&#x27;s code<br>ParentB-keyB&#x27;s code<br></code></pre></td></tr></table></figure>
+<h3 id="example-IV-delete-key">example IV - delete key</h3>
 <p>The code as follows:</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\keys_define:nn</span> &#123; ParentModuleA &#125;<br>  &#123;<br>    pkeyA   .code:n = &#123; ParentA-keyA&#x27;s~code<span class="hljs-keyword">\par</span> &#125;,<br>    unknown .code:n = &#123; ParentA-unkown&#x27;s~code<span class="hljs-keyword">\par</span> &#125;,<br>  &#125;<br><span class="hljs-keyword">\keys_define:nn</span> &#123;&#125;&#123; childkeyA .inherit:n = &#123; ParentModuleA &#125; &#125;<br><span class="hljs-keyword">\keys_define:nn</span> &#123; childkeyA &#125;<br>  &#123; <br>    unknown .code:n = &#123; childkeyA-unkown&#x27;s~code<span class="hljs-keyword">\par</span> &#125; <br>  &#125;<br><span class="hljs-comment">% delete keys</span><br><span class="hljs-keyword">\dotfill</span><span class="hljs-keyword">\par</span><br><span class="hljs-keyword">\keys_show:nn</span> &#123; childkeyA &#125;&#123; pkeyA &#125;<br><span class="hljs-keyword">\keys_define:nn</span> &#123; ParentModuleA &#125;&#123; pkeyA .undefine: &#125;<br><span class="hljs-keyword">\keys_set:nn</span> &#123; ParentModuleA &#125;&#123; pkeyA &#125;<br><span class="hljs-keyword">\keys_set:nn</span> &#123; childkeyA &#125;&#123; pkeyA &#125;<br></code></pre></td></tr></table></figure>
 <p>the shell log is:</p>
