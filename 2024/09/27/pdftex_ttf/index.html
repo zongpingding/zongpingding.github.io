@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zongpingding.github.io/img/pdftex_ttf/pdftex_ttf_example.png">
 <meta property="article:published_time" content="2024-09-27T15:03:28.072Z">
-<meta property="article:modified_time" content="2024-09-30T02:13:07.554Z">
+<meta property="article:modified_time" content="2025-08-08T20:22:36.560Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="font">
 <meta name="twitter:card" content="summary_large_image">
@@ -324,7 +324,7 @@
 <p>有了 glyph index,  我们能干啥呢? 由于在 TrueTypefont 中，并不是像 T1 encoding 那样使用一个 glyph name 来对应一个 glyph。在 TrueType 中使用的是 <code>indices</code> 来和 glyph 进行一一对应,  TrueType 通过一个 叫 <code>cmap</code> 的机制来解决这个编码问题(一一对应问题). 这个 cmap 中有很多张不同的表用于解决不同 编码下的映射问题，每一张表包含了  <code>glyph index --&gt; glyph</code> 这样的一一映射.</p>
 <p><code>.enc</code> 文件里面有些什么东西呢？这些东西又有什么用呢? 比例这里会用到的 <code>ec-uni.enc</code> 文件，其中有这样的内容：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">/encqecuni[<br>/uni0060<br>/uni00B4<br>/uni02C6<br>/uni02DC<br>/uni00A8<br>/uni02DD<br>...<br>/uni00FD<br>/uni00FE<br>/uni00DF<br>] def<br></code></pre></td></tr></table></figure>
-<p>要让 pdftex 正常使用这个字体，就必须要让 pdftex 能够找到这个字体里面的 glyphs。从 pdftex 1.21a 开始，pdftex 能够完成这样的事情（进队 TrueType 管用）:</p>
+<p>要让 pdftex 正常使用这个字体，就必须要让 pdftex 能够找到这个字体里面的 glyphs。从 pdftex 1.21a 开始，pdftex 能够完成这样的事情（仅对 TrueType 管用）:</p>
 <ul>
 <li>可以读取一个 font 的 <code>unicode -&gt; glyph index</code> 表, 寻找这个 unicode 码对应的 glyph index.</li>
 <li>当读取到对应的 <code>glyph index</code> 后, 就能够找到这个 index 对应的 glyph 了.</li>
