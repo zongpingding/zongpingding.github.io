@@ -16,25 +16,25 @@
   <meta name="author" content="Eureka">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 环境说明 本虚拟环境专用于数据分析，科学计算，虚拟环境的创建方法：切换到虚拟环境的目标路径下,然后运行如下命令： 12# &lt;python&gt; -m virtualenv &lt;虚拟环境名称&gt;python -m virtualenv &lt;env-name&gt; 根据你的python版本需更进行更改，或者是使用Python的具体路径进行不同版本Python的区分 2. p">
+    <meta name="description" content="什么是精确跳转 在 LaTeX\LaTeXLATE​X 中使用 \label-\ref 一组命令用于标签的跳转时往往会出现下面的情况:  我命令在某一行定义的这个label，但是为什么在后文ref引用后，点击跳转到了一个很奇怪的地方，而不是我自己定义label的所在行  其实这个并不是 LaTeX\LaTeXLATE​X 的问题，你可以理解为这个label激活的位置是与这个便签最邻近的如下元素:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pip Tutorial">
-<meta property="og:url" content="https://zongpingding.github.io/2024/05/16/pip_tutorial/index.html">
+<meta property="og:title" content="使用Hyperref进行精确跳转">
+<meta property="og:url" content="https://zongpingding.github.io/2025/08/09/hyperref/index.html">
 <meta property="og:site_name" content="Eureka">
-<meta property="og:description" content="1. 环境说明 本虚拟环境专用于数据分析，科学计算，虚拟环境的创建方法：切换到虚拟环境的目标路径下,然后运行如下命令： 12# &lt;python&gt; -m virtualenv &lt;虚拟环境名称&gt;python -m virtualenv &lt;env-name&gt; 根据你的python版本需更进行更改，或者是使用Python的具体路径进行不同版本Python的区分 2. p">
+<meta property="og:description" content="什么是精确跳转 在 LaTeX\LaTeXLATE​X 中使用 \label-\ref 一组命令用于标签的跳转时往往会出现下面的情况:  我命令在某一行定义的这个label，但是为什么在后文ref引用后，点击跳转到了一个很奇怪的地方，而不是我自己定义label的所在行  其实这个并不是 LaTeX\LaTeXLATE​X 的问题，你可以理解为这个label激活的位置是与这个便签最邻近的如下元素:">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-05-16T10:45:04.440Z">
-<meta property="article:modified_time" content="2024-05-16T10:59:05.745Z">
+<meta property="article:published_time" content="2025-08-09T02:53:24.046Z">
+<meta property="article:modified_time" content="2024-05-29T09:44:12.465Z">
 <meta property="article:author" content="Eureka">
-<meta property="article:tag" content="pip">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="hyperref">
+<meta property="article:tag" content="label&#x2F;ref">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Pip Tutorial - Eureka</title>
+  <title>使用Hyperref进行精确跳转 - Eureka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -45,6 +45,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -236,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Pip Tutorial"></span>
+            <span id="subtitle" data-typed-text="使用Hyperref进行精确跳转"></span>
           
         </div>
 
@@ -247,8 +249,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-16 18:45" pubdate>
-          May 16, 2024 pm
+        <time datetime="2025-08-09 10:53" pubdate>
+          August 9, 2025 am
         </time>
       </span>
     
@@ -259,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          286 words
+          291 words
         
       </span>
     
@@ -307,33 +309,30 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Pip Tutorial</h1>
+            <h1 id="seo-header">使用Hyperref进行精确跳转</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="1-环境说明">1. 环境说明</h2>
-<p>本虚拟环境专用于数据分析，科学计算，虚拟环境的创建方法：切换到虚拟环境的目标路径下,然后运行如下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">&lt;python&gt; -m virtualenv &lt;虚拟环境名称&gt;</span><br>python -m virtualenv &lt;env-name&gt;<br></code></pre></td></tr></table></figure>
-<p>根据你的python版本需更进行更改，或者是使用Python的具体路径进行不同版本Python的区分</p>
-<h2 id="2-pip安装包">2. pip安装包</h2>
-<ol>
-<li>通过命令行安装必须把  <strong>python38(37)</strong> 中的 <strong>python3.8.exe(python3.7.exe</strong>) 重命名为 <strong>python.exe.</strong>【一一对应即可】</li>
-<li>想要麻烦一点就使用 <strong>Pycharm</strong> 安装库</li>
-</ol>
-<h2 id="3-pip源配置">3. pip源配置</h2>
-<p>使用如下命令进行配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip config set global.index-url &lt;url&gt;<br></code></pre></td></tr></table></figure>
-<p>具体的配置文件的位置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">C:\Users\PC\AppData\Roaming\pip\pip.ini<br></code></pre></td></tr></table></figure>
-<p>移除更换全局的pip源</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip config unset global.index-url<br></code></pre></td></tr></table></figure>
-<p>常用源</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">清华源：<br>https://pypi.tuna.tsinghua.edu.cn/simple<br><br>阿里云源：<br>http://mirrors.aliyun.com/pypi/simple/<br><br>中科大源： <br>https://pypi.mirrors.ustc.edu.cn/simple/<br><br>豆瓣源：<br>http://pypi.douban.com/simple/<br></code></pre></td></tr></table></figure>
-<h2 id="4-pip配置代理">4. pip配置代理</h2>
-<p>如果你的计算机上的1080端口被代理,那么使用如下命令即可进行<code>pip</code>命令的代理:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install  --proxy=http://127.0.0.1:1080<br></code></pre></td></tr></table></figure>
-
+                <h2 id="什么是精确跳转">什么是精确跳转</h2>
+<p>在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 中使用 <code>\label-\ref</code> 一组命令用于标签的跳转时往往会出现下面的情况:</p>
+<blockquote>
+<p>我命令在某一行定义的这个label，但是为什么在后文ref引用后，点击跳转到了一个很奇怪的地方，而不是我自己定义label的所在行</p>
+</blockquote>
+<p>其实这个并不是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 的问题，你可以理解为这个label激活的位置是与这个便签最邻近的如下元素:</p>
+<ul>
+<li>chpater/section/subsection 等元素</li>
+<li>由<code>\newtheorem</code> 声明的定理类环境位置</li>
+</ul>
+<p>然后你点击后就会跳转到上述的&quot;奇怪&quot;的位置</p>
+<h2 id="方法">方法</h2>
+<p>但是总归是有方法的，其实就是使用宏包 <code>hyperref</code>, 使用它提供的如下两个命令</p>
+<ul>
+<li><code>\hypertarget</code> 进行label的定义</li>
+<li><code>\hyperlink</code> 进行跳转操作</li>
+</ul>
+<p>一个完整的示例如下</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;ctexart&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;zhlipsum&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;hyperref&#125;<br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\section</span>&#123;Test 1&#125;<br><span class="hljs-keyword">\zhlipsum</span>[1-10]<br><br><span class="hljs-keyword">\noindent</span><span class="hljs-keyword">\rule</span>&#123;1<span class="hljs-keyword">\linewidth</span>&#125;&#123;2pt&#125;<br><span class="hljs-keyword">\hypertarget</span>&#123;label-1&#125;&#123;<span class="hljs-keyword">\textbf</span>&#123;Destination&#125;&#125;<br><br><span class="hljs-keyword">\zhlipsum</span>[1-10]<br><br><span class="hljs-keyword">\section</span>&#123;Test 2&#125;<br><span class="hljs-keyword">\zhlipsum</span>[3-4]<br><span class="hljs-keyword">\hyperlink</span>&#123;label-1&#125;&#123;<span class="hljs-keyword">\textbf</span>&#123;ClickMe&#125;&#125;<br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -351,7 +350,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Computer/" class="category-chain-item">Computer</a>
+  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
   
   
 
@@ -366,9 +365,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/pip/" class="print-no-link">#pip</a>
+        <a href="/tags/hyperref/" class="print-no-link">#hyperref</a>
       
-        <a href="/tags/python/" class="print-no-link">#python</a>
+        <a href="/tags/label-ref/" class="print-no-link">#label/ref</a>
       
     </div>
   
@@ -380,8 +379,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Pip Tutorial</div>
-      <div>https://zongpingding.github.io/2024/05/16/pip_tutorial/</div>
+      <div>使用Hyperref进行精确跳转</div>
+      <div>https://zongpingding.github.io/2025/08/09/hyperref/</div>
     </div>
     <div class="license-meta">
       
@@ -393,7 +392,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 16, 2024</div>
+          <div>August 9, 2025</div>
         </div>
       
       
@@ -425,9 +424,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/19/Rounded-Corner-Listing/" title="Hexo Admin">
+                      <a href="/2025/08/09/marker_in_TeX/" title="Marker in TeX">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hexo Admin</span>
+                        <span class="hidden-mobile">Marker in TeX</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -435,8 +434,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/16/Lp_Normal_In_Dual_Sapce/" title="Lp Normal in Dual Space">
-                        <span class="hidden-mobile">Lp Normal in Dual Space</span>
+                      <a href="/2025/08/09/blog_installation/" title="Introduction to Hexo and Fluid">
+                        <span class="hidden-mobile">Introduction to Hexo and Fluid</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -528,6 +527,11 @@
 
 
   
+
+
+  
+  
+
 
 
 

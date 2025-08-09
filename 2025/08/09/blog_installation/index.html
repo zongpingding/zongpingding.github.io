@@ -19,19 +19,19 @@
     <meta name="description" content="摘要：本篇博客主要注重于Hexo和Fluid主题的安装和使用，尤其是LeTeX的配置。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Introduction to Hexo and Fluid">
-<meta property="og:url" content="https://zongpingding.github.io/2024/03/26/introduction_to_hexo_and_fluid/index.html">
+<meta property="og:url" content="https://zongpingding.github.io/2025/08/09/blog_installation/index.html">
 <meta property="og:site_name" content="Eureka">
 <meta property="og:description" content="摘要：本篇博客主要注重于Hexo和Fluid主题的安装和使用，尤其是LeTeX的配置。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zongpingding.github.io/img/introduction_to_hexo_and_fluid/banner.webp">
-<meta property="article:published_time" content="2024-03-26T01:31:53.943Z">
-<meta property="article:modified_time" content="2025-08-09T02:51:40.370Z">
+<meta property="og:image" content="https://zongpingding.github.io/img/blog_installation/banner.webp">
+<meta property="article:published_time" content="2025-08-09T02:53:23.928Z">
+<meta property="article:modified_time" content="2024-03-26T08:30:50.175Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Fluid">
 <meta property="article:tag" content="MarkDown">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zongpingding.github.io/img/introduction_to_hexo_and_fluid/banner.webp">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/blog_installation/banner.webp">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -235,7 +235,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/introduction_to_hexo_and_fluid/banner.webp') no-repeat center center; background-size: cover;">
+     style="background: url('/img/blog_installation/banner.webp') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -252,8 +252,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-26 09:31" pubdate>
-          March 26, 2024 am
+        <time datetime="2025-08-09 10:53" pubdate>
+          August 9, 2025 am
         </time>
       </span>
     
@@ -275,7 +275,7 @@
         
         
         
-          30 mins
+          29 mins
         
       </span>
     
@@ -451,7 +451,7 @@
 <p>然后在Hexo根目录下的 <code>_config.yml</code>文件中添加如下语句:</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">markdown:</span><br>  <span class="hljs-attr">plugins:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;@traptitech/markdown-it-katex&quot;</span><br></code></pre></td></tr></table></figure>
 <p>我大概添加在如下的位置，可以参考<br>
-<img src="/img/introduction_to_hexo_and_fluid/katex_config.png" srcset="/img/loading.gif" lazyload alt="katex 配置"></p>
+<img src="/img/blog_installation/katex_config.png" srcset="/img/loading.gif" lazyload alt="katex 配置"></p>
 <p>下面是katex的渲染效果</p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mi>X</mi><mi>A</mi><mo>=</mo><mi>B</mi><mo>⟺</mo><mi>X</mi><mi>A</mi><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mi>B</mi><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mrow><mo fence="true">(</mo><mfrac><mi>A</mi><mi>B</mi></mfrac><mo fence="true">)</mo></mrow><mover><mo stretchy="true" minsize="3.0em">→</mo><mpadded width="+0.6em" lspace="0.3em"><mi>P</mi></mpadded></mover><mrow><mo fence="true">(</mo><mfrac><mrow><mi>A</mi><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><mrow><mi>B</mi><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></mfrac><mo fence="true">)</mo></mrow><mo>=</mo><mrow><mo fence="true">(</mo><mfrac><mi>E</mi><mrow><mi>B</mi><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></mfrac><mo fence="true">)</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><msub><mi mathvariant="normal">Γ</mi><mi>ϵ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">[</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mn>2</mn><mi>π</mi><mi>ϵ</mi></mrow></msup><msup><mo stretchy="false">]</mo><mrow><mn>1</mn><mo>−</mo><mi>x</mi></mrow></msup><munderover><mo>∏</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><mfrac><mrow><mn>1</mn><mo>−</mo><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><mo>−</mo><mn>2</mn><mi>π</mi><mi>ϵ</mi><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><mrow><mn>1</mn><mo>−</mo><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><mo>−</mo><mn>2</mn><mi>π</mi><mi>ϵ</mi><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
 &amp; XA = B \Longleftrightarrow XAA^{-1} = BA^{-1} \\
@@ -486,8 +486,8 @@
             <p>TIP</p><p>如果是本地图片，目录文件夹可自定义，但必须在 source 目录下，博客与主题的 source 目录最终会合并，因此优先选择博客的 source。可以在Hexo的img目录下为每一次的博客单独创建<br>一个用于存放图片的文件夹，方便以后管理</p><p>图片大小建议压缩到 1MB 以内，否则会严重拖慢页面加载.所以在这里推荐一个压缩图片的免费网站: <a target="_blank" rel="noopener" href="https://squoosh.app/">squoosh</a></p>
           </div>
 <p>加载图片的语法如下:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">Local Picture</span>](<span class="hljs-link">/img/introduction_to_hexo_and_fluid/banner.webp</span>)<br><br>![<span class="hljs-string">Extrenal picture</span>](<span class="hljs-link">https://w.wallhaven.cc/full/l8/wallhaven-l83o92.jpg</span>)<br></code></pre></td></tr></table></figure>
-<p><img src="/img/introduction_to_hexo_and_fluid/banner.webp" srcset="/img/loading.gif" lazyload alt="Local Picture"><br>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">Local Picture</span>](<span class="hljs-link">/img/blog_installation/banner.webp</span>)<br><br>![<span class="hljs-string">Extrenal picture</span>](<span class="hljs-link">https://w.wallhaven.cc/full/l8/wallhaven-l83o92.jpg</span>)<br></code></pre></td></tr></table></figure>
+<p><img src="/img/blog_installation/banner.webp" srcset="/img/loading.gif" lazyload alt="Local Picture"><br>
 <img src="https://w.wallhaven.cc/full/l8/wallhaven-l83o92.jpg" srcset="/img/loading.gif" lazyload alt="Extrenal picture"></p>
 <div class="note note-warning">
             <p>图片默认居中，挺好的</p>
@@ -500,24 +500,24 @@
 <p>实际效果：<br>
 第一种是使用默认的markdown语言，Fluid已经对此元素进行了优化,你不用再去调整对应的宽度之类的了，<br>
 跨平台（设备）自适应.<br>
-<img src="/img/introduction_to_hexo_and_fluid/svgpic.svg" srcset="/img/loading.gif" lazyload alt="SVG Example"></p>
+<img src="/img/blog_installation/svgpic.svg" srcset="/img/loading.gif" lazyload alt="SVG Example"></p>
 <p>第二种便是自己写对应的html代码，但是并不方便.</p>
 <div align=center>
   <object type="image/svg+xml" 
-    data="/img/introduction_to_hexo_and_fluid/svgpic.svg">
+    data="/img/blog_installation/svgpic.svg">
   </object>
 </div>
 <h2 id="评论区设置">评论区设置</h2>
 <p>本博客采用的是gicus进行博客搭建,不用使用npm安装额外的第三方包，只需要创建一个giscus的public仓库即可，详情可以参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/603658639">知乎文章</a>，然后你就可以得到这样的一个列表：</p>
-<p><img src="/img/introduction_to_hexo_and_fluid/giscus_params.png" srcset="/img/loading.gif" lazyload alt="giscus 参数配置列表"></p>
+<p><img src="/img/blog_installation/giscus_params.png" srcset="/img/loading.gif" lazyload alt="giscus 参数配置列表"></p>
 <p>然后你就只需要把这些参数填写到你的Fluid主题的配置文件<code>_config.fluid.yml</code>的860行左右的giscus的参数配置位置，配置完成后大致如下：</p>
-<p><img src="/img/introduction_to_hexo_and_fluid/giscus_example.png" srcset="/img/loading.gif" lazyload alt="giscus 配置样例"></p>
+<p><img src="/img/blog_installation/giscus_example.png" srcset="/img/loading.gif" lazyload alt="giscus 配置样例"></p>
 <p>然后你就有评论区了.</p>
 <blockquote>
 <p>目前已经更换为utterances评论插件，相应的配置也是十分的简单的</p>
 </blockquote>
 <h2 id="远程服务器部署">远程服务器部署</h2>
-<p>关于后续的服务器部署或者是站点域名自定义请参见: <a href="https://zongpingding.github.io/2024/06/29/website_domain/">website domain</a></p>
+<p>之后再写了</p>
 <h2 id="工作流">工作流</h2>
 <p>当你完成以上步骤之后，只需要在你的本地写好对应的markdown文档，然后运行hexo的三部曲：</p>
 <ul>
@@ -577,7 +577,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Introduction to Hexo and Fluid</div>
-      <div>https://zongpingding.github.io/2024/03/26/introduction_to_hexo_and_fluid/</div>
+      <div>https://zongpingding.github.io/2025/08/09/blog_installation/</div>
     </div>
     <div class="license-meta">
       
@@ -589,7 +589,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 26, 2024</div>
+          <div>August 9, 2025</div>
         </div>
       
       
@@ -621,9 +621,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/26/easy_image/" title="Easyimage图床搭建">
+                      <a href="/2025/08/09/hyperref/" title="使用Hyperref进行精确跳转">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Easyimage图床搭建</span>
+                        <span class="hidden-mobile">使用Hyperref进行精确跳转</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -631,8 +631,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/26/linux_common_error/" title="Linux常见错误">
-                        <span class="hidden-mobile">Linux常见错误</span>
+                      <a href="/2025/04/30/tokenize/" title="Tokenize in TeX">
+                        <span class="hidden-mobile">Tokenize in TeX</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

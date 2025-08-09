@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zongpingding.github.io/img/otr_shipout/otr.webp">
 <meta property="article:published_time" content="2024-11-16T12:43:46.896Z">
-<meta property="article:modified_time" content="2025-08-08T12:42:42.593Z">
+<meta property="article:modified_time" content="2025-08-09T02:52:34.511Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="OTR">
 <meta name="twitter:card" content="summary_large_image">
@@ -395,7 +395,7 @@
 </ul>
 <p>其实这个 <code>current \output routine</code> 就是一个含有一系列 token 的东西, 就是一个 token list. 和 <code>\everypar</code> ，<code>\errhelp</code> 等命令相似，只不过这组 token list 的最开始和结束位置会分别自动插入一个 <code>&#123;</code> 和 <code>&#125;</code>, 也就是说每一个 output routine 过程都是限制在一个局部的.</p>
 <blockquote>
-<p>为什么要加一个 group ? 其实就是防止和当前正文中 TeX 的处理冲突. 为什么会冲突? 其实在 <a target="_blank" rel="noopener" href="https://www.zpding.tech/2024/11/12/marker_in_TeX-II/">Marker in TeX - II - Eureka</a>  中我们可以知道 TeX 当前所处的位置(page-construction activity)一般是在这个 page break 位置的前面，也就是 page break 操作相对前者是滞后的. TeXbook 中是这样说的:</p>
+<p>为什么要加一个 group ? 其实就是防止和当前正文中 TeX 的处理冲突. 为什么会冲突? 其实在 <a href="https://zongpingding.github.io/2024/11/12/marker_in_TeX-II/">Marker in TeX - II - Eureka</a>  中我们可以知道 TeX 当前所处的位置(page-construction activity)一般是在这个 page break 位置的前面，也就是 page break 操作相对前者是滞后的. TeXbook 中是这样说的:</p>
 <p>“Since TEX’s output routine lags behind its page-construction activity, you can get erroneous results if you change the <code>\headline</code> or the <code>\footline</code> in an uncontrolled way.”</p>
 <p>这样就可能导致部分位于 page break 和 TeX 当前位置的定义覆盖了 page break 时的定义. 比如 The TeXbook 中描述的这个操作:</p>
 <p>“For example, an output routine often changes the \baselineskip when it puts a headline or footline on a page”.</p>
@@ -443,7 +443,7 @@
 </blockquote>
 <p>解答:</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\output</span>=&#123;<span class="hljs-keyword">\plainoutput</span><span class="hljs-keyword">\blankpageoutput</span>&#125;<br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\blankpageoutput</span>&#123;<span class="hljs-keyword">\shipout</span><span class="hljs-keyword">\vbox</span>&#123;<span class="hljs-keyword">\makeheadline</span><br>  <span class="hljs-keyword">\vbox</span> to<span class="hljs-keyword">\vsize</span>&#123;&#125;<span class="hljs-keyword">\makefootline</span>&#125;<span class="hljs-keyword">\advancepageno</span>&#125;<br></code></pre></td></tr></table></figure>
-<p>这个章节后续的内容就是关于 marker 的了，这个内容请参见我的博客: <a target="_blank" rel="noopener" href="https://www.zpding.tech/2024/11/12/marker_in_TeX-II/">Marker in TeX - II - Eureka</a> , 这篇文章中介绍了更为现代的 marker 机制.</p>
+<p>这个章节后续的内容就是关于 marker 的了，这个内容请参见我的博客: <a href="https://zongpingding.github.io/2024/11/12/marker_in_TeX-II/">Marker in TeX - II - Eureka</a> , 这篇文章中介绍了更为现代的 marker 机制.</p>
 <h3 id="Conclusion">Conclusion</h3>
 <p>总而言之，这个 output routine(OTR) 就是一组放在 <code>\ouput&#123;&lt;commands&gt;&#125;</code> 中的命令. shipout 是 OTR 中的一个子命令.</p>
 <h2 id="LaTeX-2e">LaTeX 2e</h2>

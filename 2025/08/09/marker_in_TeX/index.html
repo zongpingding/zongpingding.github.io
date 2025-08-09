@@ -16,25 +16,24 @@
   <meta name="author" content="Eureka">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 环境说明 本虚拟环境专用于数据分析，科学计算，虚拟环境的创建方法：切换到虚拟环境的目标路径下,然后运行如下命令： 12# &lt;python&gt; -m virtualenv &lt;虚拟环境名称&gt;python -m virtualenv &lt;env-name&gt; 根据你的python版本需更进行更改，或者是使用Python的具体路径进行不同版本Python的区分 2. p">
+    <meta name="description" content="参考 本节内容大部分都是基于 TeX SE 上的回答，然后我自己部分直接抄袭，部分按照自己的理解记录在案. 基本概念 LaTeX中查看两个mark的值，然后再说明这两个值都表示了什么:  \leftmark:  Left argument of the Last  \markboth on the page \rightmark: Right argument of the  fiRst  \ma">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pip Tutorial">
-<meta property="og:url" content="https://zongpingding.github.io/2024/05/16/pip_tutorial/index.html">
+<meta property="og:title" content="Marker in TeX">
+<meta property="og:url" content="https://zongpingding.github.io/2025/08/09/marker_in_TeX/index.html">
 <meta property="og:site_name" content="Eureka">
-<meta property="og:description" content="1. 环境说明 本虚拟环境专用于数据分析，科学计算，虚拟环境的创建方法：切换到虚拟环境的目标路径下,然后运行如下命令： 12# &lt;python&gt; -m virtualenv &lt;虚拟环境名称&gt;python -m virtualenv &lt;env-name&gt; 根据你的python版本需更进行更改，或者是使用Python的具体路径进行不同版本Python的区分 2. p">
+<meta property="og:description" content="参考 本节内容大部分都是基于 TeX SE 上的回答，然后我自己部分直接抄袭，部分按照自己的理解记录在案. 基本概念 LaTeX中查看两个mark的值，然后再说明这两个值都表示了什么:  \leftmark:  Left argument of the Last  \markboth on the page \rightmark: Right argument of the  fiRst  \ma">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-05-16T10:45:04.440Z">
-<meta property="article:modified_time" content="2024-05-16T10:59:05.745Z">
+<meta property="article:published_time" content="2025-08-09T02:53:24.139Z">
+<meta property="article:modified_time" content="2024-06-14T10:31:06.936Z">
 <meta property="article:author" content="Eureka">
-<meta property="article:tag" content="pip">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="marker">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Pip Tutorial - Eureka</title>
+  <title>Marker in TeX - Eureka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -236,7 +235,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Pip Tutorial"></span>
+            <span id="subtitle" data-typed-text="Marker in TeX"></span>
           
         </div>
 
@@ -247,8 +246,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-16 18:45" pubdate>
-          May 16, 2024 pm
+        <time datetime="2025-08-09 10:53" pubdate>
+          August 9, 2025 am
         </time>
       </span>
     
@@ -259,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          286 words
+          490 words
         
       </span>
     
@@ -270,7 +269,7 @@
         
         
         
-          3 mins
+          5 mins
         
       </span>
     
@@ -307,32 +306,39 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Pip Tutorial</h1>
+            <h1 id="seo-header">Marker in TeX</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="1-环境说明">1. 环境说明</h2>
-<p>本虚拟环境专用于数据分析，科学计算，虚拟环境的创建方法：切换到虚拟环境的目标路径下,然后运行如下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">&lt;python&gt; -m virtualenv &lt;虚拟环境名称&gt;</span><br>python -m virtualenv &lt;env-name&gt;<br></code></pre></td></tr></table></figure>
-<p>根据你的python版本需更进行更改，或者是使用Python的具体路径进行不同版本Python的区分</p>
-<h2 id="2-pip安装包">2. pip安装包</h2>
-<ol>
-<li>通过命令行安装必须把  <strong>python38(37)</strong> 中的 <strong>python3.8.exe(python3.7.exe</strong>) 重命名为 <strong>python.exe.</strong>【一一对应即可】</li>
-<li>想要麻烦一点就使用 <strong>Pycharm</strong> 安装库</li>
-</ol>
-<h2 id="3-pip源配置">3. pip源配置</h2>
-<p>使用如下命令进行配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip config set global.index-url &lt;url&gt;<br></code></pre></td></tr></table></figure>
-<p>具体的配置文件的位置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">C:\Users\PC\AppData\Roaming\pip\pip.ini<br></code></pre></td></tr></table></figure>
-<p>移除更换全局的pip源</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip config unset global.index-url<br></code></pre></td></tr></table></figure>
-<p>常用源</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">清华源：<br>https://pypi.tuna.tsinghua.edu.cn/simple<br><br>阿里云源：<br>http://mirrors.aliyun.com/pypi/simple/<br><br>中科大源： <br>https://pypi.mirrors.ustc.edu.cn/simple/<br><br>豆瓣源：<br>http://pypi.douban.com/simple/<br></code></pre></td></tr></table></figure>
-<h2 id="4-pip配置代理">4. pip配置代理</h2>
-<p>如果你的计算机上的1080端口被代理,那么使用如下命令即可进行<code>pip</code>命令的代理:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install  --proxy=http://127.0.0.1:1080<br></code></pre></td></tr></table></figure>
+                <h2 id="参考">参考</h2>
+<p>本节内容大部分都是基于 TeX SE 上的回答，然后我自己部分直接抄袭，部分按照自己的理解记录在案.</p>
+<h2 id="基本概念">基本概念</h2>
+<p>LaTeX中查看两个mark的值，然后再说明这两个值都表示了什么:</p>
+<ul>
+<li>\leftmark:  <code>Left</code> argument of the <code>Last</code>  \markboth on the page</li>
+<li>\rightmark: <code>Right</code> argument of the <code> fiRst</code>  \markboth or <code>first</code> \markright</li>
+</ul>
+<p>一个具体的 <a target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/449859/what-is-the-difference-between-leftmark-and-rightmark-in-fancyhdr">例子</a>:</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tex">==== page break, new chapter:<br>chapter:     &#123;&#123;chapter&#125;    &#123;   &#125;&#125;<br>section1:    &#123;&#123;chapter&#125;    &#123;section1&#125;&#125;<br>section2:    &#123;&#123;chapter&#125;    &#123;section2&#125;&#125;<br>==== page break: leftmark: chapter, rightmark: empty<br><br>section3:    &#123;&#123;chapter&#125;    &#123;section3&#125;&#125;<br>section4:    &#123;&#123;chapter&#125;    &#123;section4&#125;&#125;<br>==== page break: leftmark: chapter, rightmark: section3<br></code></pre></td></tr></table></figure>
+<h2 id="marker-原理">marker 原理</h2>
+<p>那么 \markboth 和 \markright 这两个命令它们是什么时候运行的? 其实在展开 \chapter 命令时，下面这个命令便会自动运行，从而生成对应的 \leftmark 和 \rightmark. 参见如下的 \chaptermark 命令声明:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\def</span><span class="hljs-keyword">\chaptermark</span><span class="hljs-params">#1</span>&#123;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\markboth</span> &#123;<span class="hljs-keyword">\MakeUppercase</span>&#123;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\ifnum</span> <span class="hljs-keyword">\c@secnumdepth</span> &gt;<span class="hljs-keyword">\m@ne</span><br>        <span class="hljs-keyword">\@chapapp</span><span class="hljs-keyword">\ </span><span class="hljs-keyword">\thechapter</span>. <span class="hljs-keyword">\ </span><span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\fi</span><br>    <span class="hljs-params">#1</span>&#125;&#125;&#123;&#125;&#125;<span class="hljs-comment">%</span><br></code></pre></td></tr></table></figure>
+<p>现在, 你可以知道你的这个chapter marker到底是怎么产生的了.</p>
+<h2 id="自定义-marker">自定义 marker</h2>
+<p>如果你不想使用这个命令中给你的 marker，那么你也可以手动进行设置这个 \leftmarker 和 \rightmark. 主要使用下面的两个命令:</p>
+<ul>
+<li>\markboth{}{}: 用于设置 \leftmark 和 \rightmark 的值,前面为 left, 后面为 right.</li>
+<li>\markright{}: 用于设置 \rightmark 的值.</li>
+</ul>
+<p>比如你自定义你的 left mark 和 right mark 为任意的东西:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\markboth</span>&#123;left item&#125;&#123;right item&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="marker-格式">marker 格式</h2>
+<p>其实从 \chaptermark 命令中就可以看到，默认的 \leftmark 是 uppercase 的，想要取消这个命令，一方面可以使用 fancyhdr 提供的:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\fancyhead</span>[CO]&#123;<span class="hljs-keyword">\textsc</span>&#123;<span class="hljs-keyword">\nouppercase</span>&#123;<span class="hljs-keyword">\leftmark</span>&#125;&#125;&#125;<br></code></pre></td></tr></table></figure>
+<p>或者是重定义这些个 \sectionmark 或者是 \chaptermark ,一个具体的示例如下:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% 1. chapter mark</span><br><span class="hljs-keyword">\renewcommand</span>&#123;<span class="hljs-keyword">\chaptermark</span>&#125;[1]&#123;<span class="hljs-comment">%</span><br>  <span class="hljs-keyword">\markboth</span>&#123;<span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\ifnum</span><span class="hljs-keyword">\c@secnumdepth</span>&gt;<span class="hljs-keyword">\m@ne</span><br>      <span class="hljs-keyword">\@chapapp</span><span class="hljs-keyword">\ </span>&#123;<span class="hljs-keyword">\footnotesize</span><span class="hljs-keyword">\thechapter</span>&#125;. <span class="hljs-keyword">\ </span><span class="hljs-comment">%</span><br>    <span class="hljs-keyword">\fi</span><br>  <span class="hljs-params">#1</span><span class="hljs-comment">%</span><br>  &#125;&#123;&#125;<span class="hljs-comment">%</span><br>&#125;<br><br><span class="hljs-comment">% 2. section mark</span><br><span class="hljs-keyword">\renewcommand</span>&#123;<span class="hljs-keyword">\sectionmark</span>&#125;[1]&#123;<span class="hljs-keyword">\markboth</span>&#123;<span class="hljs-keyword">\thesection</span>.<span class="hljs-keyword">\ </span><span class="hljs-params">#1</span>&#125;&#123;&#125;&#125;<br></code></pre></td></tr></table></figure>
+<p>上面这两个只是简单的示例，具体的设置请根据你自己的情况来.</p>
 
                 
               </div>
@@ -351,7 +357,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Computer/" class="category-chain-item">Computer</a>
+  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
   
   
 
@@ -366,9 +372,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/pip/" class="print-no-link">#pip</a>
-      
-        <a href="/tags/python/" class="print-no-link">#python</a>
+        <a href="/tags/marker/" class="print-no-link">#marker</a>
       
     </div>
   
@@ -380,8 +384,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Pip Tutorial</div>
-      <div>https://zongpingding.github.io/2024/05/16/pip_tutorial/</div>
+      <div>Marker in TeX</div>
+      <div>https://zongpingding.github.io/2025/08/09/marker_in_TeX/</div>
     </div>
     <div class="license-meta">
       
@@ -393,7 +397,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 16, 2024</div>
+          <div>August 9, 2025</div>
         </div>
       
       
@@ -425,18 +429,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/19/Rounded-Corner-Listing/" title="Hexo Admin">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hexo Admin</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/16/Lp_Normal_In_Dual_Sapce/" title="Lp Normal in Dual Space">
-                        <span class="hidden-mobile">Lp Normal in Dual Space</span>
+                      <a href="/2025/08/09/hyperref/" title="使用Hyperref进行精确跳转">
+                        <span class="hidden-mobile">使用Hyperref进行精确跳转</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
