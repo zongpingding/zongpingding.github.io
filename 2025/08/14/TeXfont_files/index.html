@@ -24,7 +24,7 @@
 <meta property="og:description" content="NOTE TeX just need to know the font metric, characters’ glyph in font is not essential to TeX ENC Defines the mapping between character codes within your LaTeX text and the corresponding character sha">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-08-14T14:30:01.471Z">
-<meta property="article:modified_time" content="2025-08-14T14:36:55.704Z">
+<meta property="article:modified_time" content="2025-08-23T01:22:06.880Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="font">
 <meta name="twitter:card" content="summary_large_image">
@@ -258,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          152 words
+          179 words
         
       </span>
     
@@ -343,7 +343,7 @@
 <h2 id="PL">PL</h2>
 <p><code>tftopl</code> is a utility program designed to convert TeX font metric (TFM) files(binary files) into property list (PL) files(Human readable format). And <code>pltotf</code> can convert PL files back to TFM.</p>
 <h2 id="PFA-PFB">PFA/PFB</h2>
-<p>PFA (Printer Font ASCII) and PFB (Printer Font Binary) are two formats for Type 1 PostScript fonts.</p>
+<p>PFA (Printer Font ASCII) and PFB (PostScript Font Binary/Printer Font Binary) are two formats for Type 1 PostScript fonts.</p>
 <p><code>PFA</code> stands for Printer Font ASCII, which is the unpacked version of a PFB file. In <code>PFB</code>, the data is stored as-is. In a PFA, any binary data present in a former PFB file is stored as <code>ascii hex</code>–meaning each byte of binary data is turned into two ASCII characters representing the hexdecimal value.</p>
 <p>ref: <a target="_blank" rel="noopener" href="https://docs.aspose.com/font/net/what-is-font/pfa-pfb-fonts/">https://docs.aspose.com/font/net/what-is-font/pfa-pfb-fonts/</a></p>
 <h2 id="FD">FD</h2>
@@ -355,7 +355,17 @@
 <p>tfm files are read directly by TeX but few programs could read gf fonts directly so they were almost always converted immediately to pk (packed) format which contained the same information in a more compressed form and could be read by dvi drivers such as <code>dvips</code> or <code>xdvi</code>.</p>
 <p>ref: <a target="_blank" rel="noopener" href="https://tex.stackexchange.com/a/120419/294585">https://tex.stackexchange.com/a/120419/294585</a></p>
 <h2 id="VF">VF</h2>
-<p>…</p>
+<p>Virtual fonts provide a means of collecting bits and pieces together to make the glyphs of a font:</p>
+<ul>
+<li>the bits and pieces may be glyphs from “other” fonts,</li>
+<li>rules and other “basic” typesetting commands,</li>
+<li>and the positioning information that specifies how everything comes together.</li>
+</ul>
+<p>Virtual fonts provide a way of telling TeX about something more complicated than just a one-to-one character mapping. TeX reads a TFM file of the font, just as before, but the DVI processor will read the VF and use its content to specify how each glyph is to be processed.</p>
+<p>Virtual fonts are normally created in a single ASCII VPL (Virtual Property List) file, which includes two sets of information. The vptovf utility will use the VPL file to create the binary TFM and VF files.</p>
+<p>ref: <a target="_blank" rel="noopener" href="https://texfaq.org/FAQ-virtualfonts">https://texfaq.org/FAQ-virtualfonts</a></p>
+<h2 id="VPL">VPL</h2>
+<p>virtual font property list, that is similar to <code>PL</code> file. Use tool <code>vptovf</code> to convert it to virtual font.</p>
 
                 
               </div>
