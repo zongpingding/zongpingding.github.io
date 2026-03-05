@@ -22,12 +22,12 @@
     <meta name="description" content="近来，TeXLive2026 可用了，于是就运行 sudo pacman -Syyu 更新了一下. 结果, &#x2F;usr&#x2F;share&#x2F;texmf-dist&#x2F;tex&#x2F;luatex&#x2F; 下有一些文件冲突了. 于是我果断把整个 luatex 文件夹移除了. 再次尝试 syyu，不出所料, LuaTeX 相关的所有 fmt 文件都构建失败了. 即使是我把 luatex 这个文件夹恢复回去也不行了， 运行了几次">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Update LuaTeX in arch">
-<meta property="og:url" content="https://zongpingding.github.io/2026/02/02/luatex_in_arch/index.html">
+<meta property="og:url" content="https://zongpingding.github.io/2026/03/04/luatex_in_arch/index.html">
 <meta property="og:site_name" content="Eureka">
 <meta property="og:description" content="近来，TeXLive2026 可用了，于是就运行 sudo pacman -Syyu 更新了一下. 结果, &#x2F;usr&#x2F;share&#x2F;texmf-dist&#x2F;tex&#x2F;luatex&#x2F; 下有一些文件冲突了. 于是我果断把整个 luatex 文件夹移除了. 再次尝试 syyu，不出所料, LuaTeX 相关的所有 fmt 文件都构建失败了. 即使是我把 luatex 这个文件夹恢复回去也不行了， 运行了几次">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-02-02T13:10:00.000Z">
-<meta property="article:modified_time" content="2026-03-04T13:16:00.917Z">
+<meta property="article:published_time" content="2026-03-04T13:10:00.000Z">
+<meta property="article:modified_time" content="2026-03-05T12:55:29.586Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="fmt">
 <meta property="article:tag" content="luatex">
@@ -250,8 +250,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-02-02 21:10" pubdate>
-          February 2, 2026 pm
+        <time datetime="2026-03-04 21:10" pubdate>
+          March 4, 2026 pm
         </time>
       </span>
     
@@ -322,7 +322,7 @@
 <p>报错显示: <code>... module 'lua-uni-data' not found: ...</code>。在网上查了一下, 这个 <code>lua-uni-data</code> 也是一个包, 在 github 上找到了它的地址, 把 <code>l3build install</code> 在家目录下的 <code>lua-uni-data</code> 文件夹移动到了 <code>/usr/share/texmf-dist/tex/luatex/</code> 下, 再次运行 <code>sudo pacman -S texlive-luatex</code>, LuaTeX 相关的 fmt 构建成功了.</p>
 <p>其实最开始打算用 <code>sudo tlmgr install lua-uni-data</code> 来安装的, 结果报错显示:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs log">tlmgr: Local TeX Live (2025) is older than remote repository (2026).<br>Cross release updates are only supported with<br>  update-tlmgr-latest(.sh/.exe) -- --upgrade<br>See https://tug.org/texlive/upgrade.html for details.<br></code></pre></td></tr></table></figure>
-<p>可能是因为我是滚动更新的把，我的 <code>tex -v</code> 显示的 TeXLive 都已经到 2026 了. 不管这个啥 tlmgr 了, 我自己手动安装就行了, 复杂一点的宏包直接安装在家目录(或者用 <code>l3build install</code> 安装).</p>
+<p>可能是因为我是滚动更新的吧, 我的 <code>tex -v</code> 显示的 TeXLive 都已经到 2026 了. 不管这个啥 tlmgr 了, 我自己手动安装就行了, 复杂一点的宏包直接安装在家目录(或者用 <code>l3build install</code> 安装).</p>
 
                 
               </div>
@@ -371,7 +371,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Update LuaTeX in arch</div>
-      <div>https://zongpingding.github.io/2026/02/02/luatex_in_arch/</div>
+      <div>https://zongpingding.github.io/2026/03/04/luatex_in_arch/</div>
     </div>
     <div class="license-meta">
       
@@ -383,7 +383,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 2, 2026</div>
+          <div>March 4, 2026</div>
         </div>
       
       
@@ -414,6 +414,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2026/03/05/emacs_font/" title="Emacs Font Config">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Emacs Font Config</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

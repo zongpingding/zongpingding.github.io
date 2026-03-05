@@ -4,11 +4,36 @@
   
   
   <entry>
-    <title>Update LuaTeX in arch</title>
-    <link href="/2026/02/02/luatex_in_arch/"/>
-    <url>/2026/02/02/luatex_in_arch/</url>
+    <title>Emacs Font Config</title>
+    <link href="/2026/03/05/emacs_font/"/>
+    <url>/2026/03/05/emacs_font/</url>
     
-    <content type="html"><![CDATA[<p>近来，TeXLive2026 可用了，于是就运行 <code>sudo pacman -Syyu</code> 更新了一下. 结果, <code>/usr/share/texmf-dist/tex/luatex/</code> 下有一些文件冲突了. 于是我果断把整个 <code>luatex</code> 文件夹移除了.</p><p>再次尝试 syyu，不出所料, LuaTeX 相关的所有 fmt 文件都构建失败了. 即使是我把 <code>luatex</code> 这个文件夹恢复回去也不行了， 运行了几次 <code>sudo pacman -Rnsc texlive-luatex</code> 和 <code>sudo pacman -S texlive-luatex</code> 都不行.</p><p>检查了一下出错的命令, 如下:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">luahbtex -ini   -jobname=lualatex -progname=lualatex lualatex.ini<br></code></pre></td></tr></table></figure><p>报错显示: <code>... module 'lua-uni-data' not found: ...</code>。在网上查了一下, 这个 <code>lua-uni-data</code> 也是一个包, 在 github 上找到了它的地址, 把 <code>l3build install</code> 在家目录下的 <code>lua-uni-data</code> 文件夹移动到了 <code>/usr/share/texmf-dist/tex/luatex/</code> 下, 再次运行 <code>sudo pacman -S texlive-luatex</code>, LuaTeX 相关的 fmt 构建成功了.</p><p>其实最开始打算用 <code>sudo tlmgr install lua-uni-data</code> 来安装的, 结果报错显示:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs log">tlmgr: Local TeX Live (2025) is older than remote repository (2026).<br>Cross release updates are only supported with<br>  update-tlmgr-latest(.sh/.exe) -- --upgrade<br>See https://tug.org/texlive/upgrade.html for details.<br></code></pre></td></tr></table></figure><p>可能是因为我是滚动更新的把，我的 <code>tex -v</code> 显示的 TeXLive 都已经到 2026 了. 不管这个啥 tlmgr 了, 我自己手动安装就行了, 复杂一点的宏包直接安装在家目录(或者用 <code>l3build install</code> 安装).</p>]]></content>
+    <content type="html"><![CDATA[<p>在 Emacs 中配置字体很一个很难受的事情, 不过我今天在偶然之间发现了一个比较好的中英文字体组合:</p><ul><li>西文字母: <code>JetBrainsMonoNL Nerd Font</code></li><li>中文汉字: <code>Maple Mono NL NF CN</code></li></ul><p>他们在 Org-mode 中的样式大致如下:</p><p><img src="/img/emacs_font/font_example.png" alt="font example"></p><p>由于我显示器的分辨率只有 1080P, 中文字体选择了 auto hint 版本, 果然，渲染效果好了很多. 字体的配置大致如下:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs elisp">(set-face-attribute &#x27;default nil<br>    :font &quot;JetBrainsMonoNL Nerd Font-15&quot;<br>    :slant &#x27;normal<br>    :weight &#x27;medium)<br>(dolist (script &#x27;(kana han cjk-misc bopomofo))<br>        (set-fontset-font t script &quot;Maple Mono NL NF CN&quot;))<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Emacs</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>font</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Update LuaTeX in arch</title>
+    <link href="/2026/03/04/luatex_in_arch/"/>
+    <url>/2026/03/04/luatex_in_arch/</url>
+    
+    <content type="html"><![CDATA[<p>近来，TeXLive2026 可用了，于是就运行 <code>sudo pacman -Syyu</code> 更新了一下. 结果, <code>/usr/share/texmf-dist/tex/luatex/</code> 下有一些文件冲突了. 于是我果断把整个 <code>luatex</code> 文件夹移除了.</p><p>再次尝试 syyu，不出所料, LuaTeX 相关的所有 fmt 文件都构建失败了. 即使是我把 <code>luatex</code> 这个文件夹恢复回去也不行了， 运行了几次 <code>sudo pacman -Rnsc texlive-luatex</code> 和 <code>sudo pacman -S texlive-luatex</code> 都不行.</p><p>检查了一下出错的命令, 如下:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">luahbtex -ini   -jobname=lualatex -progname=lualatex lualatex.ini<br></code></pre></td></tr></table></figure><p>报错显示: <code>... module 'lua-uni-data' not found: ...</code>。在网上查了一下, 这个 <code>lua-uni-data</code> 也是一个包, 在 github 上找到了它的地址, 把 <code>l3build install</code> 在家目录下的 <code>lua-uni-data</code> 文件夹移动到了 <code>/usr/share/texmf-dist/tex/luatex/</code> 下, 再次运行 <code>sudo pacman -S texlive-luatex</code>, LuaTeX 相关的 fmt 构建成功了.</p><p>其实最开始打算用 <code>sudo tlmgr install lua-uni-data</code> 来安装的, 结果报错显示:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs log">tlmgr: Local TeX Live (2025) is older than remote repository (2026).<br>Cross release updates are only supported with<br>  update-tlmgr-latest(.sh/.exe) -- --upgrade<br>See https://tug.org/texlive/upgrade.html for details.<br></code></pre></td></tr></table></figure><p>可能是因为我是滚动更新的吧, 我的 <code>tex -v</code> 显示的 TeXLive 都已经到 2026 了. 不管这个啥 tlmgr 了, 我自己手动安装就行了, 复杂一点的宏包直接安装在家目录(或者用 <code>l3build install</code> 安装).</p>]]></content>
     
     
     <categories>
