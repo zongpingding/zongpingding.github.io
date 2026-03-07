@@ -19,26 +19,26 @@
   <meta name="author" content="Eureka">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今天写了一个计算乘法的小玩意儿, 遇到的坑还是比较多的:  大数乘法怎么解决 ? 本来想自己用 expl3 手搓一个的, 居然发现有现成的了 - xint. 怎么排版运算过程 ? 我放弃了用表格排版 要不就使用 Python 写一个 ? 还是纯 latex 比较好 …  代码实现如下(编码风格稍显混乱): 1234567891011121314151617181920212223242526272">
+    <meta name="description" content="今天，终于把这个终端文件预览脚本写好了。这个脚本(其实是两个脚本)能干些什么事情呢 ?  立马在终端预览预览文件，不用离开终端 集成 fzf, 可以用于目录切换，文件打开  一个脚本叫做 pre，(只能)用于在终端打印文件的预览; 一个脚本(函数)叫做 ipre, 它把 pre 和 fzf 进行了深度的集成. 为什么要分成两个文件 ? 大概这样做更加符合 Unix 哲学吧 ? Do one thi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Multiplication in TeX">
-<meta property="og:url" content="https://zongpingding.github.io/2026/03/07/multiplication_in_tex/index.html">
+<meta property="og:title" content="Terminal inline Previewer">
+<meta property="og:url" content="https://zongpingding.github.io/2026/03/07/inline_previewer/index.html">
 <meta property="og:site_name" content="Eureka">
-<meta property="og:description" content="今天写了一个计算乘法的小玩意儿, 遇到的坑还是比较多的:  大数乘法怎么解决 ? 本来想自己用 expl3 手搓一个的, 居然发现有现成的了 - xint. 怎么排版运算过程 ? 我放弃了用表格排版 要不就使用 Python 写一个 ? 还是纯 latex 比较好 …  代码实现如下(编码风格稍显混乱): 1234567891011121314151617181920212223242526272">
+<meta property="og:description" content="今天，终于把这个终端文件预览脚本写好了。这个脚本(其实是两个脚本)能干些什么事情呢 ?  立马在终端预览预览文件，不用离开终端 集成 fzf, 可以用于目录切换，文件打开  一个脚本叫做 pre，(只能)用于在终端打印文件的预览; 一个脚本(函数)叫做 ipre, 它把 pre 和 fzf 进行了深度的集成. 为什么要分成两个文件 ? 大概这样做更加符合 Unix 哲学吧 ? Do one thi">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zongpingding.github.io/img/multiplication_in_tex/calc_example.png">
-<meta property="article:published_time" content="2026-03-06T17:30:00.000Z">
-<meta property="article:modified_time" content="2026-03-06T17:39:43.828Z">
+<meta property="article:published_time" content="2026-03-07T10:40:00.000Z">
+<meta property="article:modified_time" content="2026-03-07T11:00:05.337Z">
 <meta property="article:author" content="Eureka">
-<meta property="article:tag" content="xint">
+<meta property="article:tag" content="fzf">
+<meta property="article:tag" content="shell">
+<meta property="article:tag" content="sixel">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zongpingding.github.io/img/multiplication_in_tex/calc_example.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Multiplication in TeX - Eureka</title>
+  <title>Terminal inline Previewer - Eureka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -240,7 +240,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Multiplication in TeX"></span>
+            <span id="subtitle" data-typed-text="Terminal inline Previewer"></span>
           
         </div>
 
@@ -251,8 +251,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-03-07 01:30" pubdate>
-          March 7, 2026 am
+        <time datetime="2026-03-07 18:40" pubdate>
+          March 7, 2026 pm
         </time>
       </span>
     
@@ -263,7 +263,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          572 words
+          803 words
         
       </span>
     
@@ -274,7 +274,7 @@
         
         
         
-          5 mins
+          7 mins
         
       </span>
     
@@ -311,22 +311,25 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Multiplication in TeX</h1>
+            <h1 id="seo-header">Terminal inline Previewer</h1>
             
             
               <div class="markdown-body">
                 
-                <p>今天写了一个计算乘法的小玩意儿, 遇到的坑还是比较多的:</p>
+                <p>今天，终于把这个终端文件预览脚本写好了。这个脚本(其实是两个脚本)能干些什么事情呢 ?</p>
 <ul>
-<li>大数乘法怎么解决 ? 本来想自己用 expl3 手搓一个的, 居然发现有现成的了 - <code>xint</code>.</li>
-<li>怎么排版运算过程 ? 我放弃了用表格排版</li>
-<li>要不就使用 Python 写一个 ? 还是纯 latex 比较好</li>
-<li>…</li>
+<li>立马在终端预览预览文件，不用离开终端</li>
+<li>集成 <code>fzf</code>, 可以用于目录切换，文件打开</li>
 </ul>
-<p>代码实现如下(编码风格稍显混乱):</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><span class="hljs-keyword">\newlength</span><span class="hljs-keyword">\Pwidth</span><br><span class="hljs-keyword">\newlength</span><span class="hljs-keyword">\Mwidth</span><br><span class="hljs-keyword">\setlength</span><span class="hljs-keyword">\Pwidth</span>&#123;30in&#125;<br><span class="hljs-keyword">\setlength</span><span class="hljs-keyword">\Mwidth</span>&#123;<span class="hljs-keyword">\dimexpr</span><span class="hljs-keyword">\Pwidth</span>-1in<span class="hljs-keyword">\relax</span>&#125;<br><span class="hljs-keyword">\usepackage</span>[paperwidth=<span class="hljs-keyword">\Pwidth</span>, paperheight=20in, lmargin=<span class="hljs-keyword">\Mwidth</span>, vmargin=0em]&#123;geometry&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;xintexpr&#125;<br><br><span class="hljs-comment">% start implementation</span><br><span class="hljs-keyword">\ExplSyntaxOn</span><span class="hljs-keyword">\makeatletter</span><br><span class="hljs-keyword">\newbox</span><span class="hljs-keyword">\resbox</span><br><span class="hljs-keyword">\newlength</span><span class="hljs-keyword">\digitwd</span><br><span class="hljs-keyword">\newlength</span><span class="hljs-keyword">\digitht</span><br><span class="hljs-keyword">\newlength</span><span class="hljs-keyword">\digitsp</span><br><span class="hljs-keyword">\setlength</span><span class="hljs-keyword">\digitwd</span>&#123;1.5ex&#125;<br><span class="hljs-keyword">\setlength</span><span class="hljs-keyword">\digitht</span>&#123;1.5ex&#125;<br><span class="hljs-keyword">\setlength</span><span class="hljs-keyword">\digitsp</span>&#123;.4ex&#125;<br><br><span class="hljs-keyword">\protected</span><span class="hljs-keyword">\def</span><span class="hljs-keyword">\digitfill</span><span class="hljs-params">#1</span>&#123;<span class="hljs-keyword">\hskip</span><span class="hljs-keyword">\digitsp</span><span class="hljs-keyword">\relax</span><span class="hljs-keyword">\fbox</span>&#123;<span class="hljs-keyword">\vbox</span> to<span class="hljs-keyword">\digitht</span>&#123;<span class="hljs-keyword">\vss</span><span class="hljs-keyword">\hbox</span> to <span class="hljs-keyword">\digitwd</span>&#123;<span class="hljs-keyword">\hss</span><span class="hljs-params">#1</span><span class="hljs-keyword">\hss</span>&#125;&#125;&#125;&#125;<br><span class="hljs-keyword">\protected</span><span class="hljs-keyword">\def</span><span class="hljs-keyword">\EMPTY</span>&#123;<span class="hljs-keyword">\rule</span>[.5ex]&#123;.6ex&#125;&#123;.6ex&#125;&#125;<br><br><span class="hljs-keyword">\cs_new:Nn</span> <span class="hljs-keyword">\__num_dec:n</span><br>  &#123;<br>    <span class="hljs-keyword">\tl_map_function:nN</span> &#123;<span class="hljs-params">#1</span>&#125;<br>      <span class="hljs-keyword">\__add_dec:n</span><br>  &#125;<br><span class="hljs-keyword">\cs_new:Nn</span> <span class="hljs-keyword">\__add_dec:n</span><br>  &#123;<br>    <span class="hljs-keyword">\tl_if_eq:NNTF</span> &#123;<span class="hljs-params">#1</span>&#125;&#123;<span class="hljs-keyword">\times</span>&#125;<br>      &#123;<span class="hljs-built_in">$</span><span class="hljs-keyword">\times</span><span class="hljs-built_in">$</span><span class="hljs-keyword">\ </span>&#125;<br>      &#123;<span class="hljs-keyword">\digitfill</span>&#123;<span class="hljs-params">#1</span>&#125;&#125;<br>  &#125;<br><br><span class="hljs-keyword">\cs_new:Nn</span> <span class="hljs-keyword">\calc_man_typeset:nn</span><br>  &#123;<br>    <span class="hljs-keyword">\calc_man:nn</span> &#123;<span class="hljs-params">#1</span>&#125;&#123;<span class="hljs-params">#2</span>&#125;<br>    <span class="hljs-keyword">\seq_use:Nn</span> <span class="hljs-keyword">\g_tmpa_seq</span> &#123;<span class="hljs-keyword">\par</span>&#125;<br>    <span class="hljs-comment">% \seq_show:N \g_tmpa_seq</span><br>    <span class="hljs-keyword">\setbox</span><span class="hljs-keyword">\resbox</span><span class="hljs-keyword">\hbox</span>&#123;<span class="hljs-keyword">\lastRes</span>&#125;<br>    <span class="hljs-comment">% typeset result</span><br>    <span class="hljs-keyword">\llap</span>&#123;<span class="hljs-keyword">\rule</span>[.3em]<br>          &#123;<span class="hljs-keyword">\dimexpr</span><span class="hljs-keyword">\wd</span><span class="hljs-keyword">\resbox</span>+2em<span class="hljs-keyword">\relax</span>&#125;<br>          &#123;1pt&#125;&#125;<br>    <span class="hljs-keyword">\llap</span>&#123;<span class="hljs-keyword">\exp_args:Ne</span> <span class="hljs-keyword">\__num_dec:n</span> &#123;<span class="hljs-keyword">\xinteval</span>&#123;<span class="hljs-params">#1</span>*<span class="hljs-params">#2</span>&#125;&#125;&#125;<br> &#125;<br><br><br><span class="hljs-keyword">\cs_new:Nn</span> <span class="hljs-keyword">\calc_man:nn</span><br> &#123;<br>   <span class="hljs-keyword">\prb_typeset:nn</span> &#123;<span class="hljs-params">#1</span>&#125;&#123;<span class="hljs-params">#2</span>&#125;<br>   <span class="hljs-keyword">\int_step_inline:nn</span> &#123;<span class="hljs-keyword">\tl_count:n</span> &#123;<span class="hljs-params">#2</span>&#125;&#125;<br>     &#123;<br>       <span class="hljs-keyword">\edef</span><span class="hljs-keyword">\curbnum</span>&#123;<span class="hljs-keyword">\tl_item:nn</span> &#123;<span class="hljs-params">#2</span>&#125;&#123;-<span class="hljs-params">##1</span>&#125;&#125;<br>       <span class="hljs-keyword">\edef</span><span class="hljs-keyword">\curres</span>&#123;<span class="hljs-keyword">\xinteval</span>&#123;<span class="hljs-params">#1</span>*<span class="hljs-keyword">\curbnum</span>&#125;&#125;<br>       <span class="hljs-keyword">\edef</span><span class="hljs-keyword">\tmpres</span><br>         &#123;<br>          <span class="hljs-keyword">\exp_args:Ne</span> <span class="hljs-keyword">\__num_dec:n</span> <br>            &#123;<br>              <span class="hljs-comment">% \prg_replicate:nn &#123;\tl_count:n&#123;#2&#125;-##1&#125;&#123;w&#125;</span><br>              <span class="hljs-keyword">\curres</span><br>            &#125;<br>          <span class="hljs-keyword">\exp_args:Ne</span> <span class="hljs-keyword">\__num_dec:n</span> &#123;<span class="hljs-keyword">\prg_replicate:nn</span> &#123;<span class="hljs-params">##1</span>-1&#125;&#123;<span class="hljs-keyword">\EMPTY</span>&#125;&#125;<br>         &#125;<br>       <span class="hljs-keyword">\seq_gput_right:Ne</span> <span class="hljs-keyword">\g_tmpa_seq</span><br>         &#123; <span class="hljs-keyword">\exp_not:N</span> <span class="hljs-keyword">\llap</span>&#123;<br>             <span class="hljs-keyword">\tmpres</span><br>          &#125; &#125;<br>        <span class="hljs-comment">% save the last item</span><br>        <span class="hljs-keyword">\int_compare:nNnT</span> &#123;<span class="hljs-params">##1</span>&#125;=&#123;<span class="hljs-keyword">\tl_count:n</span> &#123;<span class="hljs-params">#2</span>&#125;&#125;<br>          &#123;<span class="hljs-keyword">\gdef</span><span class="hljs-keyword">\lastRes</span>&#123;<span class="hljs-keyword">\tmpres</span>&#125;&#125;<br>      &#125;<br>  &#125;<br><br><span class="hljs-keyword">\newbox</span><span class="hljs-keyword">\numa</span><br><span class="hljs-keyword">\newbox</span><span class="hljs-keyword">\numb</span><br><span class="hljs-keyword">\cs_new:Nn</span> <span class="hljs-keyword">\prb_typeset:nn</span><br>  &#123;<br>    <span class="hljs-keyword">\setbox</span><span class="hljs-keyword">\numa</span><span class="hljs-keyword">\hbox</span>&#123;<span class="hljs-keyword">\__num_dec:n</span> &#123;<span class="hljs-params">#1</span>&#125;&#125;<br>    <span class="hljs-keyword">\setbox</span><span class="hljs-keyword">\numb</span><span class="hljs-keyword">\hbox</span>&#123;<span class="hljs-keyword">\__num_dec:n</span> &#123;<span class="hljs-keyword">\times</span>~<span class="hljs-params">#2</span>&#125;&#125;<br>    <span class="hljs-keyword">\llap</span>&#123;<span class="hljs-keyword">\copy</span><span class="hljs-keyword">\numa</span>&#125;<br>    <span class="hljs-keyword">\llap</span>&#123;<span class="hljs-keyword">\copy</span><span class="hljs-keyword">\numb</span>&#125;<br>    <span class="hljs-keyword">\llap</span>&#123;<span class="hljs-keyword">\rule</span>[.3em]<br>          &#123;<span class="hljs-keyword">\dim_max:nn</span> &#123;<span class="hljs-keyword">\wd</span><span class="hljs-keyword">\numa</span>&#125;&#123;<span class="hljs-keyword">\wd</span><span class="hljs-keyword">\numb</span>+1ex&#125;&#125;<br>          &#123;1pt&#125;&#125;<br>  &#125;<br><span class="hljs-keyword">\def</span><span class="hljs-keyword">\calcman</span><span class="hljs-params">#1</span><span class="hljs-params">#2</span>&#123;<span class="hljs-keyword">\calc_man_typeset:nn</span> &#123;<span class="hljs-params">#1</span>&#125;&#123;<span class="hljs-params">#2</span>&#125;&#125;<br><span class="hljs-keyword">\ExplSyntaxOff</span><br><span class="hljs-keyword">\parindent</span>0pt<span class="hljs-keyword">\relax</span><br><span class="hljs-keyword">\setlength</span><span class="hljs-keyword">\fboxsep</span>&#123;1pt&#125;<br><br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\mbox</span>&#123;&#125;<span class="hljs-keyword">\vskip</span><span class="hljs-keyword">\fill</span><span class="hljs-keyword">\relax</span><br><span class="hljs-keyword">\calcman</span>&#123;123456789123456789123456789123456789123456789123456789123456789123456789123456789&#125;<br>&#123;123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789&#125;<br><span class="hljs-keyword">\vskip</span><span class="hljs-keyword">\fill</span><span class="hljs-keyword">\relax</span><span class="hljs-keyword">\mbox</span>&#123;&#125;<br><br><span class="hljs-comment">%%% Some code for debug:</span><br><span class="hljs-comment">% \llap&#123;\xinteval&#123;123456789123456789123456789123456789123456789123456789*123456789123456789123456789123456789&#125;&#125;</span><br><br><span class="hljs-comment">% \xinteval&#123;2^1000&#125;</span><br><br><span class="hljs-comment">% \fbox&#123;\vbox to 3em&#123;\vss \hbox&#123;X&#125;\vss&#125;&#125;</span><br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure>
-<p>编译结果如下(生成的 SVG 太大了，就不放上来了):</p>
-<p><img src="/img/multiplication_in_tex/calc_example.png" srcset="/img/loading.gif" lazyload alt="calc output"></p>
+<p>一个脚本叫做 <code>pre</code>，(只能)用于在终端打印文件的预览; 一个脚本(函数)叫做 <code>ipre</code>, 它把 <code>pre</code> 和 <code>fzf</code> 进行了深度的集成. 为什么要分成两个文件 ? 大概这样做更加符合 Unix 哲学吧 ?</p>
+<p><strong>Do one thing and do it well !</strong></p>
+<p>其实这个 <code>ipre</code> 函数还是比较简单的:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><code class="hljs shell">function ipre() &#123;<br>    local cmd file<br>    if [[ -n &quot;$IPRE_LS&quot; ]]; then<br>        cmd=($&#123;=IPRE_LS&#125;)<br>    else<br>        cmd=(<br>            fd --hidden --follow<br>            -E .git<br>            -E target<br>            -E .cargo<br>            -E build<br>            -E .npm<br>            -E node_modules<br>            -E .cache<br>            -E dist<br>            -E out<br>            -E lsp-bridge<br>            # other ignore dir<br>            -E .java<br>            -E .gradle<br>            -E .nuget<br>            -E .steam<br>            -E .android<br>            -E .ipython<br>            -E .vscode<br>            -E .vscode-oss<br>            -E .oh-my-zsh<br>            -E .emacs-tmp<br>            -E .pub-cache<br>            -E .proxyman<br>            )<br>    fi<br>    if [[ $# -gt 0 ]]; then<br>        cmd+=(&quot;$@&quot;)<br>    fi<br>    # file select and preview<br>    cmd_str=$(printf &#x27;%q &#x27; &quot;$&#123;cmd[@]&#125;&quot;)<br>    FZF_STATE_FILE=&quot;$HOME/.cache/pre_thumbs/fzf_state&quot;<br>    echo &quot;file&quot; &gt; &quot;$FZF_STATE_FILE&quot;<br>    file=$(<br>        &quot;$&#123;cmd[@]&#125;&quot; | fzf \<br>        --multi \<br>        --prompt &quot;ipre &gt; &quot; \<br>        --preview &#x27;pre &#123;&#125;&#x27; \<br>        --height=50% --reverse \<br>        --preview-window=right:60% \<br>        --bind &#x27;resize:refresh-preview&#x27; \<br>        --bind &#x27;focus,load:transform-header:file --brief &#123;&#125;&#x27; \<br>        --bind &quot;\`:reload(\<br>               if grep -qxF &#x27;file&#x27; &#x27;$FZF_STATE_FILE&#x27;; then \<br>                   echo &#x27;directory&#x27; &gt; &#x27;$FZF_STATE_FILE&#x27; &amp;&amp; \<br>                   $cmd_str --type f $dir; \<br>               elif grep -qxF &#x27;directory&#x27; &#x27;$FZF_STATE_FILE&#x27;; then \<br>                   echo &#x27;all&#x27; &gt; &#x27;$FZF_STATE_FILE&#x27; &amp;&amp; \<br>                   $cmd_str --type d $dir; \<br>               else \<br>                   echo &#x27;file&#x27; &gt; &#x27;$FZF_STATE_FILE&#x27; &amp;&amp; \<br>                   $cmd_str . $dir; \<br>               fi)&quot; \<br>        --bind &#x27;alt-a:select-all&#x27; \<br>        --bind &#x27;alt-a:+execute-silent(echo &#123;+&#125; | wl-copy)&#x27; \<br>        --bind &#x27;alt-y:execute-silent(echo &#123;&#125; | wl-copy)&#x27; \<br>        --bind &quot;alt-r:execute-silent(rm -f &#123;&#125;)+reload($cmd_str)&quot; \<br>        --bind &quot;alt-left:reload($cmd_str . $dir)&quot; \<br>        --bind &quot;alt-right:reload(\<br>               if [[ -d &#x27;&#123;&#125;&#x27; ]]; then \<br>                  $cmd_str . &#123;&#125;; \<br>               else \<br>                  $cmd_str . \$(dirname &#123;&#125;); \<br>               fi)&quot;<br>        )<br>    # post action for selection:<br>    [[ -z &quot;$file&quot; ]] &amp;&amp; return<br>    if [[ -d &quot;$file&quot; ]]; then<br>        cd &quot;$file&quot;<br>        return<br>    fi<br>    case &quot;$&#123;file:l&#125;&quot; in<br>        *.png|*.jpg|*.jpeg|*.gif|*.webp|*.bmp|*.tiff)<br>            nohup imv &quot;$file&quot; &amp;&gt;/dev/null &amp;<br>            ;;<br>        *.pdf|*.djvu|*.epub|*.mobi)<br>            nohup zathura &quot;$file&quot; &amp;&gt;/dev/null &amp;<br>            ;;<br>        *.tar|*.tar.gz|*.tgz|*.tar.xz|*.txz|*.tar.bz2|*.tbz2)<br>            return<br>            ;;<br>        *.zip)<br>            return<br>            ;;<br>        # for text files to open:<br>        *)<br>            $&#123;EDITOR:-nvim&#125; &quot;$file&quot;<br>            ;;<br>    esac<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>相比于 <code>lf</code>, <code>ranger</code>, <code>yazi</code> 等成熟的软件, 该脚本的优势(我最喜欢的一点)就是, 我可以不用离开当前终端，在选择,浏览或预览文件时还可以看到之前命令的输出. 另一些比较小的优势, 轻量化以及完全掌控.</p>
+<p>目前, 该项目已经在 Github 上开源, 点击 <a target="_blank" rel="noopener" href="https://github.com/zongpingding/ipre">ipre - terminal inline previewer</a> 跳转.</p>
+<p>在些这个脚本的过程中，参考了一些类似项目, 比如: <a target="_blank" rel="noopener" href="https://github.com/gmou3/fzf-preview">fzf-preview</a>, 以及 fzf 的官方手册. 遇到了哪些困难呢 ? 最大的困难应该是 <strong>不熟悉 fzf 的命令参数</strong>, 也不能怪我，这个命令的参数真的太多了(所以, 人们对 fzf 的开发不到 1% &gt;_&lt;)</p>
+<p>和 fzf 类似的一个软件叫做 <a target="_blank" rel="noopener" href="https://github.com/skim-rs/skim">skim</a>, 不错，又是一个 Rust 重写万物的产物 … 还没有体验过，不过，看官方文档的介绍，skim 有一个什么 interasctive mode, 这个是它的特色. 之后有时间了就去试试.</p>
+<p>之后，我也许还会用 fzf 写一写脚本，用于和 <code>ps</code>, <code>kill</code>, <code>cd</code>, 之类的命令集成一下，这个应该不难，毕竟 fzf 官方已经提供了一些详细的(高级的)使用案例, 参见 <a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf/blob/master/ADVANCED.md">fzf advanced examples</a>.</p>
 
                 
               </div>
@@ -345,7 +348,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/LaTeX/" class="category-chain-item">LaTeX</a>
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
   
   
 
@@ -360,7 +363,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/xint/" class="print-no-link">#xint</a>
+        <a href="/tags/sixel/" class="print-no-link">#sixel</a>
+      
+        <a href="/tags/fzf/" class="print-no-link">#fzf</a>
+      
+        <a href="/tags/shell/" class="print-no-link">#shell</a>
       
     </div>
   
@@ -372,8 +379,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Multiplication in TeX</div>
-      <div>https://zongpingding.github.io/2026/03/07/multiplication_in_tex/</div>
+      <div>Terminal inline Previewer</div>
+      <div>https://zongpingding.github.io/2026/03/07/inline_previewer/</div>
     </div>
     <div class="license-meta">
       
@@ -417,18 +424,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/03/07/inline_previewer/" title="Terminal inline Previewer">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Terminal inline Previewer</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/03/05/emacs_font/" title="Emacs Font Config">
-                        <span class="hidden-mobile">Emacs Font Config</span>
+                      <a href="/2026/03/07/multiplication_in_tex/" title="Multiplication in TeX">
+                        <span class="hidden-mobile">Multiplication in TeX</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
