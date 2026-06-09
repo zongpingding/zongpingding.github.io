@@ -4,6 +4,58 @@
   
   
   <entry>
+    <title>Fontconfig regression bug</title>
+    <link href="/2026/06/09/fontconfig_regression_bug/"/>
+    <url>/2026/06/09/fontconfig_regression_bug/</url>
+    
+    <content type="html"><![CDATA[<p>Check:</p><ul><li><a href="https://github.com/msys2/mingw-packages/issues/29691">https://github.com/msys2/mingw-packages/issues/29691</a></li><li><a href="https://www.reddit.com/r/archlinux/comments/1twdfq4/fontconfig_2181_broke_generic_font_aliases/">https://www.reddit.com/r/archlinux/comments/1twdfq4/fontconfig_2181_broke_generic_font_aliases/</a></li><li><a href="https://www.reddit.com/r/archlinux/comments/1tyr1b2/did_something_change_with_the_new_fontconfig/">https://www.reddit.com/r/archlinux/comments/1tyr1b2/did_something_change_with_the_new_fontconfig/</a></li></ul><p>From <code>fontconfig 2.17.1-1</code> to <code>fontconfig 2.18</code>, many of my GUI applications broke as well:</p><ol><li>LocalSend only shows a black screen.</li><li>Wolfram Notebook crashes with <code>Segmentation fault (core dumped)</code>.</li><li>OBS either fails to start or crashes when I click the <strong>Settings</strong> menu.</li></ol><p>After downgrading back to <code>2.17.1-1</code>, everything works normally again.</p><p>As a bonus, I can finally remove those Flatpak alternatives <code>-_-</code>.</p><p>Maybe it’s time to set up <code>timeshift</code> ?</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Archlinux</tag>
+      
+      <tag>fontconfig</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>WSTP(Wolfram Symbolic Transfer Protocol)</title>
+    <link href="/2026/06/09/wstp/"/>
+    <url>/2026/06/09/wstp/</url>
+    
+    <content type="html"><![CDATA[<p>Some examples about how to use WSTP:</p><ul><li><a href="https://github.com/zongpingding/wstp_example">https://github.com/zongpingding/wstp_example</a></li><li><a href="https://github.com/zongpingding/wstp_example/blob/main/README.md">https://github.com/zongpingding/wstp_example/blob/main/README.md</a></li><li><a href="https://github.com/zongpingding/wstp_example/blob/main/scripts/README.md">https://github.com/zongpingding/wstp_example/blob/main/scripts/README.md</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Mathematica</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>WSTP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Setup Fcitx5 for Mathematica(in wayland)</title>
     <link href="/2026/06/09/wolframnb_fcitx5_setup/"/>
     <url>/2026/06/09/wolframnb_fcitx5_setup/</url>
