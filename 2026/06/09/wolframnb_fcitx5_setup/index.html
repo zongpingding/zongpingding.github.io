@@ -26,12 +26,14 @@
 <meta property="og:site_name" content="Eureka">
 <meta property="og:description" content="Table of Contents  0. Environments 1. Problem Description 2. Related Issues 3. Debugging Difficulties and Solutions  Difficulty 1: Silent Failures and Isolated Environments Difficulty 2: The Qt ABI V">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zongpingding.github.io/img/wolframnb_fcitx5_setup/fcitx5_panel_misplaced.png">
 <meta property="article:published_time" content="2026-06-09T12:00:00.000Z">
-<meta property="article:modified_time" content="2026-06-09T10:35:56.450Z">
+<meta property="article:modified_time" content="2026-06-09T10:42:38.223Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="fcitx5">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zongpingding.github.io/img/wolframnb_fcitx5_setup/fcitx5_panel_misplaced.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -360,6 +362,7 @@
 <h3 id="Difficulty-3-CMake-Configuration-Failing-Missing-ECM">Difficulty 3: CMake Configuration Failing (Missing ECM)</h3>
 <p><strong>The Problem:</strong> While trying to compile <code>fcitx5-qt</code> against a locally downloaded Qt 6.5 SDK (using <code>aqtinstall</code>), CMake threw a fatal error: <code>Could not find a package configuration file provided by &quot;ECM&quot; (Extra CMake Modules)</code>. This happened because overriding <code>CMAKE_PREFIX_PATH</code> strictly to the local Qt folder prevented CMake from finding system-level KDE/Fcitx5 dependencies.<br>
 <strong>The Solution:</strong> The failed CMake cache was wiped (<code>rm -rf CMakeCache.txt CMakeFiles/</code>). Required dependencies were ensured via <code>sudo pacman -S --needed extra-cmake-modules fcitx5 wayland wayland-protocols</code>. Finally, the <code>CMAKE_PREFIX_PATH</code> was adjusted to include both the local Qt 6.5 directory and the system root (<code>;/usr</code>), allowing the compiler to resolve all dependencies.</p>
+<p><img src="/img/wolframnb_fcitx5_setup/fcitx5_panel_misplaced.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h3 id="Difficulty-4-Misplaced-Input-Panel-Cursor-Tracking-Failure">Difficulty 4: Misplaced Input Panel (Cursor Tracking Failure)</h3>
 <p><strong>The Problem:</strong> After successful compilation and injection of the plugin, Fcitx5 could be triggered successfully. However, the input panel was persistently pinned to the top-right corner of the window rather than following the text cursor.<br>
 <strong>The Solution:</strong> This is a known, currently unresolvable upstream issue with closed-source software on Wayland. Wayland relies on relative coordinates (<code>text-input-v3</code>) to position overlays. Because Wolfram Notebook utilizes a highly custom, proprietary canvas rendering engine rather than standard Qt input widgets (like <code>QLineEdit</code>), it fails to dynamically report the <code>cursorRectangle</code> coordinates to the Wayland compositor. Consequently, the compositor receives a default <code>(0,0,0,0)</code> coordinate, forcing the Fcitx5 panel into a fixed fallback position at the edge of the window. The pragmatic workaround is to either increase Fcitx5’s font size for better peripheral visibility or perform heavy text editing in external editors (like Emacs).</p>
