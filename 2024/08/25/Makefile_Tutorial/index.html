@@ -27,7 +27,7 @@
 <meta property="og:description" content="基本概念 核心: make使用文件的创建和修改时间来判断是否应该更新一个目标文件 一个基本的 Makefile 文件的基本书写格式为: 123456789# 目标文件: 依赖文件1 依赖文件2# 1. Tab开头的是命令# 2. make执行时，默认执行第一条规则. # 把默认执行的规则放第一条，其他规则的顺序是无关紧要的，因为make执行时自动判断依赖x.txt: m.txt c.txt	cat">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-08-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-04T13:37:30.869Z">
+<meta property="article:modified_time" content="2026-06-12T07:00:00.000Z">
 <meta property="article:author" content="Eureka">
 <meta property="article:tag" content="makefile">
 <meta name="twitter:card" content="summary_large_image">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          688 words
+          755 words
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          6 mins
+          7 mins
         
       </span>
     
@@ -323,6 +323,7 @@
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">clean:</span><br>	rm -f m.txt<br>	rm -f x.txt<br></code></pre></td></tr></table></figure>
 <p>由于和前面的规则不同，所以执行 <code>clean</code> 这以目标时，需要使用命令: make clean. 有时候为了防止这种为目标出现一些意想不到的结果，可以对伪目标进行严格的声明，如下:</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>:clean</span><br><span class="hljs-section">clean:</span><br>    find $&#123;DIR_OBJ&#125; -name *.o -exec rm -rf &#123;&#125;<br></code></pre></td></tr></table></figure>
+<p>那么这里 <code>意想不到的结果</code> 到底是什么 ? 比如目标 <code>clean</code>： 如果当前目录下已经存在一个名为 <code>clean</code> 的文件, 此时 <code>make</code> 命令发现其生成日期是最新的，就会拒绝执行 <code>clean</code> 下的任务.</p>
 <p>一些注意点如下:</p>
 <ul>
 <li>可以使用 <code>\</code> 把一行语句拆成多行，便于浏览</li>
