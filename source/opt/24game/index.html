@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>24 Game Solver</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 16px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        #solver-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* 数字输入区 */
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .numbers-grid input {
+            height: 48px;
+            font-size: 18px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .numbers-grid input:focus {
+            outline: none;
+            border-color: #337ab7;
+        }
+
+        /* 目标值 */
+        .target-input {
+            width: 100%;
+            height: 48px;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            height: 48px;
+            font-size: 18px;
+            background-color: #337ab7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #286090;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+
+        #results ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #results li {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 6px;
+        }
+
+        .result-text {
+            flex: 1;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            padding: 6px 10px;
+            font-size: 14px;
+            border-radius: 6px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background-color: #4cae4c;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div id="solver-container">
+    <h1>24 Game Solver</h1>
+
+    <!-- 数字输入（一个数字一个框） -->
+    <div class="numbers-grid">
+        <input type="number" inputmode="numeric">
+        <input type="number" inputmode="numeric">
+        <input type="number" inputmode="numeric">
+        <input type="number" inputmode="numeric">
+        <input type="number" inputmode="numeric">
+        <input type="number" inputmode="numeric">
+        <input type="number" inputmode="numeric">
+        <input type="number" inputmode="numeric">
+        <input type="number" inputmode="numeric">
+        <input type="number" inputmode="numeric">
+    </div>
+
+    <input
+        type="number"
+        id="target"
+        class="target-input"
+        value="24"
+        inputmode="numeric"
+        placeholder="Target"
+    >
+
+    <button onclick="solveGame()">Solve</button>
+
+    <div id="results"></div>
+</div>
+
+<script>
+    function solveGame() {
+        const nums_min_len = 2;
+        const nums_max_len = 10;
+
+        /* ✅ 仅做输入收集，不改算法 */
+        const inputs = document.querySelectorAll('.numbers-grid input');
+        const numbers = Array.from(inputs)
+            .map(i => i.value)
+            .filter(v => v !== '')
+            .map(Number);
+
+        const target = parseFloat(document.getElementById('target').value);
+
+        if (numbers.some(isNaN)) {
+            alert('Please enter valid numbers.');
+            return;
+        }
+        if (isNaN(target)) {
+            alert('Please enter a valid target number.');
+            return;
+        }
+        if (numbers.length < nums_min_len || numbers.length > nums_max_len) {
+            alert('Please enter between ' + nums_min_len + ' to ' + nums_max_len + ' numbers.');
+            return;
+        }
+
+        const startTime = performance.now();
+        const maxResults = 5;
+        const results = findSolutions(numbers, target, startTime, maxResults);
+        displayResults(results, target);
+    }
+
+    /* ===== 以下算法代码完全未改 ===== */
+
+    function findSolutions(numbers, target, startTime, maxResults) {
+        const resultsSet = new Set();
+        const operators = ['+', '-', '*', '/'];
+
+        function generateExpressions(nums, exprs) {
+            if (resultsSet.size >= maxResults) return;
+            if (performance.now() - startTime > 5000) return;
+
+            if (nums.length === 1) {
+                if (Math.abs(nums[0] - target) < 1e-6) {
+                    const cleanExpr = removeOuterParentheses(exprs[0]);
+                    resultsSet.add(cleanExpr);
+                }
+                return;
+            }
+
+            for (let i = 0; i < nums.length; i++) {
+                for (let j = 0; j < nums.length; j++) {
+                    if (i !== j) {
+                        const a = nums[i];
+                        const b = nums[j];
+                        const exprA = exprs[i];
+                        const exprB = exprs[j];
+
+                        const remainingNums = [];
+                        const remainingExprs = [];
+                        for (let k = 0; k < nums.length; k++) {
+                            if (k !== i && k !== j) {
+                                remainingNums.push(nums[k]);
+                                remainingExprs.push(exprs[k]);
+                            }
+                        }
+
+                        for (const op of operators) {
+                            if ((op === '+' || op === '*') && i > j) continue;
+                            if (op === '/' && Math.abs(b) < 1e-6) continue;
+
+                            let newNum;
+                            let newExpr;
+
+                            switch (op) {
+                                case '+': newNum = a + b; newExpr = `(${exprA}+${exprB})`; break;
+                                case '-': newNum = a - b; newExpr = `(${exprA}-${exprB})`; break;
+                                case '*': newNum = a * b; newExpr = `(${exprA}*${exprB})`; break;
+                                case '/': newNum = a / b; newExpr = `(${exprA}/${exprB})`; break;
+                            }
+
+                            generateExpressions(
+                                [newNum, ...remainingNums],
+                                [newExpr, ...remainingExprs]
+                            );
+
+                            if (resultsSet.size >= maxResults) return;
+                        }
+                    }
+                }
+            }
+        }
+
+        generateExpressions(numbers, numbers.map(n => n.toString()));
+        return Array.from(resultsSet);
+    }
+
+    function removeOuterParentheses(expression) {
+        if (
+            expression.startsWith('(') &&
+            expression.endsWith(')') &&
+            isOuterMostParentheses(expression)
+        ) {
+            return expression.substring(1, expression.length - 1);
+        }
+        return expression;
+    }
+
+    function isOuterMostParentheses(expression) {
+        let count = 0;
+        for (let i = 0; i < expression.length; i++) {
+            if (expression[i] === '(') count++;
+            else if (expression[i] === ')') {
+                count--;
+                if (count === 0 && i < expression.length - 1) return false;
+            }
+        }
+        return count === 0;
+    }
+
+    function displayResults(results, target) {
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '';
+
+        if (results.length === 0) {
+            resultsDiv.textContent = 'No solutions found or computation took too long.';
+            return;
+        }
+
+        const h2 = document.createElement('h2');
+        h2.textContent = `Solutions to reach ${target}:`;
+        resultsDiv.appendChild(h2);
+
+        const ul = document.createElement('ul');
+        results.forEach(result => {
+            const li = document.createElement('li');
+
+            const span = document.createElement('span');
+            span.className = 'result-text';
+            span.textContent = result;
+
+            const btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.textContent = 'Copy';
+            btn.onclick = () => copyResult(result);
+
+            li.appendChild(span);
+            li.appendChild(btn);
+            ul.appendChild(li);
+        });
+
+        resultsDiv.appendChild(ul);
+    }
+
+    function copyResult(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+</script>
+</body>
+</html>
